@@ -1,0 +1,396 @@
+import { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { CheckCircle } from "lucide-react";
+
+const Procedure = () => {
+  const procedures = [
+    {
+      id: "medical-devices",
+      title: "Medical Devices Registration",
+      steps: [
+        {
+          title: "Determine Device Classification",
+          description:
+            "Classify your device under CDSCO categories (Class A, B, C, or D) based on risk level and intended use.",
+        },
+        {
+          title: "Appoint Indian Authorized Agent",
+          description:
+            "Foreign manufacturers must designate an authorized representative in India for liaison with CDSCO.",
+        },
+        {
+          title: "Prepare Documentation",
+          description:
+            "Compile technical file including device description, quality certificates, clinical data, and labeling information.",
+        },
+        {
+          title: "Submit Application via OSMD Portal",
+          description:
+            "File application through Online Submission of Medical Devices portal with all required documents and fees.",
+        },
+        {
+          title: "Regulatory Review and Clinical Evaluation",
+          description:
+            "CDSCO reviews submission, may request additional data or clinical evaluation for higher-risk devices.",
+        },
+        {
+          title: "Facility Inspection",
+          description:
+            "Manufacturing facility inspection may be conducted for certain device classes to verify quality systems.",
+        },
+        {
+          title: "Obtain Registration Certificate",
+          description:
+            "Upon approval, receive registration certificate valid for 5 years, enabling legal marketing in India.",
+        },
+        {
+          title: "Post-Market Surveillance and Renewal",
+          description:
+            "Maintain vigilance reporting, submit periodic safety updates, and renew registration before expiry.",
+        },
+      ],
+    },
+    {
+      id: "ivd",
+      title: "In-Vitro Diagnostics",
+      steps: [
+        {
+          title: "IVD Classification",
+          description:
+            "Determine if your IVD falls under regulated categories per CDSCO guidelines.",
+        },
+        {
+          title: "Quality System Documentation",
+          description:
+            "Prepare ISO 13485 certification and quality management system documentation.",
+        },
+        {
+          title: "Performance Evaluation",
+          description:
+            "Compile analytical and clinical performance data for your diagnostic product.",
+        },
+        {
+          title: "Technical Dossier Preparation",
+          description:
+            "Prepare comprehensive technical file including manufacturing details and validation studies.",
+        },
+        {
+          title: "CDSCO Submission",
+          description:
+            "Submit application through appropriate channels with all required documentation.",
+        },
+        {
+          title: "Regulatory Assessment",
+          description:
+            "Respond to queries and provide additional information as requested by CDSCO.",
+        },
+        {
+          title: "Certificate Issuance",
+          description:
+            "Receive approval certificate enabling commercial distribution of IVD products.",
+        },
+      ],
+    },
+    {
+      id: "cosmetics",
+      title: "Cosmetics Registration",
+      steps: [
+        {
+          title: "Product Formulation Review",
+          description:
+            "Ensure formulation complies with BIS and CDSCO permitted ingredients list.",
+        },
+        {
+          title: "Safety Assessment",
+          description:
+            "Conduct toxicological assessment and compile safety data for all ingredients.",
+        },
+        {
+          title: "Manufacturing License",
+          description:
+            "Obtain manufacturing license from State Drug Control Authority if manufacturing in India.",
+        },
+        {
+          title: "Product Registration",
+          description:
+            "Submit online registration application with product details, formulation, and test reports.",
+        },
+        {
+          title: "Label Compliance",
+          description:
+            "Ensure labels meet all regulatory requirements including ingredient declaration and warnings.",
+        },
+        {
+          title: "Import License (if applicable)",
+          description:
+            "Obtain import registration for foreign-manufactured products with Indian agent details.",
+        },
+        {
+          title: "Approval and Market Launch",
+          description:
+            "Receive registration certificate and commence commercial distribution.",
+        },
+      ],
+    },
+    {
+      id: "lmpc",
+      title: "Legal Metrology (LMPC)",
+      steps: [
+        {
+          title: "Packaging Compliance Audit",
+          description:
+            "Review existing packaging against Legal Metrology (Packaged Commodities) Rules requirements.",
+        },
+        {
+          title: "Label Design Review",
+          description:
+            "Ensure labels include all mandatory declarations: quantity, price, manufacturer details, country of origin.",
+        },
+        {
+          title: "LMPC Registration Filing",
+          description:
+            "File registration application with concerned State Legal Metrology Department.",
+        },
+        {
+          title: "Declaration Verification",
+          description:
+            "Submit declarations regarding net quantity, MRP, and consumer information compliance.",
+        },
+        {
+          title: "Certificate Obtainment",
+          description:
+            "Receive LMPC registration certificate authorizing packaged commodity sale.",
+        },
+        {
+          title: "Ongoing Compliance",
+          description:
+            "Maintain accurate records and ensure continued compliance with metrology standards.",
+        },
+      ],
+    },
+    {
+      id: "iec",
+      title: "Import Export Code (IEC)",
+      steps: [
+        {
+          title: "Eligibility Verification",
+          description:
+            "Confirm business is registered and has PAN, Aadhaar, and bank account details.",
+        },
+        {
+          title: "Document Compilation",
+          description:
+            "Gather required documents: business registration, bank certificate, ID proofs of partners/directors.",
+        },
+        {
+          title: "DGFT Portal Registration",
+          description:
+            "Create account on DGFT portal and fill IEC application form with accurate business details.",
+        },
+        {
+          title: "Fee Payment",
+          description:
+            "Pay applicable IEC registration fee through online payment gateway.",
+        },
+        {
+          title: "Application Submission",
+          description:
+            "Submit completed application with all supporting documents for processing.",
+        },
+        {
+          title: "IEC Code Issuance",
+          description:
+            "Receive 10-digit IEC code, valid for lifetime with no renewal requirement.",
+        },
+        {
+          title: "Customs and Bank Registration",
+          description:
+            "Update IEC details with customs authorities and bank for smooth import/export transactions.",
+        },
+      ],
+    },
+    {
+      id: "epr",
+      title: "Extended Producer Responsibility (EPR)",
+      steps: [
+        {
+          title: "EPR Obligation Assessment",
+          description:
+            "Determine if your products fall under plastic packaging EPR regulations.",
+        },
+        {
+          title: "Registration with CPCB",
+          description:
+            "Register as producer/importer on CPCB portal with business and product details.",
+        },
+        {
+          title: "EPR Plan Submission",
+          description:
+            "Submit Extended Producer Responsibility plan detailing plastic waste management approach.",
+        },
+        {
+          title: "Target Setting",
+          description:
+            "Establish collection and recycling targets as per CPCB guidelines for your product category.",
+        },
+        {
+          title: "Implementation",
+          description:
+            "Execute EPR plan through collection mechanisms, PRO partnerships, or own recycling systems.",
+        },
+        {
+          title: "Annual Return Filing",
+          description:
+            "Submit annual returns showing plastic waste collected and recycled/processed.",
+        },
+        {
+          title: "Certificate Obtainment",
+          description:
+            "Receive EPR certificates confirming compliance with environmental obligations.",
+        },
+      ],
+    },
+    {
+      id: "market-entry",
+      title: "India Market Entry",
+      steps: [
+        {
+          title: "Market Feasibility Study",
+          description:
+            "Assess regulatory requirements, market potential, and compliance costs for your product category.",
+        },
+        {
+          title: "Regulatory Roadmap Development",
+          description:
+            "Create comprehensive strategy identifying all licenses and approvals needed for market entry.",
+        },
+        {
+          title: "Multi-License Coordination",
+          description:
+            "Simultaneously process multiple applications (IEC, product registration, EPR, etc.) for efficient timeline.",
+        },
+        {
+          title: "Authorized Representative Setup",
+          description:
+            "Establish Indian legal entity or appoint authorized agents as required by regulations.",
+        },
+        {
+          title: "Product Registration",
+          description:
+            "Complete all product-specific registrations with relevant authorities (CDSCO, FSSAI, etc.).",
+        },
+        {
+          title: "Import Clearance Support",
+          description:
+            "Facilitate first import with customs documentation, duty calculation, and clearance coordination.",
+        },
+        {
+          title: "Distribution Network Setup",
+          description:
+            "Establish compliant distribution channels and ensure dealer/distributor licensing if required.",
+        },
+        {
+          title: "Launch and Ongoing Compliance",
+          description:
+            "Support commercial launch and provide continuous compliance monitoring and regulatory updates.",
+        },
+      ],
+    },
+  ];
+
+  const [activeTab, setActiveTab] = useState(procedures[0].id);
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/5 via-background to-primary/5">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
+              Regulatory Procedures
+            </h1>
+            <p className="text-xl text-muted-foreground">
+              Understand the step-by-step procedures for compliance in various
+              domains. Select a category below to see the detailed process and
+              requirements for that regulatory pathway.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Procedures Content */}
+      <section className="py-16 container mx-auto px-4 sm:px-6 lg:px-8">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="w-full flex flex-wrap justify-start lg:justify-center mb-8 h-auto gap-2 bg-transparent">
+            {procedures.map((proc) => (
+              <TabsTrigger
+                key={proc.id}
+                value={proc.id}
+                className="data-[state=active]:bg-primary data-[state=active]:text-white"
+              >
+                {proc.title}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {procedures.map((proc) => (
+            <TabsContent key={proc.id} value={proc.id}>
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+                  {proc.title} Process
+                </h2>
+
+                <div className="space-y-6">
+                  {proc.steps.map((step, index) => (
+                    <Card key={index} className="overflow-hidden">
+                      <CardContent className="p-6">
+                        <div className="flex items-start space-x-4">
+                          <div className="flex-shrink-0">
+                            <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-lg">
+                              <span className="text-xl font-bold text-white">
+                                {index + 1}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-xl font-semibold text-foreground mb-2">
+                              {step.title}
+                            </h3>
+                            <p className="text-muted-foreground">
+                              {step.description}
+                            </p>
+                          </div>
+                          <CheckCircle className="h-6 w-6 text-primary/30 flex-shrink-0" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-primary/5">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Need Help with the Process?
+            </h2>
+            <p className="text-muted-foreground mb-6">
+              Let our experts guide you through each step. We handle the
+              complexity so you can focus on your business.
+            </p>
+            <Button size="lg">Contact Us for Assistance</Button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Procedure;
