@@ -10,6 +10,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,7 @@ import { cn } from "@/lib/utils";
 
 const Home = () => {
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
   const [activeService, setActiveService] = React.useState<number | null>(null);
 
   React.useEffect(() => {
@@ -30,6 +32,13 @@ const Home = () => {
     }
   }, [isMobile]);
 
+  const handleLeadFormSubmit = React.useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      navigate("/contact");
+    },
+    [navigate],
+  );
   const handleLeadFormSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     window.location.href = "/contact";
