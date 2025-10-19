@@ -43,25 +43,27 @@ const Navbar = () => {
 
             {/* Services Dropdown */}
             <div
-              className="relative group"
+              className="relative"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
-              <button className="flex items-center text-sm font-medium text-foreground hover:text-primary transition-colors">
+              <button className="flex items-center text-sm font-medium text-foreground hover:text-primary transition-colors py-2">
                 Services
                 <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               {servicesOpen && (
-                <div className="absolute left-0 mt-2 w-64 bg-background border border-border rounded-lg shadow-lg py-2 animate-in fade-in slide-in-from-top-2">
-                  {services.map((service) => (
-                    <Link
-                      key={service.name}
-                      to={service.path}
-                      className="block px-4 py-2 text-sm text-foreground hover:bg-secondary hover:text-primary transition-colors"
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
+                <div className="absolute left-0 top-full pt-2">
+                  <div className="w-64 bg-background border border-border rounded-lg shadow-lg py-2 z-50 animate-in fade-in slide-in-from-top-2">
+                    {services.map((service) => (
+                      <Link
+                        key={service.name}
+                        to={service.path}
+                        className="block px-4 py-2 text-sm text-foreground hover:bg-secondary hover:text-primary transition-colors"
+                      >
+                        {service.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
