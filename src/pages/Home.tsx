@@ -11,7 +11,6 @@ import {
   Zap,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -39,10 +38,6 @@ const Home = () => {
     },
     [navigate],
   );
-  const handleLeadFormSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    window.location.href = "/contact";
-  }, []);
 
   const services = [
     {
