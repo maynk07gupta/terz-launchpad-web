@@ -3,12 +3,60 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import medicalDevicesImg from "@/assets/medical-devices.jpg";
+import ivdImg from "@/assets/ivd.jpg";
+import cosmeticsImg from "@/assets/cosmetics.jpg";
+import lmpcImg from "@/assets/lmpc.jpg";
+import iecImg from "@/assets/iec.jpg";
+import eprImg from "@/assets/epr.jpg";
+import marketEntryImg from "@/assets/market-entry.jpg";
+
+const ProcedureStep = ({ step, index }: { step: any; index: number }) => {
+  const { ref, isVisible } = useScrollAnimation();
+  
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ${
+        isVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-8"
+      }`}
+      style={{ transitionDelay: `${index * 100}ms` }}
+    >
+      <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+        <CardContent className="p-6">
+          <div className="flex items-start space-x-4">
+            <div className="flex-shrink-0">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <span className="text-xl font-bold text-white">
+                  {index + 1}
+                </span>
+              </div>
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                {step.title}
+              </h3>
+              <p className="text-muted-foreground">
+                {step.description}
+              </p>
+            </div>
+            <CheckCircle className="h-6 w-6 text-primary/30 flex-shrink-0 group-hover:text-primary group-hover:scale-125 transition-all duration-300" />
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
 
 const Procedure = () => {
   const procedures = [
     {
       id: "medical-devices",
       title: "Medical Devices Registration",
+      image: medicalDevicesImg,
       steps: [
         {
           title: "Determine Device Classification",
@@ -55,6 +103,7 @@ const Procedure = () => {
     {
       id: "ivd",
       title: "In-Vitro Diagnostics",
+      image: ivdImg,
       steps: [
         {
           title: "IVD Classification",
@@ -96,6 +145,7 @@ const Procedure = () => {
     {
       id: "cosmetics",
       title: "Cosmetics Registration",
+      image: cosmeticsImg,
       steps: [
         {
           title: "Product Formulation Review",
@@ -137,6 +187,7 @@ const Procedure = () => {
     {
       id: "lmpc",
       title: "Legal Metrology (LMPC)",
+      image: lmpcImg,
       steps: [
         {
           title: "Packaging Compliance Audit",
@@ -173,6 +224,7 @@ const Procedure = () => {
     {
       id: "iec",
       title: "Import Export Code (IEC)",
+      image: iecImg,
       steps: [
         {
           title: "Eligibility Verification",
@@ -214,6 +266,7 @@ const Procedure = () => {
     {
       id: "epr",
       title: "Extended Producer Responsibility (EPR)",
+      image: eprImg,
       steps: [
         {
           title: "EPR Obligation Assessment",
@@ -255,6 +308,7 @@ const Procedure = () => {
     {
       id: "market-entry",
       title: "India Market Entry",
+      image: marketEntryImg,
       steps: [
         {
           title: "Market Feasibility Study",
@@ -337,35 +391,32 @@ const Procedure = () => {
 
           {procedures.map((proc) => (
             <TabsContent key={proc.id} value={proc.id}>
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-                  {proc.title} Process
-                </h2>
+              <div className="max-w-5xl mx-auto">
+                {/* Hero Image Section */}
+                <div className="mb-12 overflow-hidden rounded-2xl shadow-2xl group">
+                  <div className="relative h-64 md:h-96 overflow-hidden">
+                    <img
+                      src={proc.image}
+                      alt={proc.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">
+                      <div className="p-8 w-full">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 animate-fade-in">
+                          {proc.title} Process
+                        </h2>
+                        <p className="text-white/90 text-lg">
+                          Step-by-step guide to ensure compliance
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
+                {/* Steps Section */}
                 <div className="space-y-6">
                   {proc.steps.map((step, index) => (
-                    <Card key={index} className="overflow-hidden">
-                      <CardContent className="p-6">
-                        <div className="flex items-start space-x-4">
-                          <div className="flex-shrink-0">
-                            <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-lg">
-                              <span className="text-xl font-bold text-white">
-                                {index + 1}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="text-xl font-semibold text-foreground mb-2">
-                              {step.title}
-                            </h3>
-                            <p className="text-muted-foreground">
-                              {step.description}
-                            </p>
-                          </div>
-                          <CheckCircle className="h-6 w-6 text-primary/30 flex-shrink-0" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <ProcedureStep key={index} step={step} index={index} />
                   ))}
                 </div>
               </div>
