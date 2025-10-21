@@ -9,7 +9,7 @@ import cosmeticsImg from "@/assets/cosmetics.jpg";
 import lmpcImg from "@/assets/lmpc.jpg";
 import iecImg from "@/assets/iec.jpg";
 import eprImg from "@/assets/epr.jpg";
-import marketEntryImg from "@/assets/market-entry.jpg";
+
 
 const ProcedureStep = ({ step, index }: { step: any; index: number }) => {
   const { ref, isVisible } = useScrollAnimation();
@@ -301,53 +301,6 @@ const Procedure = () => {
           title: "Certificate Obtainment",
           description:
             "Receive EPR certificates confirming compliance with environmental obligations.",
-        },
-      ],
-    },
-    {
-      id: "market-entry",
-      title: "India Market Entry",
-      image: marketEntryImg,
-      steps: [
-        {
-          title: "Market Feasibility Study",
-          description:
-            "Assess regulatory requirements, market potential, and compliance costs for your product category.",
-        },
-        {
-          title: "Regulatory Roadmap Development",
-          description:
-            "Create comprehensive strategy identifying all licenses and approvals needed for market entry.",
-        },
-        {
-          title: "Multi-License Coordination",
-          description:
-            "Simultaneously process multiple applications (IEC, product registration, EPR, etc.) for efficient timeline.",
-        },
-        {
-          title: "Authorized Representative Setup",
-          description:
-            "Establish Indian legal entity or appoint authorized agents as required by regulations.",
-        },
-        {
-          title: "Product Registration",
-          description:
-            "Complete all product-specific registrations with relevant authorities (CDSCO, FSSAI, etc.).",
-        },
-        {
-          title: "Import Clearance Support",
-          description:
-            "Facilitate first import with customs documentation, duty calculation, and clearance coordination.",
-        },
-        {
-          title: "Distribution Network Setup",
-          description:
-            "Establish compliant distribution channels and ensure dealer/distributor licensing if required.",
-        },
-        {
-          title: "Launch and Ongoing Compliance",
-          description:
-            "Support commercial launch and provide continuous compliance monitoring and regulatory updates.",
         },
       ],
     },

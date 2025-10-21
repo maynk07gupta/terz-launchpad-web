@@ -10,13 +10,12 @@ const Navbar = () => {
   const location = useLocation();
 
   const services = [
-    { name: "Medical Devices", path: "/services#medical-devices" },
-    { name: "In-Vitro Diagnostics", path: "/services#ivd" },
-    { name: "Cosmetics", path: "/services#cosmetics" },
-    { name: "Legal Metrology", path: "/services#lmpc" },
-    { name: "Import Export Code", path: "/services#iec" },
-    { name: "EPR", path: "/services#epr" },
-    { name: "India Market Entry", path: "/services#market-entry" },
+    { name: "Medical Devices", path: "/services/medical-devices" },
+    { name: "In-Vitro Diagnostics", path: "/services/ivd" },
+    { name: "Cosmetics", path: "/services/cosmetics" },
+    { name: "Legal Metrology", path: "/services/lmpc" },
+    { name: "Import Export Code", path: "/services/iec" },
+    { name: "EPR", path: "/services/epr" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
