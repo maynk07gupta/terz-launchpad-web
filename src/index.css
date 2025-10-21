@@ -90,6 +90,9 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: radial-gradient(circle at top left, hsl(210 90% 25% / 0.3), transparent 55%),
+      radial-gradient(circle at 20% 80%, hsl(195 90% 40% / 0.18), transparent 45%),
+      linear-gradient(180deg, hsl(222 60% 9%), hsl(222 74% 6%));
   }
 }
