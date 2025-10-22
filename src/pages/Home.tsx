@@ -3,14 +3,13 @@ import {
   ArrowRight,
   Building2,
   CheckCircle,
-  FileCheck,
   Quote,
   Shield,
+  FileCheck,
+  Zap,
   TrendingUp,
   Users,
-  Zap,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -32,14 +31,6 @@ const Home = () => {
     }
   }, [isMobile]);
 
-  const handleLeadFormSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (typeof window !== "undefined") {
-      window.location.href = "/contact";
-    }
-  }, []);
-    window.location.href = "/contact";
-  }, []);
   const handleLeadFormSubmit = React.useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -75,8 +66,8 @@ const Home = () => {
       icon: TrendingUp,
     },
     {
-      title: "EPR & Market Entry",
-      description: "Comprehensive India market entry solutions",
+      title: "EPR",
+      description: "Extended Producer Responsibility compliance",
       icon: Users,
     },
   ];
@@ -143,27 +134,6 @@ const Home = () => {
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Button asChild size="lg" className="bg-primary shadow-[0_20px_40px_-20px_rgba(37,99,235,0.55)] hover:bg-primary/90">
-  return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/10 via-background to-primary/10" />
-        <div className="absolute right-1/2 top-10 hidden h-80 w-80 translate-x-1/2 rounded-full bg-primary/20 blur-3xl lg:block" />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div className="max-w-xl">
-              <span className="mb-4 inline-flex items-center rounded-full bg-primary/10 px-4 py-1 text-sm font-medium text-primary">
-                Compliance without the guesswork
-              </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                One-Stop Regulatory Compliance Partner
-              </h1>
-              <p className="text-lg text-muted-foreground mb-8">
-                Bring products into India fast, compliant, and predictable. We turn complex regulations into regulator-ready dossiers
-                and clear timelines so your launch team can stay focused on growth.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
                   <Link to="/contact">
                     Get Compliance Help <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
@@ -174,7 +144,6 @@ const Home = () => {
                   variant="outline"
                   className="border-white/20 text-foreground transition hover:border-primary/40 hover:bg-white/10"
                 >
-                <Button asChild size="lg" variant="outline">
                   <Link to="/services">Explore Services</Link>
                 </Button>
               </div>
@@ -186,13 +155,6 @@ const Home = () => {
                 <div className={cn("rounded-2xl p-5 shadow-[0_20px_50px_-35px_rgba(37,99,235,0.7)]", glassPanel)}>
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">Client satisfaction</p>
                   <p className="mt-3 text-3xl font-semibold text-primary">98%</p>
-                <div className="rounded-2xl border border-primary/20 bg-background/80 p-4 backdrop-blur">
-                  <p className="text-sm uppercase tracking-wide text-muted-foreground">Average approval time</p>
-                  <p className="mt-2 text-3xl font-semibold text-primary">6-8 Weeks</p>
-                </div>
-                <div className="rounded-2xl border border-primary/20 bg-background/80 p-4 backdrop-blur">
-                  <p className="text-sm uppercase tracking-wide text-muted-foreground">Client satisfaction</p>
-                  <p className="mt-2 text-3xl font-semibold text-primary">98%</p>
                 </div>
               </div>
             </div>
@@ -203,12 +165,6 @@ const Home = () => {
                 <CardContent className="space-y-6 p-8">
                   <div className="flex items-center gap-3">
                     <span className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary">
-              <div className="absolute -left-6 -top-6 h-24 w-24 rounded-full bg-primary/20 blur-2xl" />
-              <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-3xl bg-primary/10 blur-3xl" />
-              <Card className="relative overflow-hidden border-none shadow-xl">
-                <CardContent className="space-y-6 p-8">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                       <Building2 className="h-6 w-6" />
                     </span>
                     <div>
@@ -219,20 +175,12 @@ const Home = () => {
                   <div className="rounded-2xl border border-white/5 bg-white/[0.04] p-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">Highlights</p>
                     <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-                      <p className="text-lg font-semibold">Class C Medical Device</p>
-                    </div>
-                  </div>
-                  <div className="rounded-2xl bg-primary/5 p-4">
-                    <p className="text-sm uppercase tracking-wide text-primary">Highlights</p>
-                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                       <li>✔ Complete dossier prepared in 12 days</li>
                       <li>✔ Regulatory query resolved in 48 hours</li>
                       <li>✔ Importer onboarding playbook delivered</li>
                     </ul>
                   </div>
                   <div className="rounded-2xl border border-dashed border-primary/40 bg-primary/5 p-5 text-sm text-muted-foreground">
-                    “Terz gives us confidence that every document is audit-ready before we file.”
-                  <div className="rounded-2xl border border-dashed border-primary/40 p-4 text-sm text-muted-foreground">
                     "Terz gives us confidence that every document is audit-ready before we file."
                     <div className="mt-3 font-medium text-foreground">Head of Regulatory, GlobalMed</div>
                   </div>
@@ -312,10 +260,6 @@ const Home = () => {
                   isMobile && activeService === index
                     ? "border-primary/60 shadow-[0_30px_100px_-60px_rgba(37,99,235,0.8)]"
                     : "hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_30px_100px_-60px_rgba(37,99,235,0.7)]"
-                  "group cursor-pointer border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                  isMobile && activeService === index
-                    ? "border-primary bg-background/80"
-                    : "hover:-translate-y-1 hover:border-primary"
                 )}
               >
                 <CardContent className="pt-6">
@@ -332,7 +276,6 @@ const Home = () => {
                           ? "mt-3 max-h-32 opacity-100"
                           : "mt-0 max-h-0 opacity-0"
                         : "md:mt-3 md:max-h-0 md:translate-y-2 md:opacity-0 md:group-hover:max-h-32 md:group-hover:translate-y-0 md:group-hover:opacity-100"
-                        : "md:mt-3 md:max-h-0 md:opacity-0 md:group-hover:max-h-32 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:translate-y-2"
                     )}
                   >
                     {service.description}
@@ -365,7 +308,7 @@ const Home = () => {
               <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary/80">Trusted by market leaders</p>
               <h2 className="mt-4 text-3xl font-bold text-foreground lg:text-4xl">Partners count on Terz for compliant launches</h2>
               <p className="mt-4 text-base text-muted-foreground">
-                Over a decade of approvals for manufacturers, importers, and innovators expanding into India’s regulated markets.
+                Over a decade of approvals for manufacturers, importers, and innovators expanding into India's regulated markets.
               </p>
             </div>
             <div className="flex w-full flex-wrap items-center justify-center gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur">
@@ -373,18 +316,6 @@ const Home = () => {
                 <div
                   key={client}
                   className="flex items-center justify-center rounded-xl border border-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground transition hover:border-primary/50 hover:text-primary"
-      <section className="py-16 lg:py-24 bg-primary/5">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center text-center gap-6">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary">Trusted by market leaders</p>
-              <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-foreground">Partners count on Terz for compliant launches</h2>
-            </div>
-            <div className="flex w-full flex-wrap items-center justify-center gap-6 rounded-3xl border border-primary/20 bg-background/60 p-6 backdrop-blur">
-              {clients.map((client) => (
-                <div
-                  key={client}
-                  className="flex items-center justify-center rounded-xl border border-primary/10 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground transition hover:border-primary/50 hover:text-primary"
                 >
                   {client}
                 </div>
@@ -401,13 +332,8 @@ const Home = () => {
                 >
                   <CardContent className="flex h-full flex-col gap-4 p-6 text-left">
                     <Quote className="h-8 w-8 text-primary" />
-                    <p className="text-sm leading-relaxed text-muted-foreground">“{testimonial.quote}”</p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">"{testimonial.quote}"</p>
                     <div className="mt-auto">
-                <Card key={index} className="h-full border-primary/20 bg-background/80 shadow-sm">
-                  <CardContent className="flex h-full flex-col gap-4 p-6">
-                    <Quote className="h-8 w-8 text-primary" />
-                    <p className="text-left text-sm text-muted-foreground">“{testimonial.quote}”</p>
-                    <div className="mt-auto text-left">
                       <p className="font-semibold text-foreground">{testimonial.name}</p>
                       <p className="text-sm text-muted-foreground">
                         {testimonial.role} · {testimonial.company}
@@ -463,17 +389,6 @@ const Home = () => {
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Why teams choose Terz</h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Predictable approvals, transparent communication, and a partner that safeguards compliance long after launch.
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Why teams choose Terz</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Predictable approvals, transparent communication, and a partner that safeguards compliance long after launch.
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Why teams choose Terz</h2>
-            <p className="text-lg text-muted-foreground">
-              A responsive partner dedicated to predictable approvals, transparent communication, and long-term compliance support.
             </p>
           </div>
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -498,11 +413,6 @@ const Home = () => {
                   </div>
                   <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-              <Card key={item.title} className="border-primary/20 bg-background/80 shadow-sm">
-                <CardContent className="space-y-3 p-6">
-                  <CheckCircle className="h-10 w-10 text-primary" />
-                  <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -531,7 +441,7 @@ const Home = () => {
                   Book a 30-minute assessment with a regulatory specialist
                 </h2>
                 <p className="mt-4 text-base text-muted-foreground">
-                  Share your product category and launch goals. We’ll assess requirements, outline documentation, and send a custom timeline within one business day.
+                  Share your product category and launch goals. We'll assess requirements, outline documentation, and send a custom timeline within one business day.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2">
@@ -543,25 +453,6 @@ const Home = () => {
                   <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-primary" /> Transparent pricing and next steps
                   </li>
-      <section className="py-16 lg:py-24 bg-primary/5">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-primary/20 bg-background/90 p-8 shadow-lg backdrop-blur lg:p-12">
-            <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-              <div>
-                <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
-                  Start your compliance roadmap
-                </span>
-                <h2 className="mt-4 text-3xl lg:text-4xl font-bold text-foreground">
-                  Book a 30-minute assessment with a regulatory specialist
-                </h2>
-                <p className="mt-4 text-muted-foreground">
-                  Share your product category and launch goals. We’ll assess requirements, outline documentation, and send a custom timeline
-                  within one business day.
-                </p>
-                <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
-                  <li>• No obligation discovery call</li>
-                  <li>• Tailored checklist for your regulatory pathway</li>
-                  <li>• Transparent pricing and next steps</li>
                 </ul>
               </div>
               <div>
@@ -587,7 +478,6 @@ const Home = () => {
                     size="lg"
                     className="w-full bg-primary shadow-[0_20px_45px_-25px_rgba(37,99,235,0.75)] hover:bg-primary/90"
                   >
-                  <Button type="submit" size="lg" className="w-full">
                     Schedule my assessment
                   </Button>
                   <p className="text-xs text-muted-foreground">
