@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Resources from "./pages/Resources";
+import ResourceDetail from "./pages/ResourceDetail";
 import Procedure from "./pages/Procedure";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/services/iec" element={<IEC />} />
               <Route path="/services/epr" element={<EPR />} />
               <Route path="/resources" element={<Resources />} />
+              <Route path="/resources/:type/:slug" element={<ResourceDetail />} />
               <Route path="/procedure" element={<Procedure />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
