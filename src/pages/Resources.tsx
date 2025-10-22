@@ -115,136 +115,180 @@ const Resources = () => {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground">
-      <section className="relative overflow-hidden pb-32 pt-28">
+      {/* Enhanced Hero Section */}
+      <section className="relative overflow-hidden pb-20 pt-28">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-32 left-1/3 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
-          <div className="absolute bottom-0 left-[-10%] h-80 w-80 rounded-full bg-sky-500/20 blur-3xl animate-float-slow" />
-          <div className="absolute right-[-5%] top-10 h-96 w-96 rounded-full bg-fuchsia-500/15 blur-3xl animate-float-delayed" />
-          <div className="absolute inset-x-0 top-0 h-full bg-[radial-gradient(circle_at_top,rgba(12,58,148,0.35)_0%,transparent_60%)]" />
+          <div className="absolute -top-40 left-1/4 h-[500px] w-[500px] rounded-full bg-primary/30 blur-[120px] animate-float-slow" />
+          <div className="absolute bottom-20 right-[-10%] h-[600px] w-[600px] rounded-full bg-sky-400/20 blur-[100px] animate-float-delayed" />
+          <div className="absolute left-[-15%] top-1/3 h-[400px] w-[400px] rounded-full bg-fuchsia-400/15 blur-[100px]" />
+          <div className="absolute inset-x-0 top-0 h-full bg-[radial-gradient(circle_at_top_center,rgba(12,58,148,0.4)_0%,transparent_50%)]" />
         </div>
 
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl">
-            <Badge className="mb-6 inline-flex items-center gap-2 border border-primary/30 bg-primary/10 text-primary">
-              <Sparkles className="h-4 w-4" />
+          <div className="mx-auto max-w-4xl text-center">
+            <Badge className="mb-8 inline-flex items-center gap-2 border border-primary/30 bg-primary/10 px-6 py-2 text-primary backdrop-blur-sm">
+              <Sparkles className="h-4 w-4 animate-pulse" />
               Terz Knowledge Center
             </Badge>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Insights engineered to keep your compliance edge sharp.
+            <h1 className="bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl lg:text-7xl">
+              Insights engineered to keep your compliance edge sharp
             </h1>
-            <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+            <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
               Dive into curated news and long-form analysis from our regulatory experts.
               Every story is designed to make your next decision faster and more confident.
             </p>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-6">
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
-                <div className="flex items-center gap-3 text-sm text-primary/90">
-                  <TrendingUp className="h-4 w-4" />
-                  Trending topics from the last 30 days
-                </div>
-                <Separator className="my-4 border-white/10" />
-                <div className="flex flex-wrap gap-2">
-                  {trendingTopics.map((topic) => (
-                    <button
-                      key={topic}
-                      type="button"
-                      onClick={() => handleSearchChange(topic)}
-                      className="group rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/20"
-                    >
-                      <span>{topic}</span>
-                      <ArrowUpRight className="ml-2 h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100" />
-                    </button>
-                  ))}
-                </div>
+            
+            {/* Stats Cards */}
+            <div className="mt-16 grid gap-6 sm:grid-cols-3">
+              <div className="group rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
+                <div className="text-4xl font-bold text-primary">{resources.length}</div>
+                <div className="mt-2 text-sm text-muted-foreground">Expert Articles</div>
               </div>
-              <div className="rounded-3xl border border-white/5 bg-white/5 p-5 backdrop-blur-xl">
-                <div className="flex items-center gap-3 text-sm text-white/80">
-                  <Flame className="h-4 w-4" />
-                  Fresh additions this week
-                </div>
-                <Separator className="my-4 border-white/10" />
-                <ul className="space-y-3 text-sm text-white/80">
-                  {resources.slice(0, 3).map((item) => (
-                    <li key={item.slug} className="flex items-center justify-between gap-4">
-                      <span className="line-clamp-1">{item.title}</span>
-                      <span className="text-xs uppercase tracking-wide text-white/60">
-                        {formatDate(item.publishedOn)}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="group rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
+                <div className="text-4xl font-bold text-primary">15+</div>
+                <div className="mt-2 text-sm text-muted-foreground">Industry Topics</div>
+              </div>
+              <div className="group rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
+                <div className="text-4xl font-bold text-primary">Weekly</div>
+                <div className="mt-2 text-sm text-muted-foreground">Fresh Updates</div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div
-          className={cn(
-            "pointer-events-auto relative mx-auto mt-16 w-full max-w-4xl transition-all duration-500 ease-out",
-            isCompressed ? "sticky top-24 z-40" : ""
-          )}
-        >
-          <div
-            className={cn(
-              "rounded-[32px] border border-white/20 bg-white/80 p-8 shadow-[0_30px_80px_rgba(15,41,80,0.18)] backdrop-blur-xl transition-all duration-500",
-              isCompressed ? "flex items-center justify-between gap-6 p-4" : "space-y-6"
-            )}
-          >
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/15 text-primary shadow-inner shadow-primary/20 transition-transform duration-500">
-                <Search className="h-6 w-6" />
+          {/* Trending & Recent Cards */}
+          <div className="mx-auto mt-16 grid max-w-6xl gap-6 lg:grid-cols-2">
+            <div className="group rounded-3xl border border-border/60 bg-card/70 p-8 backdrop-blur-xl transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/20">
+              <div className="flex items-center gap-3 text-primary">
+                <TrendingUp className="h-5 w-5" />
+                <span className="text-sm font-semibold uppercase tracking-wider">Trending Topics</span>
               </div>
-              <div className="min-w-0">
-                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/70">
-                  Knowledge Center
-                </p>
-                {!isCompressed && (
-                  <h2 className="mt-2 text-2xl font-semibold text-foreground">
-                    Search across news, explainers, and deep dives
-                  </h2>
-                )}
+              <Separator className="my-5 bg-border/50" />
+              <div className="flex flex-wrap gap-3">
+                {trendingTopics.map((topic) => (
+                  <button
+                    key={topic}
+                    type="button"
+                    onClick={() => handleSearchChange(topic)}
+                    className="group/btn flex items-center gap-2 rounded-full border border-border bg-secondary px-5 py-2.5 text-sm font-medium text-secondary-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/30"
+                  >
+                    <span>{topic}</span>
+                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover/btn:opacity-100" />
+                  </button>
+                ))}
               </div>
             </div>
-
-            {!isCompressed && (
-              <div>
-                <div className="relative">
-                  <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-                  <Input
-                    value={searchTerm}
-                    onChange={(event) => handleSearchChange(event.target.value)}
-                    placeholder="Search by title, topic, or author"
-                    className="h-14 rounded-full border border-muted bg-white pl-12 text-base shadow-inner shadow-primary/10"
-                  />
-                </div>
-                <p className="mt-3 text-xs text-muted-foreground">
-                  {resultLabel} — Filters update in real time as you type.
-                </p>
+            <div className="group rounded-3xl border border-border/60 bg-card/70 p-8 backdrop-blur-xl transition-all duration-500 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/20">
+              <div className="flex items-center gap-3 text-primary">
+                <Flame className="h-5 w-5" />
+                <span className="text-sm font-semibold uppercase tracking-wider">Fresh This Week</span>
               </div>
-            )}
-
-            {isCompressed && (
-              <div className="flex items-center gap-4">
-                <Badge variant="secondary" className="rounded-full bg-primary/10 text-xs text-primary">
-                  {resultLabel}
-                </Badge>
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="h-10 w-10 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/40"
-                  onClick={() => setIsSearchOverlayOpen(true)}
-                >
-                  <Search className="h-5 w-5" />
-                </Button>
-              </div>
-            )}
+              <Separator className="my-5 bg-border/50" />
+              <ul className="space-y-4">
+                {resources.slice(0, 3).map((item) => (
+                  <li key={item.slug} className="group/item flex items-center justify-between gap-4 transition-colors">
+                    <span className="line-clamp-1 text-sm font-medium text-foreground group-hover/item:text-primary">{item.title}</span>
+                    <span className="shrink-0 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      {formatDate(item.publishedOn)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="sticky top-24 z-30 border-b border-border/40 bg-background/85 backdrop-blur-lg">
-        <div className="container mx-auto flex flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 text-sm text-muted-foreground">
+      {/* Sticky Search Bar with Compression Animation */}
+      <div
+        className={cn(
+          "sticky top-24 z-40 mx-auto w-full transition-all duration-500 ease-out",
+          isCompressed ? "py-0" : "-mt-12 py-8"
+        )}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            className={cn(
+              "mx-auto overflow-hidden rounded-[2rem] border border-border/60 bg-card/95 shadow-2xl shadow-primary/20 backdrop-blur-xl transition-all duration-500",
+              isCompressed 
+                ? "max-w-full py-4" 
+                : "max-w-5xl py-8"
+            )}
+          >
+            <div className="px-6 sm:px-8">
+              <div className={cn(
+                "flex items-center gap-6 transition-all duration-500",
+                isCompressed ? "flex-row justify-between" : "flex-col gap-6"
+              )}>
+                {/* Left Section: Icon + Title */}
+                <div className={cn(
+                  "flex items-center gap-4 transition-all duration-500",
+                  isCompressed ? "min-w-0" : "w-full"
+                )}>
+                  <div className={cn(
+                    "flex shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary shadow-inner shadow-primary/20 transition-all duration-500",
+                    isCompressed ? "h-10 w-10" : "h-14 w-14"
+                  )}>
+                    <Search className={cn("transition-all duration-500", isCompressed ? "h-5 w-5" : "h-7 w-7")} />
+                  </div>
+                  <div className={cn("min-w-0 transition-all duration-500", isCompressed && "flex-1")}>
+                    <p className={cn(
+                      "font-semibold uppercase tracking-[0.3em] text-primary/70 transition-all duration-500",
+                      isCompressed ? "text-[10px]" : "text-xs"
+                    )}>
+                      Knowledge Centre
+                    </p>
+                    <h2 className={cn(
+                      "font-semibold text-foreground transition-all duration-500",
+                      isCompressed ? "mt-0 text-sm" : "mt-2 text-2xl"
+                    )}>
+                      {isCompressed ? "Search & Filter" : "Search across news, explainers, and deep dives"}
+                    </h2>
+                  </div>
+                </div>
+
+                {/* Right Section: Search Bar */}
+                {!isCompressed && (
+                  <div className="w-full">
+                    <div className="relative">
+                      <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                      <Input
+                        value={searchTerm}
+                        onChange={(event) => handleSearchChange(event.target.value)}
+                        placeholder="Search by title, topic, or author"
+                        className="h-16 rounded-full border-border bg-background pl-14 pr-6 text-base shadow-inner shadow-primary/5 transition-all duration-300 focus:border-primary focus:shadow-lg focus:shadow-primary/10"
+                      />
+                    </div>
+                    <p className="mt-3 text-center text-xs text-muted-foreground">
+                      {resultLabel} — Filters update in real time as you type.
+                    </p>
+                  </div>
+                )}
+
+                {isCompressed && (
+                  <div className="flex shrink-0 items-center gap-3">
+                    <Badge variant="secondary" className="rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary">
+                      {resultLabel}
+                    </Badge>
+                    <Button
+                      variant="default"
+                      size="icon"
+                      className="h-10 w-10 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform duration-300 hover:scale-110"
+                      onClick={() => setIsSearchOverlayOpen(true)}
+                    >
+                      <Search className="h-5 w-5" />
+                    </Button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Format Filter Bar */}
+      <section className="sticky top-44 z-30 border-b border-border/40 bg-background/90 backdrop-blur-lg">
+        <div className="container mx-auto flex flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 text-sm font-medium text-muted-foreground">
             <Filter className="h-4 w-4" />
             Refine by format
           </div>
@@ -254,10 +298,10 @@ const Resources = () => {
                 key={button.key}
                 variant={activeTab === button.key ? "default" : "outline"}
                 className={cn(
-                  "rounded-full border-transparent px-6 py-2 text-sm transition-all duration-300",
+                  "rounded-full border-transparent px-6 py-2 text-sm font-medium transition-all duration-300",
                   activeTab === button.key
                     ? "bg-primary text-primary-foreground shadow-md shadow-primary/30"
-                    : "bg-background hover:border-primary/40 hover:text-primary"
+                    : "border-border/50 bg-card hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
                 )}
                 onClick={() => setActiveTab(button.key)}
               >
@@ -268,6 +312,7 @@ const Resources = () => {
         </div>
       </section>
 
+      {/* Resources Grid */}
       <section className="relative z-20 py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
@@ -335,6 +380,7 @@ const Resources = () => {
         </div>
       </section>
 
+      {/* Newsletter CTA */}
       <section className="relative overflow-hidden bg-primary/5 py-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(30,64,175,0.12),transparent_55%)]" />
         <div className="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -358,6 +404,7 @@ const Resources = () => {
         </div>
       </section>
 
+      {/* Search Overlay Dialog */}
       <Dialog open={isSearchOverlayOpen} onOpenChange={setIsSearchOverlayOpen}>
         <DialogContent className="max-w-xl rounded-3xl border border-primary/20 bg-background/95 p-8 shadow-2xl">
           <DialogHeader>
