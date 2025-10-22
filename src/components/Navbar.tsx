@@ -22,7 +22,7 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="bg-background border-b border-border sticky top-0 z-50 shadow-sm">
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -35,7 +35,7 @@ const Navbar = () => {
             <Link
               to="/"
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive("/") ? "text-primary" : "text-foreground"
+                isActive("/") ? "text-primary" : "text-muted-foreground"
               }`}
             >
               Home
@@ -47,12 +47,12 @@ const Navbar = () => {
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
-              <button className="flex items-center text-sm font-medium text-foreground hover:text-primary transition-colors">
+              <button className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                 Services
                 <ChevronDown className="ml-1 h-4 w-4" />
               </button>
               {servicesOpen && (
-                <div className="absolute left-0 mt-2 w-64 bg-background border border-border rounded-lg shadow-lg py-2 animate-in fade-in slide-in-from-top-2">
+                <div className="absolute left-0 mt-2 w-64 rounded-lg border border-white/10 bg-background/95 shadow-lg ring-1 ring-white/5 py-2 animate-in fade-in slide-in-from-top-2">
                   {services.map((service) => (
                     <Link
                       key={service.name}
@@ -69,7 +69,7 @@ const Navbar = () => {
             <Link
               to="/resources"
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive("/resources") ? "text-primary" : "text-foreground"
+                isActive("/resources") ? "text-primary" : "text-muted-foreground"
               }`}
             >
               Resources
@@ -77,7 +77,7 @@ const Navbar = () => {
             <Link
               to="/procedure"
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive("/procedure") ? "text-primary" : "text-foreground"
+                isActive("/procedure") ? "text-primary" : "text-muted-foreground"
               }`}
             >
               Procedure
@@ -85,7 +85,7 @@ const Navbar = () => {
             <Link
               to="/about"
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive("/about") ? "text-primary" : "text-foreground"
+                isActive("/about") ? "text-primary" : "text-muted-foreground"
               }`}
             >
               About
@@ -98,7 +98,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-md text-foreground hover:bg-secondary"
+            className="rounded-md p-2 text-foreground transition-colors hover:bg-white/10 lg:hidden"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -106,12 +106,12 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden py-4 animate-in slide-in-from-top-4">
+          <div className="animate-in slide-in-from-top-4 py-4 lg:hidden">
             <div className="flex flex-col space-y-4">
               <Link
                 to="/"
                 className={`text-base font-medium ${
-                  isActive("/") ? "text-primary" : "text-foreground"
+                  isActive("/") ? "text-primary" : "text-muted-foreground"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -122,7 +122,7 @@ const Navbar = () => {
               <div>
                 <button
                   onClick={() => setServicesOpen(!servicesOpen)}
-                  className="flex items-center justify-between w-full text-base font-medium text-foreground"
+                  className="flex w-full items-center justify-between text-base font-medium text-muted-foreground"
                 >
                   Services
                   <ChevronDown
@@ -150,7 +150,7 @@ const Navbar = () => {
               <Link
                 to="/resources"
                 className={`text-base font-medium ${
-                  isActive("/resources") ? "text-primary" : "text-foreground"
+                  isActive("/resources") ? "text-primary" : "text-muted-foreground"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -159,7 +159,7 @@ const Navbar = () => {
               <Link
                 to="/procedure"
                 className={`text-base font-medium ${
-                  isActive("/procedure") ? "text-primary" : "text-foreground"
+                  isActive("/procedure") ? "text-primary" : "text-muted-foreground"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -168,7 +168,7 @@ const Navbar = () => {
               <Link
                 to="/about"
                 className={`text-base font-medium ${
-                  isActive("/about") ? "text-primary" : "text-foreground"
+                  isActive("/about") ? "text-primary" : "text-muted-foreground"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
