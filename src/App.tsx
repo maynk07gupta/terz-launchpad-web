@@ -14,6 +14,12 @@ import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
+import MedicalDevices from "./pages/services/MedicalDevices";
+import IVD from "./pages/services/IVD";
+import Cosmetics from "./pages/services/Cosmetics";
+import LMPC from "./pages/services/LMPC";
+import IEC from "./pages/services/IEC";
+import EPR from "./pages/services/EPR";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +35,12 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/services/medical-devices" element={<MedicalDevices />} />
+              <Route path="/services/ivd" element={<IVD />} />
+              <Route path="/services/cosmetics" element={<Cosmetics />} />
+              <Route path="/services/lmpc" element={<LMPC />} />
+              <Route path="/services/iec" element={<IEC />} />
+              <Route path="/services/epr" element={<EPR />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/procedure" element={<Procedure />} />
               <Route path="/about" element={<About />} />
