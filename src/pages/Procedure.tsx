@@ -395,6 +395,41 @@ const Procedure = () => {
             <p className="text-xl text-muted-foreground">
               Understand the step-by-step procedures for compliance in various domains. Select a category below to see the detailed
               process and requirements for that regulatory pathway.
+
+const Procedure = () => {
+  const [activeTab, setActiveTab] = useState(procedureCatalog[0]?.id ?? "");
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const isMobile = useIsMobile();
+
+  const activeProcedure = useMemo(
+    () => procedureCatalog.find((procedure) => procedure.id === activeTab) ?? procedureCatalog[0],
+    [activeTab],
+  );
+
+  const activeStep = activeProcedure?.steps[activeStepIndex] ?? activeProcedure?.steps[0];
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    setActiveStepIndex(0);
+  };
+
+  return (
+    <div className="min-h-screen">
+      <section className="relative overflow-hidden pb-16 pt-20 lg:pb-24 lg:pt-28">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/80 to-background/95" />
+          <div className="absolute -left-24 top-10 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-sky-500/20 blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-primary">
+              Process navigator
+            </span>
+            <h1 className="mb-6 text-4xl font-bold text-foreground lg:text-5xl">Regulatory Procedures</h1>
+            <p className="text-xl text-muted-foreground">
+              Understand the step-by-step procedures for compliance in various domains. Select a category below to see the detailed
+              process and requirements for that regulatory pathway.
 import { CheckCircle } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import medicalDevicesImg from "@/assets/medical-devices.jpg";
@@ -733,6 +768,13 @@ const Procedure = () => {
                   "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-muted-foreground transition hover:border-primary/40 hover:text-primary",
                   "data-[state=active]:border-primary data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-[0_20px_45px_-25px_rgba(37,99,235,0.6)]",
                 )}
+              <TabsTrigger
+                key={proc.id}
+                value={proc.id}
+                className={cn(
+                  "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-muted-foreground transition hover:border-primary/40 hover:text-primary",
+                  "data-[state=active]:border-primary data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-[0_20px_45px_-25px_rgba(37,99,235,0.6)]",
+                )}
       {/* Procedures Content */}
       <section className="container mx-auto px-4 pb-20 sm:px-6 lg:px-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -751,6 +793,72 @@ const Procedure = () => {
           {procedureCatalog.map((proc) => (
             <TabsContent key={proc.id} value={proc.id} className="focus:outline-none">
               <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+                <div className="space-y-6">
+                  <h2 className="text-center text-3xl font-bold text-foreground lg:text-left">{proc.title} Process</h2>
+                  {proc.steps.map((step, index) => {
+                    const isActive = activeProcedure?.id === proc.id && activeStepIndex === index;
+
+                    return (
+                      <Card
+                        key={step.title}
+                        onMouseEnter={() => setActiveStepIndex(index)}
+                        onFocus={() => setActiveStepIndex(index)}
+                        onClick={() => setActiveStepIndex(index)}
+                        tabIndex={0}
+                        className={cn(
+                          "group relative overflow-hidden transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2",
+                          glassPanel,
+                          isActive
+                            ? "border-primary/70 shadow-[0_35px_120px_-60px_rgba(37,99,235,0.75)]"
+                            : "hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_35px_120px_-70px_rgba(37,99,235,0.6)]",
+                        )}
+                      >
+                        <CardContent className="space-y-5 p-6">
+                          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:gap-6">
+                            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border border-primary/40 bg-primary/20 text-lg font-semibold text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+                              {index + 1}
+                            </div>
+                            <div className="flex-1 space-y-3">
+                              <div className="flex items-start justify-between gap-3">
+                                <div>
+                                  <h3 className="text-lg font-semibold text-foreground lg:text-xl">{step.title}</h3>
+                                  <p className="text-sm text-muted-foreground lg:text-base">{step.description}</p>
+                                </div>
+                                <CheckCircle
+                                  className={cn(
+                                    "mt-1 hidden h-5 w-5 flex-shrink-0 transition-opacity duration-300 lg:block",
+                                    isActive ? "text-primary opacity-100" : "text-primary/30 opacity-0 group-hover:opacity-70",
+                                  )}
+                                />
+                              </div>
+                              {isMobile && isActive ? (
+                                <div className="pt-4">
+                                  <StepPreview step={step} index={index} />
+                                </div>
+                              ) : null}
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+
+                <div className="hidden lg:block">
+                  <div className="sticky top-24 space-y-6">
+                    <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground">Step visualiser</p>
+                    {activeStep ? (
+                      <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+                        <StepPreview step={activeStep} index={activeStepIndex} />
+                      </div>
+                    ) : null}
+                    <div className={cn("rounded-3xl p-6 shadow-inner", glassPanel)}>
+                      <h3 className="text-lg font-semibold text-foreground">How it works</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        Hover or tap on each card to highlight the milestone and reveal contextual guidance. On mobile, the preview expands inside the active step for a focused reading experience.
+                      </p>
+                    </div>
+                  </div>
                 <div className="space-y-6">
                   <h2 className="text-center text-3xl font-bold text-foreground lg:text-left">{proc.title} Process</h2>
                   {proc.steps.map((step, index) => {

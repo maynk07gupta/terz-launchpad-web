@@ -34,6 +34,10 @@ const Home = () => {
 
   const handleLeadFormSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (typeof window !== "undefined") {
+      window.location.href = "/contact";
+    }
+  }, []);
     window.location.href = "/contact";
   }, []);
   const handleLeadFormSubmit = React.useCallback(
@@ -454,6 +458,11 @@ const Home = () => {
       {/* Differentiators */}
       <section className="relative py-20 lg:py-28">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(14,116,144,0.1),transparent_65%)]" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Why teams choose Terz</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Predictable approvals, transparent communication, and a partner that safeguards compliance long after launch.
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Why teams choose Terz</h2>
