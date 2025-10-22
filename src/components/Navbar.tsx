@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,172 +20,223 @@ const Navbar = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  return (
-    <nav className="sticky top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="Terz Compliance" className="h-10 sm:h-12" />
-          </Link>
+  useEffect(() => {
+    if (!isOpen) {
+      setServicesOpen(false);
+    }
+  }, [isOpen]);
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+  return (
+    <nav className="sticky top-0 z-50">
+      <div className="relative bg-gradient-to-b from-background/95 via-background/80 to-background/70 backdrop-blur-xl shadow-[0_12px_40px_-12px_rgba(15,23,42,0.45)]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-primary/0 via-primary/60 to-primary/0" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
             <Link
               to="/"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive("/") ? "text-primary" : "text-muted-foreground"
-              }`}
+              className="group relative flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 shadow-lg shadow-black/5 transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/20"
             >
-              Home
+              <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <img src={logo} alt="Terz Compliance" className="relative z-10 h-10 sm:h-12" />
             </Link>
 
-            {/* Services Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-            >
-              <button className="flex items-center text-sm font-medium text-foreground hover:text-primary transition-colors py-2">
-                Services
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              {servicesOpen && (
-                <div className="absolute left-0 top-full pt-2">
-                  <div className="w-64 bg-background border border-border rounded-lg shadow-lg py-2 z-50 animate-in fade-in slide-in-from-top-2">
-                    {services.map((service) => (
-                      <Link
-                        key={service.name}
-                        to={service.path}
-                        className="block px-4 py-2 text-sm text-foreground hover:bg-secondary hover:text-primary transition-colors"
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-2 xl:space-x-4">
+              <NavItem to="/" label="Home" isActive={isActive("/")} />
 
-            <Link
-              to="/resources"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive("/resources") ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              Resources
-            </Link>
-            <Link
-              to="/procedure"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive("/procedure") ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              Procedure
-            </Link>
-            <Link
-              to="/about"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive("/about") ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              About
-            </Link>
-            <Button asChild className="bg-primary hover:bg-primary/90">
-              <Link to="/contact">Contact Us</Link>
-            </Button>
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="rounded-md p-2 text-foreground transition-colors hover:bg-white/10 lg:hidden"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="animate-in slide-in-from-top-4 py-4 lg:hidden">
-            <div className="flex flex-col space-y-4">
-              <Link
-                to="/"
-                className={`text-base font-medium ${
-                  isActive("/") ? "text-primary" : "text-muted-foreground"
-                }`}
-                onClick={() => setIsOpen(false)}
+              {/* Services Dropdown */}
+              <div
+                className="group relative"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
               >
-                Home
-              </Link>
-
-              {/* Mobile Services Accordion */}
-              <div>
                 <button
-                  onClick={() => setServicesOpen(!servicesOpen)}
-                  className="flex w-full items-center justify-between text-base font-medium text-muted-foreground"
+                  onClick={() => setServicesOpen((prev) => !prev)}
+                  className={`relative flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                    servicesOpen ? "text-primary" : "text-muted-foreground"
+                  }`}
+                  aria-expanded={servicesOpen}
+                  aria-haspopup="true"
                 >
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 via-primary/0 to-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   Services
                   <ChevronDown
-                    className={`h-4 w-4 transition-transform ${
+                    className={`ml-1 h-4 w-4 transition-transform duration-300 ${
                       servicesOpen ? "rotate-180" : ""
                     }`}
                   />
                 </button>
                 {servicesOpen && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    {services.map((service) => (
-                      <Link
-                        key={service.name}
-                        to={service.path}
-                        className="block text-sm text-muted-foreground hover:text-primary"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
+                  <div className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3">
+                    <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-background/95 via-background/90 to-background/80 p-2 shadow-2xl shadow-primary/20 ring-1 ring-white/10 animate-in fade-in zoom-in-95">
+                      {services.map((service) => (
+                        <Link
+                          key={service.name}
+                          to={service.path}
+                          className="group/link relative block overflow-hidden rounded-xl px-4 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 hover:translate-x-1 hover:text-primary"
+                        >
+                          <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-primary/15 via-primary/5 to-primary/15 opacity-0 transition-all duration-300 group-hover/link:translate-y-0 group-hover/link:opacity-100" />
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
 
-              <Link
-                to="/resources"
-                className={`text-base font-medium ${
-                  isActive("/resources") ? "text-primary" : "text-muted-foreground"
-                }`}
-                onClick={() => setIsOpen(false)}
+              <NavItem to="/resources" label="Resources" isActive={isActive("/resources")} />
+              <NavItem to="/procedure" label="Procedure" isActive={isActive("/procedure")} />
+              <NavItem to="/about" label="About" isActive={isActive("/about")} />
+              <Button
+                asChild
+                className="group relative overflow-hidden rounded-full bg-primary px-6 text-sm font-semibold shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-[1.02] hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/40"
               >
-                Resources
-              </Link>
-              <Link
-                to="/procedure"
-                className={`text-base font-medium ${
-                  isActive("/procedure") ? "text-primary" : "text-muted-foreground"
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                Procedure
-              </Link>
-              <Link
-                to="/about"
-                className={`text-base font-medium ${
-                  isActive("/about") ? "text-primary" : "text-muted-foreground"
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                About
-              </Link>
-              <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                <Link to="/contact" onClick={() => setIsOpen(false)}>
-                  Contact Us
+                <Link to="/contact">
+                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-60 transition-transform duration-700 group-hover:translate-x-full" />
+                  <span className="relative z-10">Contact Us</span>
                 </Link>
               </Button>
             </div>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/10 text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-lg hover:shadow-primary/20 lg:hidden"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
-        )}
+
+          {/* Mobile Navigation */}
+          {isOpen && (
+            <div className="animate-in slide-in-from-top-4 py-6 lg:hidden">
+              <div className="flex flex-col space-y-4 rounded-3xl border border-white/10 bg-gradient-to-b from-background/95 via-background/90 to-background/80 p-6 shadow-xl shadow-primary/10">
+                <Link
+                  to="/"
+                  className={`text-base font-semibold transition-all duration-300 ${
+                    isActive("/")
+                      ? "text-primary"
+                      : "text-muted-foreground hover:translate-x-1 hover:text-primary"
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Home
+                </Link>
+
+                {/* Mobile Services Accordion */}
+                <div>
+                  <button
+                    onClick={() => setServicesOpen(!servicesOpen)}
+                    className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-base font-semibold transition-colors duration-300 ${
+                      servicesOpen ? "bg-primary/10 text-primary" : "text-muted-foreground"
+                    }`}
+                  >
+                    Services
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-300 ${
+                        servicesOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {servicesOpen && (
+                    <div className="mt-3 ml-2 space-y-2 border-l border-primary/30 pl-4">
+                      {services.map((service) => (
+                        <Link
+                          key={service.name}
+                          to={service.path}
+                          className="block text-sm font-medium text-muted-foreground transition-all duration-300 hover:translate-x-1 hover:text-primary"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <LinkListItem
+                  to="/resources"
+                  label="Resources"
+                  isActive={isActive("/resources")}
+                  onClick={() => setIsOpen(false)}
+                />
+                <LinkListItem
+                  to="/procedure"
+                  label="Procedure"
+                  isActive={isActive("/procedure")}
+                  onClick={() => setIsOpen(false)}
+                />
+                <LinkListItem
+                  to="/about"
+                  label="About"
+                  isActive={isActive("/about")}
+                  onClick={() => setIsOpen(false)}
+                />
+                <Button
+                  asChild
+                  className="group relative w-full overflow-hidden rounded-full bg-primary py-3 text-base font-semibold shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-[1.01] hover:bg-primary/90"
+                >
+                  <Link to="/contact" onClick={() => setIsOpen(false)}>
+                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/50 to-white/0 opacity-60 transition-transform duration-700 group-hover:translate-x-full" />
+                    <span className="relative z-10">Contact Us</span>
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );
 };
+
+type NavItemProps = {
+  to: string;
+  label: string;
+  isActive: boolean;
+};
+
+const NavItem = ({ to, label, isActive }: NavItemProps) => (
+  <Link
+    to={to}
+    className={`group relative overflow-hidden rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 ${
+      isActive
+        ? "text-primary"
+        : "text-muted-foreground hover:text-primary hover:shadow-[0_10px_30px_-12px_rgba(59,130,246,0.45)]"
+    }`}
+  >
+    <span
+      className={`absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-primary/15 via-primary/5 to-primary/15 transition-all duration-300 ${
+        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+      }`}
+    />
+    <span className="relative z-10 flex items-center gap-2">
+      {label}
+      <span
+        className={`h-1 w-1 rounded-full bg-primary transition-all duration-300 ${
+          isActive ? "scale-100 opacity-100" : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100"
+        }`}
+      />
+    </span>
+    <span className="absolute bottom-1 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-all duration-300 group-hover:w-3/4" />
+  </Link>
+);
+
+type LinkListItemProps = NavItemProps & { onClick: () => void };
+
+const LinkListItem = ({ to, label, isActive, onClick }: LinkListItemProps) => (
+  <Link
+    to={to}
+    onClick={onClick}
+    className={`text-base font-semibold transition-all duration-300 ${
+      isActive
+        ? "text-primary"
+        : "text-muted-foreground hover:translate-x-1 hover:text-primary"
+    }`}
+  >
+    {label}
+  </Link>
+);
 
 export default Navbar;
