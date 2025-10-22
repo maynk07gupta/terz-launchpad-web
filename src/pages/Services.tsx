@@ -1,13 +1,8 @@
-import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 const Services = () => {
-  const [expandedService, setExpandedService] = useState<string | null>(null);
-  const [selectedRole, setSelectedRole] = useState<{ [key: string]: string }>({});
-
   const services = [
     {
       id: "medical-devices",
@@ -15,26 +10,7 @@ const Services = () => {
       tagline: "Smooth CDSCO registration for manufacturers and importers",
       description:
         "End-to-end registration for medical devices in India. We ensure ISO 13485 compliance and timely CDSCO approval with comprehensive documentation support.",
-      manufacturer: {
-        process: [
-          "Device classification determination",
-          "Technical file preparation",
-          "ISO 13485 certification support",
-          "CDSCO portal submission",
-          "Clinical evaluation assistance",
-          "Registration certificate obtainment",
-        ],
-      },
-      importer: {
-        process: [
-          "Indian authorized agent appointment",
-          "Import license documentation",
-          "Quality management system verification",
-          "CDSCO application filing",
-          "Post-market surveillance setup",
-          "Renewal management",
-        ],
-      },
+      path: "/services/medical-devices",
     },
     {
       id: "ivd",
@@ -42,24 +18,7 @@ const Services = () => {
       tagline: "Expert IVD compliance and regulatory support",
       description:
         "Specialized regulatory assistance for in-vitro diagnostic medical devices. Navigate CDSCO requirements with confidence.",
-      manufacturer: {
-        process: [
-          "IVD classification analysis",
-          "Performance evaluation documentation",
-          "Quality system compliance",
-          "Technical dossier compilation",
-          "CDSCO submission and tracking",
-        ],
-      },
-      importer: {
-        process: [
-          "Import authorization",
-          "Product registration",
-          "Label compliance review",
-          "Distribution license support",
-          "Post-import compliance",
-        ],
-      },
+      path: "/services/ivd",
     },
     {
       id: "cosmetics",
@@ -67,24 +26,7 @@ const Services = () => {
       tagline: "Fast-track cosmetic product registration",
       description:
         "Complete cosmetics registration services for domestic and imported products. Ensure compliance with BIS and CDSCO standards.",
-      manufacturer: {
-        process: [
-          "Product formulation review",
-          "Safety assessment coordination",
-          "Manufacturing license assistance",
-          "Product registration filing",
-          "Label compliance verification",
-        ],
-      },
-      importer: {
-        process: [
-          "Import permit acquisition",
-          "Foreign manufacturer documentation",
-          "Product testing coordination",
-          "Registration with CDSCO",
-          "Customs clearance support",
-        ],
-      },
+      path: "/services/cosmetics",
     },
     {
       id: "lmpc",
@@ -92,24 +34,7 @@ const Services = () => {
       tagline: "LMPC compliance made simple",
       description:
         "Legal metrology compliance for packaged commodities. Ensure your products meet all labeling and packaging requirements.",
-      manufacturer: {
-        process: [
-          "Packaging compliance audit",
-          "Label design review",
-          "LMPC registration filing",
-          "Declaration verification",
-          "Ongoing compliance monitoring",
-        ],
-      },
-      importer: {
-        process: [
-          "Import compliance assessment",
-          "Package modification guidance",
-          "Registration for importers",
-          "Custom label requirements",
-          "Import documentation",
-        ],
-      },
+      path: "/services/lmpc",
     },
     {
       id: "iec",
@@ -117,24 +42,7 @@ const Services = () => {
       tagline: "IEC registration and comprehensive support",
       description:
         "Streamlined Import Export Code registration. Essential for any business engaged in international trade.",
-      manufacturer: {
-        process: [
-          "IEC application preparation",
-          "Documentation compilation",
-          "DGFT portal filing",
-          "Certificate obtainment",
-          "Modification support",
-        ],
-      },
-      importer: {
-        process: [
-          "IEC code registration",
-          "Import eligibility verification",
-          "Customs documentation",
-          "License activation",
-          "Annual compliance",
-        ],
-      },
+      path: "/services/iec",
     },
     {
       id: "epr",
@@ -142,62 +50,9 @@ const Services = () => {
       tagline: "EPR compliance and sustainability solutions",
       description:
         "Meet your Extended Producer Responsibility obligations. Comprehensive support for plastic waste management compliance.",
-      manufacturer: {
-        process: [
-          "EPR assessment and planning",
-          "Registration with CPCB",
-          "Annual return filing",
-          "Target compliance tracking",
-          "Certificate management",
-        ],
-      },
-      importer: {
-        process: [
-          "Import EPR obligations",
-          "Producer responsibility setup",
-          "Waste management planning",
-          "CPCB compliance",
-          "Reporting and renewals",
-        ],
-      },
-    },
-    {
-      id: "market-entry",
-      title: "India Market Entry",
-      tagline: "Comprehensive India market entry solutions",
-      description:
-        "Complete market entry support combining all necessary regulatory clearances. Your single partner for entering India's market.",
-      manufacturer: {
-        process: [
-          "Market entry strategy",
-          "Multi-license coordination",
-          "Distribution network setup",
-          "Regulatory roadmap",
-          "Launch support",
-        ],
-      },
-      importer: {
-        process: [
-          "Import feasibility analysis",
-          "All regulatory clearances",
-          "Logistics coordination",
-          "Market compliance",
-          "Ongoing support",
-        ],
-      },
+      path: "/services/epr",
     },
   ];
-
-  const toggleService = (serviceId: string) => {
-    setExpandedService(expandedService === serviceId ? null : serviceId);
-    if (!selectedRole[serviceId]) {
-      setSelectedRole({ ...selectedRole, [serviceId]: "manufacturer" });
-    }
-  };
-
-  const toggleRole = (serviceId: string, role: string) => {
-    setSelectedRole({ ...selectedRole, [serviceId]: role });
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -216,96 +71,27 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Services List */}
+      {/* Services Grid */}
       <section className="py-16 container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {services.map((service) => (
-            <Card key={service.id} id={service.id} className="scroll-mt-20">
-              <CardContent className="p-0">
-                {/* Service Header */}
-                <button
-                  onClick={() => toggleService(service.id)}
-                  className="w-full px-6 py-6 flex items-center justify-between hover:bg-secondary/50 transition-colors"
-                >
-                  <div className="text-left">
-                    <h2 className="text-2xl font-semibold text-foreground mb-1">
-                      {service.title}
-                    </h2>
-                    <p className="text-muted-foreground">{service.tagline}</p>
+            <Link key={service.id} to={service.path}>
+              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+                <CardContent className="p-6">
+                  <h2 className="text-2xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h2>
+                  <p className="text-muted-foreground mb-4">{service.tagline}</p>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {service.description}
+                  </p>
+                  <div className="flex items-center text-primary font-medium">
+                    Learn More
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform" />
                   </div>
-                  {expandedService === service.id ? (
-                    <ChevronUp className="h-6 w-6 text-primary flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="h-6 w-6 text-muted-foreground flex-shrink-0" />
-                  )}
-                </button>
-
-                {/* Expanded Content */}
-                {expandedService === service.id && (
-                  <div className="px-6 pb-6 border-t border-border animate-in slide-in-from-top-2">
-                    <div className="pt-6">
-                      <p className="text-muted-foreground mb-6">
-                        {service.description}
-                      </p>
-
-                      {/* Role Toggle */}
-                      <div className="flex space-x-2 mb-6">
-                        <Button
-                          variant={
-                            selectedRole[service.id] === "manufacturer"
-                              ? "default"
-                              : "outline"
-                          }
-                          onClick={() => toggleRole(service.id, "manufacturer")}
-                          className="flex-1"
-                        >
-                          Manufacturer
-                        </Button>
-                        <Button
-                          variant={
-                            selectedRole[service.id] === "importer"
-                              ? "default"
-                              : "outline"
-                          }
-                          onClick={() => toggleRole(service.id, "importer")}
-                          className="flex-1"
-                        >
-                          Importer
-                        </Button>
-                      </div>
-
-                      {/* Role-Specific Content */}
-                      <div className="bg-secondary/30 rounded-lg p-6">
-                        <h3 className="text-lg font-semibold mb-4">
-                          {selectedRole[service.id] === "manufacturer"
-                            ? "For Manufacturers"
-                            : "For Importers"}
-                        </h3>
-                        <ul className="space-y-2">
-                          {(selectedRole[service.id] === "manufacturer"
-                            ? service.manufacturer.process
-                            : service.importer.process
-                          ).map((step, index) => (
-                            <li key={index} className="flex items-start">
-                              <span className="inline-block w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0 mt-0.5">
-                                {index + 1}
-                              </span>
-                              <span className="text-muted-foreground">{step}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="mt-6">
-                        <Button asChild>
-                          <Link to="/contact">Get Started with This Service</Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </section>
@@ -321,9 +107,11 @@ const Services = () => {
               Contact us for a free consultation. We'll help you identify the right
               regulatory pathway for your product.
             </p>
-            <Button asChild size="lg">
-              <Link to="/contact">Schedule a Consultation</Link>
-            </Button>
+            <Link to="/contact" className="inline-block">
+              <button className="px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium">
+                Schedule a Consultation
+              </button>
+            </Link>
           </div>
         </div>
       </section>
