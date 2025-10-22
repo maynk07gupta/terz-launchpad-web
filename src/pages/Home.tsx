@@ -10,6 +10,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,10 @@ const Home = () => {
     }
   }, [isMobile]);
 
+  const handleLeadFormSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    window.location.href = "/contact";
+  }, []);
   const handleLeadFormSubmit = React.useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -107,6 +112,33 @@ const Home = () => {
     },
   ];
 
+  const glassPanel = "border border-white/10 bg-background/70 backdrop-blur";
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden py-24 lg:py-36">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/80 to-background/95" />
+          <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-sky-500/20 blur-3xl" />
+          <div className="absolute left-1/2 top-1/2 hidden h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/10 bg-primary/10 opacity-60 lg:block" />
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="max-w-xl">
+              <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-primary">
+                <span className="h-2 w-2 rounded-full bg-primary" />
+                Compliance without the guesswork
+              </span>
+              <h1 className="mb-6 text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+                Trusted regulatory partners for ambitious market entries
+              </h1>
+              <p className="text-lg text-muted-foreground/90">
+                Bring products into India fast, compliant, and predictable. We translate complex regulations into regulator-ready dossiers and confident launch plans for your leadership team.
+              </p>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <Button asChild size="lg" className="bg-primary shadow-[0_20px_40px_-20px_rgba(37,99,235,0.55)] hover:bg-primary/90">
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -132,11 +164,24 @@ const Home = () => {
                     Get Compliance Help <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-white/20 text-foreground transition hover:border-primary/40 hover:bg-white/10"
+                >
                 <Button asChild size="lg" variant="outline">
                   <Link to="/services">Explore Services</Link>
                 </Button>
               </div>
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                <div className={cn("rounded-2xl p-5 shadow-[0_20px_50px_-35px_rgba(37,99,235,0.7)]", glassPanel)}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">Average approval time</p>
+                  <p className="mt-3 text-3xl font-semibold text-primary">6-8 Weeks</p>
+                </div>
+                <div className={cn("rounded-2xl p-5 shadow-[0_20px_50px_-35px_rgba(37,99,235,0.7)]", glassPanel)}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">Client satisfaction</p>
+                  <p className="mt-3 text-3xl font-semibold text-primary">98%</p>
                 <div className="rounded-2xl border border-primary/20 bg-background/80 p-4 backdrop-blur">
                   <p className="text-sm uppercase tracking-wide text-muted-foreground">Average approval time</p>
                   <p className="mt-2 text-3xl font-semibold text-primary">6-8 Weeks</p>
@@ -148,6 +193,12 @@ const Home = () => {
               </div>
             </div>
             <div className="relative mx-auto max-w-xl">
+              <div className="absolute -left-12 -top-10 h-32 w-32 rounded-full bg-primary/30 blur-2xl" />
+              <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-sky-500/20 blur-3xl" />
+              <Card className={cn("relative overflow-hidden shadow-[0_60px_140px_-70px_rgba(37,99,235,0.75)]", glassPanel)}>
+                <CardContent className="space-y-6 p-8">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary">
               <div className="absolute -left-6 -top-6 h-24 w-24 rounded-full bg-primary/20 blur-2xl" />
               <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-3xl bg-primary/10 blur-3xl" />
               <Card className="relative overflow-hidden border-none shadow-xl">
@@ -158,6 +209,12 @@ const Home = () => {
                     </span>
                     <div>
                       <p className="text-sm text-muted-foreground">Latest project</p>
+                      <p className="text-lg font-semibold text-foreground">Class C Medical Device</p>
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-white/5 bg-white/[0.04] p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">Highlights</p>
+                    <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
                       <p className="text-lg font-semibold">Class C Medical Device</p>
                     </div>
                   </div>
@@ -169,6 +226,8 @@ const Home = () => {
                       <li>✔ Importer onboarding playbook delivered</li>
                     </ul>
                   </div>
+                  <div className="rounded-2xl border border-dashed border-primary/40 bg-primary/5 p-5 text-sm text-muted-foreground">
+                    “Terz gives us confidence that every document is audit-ready before we file.”
                   <div className="rounded-2xl border border-dashed border-primary/40 p-4 text-sm text-muted-foreground">
                     "Terz gives us confidence that every document is audit-ready before we file."
                     <div className="mt-3 font-medium text-foreground">Head of Regulatory, GlobalMed</div>
@@ -181,64 +240,50 @@ const Home = () => {
       </section>
 
       {/* Client Journey Story */}
-      <section className="py-16 lg:py-24 bg-background">
+      <section className="relative py-20 lg:py-28">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/[0.02] via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-2xl font-bold text-primary">1</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">The Challenge</h3>
-                <p className="text-muted-foreground">
-                  Struggling to navigate complex regulatory processes? Facing delays and
-                  uncertainty in bringing your products to India's market?
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-2xl font-bold text-primary">2</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">Our Solution</h3>
-                <p className="text-muted-foreground">
-                  Terz steps in with expert guidance and a clear roadmap. We handle all
-                  documentation, filings, and communications with regulatory authorities.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-2xl font-bold text-primary">3</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">The Outcome</h3>
-                <p className="text-muted-foreground">
-                  Successfully launch your product in India's market with full compliance,
-                  predictable timelines, and peace of mind.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {["The Challenge", "Our Solution", "The Outcome"].map((title, index) => (
+              <Card
+                key={title}
+                className={cn(
+                  "transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-60px_rgba(37,99,235,0.65)]",
+                  glassPanel,
+                )}
+              >
+                <CardContent className="pt-8">
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-primary/40 bg-primary/20 text-2xl font-bold text-primary">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {index === 0 &&
+                      "Struggling to navigate complex regulatory processes? Facing delays and uncertainty in bringing your products to India's market?"}
+                    {index === 1 &&
+                      "Terz steps in with expert guidance and a clear roadmap. We handle documentation, filings, and regulator communications end to end."}
+                    {index === 2 &&
+                      "Launch with full compliance, predictable timelines, and confidence that every submission will satisfy authorities."}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Services Overview */}
-      <section className="py-16 lg:py-24 bg-secondary/30">
+      <section className="relative py-20 lg:py-28">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.16),transparent_65%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Our Services
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive regulatory services for life science industries
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Our Services</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+              Comprehensive regulatory services for life science innovators and ambitious importers.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service, index) => (
               <Card
                 key={index}
@@ -258,6 +303,11 @@ const Home = () => {
                   }
                 }}
                 className={cn(
+                  "group cursor-pointer transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                  glassPanel,
+                  isMobile && activeService === index
+                    ? "border-primary/60 shadow-[0_30px_100px_-60px_rgba(37,99,235,0.8)]"
+                    : "hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_30px_100px_-60px_rgba(37,99,235,0.7)]"
                   "group cursor-pointer border-2 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                   isMobile && activeService === index
                     ? "border-primary bg-background/80"
@@ -265,8 +315,8 @@ const Home = () => {
                 )}
               >
                 <CardContent className="pt-6">
-                  <service.icon className="h-12 w-12 text-primary mb-4 group-hover:scale-110 transition-transform" />
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                  <service.icon className="mb-4 h-12 w-12 text-primary transition-transform group-hover:scale-110" />
+                  <h3 className="text-xl font-semibold text-foreground transition-colors group-hover:text-primary">
                     {service.title}
                   </h3>
                   <p
@@ -277,6 +327,7 @@ const Home = () => {
                         ? activeService === index
                           ? "mt-3 max-h-32 opacity-100"
                           : "mt-0 max-h-0 opacity-0"
+                        : "md:mt-3 md:max-h-0 md:translate-y-2 md:opacity-0 md:group-hover:max-h-32 md:group-hover:translate-y-0 md:group-hover:opacity-100"
                         : "md:mt-3 md:max-h-0 md:opacity-0 md:group-hover:max-h-32 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:translate-y-2"
                     )}
                   >
@@ -287,8 +338,12 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <Button asChild size="lg" variant="outline">
+          <div className="mt-12 flex justify-center">
+            <Button
+              asChild
+              size="lg"
+              className="bg-primary shadow-[0_20px_45px_-25px_rgba(37,99,235,0.75)] hover:bg-primary/90"
+            >
               <Link to="/services">
                 View All Services <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -298,6 +353,22 @@ const Home = () => {
       </section>
 
       {/* Trust Signals */}
+      <section className="relative py-20 lg:py-28">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(15,118,110,0.12),transparent_70%)]" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center gap-10 text-center">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary/80">Trusted by market leaders</p>
+              <h2 className="mt-4 text-3xl font-bold text-foreground lg:text-4xl">Partners count on Terz for compliant launches</h2>
+              <p className="mt-4 text-base text-muted-foreground">
+                Over a decade of approvals for manufacturers, importers, and innovators expanding into India’s regulated markets.
+              </p>
+            </div>
+            <div className="flex w-full flex-wrap items-center justify-center gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur">
+              {clients.map((client) => (
+                <div
+                  key={client}
+                  className="flex items-center justify-center rounded-xl border border-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground transition hover:border-primary/50 hover:text-primary"
       <section className="py-16 lg:py-24 bg-primary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center gap-6">
@@ -317,6 +388,17 @@ const Home = () => {
             </div>
             <div className="grid w-full gap-6 md:grid-cols-3">
               {testimonials.map((testimonial, index) => (
+                <Card
+                  key={index}
+                  className={cn(
+                    "h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-60px_rgba(59,130,246,0.6)]",
+                    glassPanel,
+                  )}
+                >
+                  <CardContent className="flex h-full flex-col gap-4 p-6 text-left">
+                    <Quote className="h-8 w-8 text-primary" />
+                    <p className="text-sm leading-relaxed text-muted-foreground">“{testimonial.quote}”</p>
+                    <div className="mt-auto">
                 <Card key={index} className="h-full border-primary/20 bg-background/80 shadow-sm">
                   <CardContent className="flex h-full flex-col gap-4 p-6">
                     <Quote className="h-8 w-8 text-primary" />
@@ -336,26 +418,32 @@ const Home = () => {
       </section>
 
       {/* 6-Step Process */}
-      <section className="py-16 lg:py-24 bg-background">
+      <section className="relative py-20 lg:py-28">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.12),transparent_70%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Our 6-Step Process
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              A systematic approach to compliance success
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Our 6-Step Process</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+              A systematic approach to compliance success.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {steps.map((step, index) => (
-              <div key={index} className="relative">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center mb-4 shadow-lg">
-                    <span className="text-2xl font-bold text-white">{step.number}</span>
+              <div
+                key={index}
+                className={cn(
+                  "relative overflow-hidden rounded-3xl p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-70px_rgba(37,99,235,0.7)]",
+                  glassPanel,
+                )}
+              >
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/10 blur-2xl" />
+                <div className="relative flex flex-col gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/25 text-lg font-semibold text-primary">
+                    {step.number}
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
+                  <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{step.description}</p>
                 </div>
               </div>
             ))}
@@ -364,6 +452,13 @@ const Home = () => {
       </section>
 
       {/* Differentiators */}
+      <section className="relative py-20 lg:py-28">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(14,116,144,0.1),transparent_65%)]" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Why teams choose Terz</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Predictable approvals, transparent communication, and a partner that safeguards compliance long after launch.
       <section className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
@@ -381,6 +476,19 @@ const Home = () => {
               { title: "Regulation Monitoring", description: "Automatic alerts when India regulations change so your labels stay compliant." },
               { title: "Post-Market Support", description: "Ongoing vigilance for renewals, variations, and surveillance obligations." },
             ].map((item) => (
+              <Card
+                key={item.title}
+                className={cn(
+                  "h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-70px_rgba(14,165,233,0.55)]",
+                  glassPanel,
+                )}
+              >
+                <CardContent className="space-y-4 p-6">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15">
+                    <CheckCircle className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
               <Card key={item.title} className="border-primary/20 bg-background/80 shadow-sm">
                 <CardContent className="space-y-3 p-6">
                   <CheckCircle className="h-10 w-10 text-primary" />
@@ -394,6 +502,38 @@ const Home = () => {
       </section>
 
       {/* CTA Section with Inline Form */}
+      <section className="relative py-24 lg:py-32">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)]" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            className={cn(
+              "relative overflow-hidden rounded-3xl p-8 shadow-[0_60px_140px_-70px_rgba(37,99,235,0.75)] lg:p-12",
+              glassPanel,
+            )}
+          >
+            <div className="absolute -left-24 top-10 h-40 w-40 rounded-full bg-primary/20 blur-3xl" />
+            <div className="absolute -bottom-28 right-0 h-64 w-64 rounded-full bg-sky-500/15 blur-3xl" />
+            <div className="relative grid gap-12 lg:grid-cols-2 lg:items-start">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-primary">
+                  Start your compliance roadmap
+                </span>
+                <h2 className="mt-4 text-3xl font-bold text-foreground lg:text-4xl">
+                  Book a 30-minute assessment with a regulatory specialist
+                </h2>
+                <p className="mt-4 text-base text-muted-foreground">
+                  Share your product category and launch goals. We’ll assess requirements, outline documentation, and send a custom timeline within one business day.
+                </p>
+                <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-primary" /> No obligation discovery call
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-primary" /> Tailored checklist for your regulatory pathway
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-primary" /> Transparent pricing and next steps
+                  </li>
       <section className="py-16 lg:py-24 bg-primary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-primary/20 bg-background/90 p-8 shadow-lg backdrop-blur lg:p-12">
@@ -433,6 +573,11 @@ const Home = () => {
                     <Label htmlFor="lead-notes">Product or compliance goals</Label>
                     <Textarea id="lead-notes" name="notes" placeholder="Tell us about your device, cosmetic line, or expansion plans." rows={4} />
                   </div>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-primary shadow-[0_20px_45px_-25px_rgba(37,99,235,0.75)] hover:bg-primary/90"
+                  >
                   <Button type="submit" size="lg" className="w-full">
                     Schedule my assessment
                   </Button>
