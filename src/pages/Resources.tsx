@@ -116,7 +116,7 @@ const Resources = () => {
   return (
     <div className="relative min-h-screen bg-background text-foreground">
       {/* Enhanced Hero Section */}
-      <section className="relative overflow-hidden pb-20 pt-28">
+      <section className="relative overflow-hidden p-0">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-40 left-1/4 h-[500px] w-[500px] rounded-full bg-primary/30 blur-[120px] animate-float-slow" />
           <div className="absolute bottom-20 right-[-10%] h-[600px] w-[600px] rounded-full bg-sky-400/20 blur-[100px] animate-float-delayed" />
