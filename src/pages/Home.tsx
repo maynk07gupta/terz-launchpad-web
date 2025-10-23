@@ -392,7 +392,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-24 lg:py-36">
+      <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center py-8 lg:py-12">
         <div className="absolute inset-0 -z-20">
           <img
             src={activeHero.image}
@@ -405,20 +405,20 @@ const Home = () => {
         <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-sky-500/20 blur-3xl" />
         <div className="absolute left-1/2 top-1/2 hidden h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/10 bg-primary/10 opacity-60 lg:block" />
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-[1fr_1.2fr]">
             <div className="max-w-2xl">
-              <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-primary">
+              <span className="mb-4 lg:mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs lg:text-sm font-medium text-primary">
                 <span className="h-2 w-2 rounded-full bg-primary" />
                 Compliance for importers & manufacturers
               </span>
-              <h1 className="mb-6 text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+              <h1 className="mb-4 lg:mb-6 text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
                 Regulatory compliance, retold as your launch story
               </h1>
-              <p className="text-lg text-muted-foreground/90">
+              <p className="text-base lg:text-lg text-muted-foreground/90">
                 Navigate CDSCO, CDSCO (IVD), BIS, LMPC, and EPR frameworks with a partner that choreographs every step—from dossier builds to post-market vigilance.
               </p>
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <div className="mt-6 lg:mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="bg-primary shadow-[0_20px_40px_-20px_rgba(37,99,235,0.55)] hover:bg-primary/90">
                   <Link to="/contact">
                     Schedule a strategy call <ArrowRight className="ml-2 h-5 w-5" />
@@ -433,22 +433,22 @@ const Home = () => {
                   <Link to="/services">Explore full service lineup</Link>
                 </Button>
               </div>
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              <div className="mt-6 lg:mt-10 grid gap-3 sm:grid-cols-2">
                 {heroStats.map((stat) => (
                   <div
                     key={stat.label}
-                    className={cn("rounded-2xl p-5 shadow-[0_20px_50px_-35px_rgba(37,99,235,0.7)]", glassPanel)}
+                    className={cn("rounded-2xl p-4 lg:p-5 shadow-[0_20px_50px_-35px_rgba(37,99,235,0.7)]", glassPanel)}
                   >
                     <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
                       {stat.label}
                     </p>
-                    <p className="mt-3 text-3xl font-semibold capitalize text-primary">{stat.value}</p>
+                    <p className="mt-2 lg:mt-3 text-2xl lg:text-3xl font-semibold capitalize text-primary">{stat.value}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-xl">
+            <div className="relative mx-auto w-full">
               <div className="absolute -left-12 -top-10 h-32 w-32 rounded-full bg-primary/30 blur-2xl" />
               <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-sky-500/20 blur-3xl" />
               <Card
@@ -463,43 +463,58 @@ const Home = () => {
                     activeHero.accent,
                   )}
                 />
-                <CardContent className="relative space-y-6 p-8">
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary">
-                      <activeHero.icon className="h-6 w-6" />
-                    </span>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Focus area</p>
-                      <p className="text-lg font-semibold text-foreground">{activeHero.title}</p>
+                <CardContent className="relative space-y-4 lg:space-y-6 p-0">
+                  {/* Service Image */}
+                  <div className="relative h-48 lg:h-64 overflow-hidden">
+                    <img
+                      src={activeHero.image}
+                      alt={activeHero.title}
+                      className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+                    <div className="absolute bottom-4 left-6 right-6">
+                      <div className="flex items-center gap-3">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary backdrop-blur">
+                          <activeHero.icon className="h-6 w-6" />
+                        </span>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Focus area</p>
+                          <p className="text-lg font-semibold text-foreground">{activeHero.title}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="space-y-3">
-                    <h2 className="text-2xl font-semibold text-foreground">{activeHero.headline}</h2>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{activeHero.description}</p>
+                  
+                  {/* Service Content */}
+                  <div className="px-6 lg:px-8 pb-6 lg:pb-8 space-y-4 lg:space-y-5">
+                    <div className="space-y-3">
+                      <h2 className="text-xl lg:text-2xl font-semibold text-foreground leading-tight">{activeHero.headline}</h2>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{activeHero.description}</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/5 bg-white/5 p-4 lg:p-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">
+                        How we help
+                      </p>
+                      <ul className="mt-3 lg:mt-4 space-y-2.5 lg:space-y-3 text-sm text-muted-foreground">
+                        {activeHero.highlights.map((highlight) => (
+                          <li key={highlight} className="flex items-start gap-2">
+                            <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Button
+                      asChild
+                      variant="secondary"
+                      className="w-full group inline-flex items-center justify-center gap-2 border-white/20 bg-white/10 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-white/20"
+                    >
+                      <Link to="/services">
+                        Explore this service
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </Button>
                   </div>
-                  <div className="rounded-2xl border border-white/5 bg-white/5 p-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">
-                      How we help
-                    </p>
-                    <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-                      {activeHero.highlights.map((highlight) => (
-                        <li key={highlight} className="flex items-start gap-2">
-                          <CheckCircle className="mt-0.5 h-4 w-4 text-primary" />
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Button
-                    asChild
-                    variant="secondary"
-                    className="group inline-flex items-center gap-2 border-white/20 bg-white/10 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-white/20"
-                  >
-                    <Link to="/services">
-                      Explore this service
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </Button>
                 </CardContent>
               </Card>
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
