@@ -285,7 +285,7 @@ const Home = () => {
   const activeHero = heroServices[activeHeroService];
   return <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center py-8 lg:py-12">
+      <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center py-8 lg:py-[20px]">
         <div className="absolute inset-0 -z-20">
           <img src={activeHero.image} alt={`${activeHero.title} background`} className="h-full w-full object-cover" />
         </div>
