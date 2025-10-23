@@ -217,14 +217,14 @@ const Resources = () => {
                 <div className={cn(
                   "flex items-center gap-4 transition-all duration-500",
                   isCompressed 
-                    ? "flex-row flex-wrap justify-between" 
+                    ? "flex-col gap-3" 
                     : "flex-col gap-6"
                 )}>
                   
                   {/* Knowledge Centre Section */}
                   <div className={cn(
                     "flex items-center gap-3 transition-all duration-500",
-                    isCompressed ? "shrink-0" : "w-full"
+                    isCompressed ? "w-full" : "w-full"
                   )}>
                     <div className={cn(
                       "flex shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary shadow-inner shadow-primary/20 transition-all duration-500",
@@ -247,54 +247,60 @@ const Resources = () => {
                     </div>
                   </div>
 
-                  {/* Search Box */}
+                  {/* Search Box + Filter Buttons Row */}
                   <div className={cn(
-                    "relative transition-all duration-500",
-                    isCompressed ? "flex-1 min-w-[200px] max-w-md" : "w-full"
+                    "flex items-center gap-3 transition-all duration-500",
+                    isCompressed ? "w-full" : "w-full flex-col gap-6"
                   )}>
-                    <Search className={cn(
-                      "absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-all duration-500",
-                      isCompressed ? "left-3 h-4 w-4" : "left-5 h-5 w-5"
-                    )} />
-                    <Input
-                      value={searchTerm}
-                      onChange={(event) => handleSearchChange(event.target.value)}
-                      placeholder={isCompressed ? "Search..." : "Search by title, topic, or author"}
-                      className={cn(
-                        "rounded-full border-border bg-background shadow-inner shadow-primary/5 transition-all duration-500 focus:border-primary focus:shadow-lg focus:shadow-primary/10",
-                        isCompressed 
-                          ? "h-9 pl-9 pr-4 text-sm" 
-                          : "h-16 pl-14 pr-6 text-base"
-                      )}
-                    />
-                  </div>
-
-                  {/* Filter Buttons */}
-                  <div className={cn(
-                    "flex items-center gap-2 transition-all duration-500",
-                    isCompressed ? "shrink-0" : "w-full justify-center"
-                  )}>
-                    <Filter className={cn(
-                      "text-muted-foreground transition-all duration-500",
-                      isCompressed ? "h-3.5 w-3.5" : "h-4 w-4"
-                    )} />
-                    {filterButtons.map((button) => (
-                      <Button
-                        key={button.key}
-                        variant={activeTab === button.key ? "default" : "outline"}
-                        size={isCompressed ? "sm" : "default"}
+                    {/* Search Box */}
+                    <div className={cn(
+                      "relative transition-all duration-500",
+                      isCompressed ? "flex-1 min-w-[150px]" : "w-full"
+                    )}>
+                      <Search className={cn(
+                        "absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-all duration-500",
+                        isCompressed ? "left-3 h-4 w-4" : "left-5 h-5 w-5"
+                      )} />
+                      <Input
+                        value={searchTerm}
+                        onChange={(event) => handleSearchChange(event.target.value)}
+                        placeholder={isCompressed ? "Search..." : "Search by title, topic, or author"}
                         className={cn(
-                          "rounded-full border-transparent font-medium transition-all duration-300",
-                          isCompressed ? "px-3 py-1 text-xs" : "px-6 py-2 text-sm",
-                          activeTab === button.key
-                            ? "bg-primary text-primary-foreground shadow-md shadow-primary/30"
-                            : "border-border/50 bg-card hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
+                          "rounded-full border-border bg-background shadow-inner shadow-primary/5 transition-all duration-500 focus:border-primary focus:shadow-lg focus:shadow-primary/10",
+                          isCompressed 
+                            ? "h-9 pl-9 pr-4 text-sm" 
+                            : "h-16 pl-14 pr-6 text-base"
                         )}
-                        onClick={() => setActiveTab(button.key)}
-                      >
-                        {button.label}
-                      </Button>
-                    ))}
+                      />
+                    </div>
+
+                    {/* Filter Buttons */}
+                    <div className={cn(
+                      "flex items-center gap-2 transition-all duration-500",
+                      isCompressed ? "shrink-0" : "w-full justify-center"
+                    )}>
+                      <Filter className={cn(
+                        "text-muted-foreground transition-all duration-500",
+                        isCompressed ? "h-3.5 w-3.5" : "h-4 w-4"
+                      )} />
+                      {filterButtons.map((button) => (
+                        <Button
+                          key={button.key}
+                          variant={activeTab === button.key ? "default" : "outline"}
+                          size={isCompressed ? "sm" : "default"}
+                          className={cn(
+                            "rounded-full border-transparent font-medium transition-all duration-300",
+                            isCompressed ? "px-3 py-1 text-xs" : "px-6 py-2 text-sm",
+                            activeTab === button.key
+                              ? "bg-primary text-primary-foreground shadow-md shadow-primary/30"
+                              : "border-border/50 bg-card hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
+                          )}
+                          onClick={() => setActiveTab(button.key)}
+                        >
+                          {button.label}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
