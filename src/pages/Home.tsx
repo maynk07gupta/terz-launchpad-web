@@ -540,7 +540,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section with Inline Form */}
-      <section className="relative py-24 lg:py-32">
+      <section className="relative py-24 lg:py-[12px]">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className={cn("relative overflow-hidden rounded-3xl p-8 shadow-[0_60px_140px_-70px_rgba(37,99,235,0.75)] lg:p-12", glassPanel)}>
