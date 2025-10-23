@@ -488,7 +488,7 @@ const Home = () => {
       </section>
 
       {/* 6-Step Process */}
-      <section ref={processRef} className="relative py-20 lg:py-28">
+      <section ref={processRef} className="relative py-20 lg:py-[10px]">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.12),transparent_70%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
