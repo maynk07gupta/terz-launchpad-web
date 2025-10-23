@@ -13,13 +13,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { resources } from "@/data/resources";
@@ -43,11 +36,10 @@ const Resources = () => {
   const [activeTab, setActiveTab] = useState<FilterKey>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [isCompressed, setIsCompressed] = useState(false);
-  const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsCompressed(window.scrollY > 120);
+      setIsCompressed(window.scrollY > 80);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -198,119 +190,125 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Sticky Search Bar with Compression Animation */}
+      {/* Unified Sticky Search & Filter Bar */}
       <div
         className={cn(
-          "sticky top-24 z-40 mx-auto w-full transition-all duration-500 ease-out",
-          isCompressed ? "py-0" : "-mt-12 py-8"
+          "sticky top-16 z-40 mx-auto w-full transition-all duration-500 ease-out",
+          isCompressed ? "shadow-lg" : "-mt-12 py-8"
         )}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className={cn(
-              "mx-auto overflow-hidden rounded-[2rem] border border-border/60 bg-card/95 shadow-2xl shadow-primary/20 backdrop-blur-xl transition-all duration-500",
-              isCompressed 
-                ? "max-w-full py-4" 
-                : "max-w-5xl py-8"
-            )}
-          >
-            <div className="px-6 sm:px-8">
-              <div className={cn(
-                "flex items-center gap-6 transition-all duration-500",
-                isCompressed ? "flex-row justify-between" : "flex-col gap-6"
-              )}>
-                {/* Left Section: Icon + Title */}
+        <div className={cn(
+          "border-b backdrop-blur-xl transition-all duration-500",
+          isCompressed 
+            ? "border-border/40 bg-background/95" 
+            : "border-transparent bg-transparent"
+        )}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+              className={cn(
+                "mx-auto overflow-hidden transition-all duration-500",
+                isCompressed 
+                  ? "max-w-full rounded-none border-0 bg-transparent py-3" 
+                  : "max-w-5xl rounded-[2rem] border border-border/60 bg-card/95 py-8 shadow-2xl shadow-primary/20"
+              )}
+            >
+              <div className={cn("px-6 sm:px-8", isCompressed && "px-0")}>
+                {/* Main Content Row */}
                 <div className={cn(
                   "flex items-center gap-4 transition-all duration-500",
-                  isCompressed ? "min-w-0" : "w-full"
+                  isCompressed 
+                    ? "flex-row flex-wrap justify-between" 
+                    : "flex-col gap-6"
                 )}>
+                  
+                  {/* Knowledge Centre Section */}
                   <div className={cn(
-                    "flex shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary shadow-inner shadow-primary/20 transition-all duration-500",
-                    isCompressed ? "h-10 w-10" : "h-14 w-14"
+                    "flex items-center gap-3 transition-all duration-500",
+                    isCompressed ? "shrink-0" : "w-full"
                   )}>
-                    <Search className={cn("transition-all duration-500", isCompressed ? "h-5 w-5" : "h-7 w-7")} />
+                    <div className={cn(
+                      "flex shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary shadow-inner shadow-primary/20 transition-all duration-500",
+                      isCompressed ? "h-8 w-8" : "h-14 w-14"
+                    )}>
+                      <Search className={cn("transition-all duration-500", isCompressed ? "h-4 w-4" : "h-7 w-7")} />
+                    </div>
+                    <div className={cn("min-w-0 transition-all duration-500")}>
+                      <p className={cn(
+                        "font-semibold uppercase tracking-[0.3em] text-primary/70 transition-all duration-500",
+                        isCompressed ? "text-[9px]" : "text-xs"
+                      )}>
+                        Knowledge Centre
+                      </p>
+                      {!isCompressed && (
+                        <h2 className="mt-2 text-2xl font-semibold text-foreground transition-all duration-500">
+                          Search across news, explainers, and deep dives
+                        </h2>
+                      )}
+                    </div>
                   </div>
-                  <div className={cn("min-w-0 transition-all duration-500", isCompressed && "flex-1")}>
-                    <p className={cn(
-                      "font-semibold uppercase tracking-[0.3em] text-primary/70 transition-all duration-500",
-                      isCompressed ? "text-[10px]" : "text-xs"
-                    )}>
-                      Knowledge Centre
-                    </p>
-                    <h2 className={cn(
-                      "font-semibold text-foreground transition-all duration-500",
-                      isCompressed ? "mt-0 text-sm" : "mt-2 text-2xl"
-                    )}>
-                      {isCompressed ? "Search & Filter" : "Search across news, explainers, and deep dives"}
-                    </h2>
+
+                  {/* Search Box */}
+                  <div className={cn(
+                    "relative transition-all duration-500",
+                    isCompressed ? "flex-1 min-w-[200px] max-w-md" : "w-full"
+                  )}>
+                    <Search className={cn(
+                      "absolute top-1/2 -translate-y-1/2 text-muted-foreground transition-all duration-500",
+                      isCompressed ? "left-3 h-4 w-4" : "left-5 h-5 w-5"
+                    )} />
+                    <Input
+                      value={searchTerm}
+                      onChange={(event) => handleSearchChange(event.target.value)}
+                      placeholder={isCompressed ? "Search..." : "Search by title, topic, or author"}
+                      className={cn(
+                        "rounded-full border-border bg-background shadow-inner shadow-primary/5 transition-all duration-500 focus:border-primary focus:shadow-lg focus:shadow-primary/10",
+                        isCompressed 
+                          ? "h-9 pl-9 pr-4 text-sm" 
+                          : "h-16 pl-14 pr-6 text-base"
+                      )}
+                    />
+                  </div>
+
+                  {/* Filter Buttons */}
+                  <div className={cn(
+                    "flex items-center gap-2 transition-all duration-500",
+                    isCompressed ? "shrink-0" : "w-full justify-center"
+                  )}>
+                    <Filter className={cn(
+                      "text-muted-foreground transition-all duration-500",
+                      isCompressed ? "h-3.5 w-3.5" : "h-4 w-4"
+                    )} />
+                    {filterButtons.map((button) => (
+                      <Button
+                        key={button.key}
+                        variant={activeTab === button.key ? "default" : "outline"}
+                        size={isCompressed ? "sm" : "default"}
+                        className={cn(
+                          "rounded-full border-transparent font-medium transition-all duration-300",
+                          isCompressed ? "px-3 py-1 text-xs" : "px-6 py-2 text-sm",
+                          activeTab === button.key
+                            ? "bg-primary text-primary-foreground shadow-md shadow-primary/30"
+                            : "border-border/50 bg-card hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
+                        )}
+                        onClick={() => setActiveTab(button.key)}
+                      >
+                        {button.label}
+                      </Button>
+                    ))}
                   </div>
                 </div>
 
-                {/* Right Section: Search Bar */}
+                {/* Result Label (only when not compressed) */}
                 {!isCompressed && (
-                  <div className="w-full">
-                    <div className="relative">
-                      <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-                      <Input
-                        value={searchTerm}
-                        onChange={(event) => handleSearchChange(event.target.value)}
-                        placeholder="Search by title, topic, or author"
-                        className="h-16 rounded-full border-border bg-background pl-14 pr-6 text-base shadow-inner shadow-primary/5 transition-all duration-300 focus:border-primary focus:shadow-lg focus:shadow-primary/10"
-                      />
-                    </div>
-                    <p className="mt-3 text-center text-xs text-muted-foreground">
-                      {resultLabel} — Filters update in real time as you type.
-                    </p>
-                  </div>
-                )}
-
-                {isCompressed && (
-                  <div className="flex shrink-0 items-center gap-3">
-                    <Badge variant="secondary" className="rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold text-primary">
-                      {resultLabel}
-                    </Badge>
-                    <Button
-                      variant="default"
-                      size="icon"
-                      className="h-10 w-10 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform duration-300 hover:scale-110"
-                      onClick={() => setIsSearchOverlayOpen(true)}
-                    >
-                      <Search className="h-5 w-5" />
-                    </Button>
-                  </div>
+                  <p className="mt-3 text-center text-xs text-muted-foreground transition-all duration-500">
+                    {resultLabel} — Filters update in real time as you type.
+                  </p>
                 )}
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Format Filter Bar */}
-      <section className="sticky top-44 z-30 border-b border-border/40 bg-background/90 backdrop-blur-lg">
-        <div className="container mx-auto flex flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 text-sm font-medium text-muted-foreground">
-            <Filter className="h-4 w-4" />
-            Refine by format
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {filterButtons.map((button) => (
-              <Button
-                key={button.key}
-                variant={activeTab === button.key ? "default" : "outline"}
-                className={cn(
-                  "rounded-full border-transparent px-6 py-2 text-sm font-medium transition-all duration-300",
-                  activeTab === button.key
-                    ? "bg-primary text-primary-foreground shadow-md shadow-primary/30"
-                    : "border-border/50 bg-card hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
-                )}
-                onClick={() => setActiveTab(button.key)}
-              >
-                {button.label}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Resources Grid */}
       <section className="relative z-20 py-20">
@@ -404,27 +402,6 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* Search Overlay Dialog */}
-      <Dialog open={isSearchOverlayOpen} onOpenChange={setIsSearchOverlayOpen}>
-        <DialogContent className="max-w-xl rounded-3xl border border-primary/20 bg-background/95 p-8 shadow-2xl">
-          <DialogHeader>
-            <DialogTitle>Search the knowledge center</DialogTitle>
-            <DialogDescription>
-              Results update instantly. Try searching for a product category, regulation, or author name.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="relative mt-6">
-            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              value={searchTerm}
-              onChange={(event) => handleSearchChange(event.target.value)}
-              placeholder="Start typing to filter the latest updates"
-              className="h-14 rounded-full border border-muted bg-background pl-12 text-base shadow-inner shadow-primary/10"
-              autoFocus
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
