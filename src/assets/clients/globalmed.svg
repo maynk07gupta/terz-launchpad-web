@@ -1,0 +1,8 @@
+<svg width="160" height="60" viewBox="0 0 160 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="160" height="60" rx="14" fill="#0B3D91"/>
+  <circle cx="36" cy="30" r="16" stroke="#BFDBFE" stroke-width="3"/>
+  <path d="M20 30H52" stroke="#BFDBFE" stroke-width="3" stroke-linecap="round"/>
+  <path d="M36 14V46" stroke="#BFDBFE" stroke-width="3" stroke-linecap="round"/>
+  <text x="65" y="34" fill="#DBEAFE" font-family="'Inter', 'Segoe UI', sans-serif" font-size="18" font-weight="600">GlobalMed</text>
+  <text x="65" y="46" fill="#93C5FD" font-family="'Inter', 'Segoe UI', sans-serif" font-size="11" font-weight="500">IMPORTS</text>
+</svg>
