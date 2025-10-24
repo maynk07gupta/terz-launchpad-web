@@ -283,109 +283,135 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
   const activeHero = heroServices[activeHeroService];
-  return <div className="min-h-screen bg-background">
-      {/* Hero Section - Customer-centric */}
-      <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center py-12 lg:py-16">
-        {/* Matte background with subtle texture */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-secondary/30 to-background" />
-        <div className="absolute inset-0 -z-10" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, hsl(215 60% 45% / 0.03) 1px, transparent 0)', backgroundSize: '40px 40px'}} />
-        
-        {/* Subtle accent elements - trust-building */}
-        <div className="absolute top-20 right-10 h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute bottom-20 left-10 h-80 w-80 rounded-full bg-accent/5 blur-3xl" />
+  return <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center py-8 lg:py-[20px]">
+        <div className="absolute inset-0 -z-20">
+          <img src={activeHero.image} alt={`${activeHero.title} background`} className="h-full w-full object-cover" />
+        </div>
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background/95 via-background/85 to-background/95" />
+        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-sky-500/20 blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 hidden h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/10 bg-primary/10 opacity-60 lg:block" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid items-center gap-12 lg:gap-16 lg:grid-cols-2">
+          <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-[1fr_1.2fr]">
             <div className="max-w-2xl">
-              <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-5 py-2 text-sm font-medium text-primary">
-                <Shield className="h-4 w-4" />
-                Trusted compliance partner
+              <span className="mb-4 lg:mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs lg:text-sm font-medium text-primary">
+                <span className="h-2 w-2 rounded-full bg-primary" />
+                Compliance for importers & manufacturers
               </span>
-              <h1 className="mb-6 text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl">
-                Launch in India with confidence
+              <h1 className="mb-4 lg:mb-6 text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
+                Regulatory compliance, retold as your launch story
               </h1>
-              <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-8">
-                We help importers and manufacturers navigate CDSCO, BIS, LMPC and EPR compliance from first application to post-launch.
+              <p className="text-base lg:text-lg text-muted-foreground/90">
+                Navigate CDSCO, CDSCO (IVD), BIS, LMPC, and EPR frameworks with a partner that choreographs every step—from dossier builds to post-market vigilance.
               </p>
-              <div className="flex flex-col gap-4 sm:flex-row mb-8">
-                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg">
+              <div className="mt-6 lg:mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button asChild size="lg" className="bg-primary shadow-[0_20px_40px_-20px_rgba(37,99,235,0.55)] hover:bg-primary/90">
                   <Link to="/contact">
-                    Book a free 15-min consult <ArrowRight className="ml-2 h-5 w-5" />
+                    Schedule a strategy call <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="border-border hover:bg-muted">
-                  <Link to="/services">See pricing</Link>
+                <Button asChild size="lg" variant="outline" className="border-white/20 text-foreground transition hover:border-primary/40 hover:bg-white/10">
+                  <Link to="/services">Explore full service lineup</Link>
                 </Button>
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-xl bg-card border border-border p-5 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                    Average approval time
-                  </p>
-                  <p className="text-3xl font-bold text-primary">4–6 weeks</p>
-                </div>
-                <div className="rounded-xl bg-card border border-border p-5 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                    Client satisfaction
-                  </p>
-                  <p className="text-3xl font-bold text-primary">98%</p>
-                </div>
+              <div className="mt-6 lg:mt-10 grid gap-3 sm:grid-cols-2">
+                {heroStats.map(stat => <div key={stat.label} className={cn("rounded-2xl p-4 lg:p-5 shadow-[0_20px_50px_-35px_rgba(37,99,235,0.7)]", glassPanel)}>
+                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+                      {stat.label}
+                    </p>
+                    <p className="mt-2 lg:mt-3 text-2xl lg:text-3xl font-semibold capitalize text-primary">{stat.value}</p>
+                  </div>)}
               </div>
             </div>
 
-            {/* Hero illustration - trust-building visual */}
-            <div className="relative">
-              <div className="aspect-square max-w-lg mx-auto bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 rounded-3xl border border-border p-12 flex items-center justify-center shadow-lg">
-                <div className="text-center space-y-6">
-                  <div className="flex justify-center gap-6 mb-8">
-                    <div className="h-24 w-24 rounded-2xl bg-primary/20 border-2 border-primary/40 flex items-center justify-center">
-                      <Ship className="h-12 w-12 text-primary" />
-                    </div>
-                    <div className="h-24 w-24 rounded-2xl bg-accent/20 border-2 border-accent/40 flex items-center justify-center">
-                      <Factory className="h-12 w-12 text-accent" />
+            <div className="relative mx-auto w-full">
+              <div className="absolute -left-12 -top-10 h-32 w-32 rounded-full bg-primary/30 blur-2xl" />
+              <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-sky-500/20 blur-3xl" />
+              <Card className={cn("relative overflow-hidden shadow-[0_60px_140px_-70px_rgba(37,99,235,0.75)] transition", glassPanel)}>
+                <div className={cn("absolute inset-0 -z-10 bg-gradient-to-br", activeHero.accent)} />
+                <CardContent className="relative space-y-4 lg:space-y-6 p-0">
+                  {/* Service Image */}
+                  <div className="relative h-48 lg:h-64 overflow-hidden">
+                    <img src={activeHero.image} alt={activeHero.title} className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+                    <div className="absolute bottom-4 left-6 right-6">
+                      <div className="flex items-center gap-3">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary backdrop-blur">
+                          <activeHero.icon className="h-6 w-6" />
+                        </span>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Focus area</p>
+                          <p className="text-lg font-semibold text-foreground">{activeHero.title}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <CheckCircle className="h-20 w-20 text-primary mx-auto" />
-                  <p className="text-base font-medium text-muted-foreground">Import & Manufacturing Compliance</p>
-                </div>
+                  
+                  {/* Service Content */}
+                  <div className="px-6 lg:px-8 pb-6 lg:pb-8 space-y-4 lg:space-y-5">
+                    <div className="space-y-3">
+                      <h2 className="text-xl lg:text-2xl font-semibold text-foreground leading-tight">{activeHero.headline}</h2>
+                      <p className="text-sm leading-relaxed text-muted-foreground">{activeHero.description}</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/5 bg-white/5 p-4 lg:p-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">
+                        How we help
+                      </p>
+                      <ul className="mt-3 lg:mt-4 space-y-2.5 lg:space-y-3 text-sm text-muted-foreground">
+                        {activeHero.highlights.map(highlight => <li key={highlight} className="flex items-start gap-2">
+                            <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                            <span>{highlight}</span>
+                          </li>)}
+                      </ul>
+                    </div>
+                    <Button asChild variant="secondary" className="w-full group inline-flex items-center justify-center gap-2 border-white/20 bg-white/10 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-white/20">
+                      <Link to="/services">
+                        Explore this service
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {heroServices.map((service, index) => <button key={service.title} type="button" onClick={() => handleHeroSelect(index)} onMouseEnter={() => !isMobile && handleHeroSelect(index)} className={cn("group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 text-left transition", activeHeroService === index ? "border-primary/60 bg-primary/10 text-foreground shadow-[0_20px_45px_-25px_rgba(37,99,235,0.6)]" : "hover:border-primary/40 hover:bg-white/15")}>
+                    <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary transition-transform", activeHeroService === index ? "scale-105" : "group-hover:scale-105")}>
+                      <service.icon className="h-5 w-5" />
+                    </span>
+                    <span className="text-sm font-medium text-foreground">{service.title}</span>
+                  </button>)}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Narrative Section - Challenge → Solution → Outcome */}
+      {/* Client Journey Story */}
       <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-secondary/30 to-background" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-foreground lg:text-4xl mb-4">
-              Your compliance journey, simplified
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              See how we transform regulatory complexity into predictable outcomes.
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3">
-            {journeyColumns.map((column, index) => <Card key={column.title} className="border border-border bg-card hover:shadow-lg transition-shadow">
-                <CardContent className="p-8">
-                  <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    {index === 0 && <Scale className="h-7 w-7" />}
-                    {index === 1 && <Shield className="h-7 w-7" />}
-                    {index === 2 && <CheckCircle className="h-7 w-7" />}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {journeyColumns.map(column => <Card key={column.title} className={cn("transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-60px_rgba(37,99,235,0.65)]", glassPanel)}>
+                <CardContent className="pt-8">
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-primary/40 bg-primary/20 text-lg font-bold text-primary">
+                    {column.title === "The Challenge" && "01"}
+                    {column.title === "Our Solution" && "02"}
+                    {column.title === "The Outcome" && "03"}
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">{column.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{column.description}</p>
+                  <h3 className="text-xl font-semibold text-foreground">{column.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{column.description}</p>
                 </CardContent>
               </Card>)}
           </div>
         </div>
       </section>
 
-      {/* Services by Persona */}
-      <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background to-secondary/20" />
+      {/* Services Overview */}
+      <section className="relative py-20 lg:py-[10px]">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.16),transparent_65%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">How we support every team</h2>
