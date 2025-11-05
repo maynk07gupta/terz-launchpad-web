@@ -185,20 +185,30 @@ const differentiators = [{
   description: "Renewals, variations, and surveillance handled without disrupting teams."
 }];
 const testimonials: Testimonial[] = [{
-  quote: "Terz translated complex CDSCO requirements into a step-by-step plan. We cleared approval on our first submission.",
-  name: "Ankita Sharma",
-  role: "Regulatory Lead",
-  company: "NexGen MedTech"
+  quote: "I had the pleasure of working with Mr. Vasu Batra, I can confidently say that his impact was both immediate and enduring. Although we collaborated on a relatively small project, he brought a remarkable level of professionalism, expertise, and strategic insight from day one, which significantly advanced several key initiatives. Mr. Batra not only understood our business requirements quickly but also delivered effective solutions ahead of schedule. What truly set him apart was his clear communication, collaborative mindset, and ability to demystify complex compliance requirements—making him a trusted advisor to our team.",
+  name: "Hemendra Dave, PGDBM, MBA",
+  role: "Regulatory Head",
+  company: "Envision Scientific, Concept Medical"
 }, {
-  quote: "Their importer onboarding kit helped our team stay ahead of every deadline. Communication was proactive and clear.",
-  name: "David Chen",
-  role: "Operations Director",
-  company: "GlobalMed Imports"
+  quote: "I highly recommend Vasu Batra for his outstanding expertise in medical device registration with Indian authorities. His deep knowledge of regulatory requirements, proactive approach, and ability to navigate complex processes were instrumental in securing timely clearance for our products. Vasu Batra demonstrated exceptional resourcefulness, addressing numerous regulatory queries with precision and clarity. His strong relationships with the authorities and problem-solving skills ensured a smooth approval process, helping us stay on track with our business goals.",
+  name: "Andrew Tang",
+  role: "Chief Executive Officer",
+  company: "Mobilab, USA"
 }, {
-  quote: "From documentation to post-market surveillance, Terz felt like an internal compliance team we could depend on.",
-  name: "Shreya Patel",
-  role: "Founder",
-  company: "Dermavita Labs"
+  quote: "As a consultant who handles the medical devices regulatory approvals, Vasu is meticulous and conscientious while preparing and vetting documents, leaving little room for errors, saving time and money for his clients. Calm and courteous, he is also a pleasure to deal with.",
+  name: "Anil Kumar Nair",
+  role: "Managing Director",
+  company: "Geuder Asia Pacific Pvt. Ltd, Singapore"
+}, {
+  quote: "Had worked with Vasu on medical device registration in India, a person with strong work ethics, extremely responsive and knows his field of work well. His inputs had been a guiding light in getting medical devices registered in India.",
+  name: "Steven Choy",
+  role: "Business Consultant",
+  company: "SEED, Japan"
+}, {
+  quote: "I worked with Vasu in registration of brands and he is super efficient. He has been very instrumental in helping me with urgent paperwork's and completing work ahead of deadlines. He is very kind and ever ready to help even at odd hours. Truly appreciate his effort in going the extra mile to help his clients.",
+  name: "Toinali Chophi",
+  role: "CEO",
+  company: "Beautybarnindia"
 }];
 const clients: Client[] = [{
   name: "NexGen MedTech",
@@ -226,8 +236,6 @@ const Home = () => {
   const [activeHeroService, setActiveHeroService] = React.useState(0);
   const heroIntervalRef = React.useRef<NodeJS.Timeout | null>(null);
   const [activeAudience, setActiveAudience] = React.useState<AudienceKey>("importers");
-  const [activeTestimonial, setActiveTestimonial] = React.useState(0);
-  const testimonialIntervalRef = React.useRef<NodeJS.Timeout | null>(null);
   const processRef = React.useRef<HTMLDivElement | null>(null);
   const [processInView, setProcessInView] = React.useState(false);
   const handleLeadFormSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
@@ -254,19 +262,6 @@ const Home = () => {
       heroIntervalRef.current = null;
     }
   }, []);
-  React.useEffect(() => {
-    if (!isMobile) {
-      testimonialIntervalRef.current = setInterval(() => {
-        setActiveTestimonial(previous => (previous + 1) % testimonials.length);
-      }, 8000);
-    }
-    return () => {
-      if (testimonialIntervalRef.current) {
-        clearInterval(testimonialIntervalRef.current);
-        testimonialIntervalRef.current = null;
-      }
-    };
-  }, [isMobile]);
   React.useEffect(() => {
     if (!processRef.current) return;
     const observer = new IntersectionObserver(entries => {
@@ -466,22 +461,27 @@ const Home = () => {
                   <img src={client.logo} alt={client.name} className="max-h-full w-full object-contain" />
                 </div>)}
             </div>
-            <div className="relative w-full max-w-3xl">
-              <Card className={cn("overflow-hidden border-primary/20 shadow-[0_35px_120px_-60px_rgba(59,130,246,0.6)]", glassPanel)}>
-                <CardContent className="flex flex-col gap-6 p-8 text-left">
-                  <Quote className="h-10 w-10 text-primary" />
-                  <p className="text-lg leading-relaxed text-muted-foreground">“{testimonials[activeTestimonial].quote}”</p>
-                  <div className="mt-auto">
-                    <p className="font-semibold text-foreground">{testimonials[activeTestimonial].name}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {testimonials[activeTestimonial].role} · {testimonials[activeTestimonial].company}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-              <div className="mt-6 flex items-center justify-center gap-2">
-                {testimonials.map((testimonial, index) => <button key={testimonial.company} type="button" onClick={() => setActiveTestimonial(index)} className={cn("h-3 w-3 rounded-full transition", activeTestimonial === index ? "bg-primary" : "bg-white/30 hover:bg-white/60")} aria-label={`Show testimonial from ${testimonial.name}`} />)}
+            <div className="relative w-full">
+              <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40">
+                <div className="flex gap-6 min-w-max px-2">
+                  {testimonials.map((testimonial, index) => (
+                    <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-[0_35px_120px_-60px_rgba(59,130,246,0.6)]", glassPanel)}>
+                      <CardContent className="flex flex-col gap-6 p-8 text-left h-full">
+                        <Quote className="h-10 w-10 text-primary flex-shrink-0" />
+                        <p className="text-base leading-relaxed text-muted-foreground flex-grow italic">"{testimonial.quote}"</p>
+                        <div className="mt-auto border-t border-border pt-4">
+                          <p className="font-semibold text-foreground">{testimonial.name}</p>
+                          <p className="text-sm text-primary font-medium mt-1">{testimonial.role}</p>
+                          <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
+              <p className="text-sm text-center text-muted-foreground mt-6">
+                Scroll horizontally to read more testimonials →
+              </p>
             </div>
           </div>
         </div>

@@ -245,44 +245,90 @@ const About = () => {
       {/* Testimonials */}
       <section className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-12 text-center">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 text-center">
               What Our Clients Say
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="text-muted-foreground mb-4 italic">
-                    "Terz Compliance made our medical device registration seamless. We
-                    couldn't have navigated CDSCO requirements without their expertise
-                    and attention to detail."
-                  </p>
-                  <div>
-                    <p className="font-semibold text-foreground">
-                      Sarah Johnson
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      Regulatory Manager, MedTech Global
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+            <p className="text-lg text-muted-foreground text-center mb-12">
+              Real experiences from industry professionals who trust Terz Compliance
+            </p>
+            <div className="relative">
+              <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40">
+                <div className="flex gap-6 min-w-max px-2">
+                  <Card className="w-[400px] flex-shrink-0">
+                    <CardContent className="pt-6 h-full flex flex-col">
+                      <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
+                        "I had the pleasure of working with Mr. Vasu Batra, I can confidently say that his impact was both immediate and enduring. Although we collaborated on a relatively small project, he brought a remarkable level of professionalism, expertise, and strategic insight from day one, which significantly advanced several key initiatives. Mr. Batra not only understood our business requirements quickly but also delivered effective solutions ahead of schedule. What truly set him apart was his clear communication, collaborative mindset, and ability to demystify complex compliance requirements—making him a trusted advisor to our team."
+                      </p>
+                      <div className="border-t border-border pt-4">
+                        <p className="font-semibold text-foreground">Hemendra Dave, PGDBM, MBA</p>
+                        <p className="text-sm text-primary font-medium mt-1">Regulatory Head</p>
+                        <p className="text-sm text-muted-foreground">Envision Scientific, Concept Medical</p>
+                        <p className="text-xs text-muted-foreground mt-2">April 6, 2025</p>
+                      </div>
+                    </CardContent>
+                  </Card>
 
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="text-muted-foreground mb-4 italic">
-                    "Professional, responsive, and incredibly knowledgeable. Terz
-                    helped us launch our cosmetics line in India within the promised
-                    timeline."
-                  </p>
-                  <div>
-                    <p className="font-semibold text-foreground">Rahul Mehta</p>
-                    <p className="text-sm text-muted-foreground">
-                      CEO, BeautyFirst India
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+                  <Card className="w-[400px] flex-shrink-0">
+                    <CardContent className="pt-6 h-full flex flex-col">
+                      <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
+                        "I highly recommend Vasu Batra for his outstanding expertise in medical device registration with Indian authorities. His deep knowledge of regulatory requirements, proactive approach, and ability to navigate complex processes were instrumental in securing timely clearance for our products. Vasu Batra demonstrated exceptional resourcefulness, addressing numerous regulatory queries with precision and clarity. His strong relationships with the authorities and problem-solving skills ensured a smooth approval process, helping us stay on track with our business goals."
+                      </p>
+                      <div className="border-t border-border pt-4">
+                        <p className="font-semibold text-foreground">Andrew Tang</p>
+                        <p className="text-sm text-primary font-medium mt-1">Chief Executive Officer</p>
+                        <p className="text-sm text-muted-foreground">Mobilab, USA</p>
+                        <p className="text-xs text-muted-foreground mt-2">February 11, 2025</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="w-[400px] flex-shrink-0">
+                    <CardContent className="pt-6 h-full flex flex-col">
+                      <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
+                        "As a consultant who handles the medical devices regulatory approvals, Vasu is meticulous and conscientious while preparing and vetting documents, leaving little room for errors, saving time and money for his clients. Calm and courteous, he is also a pleasure to deal with."
+                      </p>
+                      <div className="border-t border-border pt-4">
+                        <p className="font-semibold text-foreground">Anil Kumar Nair</p>
+                        <p className="text-sm text-primary font-medium mt-1">Managing Director</p>
+                        <p className="text-sm text-muted-foreground">Geuder Asia Pacific Pvt. Ltd, Singapore</p>
+                        <p className="text-xs text-muted-foreground mt-2">November 20, 2024</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="w-[400px] flex-shrink-0">
+                    <CardContent className="pt-6 h-full flex flex-col">
+                      <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
+                        "Had worked with Vasu on medical device registration in India, a person with strong work ethics, extremely responsive and knows his field of work well. His inputs had been a guiding light in getting medical devices registered in India."
+                      </p>
+                      <div className="border-t border-border pt-4">
+                        <p className="font-semibold text-foreground">Steven Choy</p>
+                        <p className="text-sm text-primary font-medium mt-1">Business Consultant</p>
+                        <p className="text-sm text-muted-foreground">SEED, Japan</p>
+                        <p className="text-xs text-muted-foreground mt-2">April 23, 2024</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="w-[400px] flex-shrink-0">
+                    <CardContent className="pt-6 h-full flex flex-col">
+                      <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
+                        "I worked with Vasu in registration of brands and he is super efficient. He has been very instrumental in helping me with urgent paperwork's and completing work ahead of deadlines. He is very kind and ever ready to help even at odd hours. Truly appreciate his effort in going the extra mile to help his clients."
+                      </p>
+                      <div className="border-t border-border pt-4">
+                        <p className="font-semibold text-foreground">Toinali Chophi</p>
+                        <p className="text-sm text-primary font-medium mt-1">CEO</p>
+                        <p className="text-sm text-muted-foreground">Beautybarnindia</p>
+                        <p className="text-xs text-muted-foreground mt-2">May 24, 2023</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+              <p className="text-sm text-center text-muted-foreground mt-6">
+                Scroll horizontally to read more testimonials →
+              </p>
             </div>
           </div>
         </div>
