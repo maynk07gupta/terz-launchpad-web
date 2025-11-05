@@ -42,8 +42,6 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
-          600: "hsl(var(--accent-600))",
-          hover: "hsl(var(--accent-hover))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -63,32 +61,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        brand: {
-          DEFAULT: "hsl(var(--brand))",
-          600: "hsl(var(--brand-600))",
-          50: "hsl(var(--brand-50))",
-          hover: "hsl(var(--brand-hover))",
-        },
-        bg: "hsl(var(--bg))",
-        surface: "hsl(var(--surface))",
-        subsurface: "hsl(var(--subsurface))",
-        line: "hsl(var(--line))",
-        text: "hsl(var(--text))",
-        success: "hsl(var(--success))",
-        warning: "hsl(var(--warning))",
-        error: "hsl(var(--error))",
-        info: "hsl(var(--info))",
       },
       borderRadius: {
-        lg: "12px",
-        md: "8px",
-        sm: "6px",
-      },
-      boxShadow: {
-        sm: "var(--shadow-sm)",
-        md: "var(--shadow-md)",
-        lg: "var(--shadow-lg)",
-        brand: "var(--shadow-brand)",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {

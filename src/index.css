@@ -8,121 +8,79 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Indigo & Fog Theme - Calm, professional, trustworthy */
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 0 0% 98%;
+    --foreground: 215 25% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 215 25% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 215 25% 20%;
 
-    --primary: 213 44% 31%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 215 45% 45%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 215 20% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 215 20% 92%;
+    --secondary-foreground: 215 25% 20%;
 
-    --muted: 215 16% 47%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 215 15% 94%;
+    --muted-foreground: 215 15% 50%;
 
-    --accent: 182 30% 51%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 200 40% 48%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 213 44% 31%;
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 215 45% 45%;
 
     --radius: 0.5rem;
 
-    /* State colors */
-    --success: 142 71% 45%;
-    --warning: 25 95% 53%;
-    --error: 0 72% 51%;
-    --info: 199 89% 48%;
-
-    /* Brand variants */
-    --brand: 213 44% 31%;
-    --brand-600: 213 49% 26%;
-    --brand-50: 213 94% 96%;
-    --brand-hover: 213 49% 26%;
-
-    /* Accent variants */
-    --accent-600: 182 35% 45%;
-    --accent-hover: 182 35% 45%;
-
-    /* Surface colors */
-    --bg: 210 40% 98%;
-    --surface: 0 0% 100%;
-    --subsurface: 215 20% 96%;
-    --line: 214 32% 91%;
-    --text: 222 47% 11%;
-
-    /* Elegant gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(213, 44%, 31%), hsl(182, 30%, 51%));
-    --gradient-hero: radial-gradient(1200px 600px at 80% -10%, hsl(213, 94%, 96%), transparent 60%),
-                     linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(210, 40%, 98%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(210, 40%, 98%) 100%);
+    /* Soothing gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(215, 45%, 45%), hsl(200, 40%, 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(215, 50%, 40%) 0%, hsl(200, 45%, 48%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 98%) 0%, hsl(215, 20%, 96%) 100%);
     
-    /* Professional shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.06), 0 1px 1px 0 hsl(222 47% 11% / 0.04);
-    --shadow-md: 0 8px 24px 0 hsl(222 47% 11% / 0.08);
-    --shadow-lg: 0 16px 48px -8px hsl(222 47% 11% / 0.12);
-    --shadow-brand: 0 4px 12px 0 hsl(213 44% 31% / 0.15);
+    /* Softer shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 25% 20% / 0.04);
+    --shadow-md: 0 2px 8px -2px hsl(215 25% 20% / 0.08);
+    --shadow-lg: 0 8px 20px -4px hsl(215 25% 20% / 0.12);
+    --shadow-blue: 0 4px 12px 0 hsl(215 45% 45% / 0.15);
 
-    /* Smooth transitions */
+    /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 214 33% 7%;
-    --foreground: 220 33% 92%;
+    --background: 215 30% 10%;
+    --foreground: 0 0% 96%;
 
-    --card: 214 29% 11%;
-    --card-foreground: 220 33% 92%;
+    --card: 215 25% 14%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 214 29% 11%;
-    --popover-foreground: 220 33% 92%;
+    --popover: 215 25% 14%;
+    --popover-foreground: 0 0% 96%;
 
-    --primary: 210 41% 59%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 215 50% 55%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 214 29% 11%;
-    --secondary-foreground: 220 33% 92%;
+    --secondary: 215 20% 20%;
+    --secondary-foreground: 0 0% 96%;
 
-    --muted: 214 14% 66%;
-    --muted-foreground: 214 14% 66%;
+    --muted: 215 20% 20%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 180 40% 64%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 200 45% 52%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214 23% 16%;
-    --input: 214 23% 16%;
-    --ring: 210 41% 59%;
-
-    /* Brand variants for dark mode */
-    --brand: 210 41% 59%;
-    --brand-600: 210 37% 53%;
-    --brand-50: 215 21% 11%;
-    --brand-hover: 210 37% 53%;
-
-    /* Accent variants */
-    --accent-600: 180 36% 56%;
-    --accent-hover: 180 36% 56%;
-
-    /* Surface colors */
-    --bg: 214 33% 7%;
-    --surface: 214 29% 11%;
-    --subsurface: 214 29% 11%;
-    --line: 214 23% 16%;
-    --text: 220 33% 92%;
+    --border: 215 20% 22%;
+    --input: 215 20% 22%;
+    --ring: 215 50% 55%;
   }
 }
 
@@ -133,13 +91,9 @@ All colors MUST be HSL.
 
   body {
     @apply text-foreground;
-    background: var(--gradient-hero);
-    line-height: 1.6;
-  }
-  
-  body.dark {
-    background: radial-gradient(1200px 600px at 80% -10%, hsl(215, 21%, 11%), transparent 60%),
-      linear-gradient(180deg, hsl(214, 33%, 7%), hsl(214, 29%, 11%));
+    background: radial-gradient(circle at top left, hsl(215 40% 30% / 0.15), transparent 60%),
+      radial-gradient(circle at 80% 20%, hsl(200 35% 40% / 0.12), transparent 50%),
+      linear-gradient(180deg, hsl(215 25% 12%), hsl(215 30% 8%));
   }
 }
 
