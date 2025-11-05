@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight, CheckCircle, ClipboardCheck, Factory, Globe2, Leaf, Quote, Scale, Shield, Ship, Sparkles, TestTube, Users } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -185,12 +186,12 @@ const differentiators = [{
   description: "Renewals, variations, and surveillance handled without disrupting teams."
 }];
 const testimonials: Testimonial[] = [{
-  quote: "I had the pleasure of working with Mr. Vasu Batra, I can confidently say that his impact was both immediate and enduring. Although we collaborated on a relatively small project, he brought a remarkable level of professionalism, expertise, and strategic insight from day one, which significantly advanced several key initiatives. Mr. Batra not only understood our business requirements quickly but also delivered effective solutions ahead of schedule. What truly set him apart was his clear communication, collaborative mindset, and ability to demystify complex compliance requirements—making him a trusted advisor to our team.",
+  quote: "Mr. Batra brought remarkable professionalism, expertise, and strategic insight from day one. He understood our business requirements quickly and delivered effective solutions ahead of schedule. His clear communication and ability to demystify complex compliance requirements made him a trusted advisor to our team.",
   name: "Hemendra Dave, PGDBM, MBA",
   role: "Regulatory Head",
   company: "Envision Scientific, Concept Medical"
 }, {
-  quote: "I highly recommend Vasu Batra for his outstanding expertise in medical device registration with Indian authorities. His deep knowledge of regulatory requirements, proactive approach, and ability to navigate complex processes were instrumental in securing timely clearance for our products. Vasu Batra demonstrated exceptional resourcefulness, addressing numerous regulatory queries with precision and clarity. His strong relationships with the authorities and problem-solving skills ensured a smooth approval process, helping us stay on track with our business goals.",
+  quote: "I highly recommend Vasu Batra for his outstanding expertise in medical device registration with Indian authorities. His deep knowledge, proactive approach, and ability to navigate complex processes were instrumental in securing timely clearance. His strong relationships with authorities ensured a smooth approval process.",
   name: "Andrew Tang",
   role: "Chief Executive Officer",
   company: "Mobilab, USA"
@@ -205,7 +206,7 @@ const testimonials: Testimonial[] = [{
   role: "Business Consultant",
   company: "SEED, Japan"
 }, {
-  quote: "I worked with Vasu in registration of brands and he is super efficient. He has been very instrumental in helping me with urgent paperwork's and completing work ahead of deadlines. He is very kind and ever ready to help even at odd hours. Truly appreciate his effort in going the extra mile to help his clients.",
+  quote: "Vasu is super efficient in registration work. He helped with urgent paperwork ahead of deadlines and is ever ready to help even at odd hours. Truly appreciate his effort in going the extra mile for his clients.",
   name: "Toinali Chophi",
   role: "CEO",
   company: "Beautybarnindia"
@@ -238,6 +239,48 @@ const Home = () => {
   const [activeAudience, setActiveAudience] = React.useState<AudienceKey>("importers");
   const processRef = React.useRef<HTMLDivElement | null>(null);
   const [processInView, setProcessInView] = React.useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    let scrollInterval: NodeJS.Timeout;
+    let isHovered = false;
+
+    const startAutoScroll = () => {
+      scrollInterval = setInterval(() => {
+        if (!isHovered && container) {
+          const maxScroll = container.scrollWidth - container.clientWidth;
+          const currentScroll = container.scrollLeft;
+
+          if (currentScroll >= maxScroll) {
+            container.scrollTo({ left: 0, behavior: "smooth" });
+          } else {
+            container.scrollBy({ left: 420, behavior: "smooth" });
+          }
+        }
+      }, 3000);
+    };
+
+    const handleMouseEnter = () => {
+      isHovered = true;
+    };
+
+    const handleMouseLeave = () => {
+      isHovered = false;
+    };
+
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
+    startAutoScroll();
+
+    return () => {
+      clearInterval(scrollInterval);
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
   const handleLeadFormSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     navigate("/contact");
@@ -462,7 +505,10 @@ const Home = () => {
                 </div>)}
             </div>
             <div className="relative w-full">
-              <div className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40">
+              <div 
+                ref={scrollContainerRef}
+                className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40"
+              >
                 <div className="flex gap-6 min-w-max px-2">
                   {testimonials.map((testimonial, index) => (
                     <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-[0_35px_120px_-60px_rgba(59,130,246,0.6)]", glassPanel)}>
