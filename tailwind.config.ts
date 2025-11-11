@@ -23,9 +23,11 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        heading: "hsl(var(--heading))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -42,6 +44,11 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          100: "hsl(var(--accent-100))",
+          200: "hsl(var(--accent-200))",
+          300: "hsl(var(--accent-300))",
+          500: "hsl(var(--accent-500))",
+          600: "hsl(var(--accent-600))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -50,6 +57,31 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        brand: {
+          50: "hsl(var(--brand-50))",
+          100: "hsl(var(--brand-100))",
+          200: "hsl(var(--brand-200))",
+          300: "hsl(var(--brand-300))",
+          400: "hsl(var(--brand-400))",
+          500: "hsl(var(--brand-500))",
+          600: "hsl(var(--brand-600))",
+          700: "hsl(var(--brand-700))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          bg: "hsl(var(--success-bg))",
+          text: "hsl(var(--success-text))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          bg: "hsl(var(--warning-bg))",
+          text: "hsl(var(--warning-text))",
+        },
+        error: {
+          DEFAULT: "hsl(var(--error))",
+          bg: "hsl(var(--error-bg))",
+          text: "hsl(var(--error-text))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
