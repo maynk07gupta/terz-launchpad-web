@@ -46,10 +46,10 @@ const Footer = () => {
         className="pointer-events-none absolute inset-x-0 -top-32 h-64 bg-gradient-to-b from-primary/60 via-primary/10 to-transparent opacity-60 blur-3xl"
       />
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr,1fr]">
-          <div className="space-y-10">
-            <div className="max-w-xl rounded-3xl border border-white/10 bg-white/5 p-8 shadow-[0_20px_60px_-25px_rgba(59,130,246,0.35)] transition-all duration-500 hover:-translate-y-2 hover:border-primary/60 hover:bg-white/[0.08]">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="grid grid-cols-1 gap-8 md:gap-10 lg:grid-cols-[1.1fr,1fr]">
+          <div className="space-y-6 md:space-y-8">
+            <div className="max-w-xl rounded-3xl border border-white/10 bg-white/5 p-5 md:p-8 shadow-[0_20px_60px_-25px_rgba(59,130,246,0.35)] transition-all duration-500 hover:-translate-y-2 hover:border-primary/60 hover:bg-white/[0.08]">
               <div className="flex items-center gap-4">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/20 text-primary">
                   <Sparkles className="h-6 w-6" />
@@ -145,8 +145,8 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="space-y-10">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-8 shadow-lg transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-white/[0.1]">
+          <div className="space-y-6 md:space-y-8">
+            <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5 md:p-8 shadow-lg transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-white/[0.1]">
               <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">
                 Stay Informed
               </h3>
@@ -177,7 +177,7 @@ const Footer = () => {
               </p>
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-black/30 p-8 backdrop-blur">
+            <div className="rounded-3xl border border-white/10 bg-black/30 p-5 md:p-8 backdrop-blur">
               <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
                 Contact
               </h3>
@@ -205,7 +205,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 border-t border-white/10 pt-10 text-sm text-white/60 lg:grid-cols-[1.1fr,1fr]">
+        <div className="mt-8 md:mt-12 grid grid-cols-1 gap-6 border-t border-white/10 pt-6 md:pt-8 text-sm text-white/60 lg:grid-cols-[1.1fr,1fr]">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
             <p>
               © {new Date().getFullYear()} Terz Compliance. All rights reserved.
@@ -236,7 +236,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-10 rounded-3xl border border-primary/30 bg-primary/10 p-6 text-center text-sm text-primary-foreground shadow-[0_15px_45px_-25px_rgba(59,130,246,0.6)] md:hidden">
+        <div className="mt-6 rounded-3xl border border-primary/30 bg-primary/10 p-5 text-center text-sm text-primary-foreground shadow-[0_15px_45px_-25px_rgba(59,130,246,0.6)] md:hidden">
           <h4 className="text-xs font-semibold uppercase tracking-[0.4em] text-primary/80">
             Quick Connect
           </h4>
