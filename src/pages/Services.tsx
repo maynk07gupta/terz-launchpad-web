@@ -57,7 +57,7 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/5 via-background to-primary/5">
+      <section className="bg-gradient-to-b from-[hsl(166,76%,97%)] via-[hsl(210,40%,98%)] to-[hsl(210,40%,96%)] py-16 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
@@ -72,20 +72,20 @@ const Services = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      <section className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <Link key={service.id} to={service.path}>
-              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group">
+              <Card className="group h-full border border-[hsl(214,32%,91%)] transition-all duration-300 hover:-translate-y-2 hover:border-[hsl(174,84%,32%)] hover:shadow-[0_25px_60px_-35px_hsla(174,84%,32%,0.25)]">
                 <CardContent className="p-6">
-                  <h2 className="text-2xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  <h2 className="mb-2 text-2xl font-semibold text-[hsl(222,47%,11%)] transition-colors group-hover:text-[hsl(174,84%,32%)]">
                     {service.title}
                   </h2>
-                  <p className="text-muted-foreground mb-4">{service.tagline}</p>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="mb-4 text-muted-foreground">{service.tagline}</p>
+                  <p className="mb-4 text-sm text-muted-foreground">
                     {service.description}
                   </p>
-                  <div className="flex items-center text-primary font-medium">
+                  <div className="flex items-center font-medium text-[hsl(221,83%,53%)]">
                     Learn More
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform" />
                   </div>
@@ -97,7 +97,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary/5">
+      <section className="bg-[hsl(210,40%,96%)] py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -108,7 +108,7 @@ const Services = () => {
               regulatory pathway for your product.
             </p>
             <Link to="/contact" className="inline-block">
-              <button className="px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium">
+              <button className="rounded-lg bg-[hsl(174,84%,32%)] px-8 py-3 font-medium text-white transition-colors hover:bg-[hsl(175,77%,26%)]">
                 Schedule a Consultation
               </button>
             </Link>
