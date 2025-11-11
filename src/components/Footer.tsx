@@ -13,14 +13,12 @@ const serviceLinks = [
   { label: "Medical Devices", to: "/services#medical-devices" },
   { label: "In-Vitro Diagnostics", to: "/services#ivd" },
   { label: "Cosmetics", to: "/services#cosmetics" },
-  { label: "Legal Metrology", to: "/services#lmpc" },
+  { label: "Legal Metrology", to: "/procedure" },
 ];
 
 const insightLinks = [
   { label: "Newsroom", to: "/resources#news" },
   { label: "Knowledge Base", to: "/resources#guides" },
-  { label: "Success Stories", to: "/resources#success" },
-  { label: "Careers", to: "/careers" },
 ];
 
 const contactMethods = [
@@ -146,35 +144,25 @@ const Footer = () => {
           </div>
 
           <div className="space-y-6 md:space-y-8">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5 md:p-8 shadow-lg transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-white/[0.1]">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">
-                Stay Informed
-              </h3>
-              <p className="mt-4 text-base text-white/70">
-                Monthly regulatory intel, deadline reminders, and market signals
-                curated by our compliance desk.
-              </p>
-              <form className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <label htmlFor="footer-email" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="footer-email"
-                  type="email"
-                  placeholder="you@company.com"
-                  className="h-11 w-full rounded-full border border-white/20 bg-black/20 px-4 text-sm text-white placeholder:text-white/40 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-                <button
-                  type="submit"
-                  className="group inline-flex h-11 items-center justify-center rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_15px_30px_-15px_rgba(59,130,246,0.7)]"
-                >
-                  Join the circle
-                </button>
-              </form>
-              <p className="mt-3 text-xs text-white/50">
-                By joining, you agree to our privacy policy and consent to receive
-                updates from Terz Compliance.
-              </p>
+            <div className="relative overflow-hidden rounded-3xl border border-primary/40 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent p-8 md:p-10 shadow-[0_20px_60px_-25px_rgba(59,130,246,0.5)] transition-all duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-[0_25px_70px_-25px_rgba(59,130,246,0.7)]">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/30 blur-3xl"
+              />
+              <div className="relative">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+                    Our Promise
+                  </span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold leading-tight text-white">
+                  At Terz Compliance, we don't just meet timelines —{" "}
+                  <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+                    we redefine them.
+                  </span>
+                </h3>
+              </div>
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-black/30 p-5 md:p-8 backdrop-blur">
