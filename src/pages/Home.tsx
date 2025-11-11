@@ -54,7 +54,7 @@ const heroServices: HeroService[] = [{
   icon: Shield,
   image: MedicalDevicesImage,
   highlights: ["CDSCO submissions prepared end-to-end", "Risk-based documentation reviews", "Dedicated post-market vigilance"],
-  accent: "from-sky-500/30 to-indigo-600/30"
+  accent: "from-[hsla(167,85%,89%,0.9)] to-[hsla(174,84%,32%,0.25)]"
 }, {
   title: "In-Vitro Diagnostics",
   headline: "IVD compliance that keeps labs and regulators aligned",
@@ -62,7 +62,7 @@ const heroServices: HeroService[] = [{
   icon: TestTube,
   image: IvdImage,
   highlights: ["Performance evaluation study oversight", "Labeling localisation guidance", "IVD import licensing support"],
-  accent: "from-cyan-400/30 to-blue-600/30"
+  accent: "from-[hsla(211,96%,78%,0.75)] to-[hsla(221,83%,53%,0.25)]"
 }, {
   title: "Cosmetics",
   headline: "Fast-track cosmetic launches across India",
@@ -70,7 +70,7 @@ const heroServices: HeroService[] = [{
   icon: Sparkles,
   image: CosmeticsImage,
   highlights: ["BIS registration & documentation", "Adverse event reporting playbooks", "Artwork & labelling compliance"],
-  accent: "from-pink-400/30 to-rose-500/30"
+  accent: "from-[hsla(214,94%,92%,0.85)] to-[hsla(211,96%,78%,0.25)]"
 }, {
   title: "Legal Metrology",
   headline: "Packaging declarations that withstand inspections",
@@ -78,7 +78,7 @@ const heroServices: HeroService[] = [{
   icon: Scale,
   image: LmpcImage,
   highlights: ["Model approval & registration", "Packaging artwork validation", "Audit-ready compliance reports"],
-  accent: "from-emerald-400/30 to-teal-500/30"
+  accent: "from-[hsla(166,76%,97%,0.85)] to-[hsla(174,84%,32%,0.25)]"
 }, {
   title: "Market Entry & IEC",
   headline: "Confident expansion plans for new importers",
@@ -86,7 +86,7 @@ const heroServices: HeroService[] = [{
   icon: Globe2,
   image: IecImage,
   highlights: ["IEC registration & renewals", "Supply chain partner onboarding", "Importer compliance training"],
-  accent: "from-amber-300/30 to-orange-500/30"
+  accent: "from-[hsla(214,94%,92%,0.85)] to-[hsla(174,84%,32%,0.2)]"
 }, {
   title: "EPR & Sustainability",
   headline: "Stay ahead of EPR obligations without the scramble",
@@ -94,7 +94,7 @@ const heroServices: HeroService[] = [{
   icon: Leaf,
   image: EprImage,
   highlights: ["Annual return preparation", "Recycling partner management", "Evidence documentation tracking"],
-  accent: "from-lime-400/30 to-emerald-600/30"
+  accent: "from-[hsla(167,85%,89%,0.9)] to-[hsla(174,84%,32%,0.3)]"
 }];
 const heroStats = [{
   label: "Average approval time",
@@ -230,7 +230,7 @@ const clients: Client[] = [{
   name: "Orion Devices",
   logo: OrionLogo
 }];
-const glassPanel = "border border-white/10 bg-background/70 backdrop-blur";
+const glassPanel = "border border-[hsl(214,32%,91%)] bg-white/90 backdrop-blur";
 const Home = () => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
@@ -323,89 +323,118 @@ const Home = () => {
   const activeHero = heroServices[activeHeroService];
   return <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center py-8 lg:py-[20px]">
-        <div className="absolute inset-0 -z-20">
-          <img src={activeHero.image} alt={`${activeHero.title} background`} className="h-full w-full object-cover" />
-        </div>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background/95 via-background/85 to-background/95" />
-        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-sky-500/20 blur-3xl" />
-        <div className="absolute left-1/2 top-1/2 hidden h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/10 bg-primary/10 opacity-60 lg:block" />
+      <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center py-12 lg:py-20">
+        <div className="absolute inset-0 -z-20 bg-gradient-to-b from-[hsl(166,76%,97%)] via-[hsl(210,40%,98%)] to-white" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,hsla(174,84%,32%,0.14),transparent_55%)]" />
+        <div className="absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-[hsla(211,96%,78%,0.25)] blur-3xl" />
+        <div className="absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-[hsla(167,85%,89%,0.8)] blur-3xl" />
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="container mx-auto w-full px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-[1fr_1.2fr]">
             <div className="max-w-2xl">
-              <span className="mb-4 lg:mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs lg:text-sm font-medium text-primary">
-                <span className="h-2 w-2 rounded-full bg-primary" />
+              <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-[hsla(167,55%,72%,0.6)] bg-[hsl(167,85%,89%)] px-4 py-1.5 text-xs font-medium text-[hsl(175,77%,26%)] lg:mb-6 lg:text-sm">
+                <span className="h-2 w-2 rounded-full bg-[hsl(174,84%,32%)]" />
                 Compliance for importers & manufacturers
               </span>
               <h1 className="mb-4 lg:mb-6 text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
                 Regulatory compliance, retold as your launch story
               </h1>
-              <p className="text-base lg:text-lg text-muted-foreground/90">
+              <p className="text-base text-muted-foreground lg:text-lg">
                 Navigate CDSCO, CDSCO (IVD), BIS, LMPC, and EPR frameworks with a partner that choreographs every step—from dossier builds to post-market vigilance.
               </p>
               <div className="mt-6 lg:mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-primary shadow-[0_20px_40px_-20px_rgba(37,99,235,0.55)] hover:bg-primary/90">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-primary text-primary-foreground shadow-[0_18px_40px_-18px_hsla(174,84%,32%,0.55)] transition hover:bg-[hsl(175,77%,26%)]"
+                >
                   <Link to="/contact">
                     Schedule a strategy call <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="border-white/20 text-foreground transition hover:border-primary/40 hover:bg-white/10">
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-[hsl(214,32%,91%)] text-foreground transition hover:bg-[hsl(210,40%,96%)]"
+                >
                   <Link to="/services">Explore full service lineup</Link>
                 </Button>
               </div>
               <div className="mt-6 lg:mt-10 grid gap-3 sm:grid-cols-2">
-                {heroStats.map(stat => <div key={stat.label} className={cn("rounded-2xl p-4 lg:p-5 shadow-[0_20px_50px_-35px_rgba(37,99,235,0.7)]", glassPanel)}>
+                {heroStats.map(stat => (
+                  <div
+                    key={stat.label}
+                    className={cn(
+                      "rounded-2xl p-4 lg:p-5 shadow-[0_20px_55px_-35px_hsla(211,96%,78%,0.6)]",
+                      glassPanel
+                    )}
+                  >
                     <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
                       {stat.label}
                     </p>
-                    <p className="mt-2 lg:mt-3 text-2xl lg:text-3xl font-semibold capitalize text-primary">{stat.value}</p>
-                  </div>)}
+                    <p className="mt-2 text-2xl font-semibold capitalize text-[hsl(222,47%,11%)] lg:mt-3 lg:text-3xl">
+                      {stat.value}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div className="relative mx-auto w-full">
-              <div className="absolute -left-12 -top-10 h-32 w-32 rounded-full bg-primary/30 blur-2xl" />
-              <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-sky-500/20 blur-3xl" />
-              <Card className={cn("relative overflow-hidden shadow-[0_60px_140px_-70px_rgba(37,99,235,0.75)] transition", glassPanel)}>
+              <div className="absolute -left-12 -top-10 h-32 w-32 rounded-full bg-[hsla(167,85%,89%,0.9)] blur-2xl" />
+              <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-[hsla(174,84%,32%,0.16)] blur-3xl" />
+              <Card
+                className={cn(
+                  "relative overflow-hidden shadow-[0_55px_130px_-70px_hsla(211,96%,78%,0.65)] transition",
+                  glassPanel
+                )}
+              >
                 <div className={cn("absolute inset-0 -z-10 bg-gradient-to-br", activeHero.accent)} />
-                <CardContent className="relative space-y-4 lg:space-y-6 p-0">
+                <CardContent className="relative space-y-4 p-0 lg:space-y-6">
                   {/* Service Image */}
                   <div className="relative h-48 lg:h-64 overflow-hidden">
                     <img src={activeHero.image} alt={activeHero.title} className="h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-[hsla(210,40%,98%,0.7)] to-transparent" />
                     <div className="absolute bottom-4 left-6 right-6">
                       <div className="flex items-center gap-3">
-                        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary backdrop-blur">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[hsl(214,32%,91%)] bg-[hsl(167,85%,89%)] text-[hsl(175,77%,26%)]">
                           <activeHero.icon className="h-6 w-6" />
                         </span>
                         <div>
                           <p className="text-xs text-muted-foreground">Focus area</p>
-                          <p className="text-lg font-semibold text-foreground">{activeHero.title}</p>
+                          <p className="text-lg font-semibold text-[hsl(222,47%,11%)]">{activeHero.title}</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Service Content */}
-                  <div className="px-6 lg:px-8 pb-6 lg:pb-8 space-y-4 lg:space-y-5">
+                  <div className="space-y-4 px-6 pb-6 lg:space-y-5 lg:px-8 lg:pb-8">
                     <div className="space-y-3">
-                      <h2 className="text-xl lg:text-2xl font-semibold text-foreground leading-tight">{activeHero.headline}</h2>
+                      <h2 className="text-xl font-semibold leading-tight text-[hsl(222,47%,11%)] lg:text-2xl">
+                        {activeHero.headline}
+                      </h2>
                       <p className="text-sm leading-relaxed text-muted-foreground">{activeHero.description}</p>
                     </div>
-                    <div className="rounded-2xl border border-white/5 bg-white/5 p-4 lg:p-5">
-                      <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">
+                    <div className="rounded-2xl border border-[hsl(214,32%,91%)] bg-white/90 p-4 lg:p-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[hsl(175,77%,26%)]">
                         How we help
                       </p>
-                      <ul className="mt-3 lg:mt-4 space-y-2.5 lg:space-y-3 text-sm text-muted-foreground">
-                        {activeHero.highlights.map(highlight => <li key={highlight} className="flex items-start gap-2">
-                            <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                      <ul className="mt-3 space-y-2.5 text-sm text-muted-foreground lg:mt-4 lg:space-y-3">
+                        {activeHero.highlights.map(highlight => (
+                          <li key={highlight} className="flex items-start gap-2">
+                            <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-[hsl(174,84%,32%)]" />
                             <span>{highlight}</span>
-                          </li>)}
+                          </li>
+                        ))}
                       </ul>
                     </div>
-                    <Button asChild variant="secondary" className="w-full group inline-flex items-center justify-center gap-2 border-white/20 bg-white/10 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-white/20">
+                    <Button
+                      asChild
+                      variant="secondary"
+                      className="group inline-flex w-full items-center justify-center gap-2 border-[hsl(214,32%,91%)] bg-white text-sm font-semibold text-[hsl(215,28%,17%)] transition hover:bg-[hsl(210,40%,96%)]"
+                    >
                       <Link to="/services">
                         Explore this service
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -415,12 +444,30 @@ const Home = () => {
                 </CardContent>
               </Card>
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {heroServices.map((service, index) => <button key={service.title} type="button" onClick={() => handleHeroSelect(index)} onMouseEnter={() => !isMobile && handleHeroSelect(index)} className={cn("group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 text-left transition", activeHeroService === index ? "border-primary/60 bg-primary/10 text-foreground shadow-[0_20px_45px_-25px_rgba(37,99,235,0.6)]" : "hover:border-primary/40 hover:bg-white/15")}>
-                    <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary transition-transform", activeHeroService === index ? "scale-105" : "group-hover:scale-105")}>
+                {heroServices.map((service, index) => (
+                  <button
+                    key={service.title}
+                    type="button"
+                    onClick={() => handleHeroSelect(index)}
+                    onMouseEnter={() => !isMobile && handleHeroSelect(index)}
+                    className={cn(
+                      "group flex items-center gap-3 rounded-2xl border border-[hsl(214,32%,91%)] bg-white/80 p-3 text-left transition",
+                      activeHeroService === index
+                        ? "border-[hsl(174,84%,32%)] bg-[hsl(166,76%,97%)] text-[hsl(222,47%,11%)] shadow-[0_20px_45px_-25px_hsla(174,84%,32%,0.4)]"
+                        : "hover:border-[hsl(174,84%,32%)] hover:bg-[hsl(210,40%,96%)]"
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "flex h-10 w-10 items-center justify-center rounded-xl border border-[hsl(214,32%,91%)] bg-[hsl(167,85%,89%)] text-[hsl(175,77%,26%)] transition-transform",
+                        activeHeroService === index ? "scale-105" : "group-hover:scale-105"
+                      )}
+                    >
                       <service.icon className="h-5 w-5" />
                     </span>
-                    <span className="text-sm font-medium text-foreground">{service.title}</span>
-                  </button>)}
+                    <span className="text-sm font-medium text-[hsl(215,28%,17%)]">{service.title}</span>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -428,13 +475,20 @@ const Home = () => {
       </section>
 
       {/* Client Journey Story */}
-      <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
+      <section className="relative bg-[hsl(210,40%,98%)] py-20 lg:py-28">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,hsla(211,96%,78%,0.2),transparent_60%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {journeyColumns.map(column => <Card key={column.title} className={cn("transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-60px_rgba(37,99,235,0.65)]", glassPanel)}>
+            {journeyColumns.map(column => (
+              <Card
+                key={column.title}
+                className={cn(
+                  "transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-60px_hsla(174,84%,32%,0.35)]",
+                  glassPanel
+                )}
+              >
                 <CardContent className="pt-8">
-                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-primary/40 bg-primary/20 text-lg font-bold text-primary">
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-[hsl(214,32%,91%)] bg-[hsl(167,85%,89%)] text-lg font-bold text-[hsl(175,77%,26%)]">
                     {column.title === "The Challenge" && "01"}
                     {column.title === "Our Solution" && "02"}
                     {column.title === "The Outcome" && "03"}
@@ -442,14 +496,15 @@ const Home = () => {
                   <h3 className="text-xl font-semibold text-foreground">{column.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{column.description}</p>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Services Overview */}
-      <section className="relative py-20 lg:py-[10px]">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.16),transparent_65%)]" />
+      <section className="relative bg-[hsl(210,40%,98%)] py-20 lg:py-24">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,hsla(211,96%,78%,0.18),transparent_65%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">How we support every team</h2>
@@ -458,27 +513,54 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="mx-auto flex max-w-lg items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-sm">
-            {(["importers", "manufacturers"] as AudienceKey[]).map(audience => <button key={audience} type="button" onClick={() => setActiveAudience(audience)} className={cn("flex-1 rounded-full px-4 py-2 font-semibold capitalize transition", activeAudience === audience ? "bg-primary text-primary-foreground shadow-[0_12px_35px_-18px_rgba(37,99,235,0.65)]" : "text-foreground/70 hover:text-foreground")} aria-pressed={activeAudience === audience}>
+          <div className="mx-auto flex max-w-lg items-center justify-center rounded-full border border-[hsl(214,32%,91%)] bg-white p-2 text-sm shadow-sm">
+            {(["importers", "manufacturers"] as AudienceKey[]).map(audience => (
+              <button
+                key={audience}
+                type="button"
+                onClick={() => setActiveAudience(audience)}
+                className={cn(
+                  "flex-1 rounded-full px-4 py-2 font-semibold capitalize transition",
+                  activeAudience === audience
+                    ? "bg-[hsl(174,84%,32%)] text-white shadow-[0_12px_30px_-18px_hsla(174,84%,32%,0.5)]"
+                    : "text-muted-foreground hover:text-[hsl(222,47%,11%)]"
+                )}
+                aria-pressed={activeAudience === audience}
+              >
                 {audience}
-              </button>)}
+              </button>
+            ))}
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {audienceServices[activeAudience].map(service => <Card key={service.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_30px_100px_-60px_rgba(37,99,235,0.7)]", glassPanel)}>
+            {audienceServices[activeAudience].map(service => (
+              <Card
+                key={service.title}
+                className={cn(
+                  "h-full transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(174,84%,32%)] hover:shadow-[0_30px_100px_-60px_hsla(174,84%,32%,0.3)]",
+                  glassPanel
+                )}
+              >
                 <CardContent className="pt-6">
-                  <service.icon className="mb-4 h-12 w-12 text-primary transition-transform" />
-                  <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
+                  <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[hsl(167,85%,89%)] text-[hsl(175,77%,26%)]">
+                    <service.icon className="h-6 w-6" />
+                  </span>
+                  <h3 className="text-xl font-semibold text-[hsl(222,47%,11%)]">{service.title}</h3>
                   <p className="mt-3 text-sm text-muted-foreground">{service.description}</p>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
 
           <div className="mt-12 flex flex-col items-center gap-4 text-center">
             <p className="text-sm text-muted-foreground">
               Need support across both tracks? We orchestrate importer and manufacturer workflows together.
             </p>
-            <Button asChild size="lg" className="bg-primary shadow-[0_20px_45px_-25px_rgba(37,99,235,0.75)] hover:bg-primary/90">
+            <Button
+              asChild
+              size="lg"
+              className="bg-primary text-primary-foreground shadow-[0_18px_40px_-20px_hsla(174,84%,32%,0.55)] hover:bg-[hsl(175,77%,26%)]"
+            >
               <Link to="/services">
                 View detailed services <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -488,36 +570,47 @@ const Home = () => {
       </section>
 
       {/* Trust Signals */}
-      <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(15,118,110,0.12),transparent_70%)]" />
+      <section className="relative bg-white py-20 lg:py-28">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,hsla(167,85%,89%,0.4),transparent_75%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center gap-10 text-center">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-primary/80">Trusted by market leaders</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[hsl(175,77%,26%)]">Trusted by market leaders</p>
               <h2 className="mt-4 text-3xl font-bold text-foreground lg:text-4xl">Partners count on Terz for compliant launches</h2>
               <p className="mt-4 text-base text-muted-foreground">
                 Over a decade of approvals for manufacturers, importers, and innovators expanding into India's regulated markets.
               </p>
             </div>
-            <div className="flex w-full flex-wrap items-center justify-center gap-4 rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur">
-              {clients.map(client => <div key={client.name} className="flex h-24 w-40 items-center justify-center rounded-2xl bg-background/60 p-4 transition hover:scale-[1.02] hover:bg-background">
+            <div className="flex w-full flex-wrap items-center justify-center gap-4 rounded-3xl border border-[hsl(214,32%,91%)] bg-white p-6 shadow-sm">
+              {clients.map(client => (
+                <div
+                  key={client.name}
+                  className="flex h-24 w-40 items-center justify-center rounded-2xl border border-[hsl(214,32%,91%)] bg-[hsl(210,40%,98%)] p-4 transition hover:scale-[1.02] hover:border-[hsl(174,84%,32%)]"
+                >
                   <img src={client.logo} alt={client.name} className="max-h-full w-full object-contain" />
-                </div>)}
+                </div>
+              ))}
             </div>
             <div className="relative w-full">
-              <div 
+              <div
                 ref={scrollContainerRef}
-                className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40"
+                className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-[hsl(214,32%,91%)] scrollbar-track-transparent hover:scrollbar-thumb-[hsla(174,84%,32%,0.4)]"
               >
                 <div className="flex gap-6 min-w-max px-2">
                   {testimonials.map((testimonial, index) => (
-                    <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-[0_35px_120px_-60px_rgba(59,130,246,0.6)]", glassPanel)}>
-                      <CardContent className="flex flex-col gap-6 p-8 text-left h-full">
-                        <Quote className="h-10 w-10 text-primary flex-shrink-0" />
-                        <p className="text-base leading-relaxed text-muted-foreground flex-grow italic">"{testimonial.quote}"</p>
-                        <div className="mt-auto border-t border-border pt-4">
-                          <p className="font-semibold text-foreground">{testimonial.name}</p>
-                          <p className="text-sm text-primary font-medium mt-1">{testimonial.role}</p>
+                    <Card
+                      key={index}
+                      className={cn(
+                        "w-[450px] flex-shrink-0 overflow-hidden border-[hsl(214,32%,91%)] shadow-[0_35px_120px_-60px_hsla(211,96%,78%,0.5)]",
+                        "bg-white"
+                      )}
+                    >
+                      <CardContent className="flex h-full flex-col gap-6 p-8 text-left">
+                        <Quote className="h-10 w-10 flex-shrink-0 text-[hsl(211,96%,78%)]" />
+                        <p className="flex-grow text-base italic leading-relaxed text-muted-foreground">"{testimonial.quote}"</p>
+                        <div className="mt-auto border-t border-[hsl(214,32%,91%)] pt-4">
+                          <p className="font-semibold text-[hsl(222,47%,11%)]">{testimonial.name}</p>
+                          <p className="mt-1 text-sm font-medium text-[hsl(175,77%,26%)]">{testimonial.role}</p>
                           <p className="text-sm text-muted-foreground">{testimonial.company}</p>
                         </div>
                       </CardContent>
@@ -525,7 +618,7 @@ const Home = () => {
                   ))}
                 </div>
               </div>
-              <p className="text-sm text-center text-muted-foreground mt-6">
+              <p className="mt-6 text-center text-sm text-muted-foreground">
                 Scroll horizontally to read more testimonials →
               </p>
             </div>
@@ -534,8 +627,8 @@ const Home = () => {
       </section>
 
       {/* 6-Step Process */}
-      <section ref={processRef} className="relative py-20 lg:py-[10px]">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.12),transparent_70%)]" />
+      <section ref={processRef} className="relative bg-[hsl(210,40%,98%)] py-20 lg:py-24">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,hsla(211,96%,78%,0.2),transparent_70%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Our 6-step compliance timeline</h2>
@@ -545,25 +638,33 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {processSteps.map((step, index) => <div key={step.number} className={cn("relative overflow-hidden rounded-3xl p-6 text-left transition-all duration-500", glassPanel, processInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")} style={{
-            transitionDelay: processInView ? `${index * 80}ms` : "0ms"
-          }}>
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-primary/10 blur-2xl" />
+            {processSteps.map((step, index) => (
+              <div
+                key={step.number}
+                className={cn(
+                  "relative overflow-hidden rounded-3xl p-6 text-left transition-all duration-500",
+                  glassPanel,
+                  processInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+                )}
+                style={{ transitionDelay: processInView ? `${index * 80}ms` : "0ms" }}
+              >
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[hsla(211,96%,78%,0.2)] blur-2xl" />
                 <div className="relative flex flex-col gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/25 text-lg font-semibold text-primary">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[hsl(214,32%,91%)] bg-[hsl(167,85%,89%)] text-lg font-semibold text-[hsl(175,77%,26%)]">
                     {step.number.toString().padStart(2, "0")}
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
+                  <h3 className="text-xl font-semibold text-[hsl(222,47%,11%)]">{step.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{step.description}</p>
                 </div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Differentiators */}
-      <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(14,116,144,0.1),transparent_65%)]" />
+      <section className="relative bg-white py-20 lg:py-28">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,hsla(167,85%,89%,0.35),transparent_60%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Why teams choose Terz</h2>
@@ -572,29 +673,42 @@ const Home = () => {
             </p>
           </div>
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {differentiators.map(item => <Card key={item.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-70px_rgba(14,165,233,0.55)]", glassPanel)}>
+            {differentiators.map(item => (
+              <Card
+                key={item.title}
+                className={cn(
+                  "h-full transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(174,84%,32%)] hover:shadow-[0_35px_120px_-70px_hsla(174,84%,32%,0.3)]",
+                  glassPanel
+                )}
+              >
                 <CardContent className="space-y-4 p-6">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15">
-                    <CheckCircle className="h-6 w-6 text-primary" />
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[hsl(167,85%,89%)] text-[hsl(175,77%,26%)]">
+                    <CheckCircle className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
+                  <h3 className="text-xl font-semibold text-[hsl(222,47%,11%)]">{item.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section with Inline Form */}
-      <section className="relative py-24 lg:py-[12px]">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)]" />
+      <section className="relative bg-[hsl(210,40%,98%)] py-24 lg:py-28">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,hsla(211,96%,78%,0.18),transparent_70%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={cn("relative overflow-hidden rounded-3xl p-8 shadow-[0_60px_140px_-70px_rgba(37,99,235,0.75)] lg:p-12", glassPanel)}>
-            <div className="absolute -left-24 top-10 h-40 w-40 rounded-full bg-primary/20 blur-3xl" />
-            <div className="absolute -bottom-28 right-0 h-64 w-64 rounded-full bg-sky-500/15 blur-3xl" />
+          <div
+            className={cn(
+              "relative overflow-hidden rounded-3xl bg-white p-8 shadow-[0_60px_140px_-70px_hsla(211,96%,78%,0.55)] lg:p-12",
+              "border border-[hsl(214,32%,91%)]"
+            )}
+          >
+            <div className="absolute -left-24 top-10 h-40 w-40 rounded-full bg-[hsla(167,85%,89%,0.8)] blur-3xl" />
+            <div className="absolute -bottom-28 right-0 h-64 w-64 rounded-full bg-[hsla(174,84%,32%,0.2)] blur-3xl" />
             <div className="relative grid gap-12 lg:grid-cols-2 lg:items-start">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-primary">
+                <span className="inline-flex items-center gap-2 rounded-full border border-[hsla(167,55%,72%,0.6)] bg-[hsl(167,85%,89%)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-[hsl(175,77%,26%)]">
                   Start your compliance roadmap
                 </span>
                 <h2 className="mt-4 text-3xl font-bold text-foreground lg:text-4xl">
@@ -633,7 +747,11 @@ const Home = () => {
                     <Label htmlFor="lead-notes">Product or compliance goals</Label>
                     <Textarea id="lead-notes" name="notes" placeholder="Tell us about your device, cosmetic line, or expansion plans." rows={4} />
                   </div>
-                  <Button type="submit" size="lg" className="w-full bg-primary shadow-[0_20px_45px_-25px_rgba(37,99,235,0.75)] hover:bg-primary/90">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-primary text-primary-foreground shadow-[0_20px_45px_-25px_hsla(174,84%,32%,0.55)] hover:bg-[hsl(175,77%,26%)]"
+                  >
                     Schedule my assessment
                   </Button>
                   <p className="text-xs text-muted-foreground">
