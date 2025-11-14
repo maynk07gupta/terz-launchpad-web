@@ -46,28 +46,6 @@ const About = () => {
     };
   }, []);
 
-  const team = [
-    {
-      name: "Dr. Rajesh Kumar",
-      role: "Founder & Chief Regulatory Consultant",
-      bio: "15+ years in pharmaceutical and medical device compliance",
-    },
-    {
-      name: "Priya Sharma",
-      role: "Head of Cosmetics & Consumer Products",
-      bio: "Expert in CDSCO cosmetics regulations and BIS standards",
-    },
-    {
-      name: "Amit Patel",
-      role: "Medical Devices Specialist",
-      bio: "Former CDSCO reviewer with deep regulatory expertise",
-    },
-    {
-      name: "Neha Gupta",
-      role: "IVD and Laboratory Compliance",
-      bio: "Specialized in diagnostic device regulations and quality systems",
-    },
-  ];
 
   const values = [
     {
@@ -168,37 +146,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 text-center">
-              Meet Our Team
-            </h2>
-            <p className="text-lg text-muted-foreground text-center mb-12">
-              Industry experts dedicated to your compliance success
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {team.map((member, index) => (
-                <Card key={index} className="text-center">
-                  <CardContent className="pt-6">
-                    <div className="w-24 h-24 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <Users className="h-12 w-12 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-sm font-medium text-primary mb-2">
-                      {member.role}
-                    </p>
-                    <p className="text-sm text-muted-foreground">{member.bio}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Fee Structure */}
       <section className="py-16 lg:py-24 bg-secondary/30">
