@@ -26,7 +26,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/5 via-background to-primary/5">
+      <section className="py-6 lg:py-8 min-h-[10vh] flex items-center bg-gradient-to-br from-primary/5 via-background to-primary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
@@ -40,7 +40,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Form and Info */}
-      <section className="py-16 container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-8 lg:py-12 container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}

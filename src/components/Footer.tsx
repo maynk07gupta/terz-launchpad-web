@@ -44,7 +44,7 @@ const Footer = () => {
         className="pointer-events-none absolute inset-x-0 -top-32 h-64 bg-gradient-to-b from-primary/60 via-primary/10 to-transparent opacity-60 blur-3xl"
       />
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
         <div className="grid grid-cols-1 gap-8 md:gap-10 lg:grid-cols-[1.1fr,1fr]">
           <div className="space-y-6 md:space-y-8">
             <div className="max-w-xl rounded-3xl border border-white/10 bg-white/5 p-5 md:p-8 shadow-[0_20px_60px_-25px_rgba(59,130,246,0.35)] transition-all duration-500 hover:-translate-y-2 hover:border-primary/60 hover:bg-white/[0.08]">
