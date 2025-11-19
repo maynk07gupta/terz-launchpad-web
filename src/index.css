@@ -94,36 +94,36 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 220 18% 12%; /* Muted dark background */
-    --foreground: 220 8% 82%; /* Soft light text */
+    --background: 175 81% 37%; /* Teal background #12ad9f */
+    --foreground: 0 0% 98%; /* Very light text */
 
-    --card: 220 15% 15%;
-    --card-foreground: 220 8% 82%;
+    --card: 175 75% 32%; /* Slightly darker teal */
+    --card-foreground: 0 0% 98%;
 
-    --popover: 220 15% 15%;
-    --popover-foreground: 220 8% 82%;
+    --popover: 175 75% 32%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 175 30% 48%; /* Slightly brighter in dark but still muted */
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 175 32% 42%;
+    --primary: 175 70% 55%; /* Lighter teal for buttons */
+    --primary-foreground: 175 81% 15%;
+    --primary-hover: 175 65% 50%;
 
-    --secondary: 220 12% 18%;
-    --secondary-foreground: 220 8% 82%;
+    --secondary: 175 70% 42%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 12% 18%;
-    --muted-foreground: 220 8% 65%;
+    --muted: 175 70% 42%;
+    --muted-foreground: 0 0% 85%;
 
-    --accent: 215 28% 55%; /* Muted accent in dark */
+    --accent: 215 28% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 50% 58%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 12% 22%;
-    --input: 220 10% 24%;
-    --ring: 215 28% 55%;
+    --border: 175 60% 50%;
+    --input: 175 65% 45%;
+    --ring: 175 70% 65%;
 
-    --heading: 220 10% 85%; /* Soft heading on dark */
+    --heading: 0 0% 98%;
   }
 }
 
