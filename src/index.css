@@ -8,27 +8,27 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Global defaults - Teal background */
-    --background: 175 81% 37%; /* Vibrant teal #12ad9f */
-    --foreground: 0 0% 98%; /* Very light text for contrast */
+    /* Global defaults - Matte palette */
+    --background: 220 15% 97%; /* Very soft gray-blue */
+    --foreground: 220 10% 25%; /* Muted dark gray */
 
-    --card: 175 75% 32%; /* Slightly darker teal for cards */
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 99%; /* Almost white, very soft */
+    --card-foreground: 220 10% 25%;
 
-    --popover: 175 75% 32%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 99%;
+    --popover-foreground: 220 10% 25%;
 
-    /* Primary brand - Lighter teal for contrast */
-    --primary: 175 70% 55%; /* Lighter teal for buttons */
-    --primary-foreground: 175 81% 15%;
-    --primary-hover: 175 65% 50%; /* Slightly darker on hover */
+    /* Primary brand - Muted teal */
+    --primary: 175 25% 45%; /* Desaturated teal */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 175 28% 38%; /* Slightly darker muted teal */
 
     /* Secondary/muted surfaces */
-    --secondary: 175 70% 42%; /* Medium teal */
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 12% 93%; /* Very soft gray */
+    --secondary-foreground: 220 15% 20%;
 
-    --muted: 175 70% 42%; /* Medium teal */
-    --muted-foreground: 0 0% 85%; /* Light gray text */
+    --muted: 220 10% 94%; /* Gentle muted background */
+    --muted-foreground: 220 8% 45%; /* Soft gray text */
 
     /* Accent - Muted blue for links */
     --accent: 215 25% 50%; /* Desaturated blue */
@@ -39,12 +39,12 @@ All colors MUST be HSL.
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 175 60% 50%; /* Teal border */
-    --input: 175 65% 45%; /* Teal input border */
-    --ring: 175 70% 65%; /* Light teal focus ring */
+    --border: 220 12% 88%; /* Soft border */
+    --input: 220 10% 85%; /* Gentle input border */
+    --ring: 215 30% 55%; /* Muted focus ring */
 
     /* Headings */
-    --heading: 0 0% 98%; /* Light heading */
+    --heading: 220 15% 20%; /* Deep but muted heading */
 
     /* Brand color shades - All desaturated */
     --brand-50: 170 20% 96%;
@@ -94,36 +94,36 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 175 81% 37%; /* Teal background #12ad9f */
-    --foreground: 0 0% 98%; /* Very light text */
+    --background: 220 18% 12%; /* Muted dark background */
+    --foreground: 220 8% 82%; /* Soft light text */
 
-    --card: 175 75% 32%; /* Slightly darker teal */
-    --card-foreground: 0 0% 98%;
+    --card: 220 15% 15%;
+    --card-foreground: 220 8% 82%;
 
-    --popover: 175 75% 32%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 220 15% 15%;
+    --popover-foreground: 220 8% 82%;
 
-    --primary: 175 70% 55%; /* Lighter teal for buttons */
-    --primary-foreground: 175 81% 15%;
-    --primary-hover: 175 65% 50%;
+    --primary: 175 30% 48%; /* Slightly brighter in dark but still muted */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 175 32% 42%;
 
-    --secondary: 175 70% 42%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 220 12% 18%;
+    --secondary-foreground: 220 8% 82%;
 
-    --muted: 175 70% 42%;
-    --muted-foreground: 0 0% 85%;
+    --muted: 220 12% 18%;
+    --muted-foreground: 220 8% 65%;
 
-    --accent: 215 28% 55%;
+    --accent: 215 28% 55%; /* Muted accent in dark */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 50% 58%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 175 60% 50%;
-    --input: 175 65% 45%;
-    --ring: 175 70% 65%;
+    --border: 220 12% 22%;
+    --input: 220 10% 24%;
+    --ring: 215 28% 55%;
 
-    --heading: 0 0% 98%;
+    --heading: 220 10% 85%; /* Soft heading on dark */
   }
 }
 
