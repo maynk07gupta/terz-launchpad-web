@@ -8,122 +8,122 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Global defaults - Matte palette */
-    --background: 220 15% 97%; /* Very soft gray-blue */
-    --foreground: 220 10% 25%; /* Muted dark gray */
+    /* Global defaults - Dark teal foundation */
+    --background: 188 48% 12%; /* Deep teal background */
+    --foreground: 180 28% 92%; /* Soft off-white text for contrast */
 
-    --card: 0 0% 99%; /* Almost white, very soft */
-    --card-foreground: 220 10% 25%;
+    --card: 188 46% 16%; /* Slightly lighter teal card surface */
+    --card-foreground: 180 28% 92%;
 
-    --popover: 0 0% 99%;
-    --popover-foreground: 220 10% 25%;
+    --popover: 188 46% 16%;
+    --popover-foreground: 180 28% 92%;
 
-    /* Primary brand - Muted teal */
-    --primary: 175 25% 45%; /* Desaturated teal */
+    /* Primary brand - Dark teal */
+    --primary: 188 60% 28%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 175 28% 38%; /* Slightly darker muted teal */
+    --primary-hover: 188 62% 22%;
 
-    /* Secondary/muted surfaces */
-    --secondary: 220 12% 93%; /* Very soft gray */
-    --secondary-foreground: 220 15% 20%;
+    /* Secondary/muted surfaces - light neutrals */
+    --secondary: 210 18% 94%; /* Light gray for raised surfaces */
+    --secondary-foreground: 188 44% 18%;
 
-    --muted: 220 10% 94%; /* Gentle muted background */
-    --muted-foreground: 220 8% 45%; /* Soft gray text */
+    --muted: 210 16% 88%;
+    --muted-foreground: 204 18% 32%;
 
-    /* Accent - Muted blue for links */
-    --accent: 215 25% 50%; /* Desaturated blue */
-    --accent-foreground: 0 0% 100%;
+    /* Accent - Mustard yellow */
+    --accent: 43 92% 52%;
+    --accent-foreground: 26 64% 18%;
 
     /* Destructive */
-    --destructive: 0 45% 55%; /* Muted red */
+    --destructive: 2 72% 52%;
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 220 12% 88%; /* Soft border */
-    --input: 220 10% 85%; /* Gentle input border */
-    --ring: 215 30% 55%; /* Muted focus ring */
+    --border: 196 30% 28%;
+    --input: 196 26% 36%;
+    --ring: 43 92% 52%;
 
     /* Headings */
-    --heading: 220 15% 20%; /* Deep but muted heading */
+    --heading: 188 54% 88%; /* Brightened teal for headings on dark */
 
-    /* Brand color shades - All desaturated */
-    --brand-50: 170 20% 96%;
-    --brand-100: 170 25% 88%;
-    --brand-200: 172 25% 75%;
-    --brand-300: 173 28% 60%;
-    --brand-400: 174 30% 48%;
-    --brand-500: 175 25% 45%;
-    --brand-600: 175 25% 45%;
-    --brand-700: 175 28% 38%;
+    /* Brand color shades - Deep teal ramp */
+    --brand-50: 187 46% 94%;
+    --brand-100: 187 46% 86%;
+    --brand-200: 187 50% 76%;
+    --brand-300: 187 54% 64%;
+    --brand-400: 187 58% 50%;
+    --brand-500: 188 60% 38%;
+    --brand-600: 188 60% 28%;
+    --brand-700: 188 62% 22%;
 
-    /* Accent blue shades - Muted */
-    --accent-100: 215 20% 90%;
-    --accent-200: 215 22% 82%;
-    --accent-300: 215 25% 70%;
-    --accent-500: 215 25% 50%;
-    --accent-600: 215 25% 50%;
+    /* Accent mustard shades */
+    --accent-100: 45 92% 94%;
+    --accent-200: 44 92% 86%;
+    --accent-300: 44 90% 74%;
+    --accent-500: 43 92% 52%;
+    --accent-600: 39 90% 46%;
 
-    /* Status colors - All muted */
-    --success: 155 35% 48%; /* Muted green */
-    --success-bg: 150 25% 94%;
-    --success-text: 155 40% 25%;
+    /* Status colors tuned for contrast */
+    --success: 152 56% 32%;
+    --success-bg: 149 44% 92%;
+    --success-text: 151 46% 18%;
 
-    --warning: 40 50% 55%; /* Muted orange */
-    --warning-bg: 45 35% 94%;
-    --warning-text: 38 50% 30%;
+    --warning: 37 94% 48%;
+    --warning-bg: 38 88% 92%;
+    --warning-text: 32 74% 20%;
 
-    --error: 0 45% 55%; /* Muted red */
-    --error-bg: 0 30% 95%;
-    --error-text: 0 50% 30%;
+    --error: 356 78% 50%;
+    --error-bg: 355 74% 92%;
+    --error-text: 350 72% 18%;
 
     --radius: 0.5rem;
 
     /* Subtle gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(175, 25%, 45%), hsl(175, 28%, 38%));
-    --gradient-hero: linear-gradient(135deg, hsl(170, 20%, 96%) 0%, hsl(220, 15%, 97%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(220, 15%, 97%) 0%, hsl(220, 12%, 95%) 100%);
-    
+    --gradient-primary: linear-gradient(135deg, hsl(188, 60%, 38%), hsl(188, 62%, 22%));
+    --gradient-hero: linear-gradient(135deg, hsl(188, 48%, 12%) 0%, hsl(188, 60%, 28%) 60%, hsl(43, 92%, 52%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(187, 46%, 94%) 0%, hsl(210, 18%, 94%) 100%);
+
     /* Very soft shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(220 10% 25% / 0.03);
-    --shadow-md: 0 2px 6px -2px hsl(220 10% 25% / 0.06);
-    --shadow-lg: 0 6px 16px -4px hsl(220 10% 25% / 0.08);
-    --shadow-brand: 0 3px 10px 0 hsl(175 25% 45% / 0.08);
+    --shadow-sm: 0 1px 2px 0 hsl(188 46% 10% / 0.12);
+    --shadow-md: 0 2px 6px -2px hsl(188 46% 10% / 0.18);
+    --shadow-lg: 0 6px 16px -4px hsl(188 46% 10% / 0.22);
+    --shadow-brand: 0 3px 10px 0 hsl(188 60% 38% / 0.22);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 220 18% 12%; /* Muted dark background */
-    --foreground: 220 8% 82%; /* Soft light text */
+    --background: 188 44% 10%;
+    --foreground: 180 28% 92%;
 
-    --card: 220 15% 15%;
-    --card-foreground: 220 8% 82%;
+    --card: 188 46% 14%;
+    --card-foreground: 180 28% 92%;
 
-    --popover: 220 15% 15%;
-    --popover-foreground: 220 8% 82%;
+    --popover: 188 46% 14%;
+    --popover-foreground: 180 28% 92%;
 
-    --primary: 175 30% 48%; /* Slightly brighter in dark but still muted */
+    --primary: 188 60% 32%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 175 32% 42%;
+    --primary-hover: 188 62% 26%;
 
-    --secondary: 220 12% 18%;
-    --secondary-foreground: 220 8% 82%;
+    --secondary: 210 18% 24%;
+    --secondary-foreground: 187 46% 94%;
 
-    --muted: 220 12% 18%;
-    --muted-foreground: 220 8% 65%;
+    --muted: 210 16% 20%;
+    --muted-foreground: 187 46% 86%;
 
-    --accent: 215 28% 55%; /* Muted accent in dark */
-    --accent-foreground: 0 0% 100%;
+    --accent: 43 92% 56%;
+    --accent-foreground: 26 64% 18%;
 
-    --destructive: 0 50% 58%;
+    --destructive: 356 78% 54%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 12% 22%;
-    --input: 220 10% 24%;
-    --ring: 215 28% 55%;
+    --border: 196 28% 24%;
+    --input: 196 26% 30%;
+    --ring: 43 92% 56%;
 
-    --heading: 220 10% 85%; /* Soft heading on dark */
+    --heading: 187 58% 90%;
   }
 }
 
