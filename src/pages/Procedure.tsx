@@ -303,6 +303,7 @@ const StepPreview = ({ step, index }: StepPreviewProps) => {
           Step Preview
         </span>
         <Icon className="h-14 w-14 text-primary drop-shadow-[0_18px_30px_hsla(209,53%,23%,0.28)]" />
+        <Icon className="h-14 w-14 text-white drop-shadow-[0_18px_30px_hsla(209,53%,20%,0.35)]" />
         <div className="space-y-3">
           <h3 className="text-2xl font-semibold leading-snug">{step.title}</h3>
           <p className="text-sm leading-relaxed text-white/90">{step.description}</p>
@@ -363,6 +364,7 @@ const Procedure = () => {
                 className={cn(
                   "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-muted-foreground transition hover:border-primary/40 hover:text-primary",
                   "data-[state=active]:border-primary data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-surface-lg",
+                  "data-[state=active]:border-primary data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.6)]",
                 )}
               >
                 {proc.title}
@@ -391,6 +393,8 @@ const Procedure = () => {
                           isActive
                             ? "border-primary/70 shadow-surface-brand"
                             : "hover:-translate-y-1 hover:border-primary/50 hover:shadow-surface-lg",
+                            ? "border-primary/70 shadow-[0_35px_120px_-60px_hsla(209,53%,23%,0.75)]"
+                            : "hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_35px_120px_-70px_hsla(209,53%,23%,0.6)]",
                         )}
                       >
                         <CardContent className="space-y-5 p-6">
