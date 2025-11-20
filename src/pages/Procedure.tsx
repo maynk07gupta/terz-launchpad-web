@@ -391,10 +391,8 @@ const Procedure = () => {
                           "group relative overflow-hidden transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2",
                           glassPanel,
                           isActive
-                            ? "border-primary/70 shadow-surface-brand"
-                            : "hover:-translate-y-1 hover:border-primary/50 hover:shadow-surface-lg",
                             ? "border-primary/70 shadow-[0_35px_120px_-60px_hsla(209,53%,23%,0.75)]"
-                            : "hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_35px_120px_-70px_hsla(209,53%,23%,0.6)]",
+                            : "hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_35px_120px_-70px_hsla(209,53%,23%,0.6)]"
                         )}
                       >
                         <CardContent className="space-y-5 p-6">

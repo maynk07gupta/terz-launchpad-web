@@ -326,7 +326,6 @@ const Resources = () => {
               return (
                 <Card
                   key={resource.slug}
-                  className="group relative overflow-hidden rounded-[28px] border border-border/60 bg-card/70 p-6 shadow-surface-lg transition duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-surface-brand"
                   className="group relative overflow-hidden rounded-[28px] border border-border/60 bg-card/70 p-6 shadow-[0_24px_60px_hsla(209,53%,23%,0.15)] transition duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-[0_40px_90px_hsla(209,53%,23%,0.25)]"
                 >
                   <div className={cn("pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100", `bg-gradient-to-br ${accent}`)} />
@@ -389,7 +388,6 @@ const Resources = () => {
       <section className="relative overflow-hidden bg-primary/5 py-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,hsla(209,53%,30%,0.12),transparent_55%)]" />
         <div className="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-[32px] border border-primary/20 bg-background/90 p-10 text-center shadow-surface-brand">
           <div className="rounded-[32px] border border-primary/20 bg-background/90 p-10 text-center shadow-[0_32px_80px_hsla(209,53%,26%,0.18)]">
             <Sparkles className="mx-auto h-10 w-10 text-primary" />
             <h2 className="mt-6 text-3xl font-semibold">Stay ahead of every compliance move</h2>

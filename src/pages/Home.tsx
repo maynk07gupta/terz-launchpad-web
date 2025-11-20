@@ -346,7 +346,6 @@ const Home = () => {
                 Navigate CDSCO, CDSCO (IVD), BIS, LMPC, and EPR frameworks with a partner that choreographs every step—from dossier builds to post-market vigilance.
               </p>
               <div className="mt-6 lg:mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-primary shadow-surface-lg hover:bg-primary/90 hover:shadow-surface-brand">
                 <Button asChild size="lg" className="bg-primary shadow-[0_20px_40px_-20px_hsla(209,53%,23%,0.55)] hover:bg-primary/90">
                   <Link to="/contact">
                     Schedule a strategy call <ArrowRight className="ml-2 h-5 w-5" />
@@ -357,7 +356,6 @@ const Home = () => {
                 </Button>
               </div>
               <div className="mt-6 lg:mt-10 grid gap-3 sm:grid-cols-2">
-                {heroStats.map(stat => <div key={stat.label} className={cn("rounded-2xl p-4 lg:p-5 shadow-surface-lg", glassPanel)}>
                 {heroStats.map(stat => <div key={stat.label} className={cn("rounded-2xl p-4 lg:p-5 shadow-[0_20px_50px_-35px_hsla(209,53%,23%,0.7)]", glassPanel)}>
                     <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
                       {stat.label}
@@ -370,7 +368,6 @@ const Home = () => {
             <div className="relative mx-auto w-full">
               <div className="absolute -left-12 -top-10 h-32 w-32 rounded-full bg-primary/30 blur-2xl" />
               <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-sky-500/20 blur-3xl" />
-              <Card className={cn("relative overflow-hidden shadow-surface-brand transition", glassPanel)}>
               <Card className={cn("relative overflow-hidden shadow-[0_60px_140px_-70px_hsla(209,53%,23%,0.75)] transition", glassPanel)}>
                 <div className={cn("absolute inset-0 -z-10 bg-gradient-to-br", activeHero.accent)} />
                 <CardContent className="relative space-y-4 lg:space-y-6 p-0">
@@ -418,7 +415,6 @@ const Home = () => {
                 </CardContent>
               </Card>
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {heroServices.map((service, index) => <button key={service.title} type="button" onClick={() => handleHeroSelect(index)} onMouseEnter={() => !isMobile && handleHeroSelect(index)} className={cn("group flex items-center gap-3 rounded-2xl border border-border/60 bg-card/70 p-3 text-left transition", activeHeroService === index ? "border-primary/60 bg-primary/10 text-foreground shadow-surface" : "hover:border-primary/40 hover:bg-card/80")}>
                 {heroServices.map((service, index) => <button key={service.title} type="button" onClick={() => handleHeroSelect(index)} onMouseEnter={() => !isMobile && handleHeroSelect(index)} className={cn("group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 text-left transition", activeHeroService === index ? "border-primary/60 bg-primary/10 text-foreground shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.6)]" : "hover:border-primary/40 hover:bg-white/15")}>
                     <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary transition-transform", activeHeroService === index ? "scale-105" : "group-hover:scale-105")}>
                       <service.icon className="h-5 w-5" />
@@ -436,7 +432,6 @@ const Home = () => {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {journeyColumns.map(column => <Card key={column.title} className={cn("transition-all duration-300 hover:-translate-y-1 hover:shadow-surface-lg", glassPanel)}>
             {journeyColumns.map(column => <Card key={column.title} className={cn("transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-60px_hsla(209,53%,23%,0.65)]", glassPanel)}>
                 <CardContent className="pt-8">
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-primary/40 bg-primary/20 text-lg font-bold text-primary">
@@ -464,14 +459,12 @@ const Home = () => {
           </div>
 
           <div className="mx-auto flex max-w-lg items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-sm">
-            {(["importers", "manufacturers"] as AudienceKey[]).map(audience => <button key={audience} type="button" onClick={() => setActiveAudience(audience)} className={cn("flex-1 rounded-full px-4 py-2 font-semibold capitalize transition", activeAudience === audience ? "bg-primary text-primary-foreground shadow-surface-sm" : "text-foreground/70 hover:text-foreground")} aria-pressed={activeAudience === audience}>
             {(["importers", "manufacturers"] as AudienceKey[]).map(audience => <button key={audience} type="button" onClick={() => setActiveAudience(audience)} className={cn("flex-1 rounded-full px-4 py-2 font-semibold capitalize transition", activeAudience === audience ? "bg-primary text-primary-foreground shadow-[0_12px_35px_-18px_hsla(209,53%,23%,0.65)]" : "text-foreground/70 hover:text-foreground")} aria-pressed={activeAudience === audience}>
                 {audience}
               </button>)}
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {audienceServices[activeAudience].map(service => <Card key={service.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-surface-lg", glassPanel)}>
             {audienceServices[activeAudience].map(service => <Card key={service.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_30px_100px_-60px_hsla(209,53%,23%,0.7)]", glassPanel)}>
                 <CardContent className="pt-6">
                   <service.icon className="mb-4 h-12 w-12 text-primary transition-transform" />
@@ -485,7 +478,6 @@ const Home = () => {
             <p className="text-sm text-muted-foreground">
               Need support across both tracks? We orchestrate importer and manufacturer workflows together.
             </p>
-            <Button asChild size="lg" className="bg-primary shadow-surface-lg hover:bg-primary/90 hover:shadow-surface-brand">
             <Button asChild size="lg" className="bg-primary shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.75)] hover:bg-primary/90">
               <Link to="/services">
                 View detailed services <ArrowRight className="ml-2 h-5 w-5" />
@@ -519,7 +511,6 @@ const Home = () => {
               >
                 <div className="flex gap-6 min-w-max px-2">
                   {testimonials.map((testimonial, index) => (
-                    <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-surface-lg", glassPanel)}>
                     <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-[0_35px_120px_-60px_hsla(209,53%,35%,0.6)]", glassPanel)}>
                       <CardContent className="flex flex-col gap-6 p-8 text-left h-full">
                         <Quote className="h-10 w-10 text-primary flex-shrink-0" />
@@ -581,7 +572,6 @@ const Home = () => {
             </p>
           </div>
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {differentiators.map(item => <Card key={item.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-surface-lg", glassPanel)}>
             {differentiators.map(item => <Card key={item.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-70px_hsla(209,53%,28%,0.55)]", glassPanel)}>
                 <CardContent className="space-y-4 p-6">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15">
@@ -599,7 +589,6 @@ const Home = () => {
       <section className="relative py-24 lg:py-[12px]">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,hsla(209,53%,35%,0.12),transparent_70%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={cn("relative overflow-hidden rounded-3xl p-8 shadow-surface-brand lg:p-12", glassPanel)}>
           <div className={cn("relative overflow-hidden rounded-3xl p-8 shadow-[0_60px_140px_-70px_hsla(209,53%,23%,0.75)] lg:p-12", glassPanel)}>
             <div className="absolute -left-24 top-10 h-40 w-40 rounded-full bg-primary/20 blur-3xl" />
             <div className="absolute -bottom-28 right-0 h-64 w-64 rounded-full bg-sky-500/15 blur-3xl" />
@@ -644,7 +633,6 @@ const Home = () => {
                     <Label htmlFor="lead-notes">Product or compliance goals</Label>
                     <Textarea id="lead-notes" name="notes" placeholder="Tell us about your device, cosmetic line, or expansion plans." rows={4} />
                   </div>
-                  <Button type="submit" size="lg" className="w-full bg-primary shadow-surface-lg hover:bg-primary/90 hover:shadow-surface-brand">
                   <Button type="submit" size="lg" className="w-full bg-primary shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.75)] hover:bg-primary/90">
                     Schedule my assessment
                   </Button>

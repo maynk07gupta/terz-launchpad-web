@@ -117,7 +117,6 @@ const ResourceDetail = () => {
       <section className="relative z-20 -mt-16 pb-20">
         <div className="container mx-auto grid gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-16 lg:px-8">
           <div>
-            <Card className="rounded-[32px] border border-border/60 bg-card/90 p-10 shadow-surface-lg">
             <Card className="rounded-[32px] border border-border/60 bg-card/90 p-10 shadow-[0_24px_80px_hsla(209,53%,23%,0.12)]">
               <div className="prose prose-slate max-w-none dark:prose-invert">
                 {resource.content.map((block) => (
@@ -183,7 +182,6 @@ const ResourceDetail = () => {
             </Card>
 
             {recommendations.length > 0 && (
-              <Card className="rounded-3xl border border-border/60 bg-card/90 p-6 shadow-surface-lg">
               <Card className="rounded-3xl border border-border/60 bg-card/90 p-6 shadow-[0_20px_60px_hsla(209,53%,20%,0.15)]">
                 <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                   Continue reading
