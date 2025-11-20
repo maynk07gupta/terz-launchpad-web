@@ -83,11 +83,11 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(30, 10%, 96%) 0%, hsl(209, 53%, 23%) 60%, hsl(162, 66%, 32%) 100%);
     --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(30, 10%, 94%) 100%);
 
-    /* Very soft shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(225 15% 15% / 0.08);
-    --shadow-md: 0 2px 6px -2px hsl(225 15% 15% / 0.12);
-    --shadow-lg: 0 6px 16px -4px hsl(225 15% 15% / 0.16);
-    --shadow-brand: 0 3px 10px 0 hsl(209 53% 23% / 0.18);
+    /* Very soft shadows tuned to the Warm Neutral & Blue palette */
+    --shadow-sm: 0 2px 6px -2px hsl(209 28% 20% / 0.12);
+    --shadow-md: 0 8px 18px -8px hsl(209 32% 22% / 0.16);
+    --shadow-lg: 0 16px 40px -18px hsl(209 38% 20% / 0.18);
+    --shadow-brand: 0 20px 50px -24px hsl(162 66% 32% / 0.22);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
