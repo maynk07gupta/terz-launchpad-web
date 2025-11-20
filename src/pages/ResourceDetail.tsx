@@ -41,14 +41,14 @@ const ResourceDetail = () => {
 
   const isNews = resource.type === "news";
   const heroGradient = isNews
-    ? "from-sky-950 via-slate-950 to-slate-900"
-    : "from-fuchsia-950 via-slate-950 to-slate-900";
+    ? "from-brand-50 via-brand-100 to-brand-200"
+    : "from-accent-100 via-brand-100 to-accent-200";
 
   const accentBorder = isNews
-    ? "border-sky-500/30 bg-sky-500/10"
-    : "border-fuchsia-500/30 bg-fuchsia-500/10";
+    ? "border-brand-400/40 bg-brand-100/70"
+    : "border-accent-500/35 bg-accent-100/70";
 
-  const accentText = isNews ? "text-sky-300" : "text-fuchsia-200";
+  const accentText = isNews ? "text-brand-700" : "text-accent-700";
 
   const formattedDate = formatLongDate(resource.publishedOn);
 
@@ -60,51 +60,51 @@ const ResourceDetail = () => {
     <article className="min-h-screen bg-background text-foreground">
       <section className={cn("relative overflow-hidden pb-28 pt-32", `bg-gradient-to-br ${heroGradient}`)}>
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-[-15%] top-24 h-80 w-80 rounded-full bg-white/10 blur-3xl animate-float-slow" />
-          <div className="absolute right-[-10%] top-32 h-96 w-96 rounded-full bg-white/5 blur-3xl animate-float-delayed" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
+          <div className="absolute left-[-15%] top-24 h-80 w-80 rounded-full bg-brand-200/35 blur-3xl animate-float-slow" />
+          <div className="absolute right-[-10%] top-32 h-96 w-96 rounded-full bg-accent-200/30 blur-3xl animate-float-delayed" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,hsl(var(--primary)/0.12),transparent_55%)]" />
         </div>
 
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm text-white transition hover:border-white/40 hover:bg-white/20"
+            className="group inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/80 px-4 py-2 text-sm text-foreground transition hover:border-primary/50 hover:bg-card"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
             Back
           </button>
 
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-3xl space-y-6 text-white">
-              <Badge className="rounded-full border border-white/30 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.3em] text-white/80">
+            <div className="max-w-3xl space-y-6 text-heading">
+              <Badge className="rounded-full border border-border/70 bg-card/80 px-4 py-1 text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 {isNews ? "News" : "Blog"}
               </Badge>
               <h1 className="text-4xl font-bold leading-tight sm:text-5xl">
                 {resource.title}
               </h1>
-              <p className="text-lg text-white/70">{resource.excerpt}</p>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-white/70">
+              <p className="text-lg text-muted-foreground">{resource.excerpt}</p>
+              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                 <span>
-                  <strong className="font-semibold text-white">{resource.author}</strong>
+                  <strong className="font-semibold text-heading">{resource.author}</strong>
                   {` · ${resource.authorRole}`}
                 </span>
-                <Separator orientation="vertical" className="hidden h-5 bg-white/20 md:block" />
+                <Separator orientation="vertical" className="hidden h-5 bg-border/70 md:block" />
                 <span className="flex items-center gap-2">
                   <Clock className="h-4 w-4" /> {resource.readTime}
                 </span>
-                <Separator orientation="vertical" className="hidden h-5 bg-white/20 md:block" />
+                <Separator orientation="vertical" className="hidden h-5 bg-border/70 md:block" />
                 <span>{formattedDate}</span>
               </div>
             </div>
-            <Card className="w-full max-w-sm rounded-3xl border-white/10 bg-white/10 p-6 text-white backdrop-blur-xl">
-              <h2 className="text-sm font-semibold uppercase tracking-[0.25em] text-white/80">
+            <Card className="w-full max-w-sm rounded-3xl border border-border/70 bg-card/85 p-6 text-foreground backdrop-blur-xl shadow-surface-lg">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                 Key takeaways
               </h2>
-              <ul className="mt-4 space-y-3 text-sm text-white/80">
+              <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
                 {resource.takeaways.map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span className="mt-1 h-2 w-2 rounded-full bg-white/70" />
+                    <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -117,6 +117,7 @@ const ResourceDetail = () => {
       <section className="relative z-20 -mt-16 pb-20">
         <div className="container mx-auto grid gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-16 lg:px-8">
           <div>
+            <Card className="rounded-[32px] border border-border/60 bg-card/90 p-10 shadow-surface-lg">
             <Card className="rounded-[32px] border border-border/60 bg-card/90 p-10 shadow-[0_24px_80px_hsla(209,53%,23%,0.12)]">
               <div className="prose prose-slate max-w-none dark:prose-invert">
                 {resource.content.map((block) => (
@@ -182,6 +183,7 @@ const ResourceDetail = () => {
             </Card>
 
             {recommendations.length > 0 && (
+              <Card className="rounded-3xl border border-border/60 bg-card/90 p-6 shadow-surface-lg">
               <Card className="rounded-3xl border border-border/60 bg-card/90 p-6 shadow-[0_20px_60px_hsla(209,53%,20%,0.15)]">
                 <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                   Continue reading

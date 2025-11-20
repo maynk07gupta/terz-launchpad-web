@@ -47,6 +47,7 @@ const Footer = () => {
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
         <div className="grid grid-cols-1 gap-8 md:gap-10 lg:grid-cols-[1.1fr,1fr]">
           <div className="space-y-6 md:space-y-8">
+            <div className="max-w-xl rounded-3xl border border-border bg-card p-5 md:p-8 shadow-surface-lg transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-surface-brand">
             <div className="max-w-xl rounded-3xl border border-border bg-card p-5 md:p-8 shadow-[0_20px_60px_-25px_hsla(209,38%,20%,0.2)] transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_24px_70px_-26px_hsla(209,38%,20%,0.26)]">
               <div className="flex items-center gap-4">
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 text-primary">
@@ -144,6 +145,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-6 md:space-y-8">
+            <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/18 via-primary/10 to-secondary/60 p-8 md:p-10 shadow-surface-lg transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-surface-brand">
             <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/18 via-primary/10 to-secondary/60 p-8 md:p-10 shadow-[0_20px_60px_-25px_hsla(209,38%,20%,0.22)] transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_26px_76px_-28px_hsla(209,38%,20%,0.3)]">
               <div
                 aria-hidden
@@ -165,6 +167,7 @@ const Footer = () => {
               </div>
             </div>
 
+            <div className="rounded-3xl border border-border bg-secondary/80 p-5 md:p-8 shadow-surface-lg backdrop-blur">
             <div className="rounded-3xl border border-border bg-secondary/80 p-5 md:p-8 shadow-[0_18px_48px_-22px_hsla(209,32%,22%,0.2)] backdrop-blur">
               <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
                 Contact
@@ -224,6 +227,7 @@ const Footer = () => {
           </div>
         </div>
 
+        <div className="mt-6 rounded-3xl border border-primary/30 bg-primary/10 p-5 text-center text-sm text-primary-foreground shadow-surface-lg md:hidden">
         <div className="mt-6 rounded-3xl border border-primary/30 bg-primary/10 p-5 text-center text-sm text-primary-foreground shadow-[0_15px_45px_-25px_hsla(209,38%,20%,0.28)] md:hidden">
           <h4 className="text-xs font-semibold uppercase tracking-[0.4em] text-primary/80">
             Quick Connect

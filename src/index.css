@@ -137,6 +137,24 @@ All colors MUST be HSL.
   }
 }
 
+@layer components {
+  .shadow-surface-sm {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shadow-surface {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-surface-lg {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .shadow-surface-brand {
+    box-shadow: var(--shadow-brand);
+  }
+}
+
 @layer utilities {
   @keyframes floatSlow {
     0%,
