@@ -35,16 +35,16 @@ const IVD = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-background via-secondary to-brand-50/70">
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={serviceData.image}
             alt={serviceData.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover brightness-[0.85]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/70 to-accent/70 mix-blend-multiply" />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <Link
@@ -102,7 +102,7 @@ const IVD = () => {
             </div>
 
             {/* Process Steps */}
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden bg-card/95 border border-border/70 shadow-surface-lg">
               <CardContent className="p-8 lg:p-12">
                 <h3 className="text-2xl font-bold text-foreground mb-8">
                   {selectedRole === "manufacturer"
@@ -119,7 +119,7 @@ const IVD = () => {
                       className="flex items-start space-x-4 group"
                     >
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg shadow-surface group-hover:scale-110 transition-transform duration-300">
                           {index + 1}
                         </div>
                       </div>

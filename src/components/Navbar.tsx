@@ -72,6 +72,18 @@ const Navbar = () => {
                 {servicesOpen && (
                   <div className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3">
                     <div className="rounded-2xl border border-border/70 bg-gradient-to-b from-card/95 via-card/92 to-card/88 p-2 shadow-surface-lg ring-1 ring-primary/10 animate-in fade-in zoom-in-95">
+                      {services.map((service) => {
+                        return (
+                          <Link
+                            key={service.name}
+                            to={service.path}
+                            className="group/link relative block overflow-hidden rounded-xl px-4 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 hover:translate-x-1 hover:text-primary"
+                          >
+                            <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-primary/15 via-primary/5 to-primary/15 opacity-0 transition-all duration-300 group-hover/link:translate-y-0 group-hover/link:opacity-100" />
+                            {service.name}
+                          </Link>
+                        );
+                      })}
                     <div className="rounded-2xl border border-border/70 bg-gradient-to-b from-card/95 via-card/92 to-card/88 p-2 shadow-[0_24px_60px_-28px_hsla(209,38%,20%,0.22)] ring-1 ring-primary/10 animate-in fade-in zoom-in-95">
                       {services.map((service) => (
                         <Link
