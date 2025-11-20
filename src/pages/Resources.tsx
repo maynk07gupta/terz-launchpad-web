@@ -113,7 +113,7 @@ const Resources = () => {
           <div className="absolute -top-40 left-1/4 h-[500px] w-[500px] rounded-full bg-primary/30 blur-[120px] animate-float-slow" />
           <div className="absolute bottom-20 right-[-10%] h-[600px] w-[600px] rounded-full bg-sky-400/20 blur-[100px] animate-float-delayed" />
           <div className="absolute left-[-15%] top-1/3 h-[400px] w-[400px] rounded-full bg-fuchsia-400/15 blur-[100px]" />
-          <div className="absolute inset-x-0 top-0 h-full bg-[radial-gradient(circle_at_top_center,rgba(12,58,148,0.4)_0%,transparent_50%)]" />
+          <div className="absolute inset-x-0 top-0 h-full bg-[radial-gradient(circle_at_top_center,hsla(209,53%,30%,0.4)_0%,transparent_50%)]" />
         </div>
 
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
@@ -326,7 +326,7 @@ const Resources = () => {
               return (
                 <Card
                   key={resource.slug}
-                  className="group relative overflow-hidden rounded-[28px] border border-border/60 bg-card/70 p-6 shadow-[0_24px_60px_rgba(15,40,80,0.15)] transition duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-[0_40px_90px_rgba(12,40,90,0.25)]"
+                  className="group relative overflow-hidden rounded-[28px] border border-border/60 bg-card/70 p-6 shadow-surface-lg transition duration-500 hover:-translate-y-2 hover:border-primary/60 hover:shadow-surface-brand"
                 >
                   <div className={cn("pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100", `bg-gradient-to-br ${accent}`)} />
                   <div className="relative flex h-full flex-col">
@@ -386,9 +386,9 @@ const Resources = () => {
 
       {/* Newsletter CTA */}
       <section className="relative overflow-hidden bg-primary/5 py-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(30,64,175,0.12),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,hsla(209,53%,30%,0.12),transparent_55%)]" />
         <div className="container relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-[32px] border border-primary/20 bg-background/90 p-10 text-center shadow-[0_32px_80px_rgba(30,58,120,0.18)]">
+          <div className="rounded-[32px] border border-primary/20 bg-background/90 p-10 text-center shadow-surface-brand">
             <Sparkles className="mx-auto h-10 w-10 text-primary" />
             <h2 className="mt-6 text-3xl font-semibold">Stay ahead of every compliance move</h2>
             <p className="mt-4 text-muted-foreground">

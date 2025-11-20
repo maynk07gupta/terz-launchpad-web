@@ -54,7 +54,7 @@ const heroServices: HeroService[] = [{
   icon: Shield,
   image: MedicalDevicesImage,
   highlights: ["CDSCO submissions prepared end-to-end", "Risk-based documentation reviews", "Dedicated post-market vigilance"],
-  accent: "from-sky-500/30 to-indigo-600/30"
+  accent: "from-brand-200/60 via-brand-300/55 to-brand-500/45"
 }, {
   title: "In-Vitro Diagnostics",
   headline: "IVD compliance that keeps labs and regulators aligned",
@@ -62,7 +62,7 @@ const heroServices: HeroService[] = [{
   icon: TestTube,
   image: IvdImage,
   highlights: ["Performance evaluation study oversight", "Labeling localisation guidance", "IVD import licensing support"],
-  accent: "from-cyan-400/30 to-blue-600/30"
+  accent: "from-brand-100/60 via-brand-200/55 to-accent-200/50"
 }, {
   title: "Cosmetics",
   headline: "Fast-track cosmetic launches across India",
@@ -70,7 +70,7 @@ const heroServices: HeroService[] = [{
   icon: Sparkles,
   image: CosmeticsImage,
   highlights: ["BIS registration & documentation", "Adverse event reporting playbooks", "Artwork & labelling compliance"],
-  accent: "from-pink-400/30 to-rose-500/30"
+  accent: "from-accent-100/70 via-accent-200/60 to-accent-500/45"
 }, {
   title: "Legal Metrology",
   headline: "Packaging declarations that withstand inspections",
@@ -78,7 +78,7 @@ const heroServices: HeroService[] = [{
   icon: Scale,
   image: LmpcImage,
   highlights: ["Model approval & registration", "Packaging artwork validation", "Audit-ready compliance reports"],
-  accent: "from-emerald-400/30 to-teal-500/30"
+  accent: "from-brand-100/55 via-brand-200/50 to-accent-300/45"
 }, {
   title: "Market Entry & IEC",
   headline: "Confident expansion plans for new importers",
@@ -86,7 +86,7 @@ const heroServices: HeroService[] = [{
   icon: Globe2,
   image: IecImage,
   highlights: ["IEC registration & renewals", "Supply chain partner onboarding", "Importer compliance training"],
-  accent: "from-amber-300/30 to-orange-500/30"
+  accent: "from-brand-50/70 via-brand-200/50 to-brand-400/45"
 }, {
   title: "EPR & Sustainability",
   headline: "Stay ahead of EPR obligations without the scramble",
@@ -94,7 +94,7 @@ const heroServices: HeroService[] = [{
   icon: Leaf,
   image: EprImage,
   highlights: ["Annual return preparation", "Recycling partner management", "Evidence documentation tracking"],
-  accent: "from-lime-400/30 to-emerald-600/30"
+  accent: "from-accent-100/70 via-accent-200/60 to-accent-600/45"
 }];
 const heroStats = [{
   label: "Average approval time",
@@ -230,7 +230,7 @@ const clients: Client[] = [{
   name: "Orion Devices",
   logo: OrionLogo
 }];
-const glassPanel = "border border-white/10 bg-background/70 backdrop-blur";
+const glassPanel = "border border-border/70 bg-card/80 backdrop-blur shadow-surface-sm";
 const Home = () => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
@@ -346,7 +346,7 @@ const Home = () => {
                 Navigate CDSCO, CDSCO (IVD), BIS, LMPC, and EPR frameworks with a partner that choreographs every step—from dossier builds to post-market vigilance.
               </p>
               <div className="mt-6 lg:mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-primary shadow-[0_20px_40px_-20px_rgba(37,99,235,0.55)] hover:bg-primary/90">
+                <Button asChild size="lg" className="bg-primary shadow-surface-lg hover:bg-primary/90 hover:shadow-surface-brand">
                   <Link to="/contact">
                     Schedule a strategy call <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
@@ -356,7 +356,7 @@ const Home = () => {
                 </Button>
               </div>
               <div className="mt-6 lg:mt-10 grid gap-3 sm:grid-cols-2">
-                {heroStats.map(stat => <div key={stat.label} className={cn("rounded-2xl p-4 lg:p-5 shadow-[0_20px_50px_-35px_rgba(37,99,235,0.7)]", glassPanel)}>
+                {heroStats.map(stat => <div key={stat.label} className={cn("rounded-2xl p-4 lg:p-5 shadow-surface-lg", glassPanel)}>
                     <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
                       {stat.label}
                     </p>
@@ -368,7 +368,7 @@ const Home = () => {
             <div className="relative mx-auto w-full">
               <div className="absolute -left-12 -top-10 h-32 w-32 rounded-full bg-primary/30 blur-2xl" />
               <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-sky-500/20 blur-3xl" />
-              <Card className={cn("relative overflow-hidden shadow-[0_60px_140px_-70px_rgba(37,99,235,0.75)] transition", glassPanel)}>
+              <Card className={cn("relative overflow-hidden shadow-surface-brand transition", glassPanel)}>
                 <div className={cn("absolute inset-0 -z-10 bg-gradient-to-br", activeHero.accent)} />
                 <CardContent className="relative space-y-4 lg:space-y-6 p-0">
                   {/* Service Image */}
@@ -415,7 +415,7 @@ const Home = () => {
                 </CardContent>
               </Card>
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {heroServices.map((service, index) => <button key={service.title} type="button" onClick={() => handleHeroSelect(index)} onMouseEnter={() => !isMobile && handleHeroSelect(index)} className={cn("group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 text-left transition", activeHeroService === index ? "border-primary/60 bg-primary/10 text-foreground shadow-[0_20px_45px_-25px_rgba(37,99,235,0.6)]" : "hover:border-primary/40 hover:bg-white/15")}>
+                {heroServices.map((service, index) => <button key={service.title} type="button" onClick={() => handleHeroSelect(index)} onMouseEnter={() => !isMobile && handleHeroSelect(index)} className={cn("group flex items-center gap-3 rounded-2xl border border-border/60 bg-card/70 p-3 text-left transition", activeHeroService === index ? "border-primary/60 bg-primary/10 text-foreground shadow-surface" : "hover:border-primary/40 hover:bg-card/80")}>
                     <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary transition-transform", activeHeroService === index ? "scale-105" : "group-hover:scale-105")}>
                       <service.icon className="h-5 w-5" />
                     </span>
@@ -432,7 +432,7 @@ const Home = () => {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {journeyColumns.map(column => <Card key={column.title} className={cn("transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-60px_rgba(37,99,235,0.65)]", glassPanel)}>
+            {journeyColumns.map(column => <Card key={column.title} className={cn("transition-all duration-300 hover:-translate-y-1 hover:shadow-surface-lg", glassPanel)}>
                 <CardContent className="pt-8">
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-primary/40 bg-primary/20 text-lg font-bold text-primary">
                     {column.title === "The Challenge" && "01"}
@@ -449,7 +449,7 @@ const Home = () => {
 
       {/* Services Overview */}
       <section className="relative py-20 lg:py-[10px]">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.16),transparent_65%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,hsla(209,53%,23%,0.16),transparent_65%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">How we support every team</h2>
@@ -459,13 +459,13 @@ const Home = () => {
           </div>
 
           <div className="mx-auto flex max-w-lg items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-sm">
-            {(["importers", "manufacturers"] as AudienceKey[]).map(audience => <button key={audience} type="button" onClick={() => setActiveAudience(audience)} className={cn("flex-1 rounded-full px-4 py-2 font-semibold capitalize transition", activeAudience === audience ? "bg-primary text-primary-foreground shadow-[0_12px_35px_-18px_rgba(37,99,235,0.65)]" : "text-foreground/70 hover:text-foreground")} aria-pressed={activeAudience === audience}>
+            {(["importers", "manufacturers"] as AudienceKey[]).map(audience => <button key={audience} type="button" onClick={() => setActiveAudience(audience)} className={cn("flex-1 rounded-full px-4 py-2 font-semibold capitalize transition", activeAudience === audience ? "bg-primary text-primary-foreground shadow-surface-sm" : "text-foreground/70 hover:text-foreground")} aria-pressed={activeAudience === audience}>
                 {audience}
               </button>)}
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {audienceServices[activeAudience].map(service => <Card key={service.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_30px_100px_-60px_rgba(37,99,235,0.7)]", glassPanel)}>
+            {audienceServices[activeAudience].map(service => <Card key={service.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-surface-lg", glassPanel)}>
                 <CardContent className="pt-6">
                   <service.icon className="mb-4 h-12 w-12 text-primary transition-transform" />
                   <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
@@ -478,7 +478,7 @@ const Home = () => {
             <p className="text-sm text-muted-foreground">
               Need support across both tracks? We orchestrate importer and manufacturer workflows together.
             </p>
-            <Button asChild size="lg" className="bg-primary shadow-[0_20px_45px_-25px_rgba(37,99,235,0.75)] hover:bg-primary/90">
+            <Button asChild size="lg" className="bg-primary shadow-surface-lg hover:bg-primary/90 hover:shadow-surface-brand">
               <Link to="/services">
                 View detailed services <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -489,7 +489,7 @@ const Home = () => {
 
       {/* Trust Signals */}
       <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(15,118,110,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,hsla(162,66%,32%,0.12),transparent_70%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center gap-10 text-center">
             <div className="max-w-2xl">
@@ -511,7 +511,7 @@ const Home = () => {
               >
                 <div className="flex gap-6 min-w-max px-2">
                   {testimonials.map((testimonial, index) => (
-                    <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-[0_35px_120px_-60px_rgba(59,130,246,0.6)]", glassPanel)}>
+                    <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-surface-lg", glassPanel)}>
                       <CardContent className="flex flex-col gap-6 p-8 text-left h-full">
                         <Quote className="h-10 w-10 text-primary flex-shrink-0" />
                         <p className="text-base leading-relaxed text-muted-foreground flex-grow italic">"{testimonial.quote}"</p>
@@ -535,7 +535,7 @@ const Home = () => {
 
       {/* 6-Step Process */}
       <section ref={processRef} className="relative py-20 lg:py-[10px]">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,hsla(209,53%,35%,0.12),transparent_70%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Our 6-step compliance timeline</h2>
@@ -563,7 +563,7 @@ const Home = () => {
 
       {/* Differentiators */}
       <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(14,116,144,0.1),transparent_65%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,hsla(162,66%,32%,0.1),transparent_65%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Why teams choose Terz</h2>
@@ -572,7 +572,7 @@ const Home = () => {
             </p>
           </div>
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {differentiators.map(item => <Card key={item.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-70px_rgba(14,165,233,0.55)]", glassPanel)}>
+            {differentiators.map(item => <Card key={item.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-surface-lg", glassPanel)}>
                 <CardContent className="space-y-4 p-6">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15">
                     <CheckCircle className="h-6 w-6 text-primary" />
@@ -587,9 +587,9 @@ const Home = () => {
 
       {/* CTA Section with Inline Form */}
       <section className="relative py-24 lg:py-[12px]">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,hsla(209,53%,35%,0.12),transparent_70%)]" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={cn("relative overflow-hidden rounded-3xl p-8 shadow-[0_60px_140px_-70px_rgba(37,99,235,0.75)] lg:p-12", glassPanel)}>
+          <div className={cn("relative overflow-hidden rounded-3xl p-8 shadow-surface-brand lg:p-12", glassPanel)}>
             <div className="absolute -left-24 top-10 h-40 w-40 rounded-full bg-primary/20 blur-3xl" />
             <div className="absolute -bottom-28 right-0 h-64 w-64 rounded-full bg-sky-500/15 blur-3xl" />
             <div className="relative grid gap-12 lg:grid-cols-2 lg:items-start">
@@ -633,7 +633,7 @@ const Home = () => {
                     <Label htmlFor="lead-notes">Product or compliance goals</Label>
                     <Textarea id="lead-notes" name="notes" placeholder="Tell us about your device, cosmetic line, or expansion plans." rows={4} />
                   </div>
-                  <Button type="submit" size="lg" className="w-full bg-primary shadow-[0_20px_45px_-25px_rgba(37,99,235,0.75)] hover:bg-primary/90">
+                  <Button type="submit" size="lg" className="w-full bg-primary shadow-surface-lg hover:bg-primary/90 hover:shadow-surface-brand">
                     Schedule my assessment
                   </Button>
                   <p className="text-xs text-muted-foreground">
