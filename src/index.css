@@ -8,30 +8,30 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Global defaults - Warm Neutral & Navy Blue */
-    --background: 35 25% 96%; /* Warm beige background */
-    --foreground: 220 20% 20%; /* Deep navy text for contrast */
+    /* Global defaults - Warm Neutral & Blue (Exact palette from image) */
+    --background: 30 10% 96%; /* #F6F5F5 - Warm light gray background */
+    --foreground: 225 15% 16%; /* #22252D - Deep dark text */
 
-    --card: 0 0% 100%; /* Pure white card surface */
-    --card-foreground: 220 20% 20%;
+    --card: 0 0% 100%; /* #FFFFFF - Pure white card surface */
+    --card-foreground: 225 15% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 20%;
+    --popover-foreground: 225 15% 16%;
 
-    /* Primary brand - Navy Blue */
-    --primary: 220 70% 28%;
+    /* Primary brand - Deep Navy Blue */
+    --primary: 209 53% 23%; /* #1C3C5A - Deep navy */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 220 75% 22%;
+    --primary-hover: 209 58% 18%;
 
     /* Secondary/muted surfaces - warm neutrals */
-    --secondary: 35 20% 92%; /* Warm light gray for raised surfaces */
-    --secondary-foreground: 220 20% 25%;
+    --secondary: 30 10% 94%; /* Slightly lighter warm gray */
+    --secondary-foreground: 225 15% 16%;
 
-    --muted: 35 15% 88%;
-    --muted-foreground: 220 15% 40%;
+    --muted: 30 10% 92%;
+    --muted-foreground: 25 8% 45%; /* #77706A - Warm muted gray */
 
-    /* Accent - Teal */
-    --accent: 180 60% 45%;
+    /* Accent - Warm Teal */
+    --accent: 162 66% 32%; /* #1C8864 - Warm teal */
     --accent-foreground: 0 0% 100%;
 
     /* Destructive */
@@ -39,34 +39,34 @@ All colors MUST be HSL.
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 35 18% 82%;
-    --input: 35 15% 88%;
-    --ring: 180 60% 45%;
+    --border: 30 10% 88%;
+    --input: 30 10% 92%;
+    --ring: 162 66% 32%;
 
     /* Headings */
-    --heading: 220 75% 22%; /* Deep navy for headings */
+    --heading: 209 53% 23%; /* Deep navy for headings */
 
     /* Brand color shades - Navy Blue ramp */
-    --brand-50: 220 70% 96%;
-    --brand-100: 220 68% 90%;
-    --brand-200: 220 66% 78%;
-    --brand-300: 220 68% 64%;
-    --brand-400: 220 70% 48%;
-    --brand-500: 220 70% 38%;
-    --brand-600: 220 70% 28%;
-    --brand-700: 220 75% 22%;
+    --brand-50: 209 50% 95%;
+    --brand-100: 209 52% 88%;
+    --brand-200: 209 53% 72%;
+    --brand-300: 209 53% 56%;
+    --brand-400: 209 53% 40%;
+    --brand-500: 209 53% 28%;
+    --brand-600: 209 53% 23%;
+    --brand-700: 209 58% 18%;
 
-    /* Accent teal shades */
-    --accent-100: 180 55% 92%;
-    --accent-200: 180 58% 82%;
-    --accent-300: 180 60% 65%;
-    --accent-500: 180 60% 45%;
-    --accent-600: 180 65% 35%;
+    /* Accent warm teal shades */
+    --accent-100: 162 60% 90%;
+    --accent-200: 162 62% 75%;
+    --accent-300: 162 64% 55%;
+    --accent-500: 162 66% 32%;
+    --accent-600: 162 68% 25%;
 
     /* Status colors tuned for contrast */
-    --success: 152 56% 32%;
-    --success-bg: 149 44% 92%;
-    --success-text: 151 46% 18%;
+    --success: 162 66% 32%;
+    --success-bg: 162 60% 90%;
+    --success-text: 162 68% 20%;
 
     --warning: 37 94% 48%;
     --warning-bg: 38 88% 92%;
@@ -79,51 +79,51 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     /* Subtle gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(220, 70%, 38%), hsl(220, 75%, 22%));
-    --gradient-hero: linear-gradient(135deg, hsl(35, 25%, 96%) 0%, hsl(220, 70%, 28%) 60%, hsl(180, 60%, 45%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(35, 20%, 92%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(209, 53%, 28%), hsl(209, 58%, 18%));
+    --gradient-hero: linear-gradient(135deg, hsl(30, 10%, 96%) 0%, hsl(209, 53%, 23%) 60%, hsl(162, 66%, 32%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(30, 10%, 94%) 100%);
 
     /* Very soft shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(220 15% 15% / 0.08);
-    --shadow-md: 0 2px 6px -2px hsl(220 15% 15% / 0.12);
-    --shadow-lg: 0 6px 16px -4px hsl(220 15% 15% / 0.16);
-    --shadow-brand: 0 3px 10px 0 hsl(220 70% 38% / 0.18);
+    --shadow-sm: 0 1px 2px 0 hsl(225 15% 15% / 0.08);
+    --shadow-md: 0 2px 6px -2px hsl(225 15% 15% / 0.12);
+    --shadow-lg: 0 6px 16px -4px hsl(225 15% 15% / 0.16);
+    --shadow-brand: 0 3px 10px 0 hsl(209 53% 23% / 0.18);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 220 25% 12%;
-    --foreground: 35 20% 92%;
+    --background: 225 20% 12%;
+    --foreground: 30 10% 92%;
 
-    --card: 220 22% 16%;
-    --card-foreground: 35 20% 92%;
+    --card: 225 18% 16%;
+    --card-foreground: 30 10% 92%;
 
-    --popover: 220 22% 16%;
-    --popover-foreground: 35 20% 92%;
+    --popover: 225 18% 16%;
+    --popover-foreground: 30 10% 92%;
 
-    --primary: 220 68% 38%;
+    --primary: 209 53% 35%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 220 70% 32%;
+    --primary-hover: 209 53% 28%;
 
-    --secondary: 220 18% 22%;
-    --secondary-foreground: 35 20% 92%;
+    --secondary: 225 15% 20%;
+    --secondary-foreground: 30 10% 92%;
 
-    --muted: 220 16% 18%;
-    --muted-foreground: 35 15% 75%;
+    --muted: 225 15% 18%;
+    --muted-foreground: 25 8% 65%;
 
-    --accent: 180 58% 52%;
+    --accent: 162 66% 40%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 356 78% 54%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 18% 28%;
-    --input: 220 16% 32%;
-    --ring: 180 58% 52%;
+    --border: 225 15% 28%;
+    --input: 225 15% 25%;
+    --ring: 162 66% 40%;
 
-    --heading: 35 22% 94%;
+    --heading: 30 10% 94%;
   }
 }
 
