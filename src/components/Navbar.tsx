@@ -35,7 +35,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link
               to="/"
-              className="group relative flex items-center rounded-full border border-border/80 bg-card/90 px-4 py-2 shadow-[0_14px_34px_-18px_hsla(209,32%,22%,0.28)] transition-transform duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_18px_40px_-18px_hsla(209,32%,22%,0.35)]"
+              className="group relative flex items-center rounded-full border border-border/80 bg-white px-4 py-2 shadow-[0_14px_34px_-18px_hsla(209,32%,22%,0.28)] transition-transform duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_18px_40px_-18px_hsla(209,32%,22%,0.35)]"
             >
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/15 via-transparent to-primary/15 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <img src={logo} alt="Terz Compliance" className="relative z-10 h-10 sm:h-12" />
