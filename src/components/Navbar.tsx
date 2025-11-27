@@ -35,10 +35,10 @@ const Navbar = () => {
             {/* Logo */}
             <Link
               to="/"
-              className="group relative flex items-center rounded-full border border-border/80 bg-card/90 px-4 py-2 shadow-[0_14px_34px_-18px_hsla(209,32%,22%,0.28)] transition-all duration-300 hover:scale-105 hover:shadow-[0_20px_50px_-20px_hsla(209,32%,22%,0.4)]"
+              className="group relative flex items-center rounded-full border border-border/80 bg-card/90 px-4 py-2 shadow-[0_14px_34px_-18px_hsla(209,32%,22%,0.28)] transition-all duration-300 hover:scale-110 hover:shadow-[0_30px_70px_-20px_hsla(209,32%,22%,0.6)]"
             >
               <span className="absolute inset-0 rounded-full bg-background/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <img src={logo} alt="Terz Compliance" className="relative z-10 h-10 sm:h-12 transition-transform duration-300 group-hover:rotate-3" />
+              <img src={logo} alt="Terz Compliance" className="relative z-10 h-10 sm:h-12 transition-transform duration-300 group-hover:scale-105" />
             </Link>
 
             {/* Desktop Navigation */}
