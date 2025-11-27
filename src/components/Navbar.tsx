@@ -28,14 +28,14 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50">
-      <div className="relative border-b border-border/50 bg-gradient-to-b from-[hsl(190,40%,96%)] via-[hsl(190,35%,95%)] to-background/90 backdrop-blur-md shadow-sm">
+      <div className="relative border-b border-border/70 bg-gradient-to-b from-card/95 via-background/92 to-background/86 backdrop-blur-xl shadow-[0_18px_48px_-22px_hsla(209,53%,23%,0.3)]">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-primary/10 via-primary/50 to-primary/10" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link
               to="/"
-              className="group relative flex items-center rounded-full border border-border/80 bg-white px-4 py-2 shadow-[0_14px_34px_-18px_hsla(209,32%,22%,0.28)] transition-transform duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_18px_40px_-18px_hsla(209,32%,22%,0.35)]"
+              className="group relative flex items-center rounded-full border border-border/80 bg-card/90 px-4 py-2 shadow-[0_14px_34px_-18px_hsla(209,32%,22%,0.28)] transition-transform duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[0_18px_40px_-18px_hsla(209,32%,22%,0.35)]"
             >
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/15 via-transparent to-primary/15 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <img src={logo} alt="Terz Compliance" className="relative z-10 h-10 sm:h-12" />
