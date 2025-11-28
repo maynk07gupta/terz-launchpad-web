@@ -1,4 +1,14 @@
-import { Users, Award, DollarSign, Target } from "lucide-react";
+import {
+  Users,
+  Award,
+  DollarSign,
+  Target,
+  Lightbulb,
+  Building2,
+  Boxes,
+  ShieldCheck,
+  FileCheck2,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useRef } from "react";
 
@@ -76,47 +86,212 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary/5 via-background to-primary/5">
+      {/* Header / Hero */}
+      <section className="bg-gradient-to-br from-primary/5 via-background to-primary/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              About Terz Compliance
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Your trusted partner in navigating India's regulatory landscape
-            </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[650px] lg:min-h-[80vh]">
+            <div className="space-y-6 lg:space-y-8 max-w-3xl lg:pr-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-sm font-medium text-primary">
+                <FileCheck2 className="h-4 w-4" />
+                <span>About Terz Compliance</span>
+              </div>
+              <div className="space-y-4">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                  Regulatory approvals for India, done right the first time.
+                </h1>
+                <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+                  Terz Compliance is a specialized regulatory partner for manufacturers, importers and innovators entering the Indian market.
+                  We simplify approvals across medical devices, in-vitro diagnostics, cosmetics, food, EPR, Legal Metrology and more—so your team can launch faster with confidence.
+                </p>
+                <p className="text-base text-foreground/70 font-medium">
+                  From first-time importers to global brands, we’ve helped teams navigate India’s regulations without surprises or guesswork.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:shadow-primary/40"
+                >
+                  Book a consultation
+                </a>
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center text-base font-semibold text-primary underline-offset-4 hover:underline"
+                >
+                  Explore our services
+                </a>
+              </div>
+            </div>
+
+            <div className="relative h-full flex items-center justify-center">
+              <div className="relative w-full max-w-xl">
+                <div className="absolute inset-0 -translate-x-6 translate-y-6 rounded-3xl bg-primary/10 blur-3xl" aria-hidden />
+                <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-background via-primary/5 to-primary/10 shadow-2xl">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-background to-primary/30 flex items-center justify-center">
+                    <div className="grid grid-cols-2 gap-4 p-8 w-full h-full">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex-1 rounded-2xl bg-white/80 p-4 shadow-md shadow-primary/10 ring-1 ring-primary/10">
+                          <div className="h-full rounded-xl border border-dashed border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 flex flex-col items-start justify-center gap-3 p-4">
+                            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                              <ShieldCheck className="h-4 w-4" />
+                              <span>Trusted approvals</span>
+                            </div>
+                            <p className="text-sm text-foreground font-semibold leading-relaxed">
+                              BIS, CDSCO, FSSAI, EPR and Legal Metrology — mapped into predictable steps.
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex-1 rounded-2xl bg-white/70 p-4 shadow-md shadow-primary/10 ring-1 ring-primary/10">
+                          <div className="h-full rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 flex items-center justify-between px-4 py-3">
+                            <div>
+                              <p className="text-xs uppercase tracking-wide text-primary font-semibold">Nationwide support</p>
+                              <p className="text-sm text-muted-foreground">Remote-first team across India</p>
+                            </div>
+                            <div className="h-12 w-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+                              <FileCheck2 className="h-6 w-6 text-primary" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex-1 rounded-2xl bg-white/70 p-4 shadow-md shadow-primary/10 ring-1 ring-primary/10">
+                          <div className="h-full rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 p-4 flex flex-col justify-between">
+                            <div className="text-xs uppercase tracking-wide text-primary font-semibold">India launch kit</div>
+                            <div className="space-y-2 text-sm text-muted-foreground">
+                              <p>• Documentation readiness</p>
+                              <p>• Category-specific roadmaps</p>
+                              <p>• Clear timelines & fees</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex-1 rounded-2xl bg-white/80 p-4 shadow-md shadow-primary/10 ring-1 ring-primary/10">
+                          <div className="h-full rounded-xl border border-dashed border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 flex flex-col justify-center gap-3 p-4">
+                            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                              <FileCheck2 className="h-4 w-4" />
+                              <span>Launch-ready</span>
+                            </div>
+                            <p className="text-sm text-foreground font-semibold leading-relaxed">
+                              Visualizing approvals across devices, diagnostics, cosmetics and more for confident entries.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Our Story */}
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6 text-center">
-              Our Story
-            </h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
-              <p>
-                Terz Compliance was founded with a clear vision: to transform the
-                complex world of regulatory compliance into a streamlined, predictable
-                process for life science companies entering the Indian market.
+      <section className="py-20 lg:py-28 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-16 lg:space-y-20">
+          {/* Band A */}
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center bg-secondary/30 rounded-3xl p-8 sm:p-10 lg:p-12 shadow-lg">
+            <div className="space-y-5 lg:space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-primary/5 px-3 py-1 text-sm font-semibold text-primary">
+                <span>Our Story</span>
+              </div>
+              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+                Terz Compliance was born from a simple observation: getting products approved in India is often slower and more confusing than it should be.
+                Our founders spent years inside the regulatory ecosystem, watching innovative products get stuck in paperwork and unclear rules.
               </p>
-              <p>
-                Our founders recognized that manufacturers, importers, and distributors
-                often struggle with India's intricate regulatory requirements, leading
-                to costly delays and uncertain timelines. With decades of combined
-                experience in regulatory affairs, they set out to create a consultancy
-                that would serve as a true partner—not just a service provider.
-              </p>
-              <p>
-                Today, Terz Compliance stands as a one-stop solution for regulatory
-                needs across medical devices, in-vitro diagnostics, cosmetics, and
-                more. We pride ourselves on our commitment to quality documentation,
-                transparent communication, and unwavering dedication to our clients'
-                success.
-              </p>
+              <div className="space-y-4 text-muted-foreground">
+                <p>
+                  Instead of accepting that as “just the way it is”, we decided to build a partner that does things differently.
+                </p>
+                <p>
+                  We started by mapping every major Indian approval pathway—BIS, CDSCO, Legal Metrology, FSSAI, EPR and more—and breaking them into clear, repeatable steps. Then we combined this with proactive communication, transparent fees and a completely remote model so clients anywhere in the world could work with us easily.
+                </p>
+                <p>
+                  Today, Terz Compliance supports manufacturers, importers and distributors of all sizes. Whether you’re launching a single SKU or an entire portfolio, our job is to make your regulatory journey predictable, documented and stress-free.
+                </p>
+              </div>
+            </div>
+            <div className="relative h-full">
+              <div className="absolute inset-0 translate-x-6 translate-y-6 rounded-3xl bg-primary/10 blur-3xl" aria-hidden />
+              <div className="relative rounded-3xl overflow-hidden border border-primary/15 bg-gradient-to-br from-background via-primary/5 to-primary/10 shadow-2xl">
+                <div className="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[4/5] flex items-center justify-center p-6">
+                  <div className="w-full h-full rounded-2xl bg-white/80 ring-1 ring-primary/10 shadow-lg shadow-primary/20 flex items-center justify-center">
+                    <div className="mx-auto max-w-sm text-center space-y-3 p-6">
+                      <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-primary/10 text-primary mx-auto">
+                        <Users className="h-7 w-7" />
+                      </div>
+                      <p className="text-lg font-semibold text-foreground">Real people, real expertise</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        A remote-first team collaborating with clients worldwide, reviewing documents, timelines and approvals together.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Band B */}
+          <div className="bg-secondary/40 rounded-3xl p-8 sm:p-10 lg:p-12 shadow-lg">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-8 mb-10">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
+                  <span>How we’ve grown</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-foreground">From Uttarakhand to a pan-India partner</h3>
+                <p className="text-muted-foreground">
+                  From a small specialist team in Uttarakhand to a pan-India regulatory partner.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              {[{
+                year: "2019",
+                title: "The Insight",
+                description:
+                  "Working inside compliance and industry, we kept seeing good products delayed by unclear documentation and fragmented advice.",
+                icon: Lightbulb,
+              },
+              {
+                year: "2020",
+                title: "Terz Compliance is founded",
+                description:
+                  "We set up Terz Compliance with one goal: make India’s approval process clearer, faster and more predictable for manufacturers and importers.",
+                icon: Building2,
+              },
+              {
+                year: "2022",
+                title: "Scaling across categories",
+                description:
+                  "Our work expanded from medical devices and IVDs into cosmetics, food, EPR and Legal Metrology, supported by a fully remote model serving clients across India and abroad.",
+                icon: Boxes,
+              },
+              {
+                year: "Today",
+                title: "A predictable regulatory partner",
+                description:
+                  "Today, we act as an extended regulatory team for companies of all sizes—bringing structured processes, honest timelines and documentation that stands up to scrutiny.",
+                icon: ShieldCheck,
+              }].map((item, index) => (
+                <div
+                  key={item.year}
+                  className="relative h-full rounded-2xl border border-primary/15 bg-background/70 p-6 shadow-md shadow-primary/10"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20">
+                      <item.icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-primary font-semibold">{item.year}</p>
+                      <p className="text-lg font-semibold text-foreground">{item.title}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                  {index < 3 && (
+                    <div className="hidden lg:block absolute top-10 -right-3 h-px w-6 bg-gradient-to-r from-primary/40 to-primary" aria-hidden />
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
