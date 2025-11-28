@@ -104,7 +104,7 @@ const Footer = () => {
               <div aria-hidden className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/25 blur-3xl transition-all duration-500 group-hover:blur-[4rem]" />
               
               {/* Our Promise Section */}
-              <div className="relative p-8 md:p-10 border-b border-primary/20">
+              <div className="relative p-5 md:p-6 border-b border-primary/20">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5">
                   <Sparkles className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-110" />
                   <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
@@ -120,7 +120,7 @@ const Footer = () => {
               </div>
 
               {/* Contact Section */}
-              <div className="relative p-5 md:p-8">
+              <div className="relative p-4 md:p-5">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
                   Contact
                 </h3>
@@ -166,13 +166,13 @@ const Footer = () => {
             <div className="space-y-4">
               {/* Trust Badges */}
               <div className="flex flex-wrap gap-3">
-                <div className="group flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 px-4 py-2.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-md">
+                <div className="group flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 px-3 py-1.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-md">
                   <ShieldCheck className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" />
                   <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                     ISO 13485 Aligned
                   </span>
                 </div>
-                <div className="group flex items-center gap-2 rounded-xl border border-accent/40 bg-accent/10 px-4 py-2.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-md">
+                <div className="group flex items-center gap-2 rounded-xl border border-accent/40 bg-accent/10 px-3 py-1.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-md">
                   <Shield className="h-5 w-5 text-accent transition-transform duration-300 group-hover:scale-110" />
                   <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
                     CDSCO Compliant
@@ -181,9 +181,9 @@ const Footer = () => {
               </div>
               {/* Additional Credentials */}
               <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                <span className="rounded-lg border border-border bg-secondary/70 px-3 py-1.5 text-foreground">Pan-India Experts</span>
-                <span className="rounded-lg border border-border bg-secondary/70 px-3 py-1.5 text-foreground">24h Response</span>
-                <span className="rounded-lg border border-border bg-secondary/70 px-3 py-1.5 text-foreground">Global Launchpad</span>
+                <span className="rounded-lg border border-border bg-secondary/70 px-2.5 py-1 text-foreground">Pan-India Experts</span>
+                <span className="rounded-lg border border-border bg-secondary/70 px-2.5 py-1 text-foreground">24h Response</span>
+                <span className="rounded-lg border border-border bg-secondary/70 px-2.5 py-1 text-foreground">Global Launchpad</span>
               </div>
             </div>
           </div>
