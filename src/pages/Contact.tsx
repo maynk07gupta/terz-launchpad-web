@@ -304,43 +304,113 @@ const Contact = () => {
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-              Frequently Asked Questions
-            </h2>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-foreground mb-3">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-muted-foreground">
+                Answers to common questions about regulatory approvals, timelines and working with Terz Compliance.
+              </p>
+            </div>
+            
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem value="item-1">
                 <AccordionTrigger>
-                  How long does the registration process typically take?
+                  Which approvals can Terz Compliance help with?
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-muted-foreground">
-                    Timeline varies by product category and complexity. Medical devices typically take 3–6 months, while cosmetics can be faster at 2–4 months. We provide detailed timelines during consultation.
+                    We support BIS certification, CDSCO approvals for medical devices and in-vitro diagnostics, cosmetics registration, Legal Metrology approvals, WPC/ETA, EPR and other Indian regulatory requirements. If you are unsure which approvals apply to your product, contact us and we will map the applicable regulations for you.
                   </p>
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-2">
                 <AccordionTrigger>
-                  Do you offer support after product approval?
+                  How long does the registration process typically take?
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-muted-foreground">
-                    Yes! We provide comprehensive post-market support including renewal management, compliance monitoring, and assistance with regulatory updates.
+                    Timelines vary by product category and authority. In most cases, the process ranges from a few weeks to a few months. Timelines depend on the completeness of your documents and the workload at the regulatory authority. Our role is to plan the project carefully to avoid avoidable delays.
                   </p>
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-3">
                 <AccordionTrigger>
-                  Can you help with multiple product registrations?
+                  What information or documents do you need from us to get started?
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-muted-foreground">
-                    Absolutely. We specialize in managing multiple registrations simultaneously, optimizing timelines and costs for portfolio launches.
+                    We typically need product details and specifications, technical documents, test reports and certificates, company KYC details, and draft labels or artwork where applicable.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4">
+                <AccordionTrigger>
+                  Can you help if my application is already rejected or stuck?
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-muted-foreground">
+                    Yes. We review your file and authority queries, identify gaps, prepare responses or corrective actions, and support re-submission where possible.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-5">
+                <AccordionTrigger>
+                  Do you offer support after product approval?
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-muted-foreground">
+                    Yes. We help with renewals, post-approval changes, label and packaging updates, ongoing compliance checks and audits to ensure your product remains compliant.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-6">
+                <AccordionTrigger>
+                  Can you handle multiple product registrations or large portfolios?
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-muted-foreground">
+                    Yes. We work with both single SKUs and large portfolios. We manage them as structured projects with clear timelines and regular updates.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-7">
+                <AccordionTrigger>
+                  Do you work with startups and first-time importers?
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-muted-foreground">
+                    Yes. We work with early-stage companies and new importers, helping them understand which regulations apply and guiding them step-by-step through documentation and filing.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-8">
+                <AccordionTrigger>
+                  Is my product and company information kept confidential?
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-muted-foreground">
+                    All information is treated as strictly confidential. NDAs can be signed on request, and access to documents is restricted to the project team only.
                   </p>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+
+            <div className="mt-12 text-center">
+              <p className="text-muted-foreground mb-4">
+                Didn't find your question?
+              </p>
+              <Button asChild size="sm">
+                <a href="#contact-form">Talk to our experts</a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
