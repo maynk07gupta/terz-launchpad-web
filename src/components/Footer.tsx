@@ -51,7 +51,7 @@ const Footer = () => {
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
         <div className="grid grid-cols-1 gap-8 md:gap-10 lg:grid-cols-[1.1fr,1fr]">
-          <div className="space-y-6 md:space-y-8">
+          <div className="space-y-6 md:space-y-8 order-2 lg:order-1">
             
 
             <div className="grid grid-cols-1 gap-8 text-sm sm:grid-cols-2 md:grid-cols-3">
@@ -99,7 +99,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="h-full">
+          <div className="h-full order-1 lg:order-2">
             <div className="relative h-full overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/18 via-primary/10 to-secondary/60 shadow-[0_20px_60px_-25px_hsla(209,38%,20%,0.22)] transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_26px_76px_-28px_hsla(209,38%,20%,0.3)] group">
               <div aria-hidden className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/25 blur-3xl transition-all duration-500 group-hover:blur-[4rem]" />
               
