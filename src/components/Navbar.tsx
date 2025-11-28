@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50">
-      <div className="relative border-b border-border/70 bg-gradient-to-b from-card/95 via-background/92 to-background/86 backdrop-blur-xl shadow-[0_18px_48px_-22px_hsla(209,53%,23%,0.3)]">
+      <div className="relative border-b border-border/70 bg-gradient-to-b from-card/98 via-background/96 to-background/94 backdrop-blur-xl shadow-[0_18px_48px_-22px_hsla(209,53%,23%,0.3)]">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-primary/10 via-primary/50 to-primary/10" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
@@ -69,7 +69,7 @@ const Navbar = () => {
                 </button>
                 {servicesOpen && (
                   <div className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3">
-                    <div className="rounded-2xl border border-border/70 bg-gradient-to-b from-card/95 via-card/92 to-card/88 p-2 shadow-[0_24px_60px_-28px_hsla(209,38%,20%,0.22)] ring-1 ring-primary/10 animate-in fade-in zoom-in-95">
+                    <div className="rounded-2xl border border-border/70 bg-gradient-to-b from-card/98 via-card/96 to-card/92 p-2 shadow-[0_24px_60px_-28px_hsla(209,38%,20%,0.22)] ring-1 ring-primary/10 animate-in fade-in zoom-in-95">
                       {services.map((service) => (
                         <Link
                           key={service.name}
@@ -111,7 +111,7 @@ const Navbar = () => {
           {/* Mobile Navigation */}
           {isOpen && (
             <div className="animate-in slide-in-from-top-4 py-6 lg:hidden">
-              <div className="flex flex-col space-y-4 rounded-3xl border border-border/70 bg-gradient-to-b from-card/95 via-card/92 to-card/88 p-6 shadow-[0_22px_60px_-26px_hsla(209,38%,20%,0.24)]">
+              <div className="flex flex-col space-y-4 rounded-3xl border border-border/70 bg-gradient-to-b from-card/98 via-card/96 to-card/92 p-6 shadow-[0_22px_60px_-26px_hsla(209,38%,20%,0.24)]">
                 <Link
                   to="/"
                   className={`text-base font-semibold transition-all duration-300 ${
