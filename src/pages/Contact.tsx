@@ -4,27 +4,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useToast } from "@/hooks/use-toast";
-
 const Contact = () => {
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Message Sent!",
-      description: "Thank you for contacting us. We'll respond within 1 business day.",
+      description: "Thank you for contacting us. We'll respond within 1 business day."
     });
   };
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Header */}
       <section className="py-[3vh] lg:py-[4vh] flex items-center bg-gradient-to-br from-primary/5 via-background to-primary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,50 +44,27 @@ const Contact = () => {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
                       <Label htmlFor="name">Full Name *</Label>
-                      <Input
-                        id="name"
-                        placeholder="John Doe"
-                        required
-                        className="w-full"
-                      />
+                      <Input id="name" placeholder="John Doe" required className="w-full" />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="john@example.com"
-                        required
-                        className="w-full"
-                      />
+                      <Input id="email" type="email" placeholder="john@example.com" required className="w-full" />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone Number</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        placeholder="+91 98765 43210"
-                        className="w-full"
-                      />
+                      <Input id="phone" type="tel" placeholder="+91 98765 43210" className="w-full" />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="company">Company Name</Label>
-                      <Input
-                        id="company"
-                        placeholder="Your Company Ltd."
-                        className="w-full"
-                      />
+                      <Input id="company" placeholder="Your Company Ltd." className="w-full" />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="service">Service Interested In</Label>
-                      <select
-                        id="service"
-                        className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground"
-                      >
+                      <select id="service" className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground">
                         <option value="">Select a service</option>
                         <option value="medical-devices">Medical Devices</option>
                         <option value="ivd">In-Vitro Diagnostics</option>
@@ -110,11 +80,7 @@ const Contact = () => {
                     {/* New inquiry type selection */}
                     <div className="space-y-2">
                       <Label htmlFor="inquiryType">Inquiry Type *</Label>
-                      <select
-                        id="inquiryType"
-                        required
-                        className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground"
-                      >
+                      <select id="inquiryType" required className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground">
                         <option value="">Select inquiry type</option>
                         <option value="general">General Enquiry</option>
                         <option value="support">Support</option>
@@ -127,12 +93,7 @@ const Contact = () => {
                     {/* New attachments field */}
                     <div className="space-y-2">
                       <Label htmlFor="attachments">Attachments</Label>
-                      <Input
-                        id="attachments"
-                        type="file"
-                        className="w-full"
-                        multiple
-                      />
+                      <Input id="attachments" type="file" className="w-full" multiple />
                       <p className="text-sm text-muted-foreground">
                         You can upload relevant documents (PDF, DOCX, etc.).
                       </p>
@@ -140,13 +101,7 @@ const Contact = () => {
 
                     <div className="space-y-2">
                       <Label htmlFor="message">Message *</Label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tell us about your compliance needs..."
-                        required
-                        rows={6}
-                        className="w-full"
-                      />
+                      <Textarea id="message" placeholder="Tell us about your compliance needs..." required rows={6} className="w-full" />
                     </div>
 
                     <Button type="submit" className="w-full" size="lg">
@@ -180,10 +135,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Email Us</h3>
-                        <a
-                          href="mailto:info@terzcompliance.com"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                        >
+                        <a href="mailto:info@terzcompliance.com" className="text-muted-foreground hover:text-primary transition-colors">
                           info@terzcompliance.com
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">
@@ -202,10 +154,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
-                        <a
-                          href="tel:+919876543210"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                        >
+                        <a href="tel:+919876543210" className="text-muted-foreground hover:text-primary transition-colors">
                           +91 98765 43210
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">
@@ -244,12 +193,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Chat with Us</h3>
-                        <a
-                          href="https://wa.me/919876543210"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href="https://wa.me/919876543210" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
                           Start WhatsApp Chat
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">
@@ -269,12 +213,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Schedule a Meeting</h3>
-                        <a
-                          href="https://calendly.com/terzcompliance/consultation"
-                          className="text-muted-foreground hover:text-primary transition-colors"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href="https://calendly.com/terzcompliance/consultation" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
                           Book Now
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">
@@ -403,19 +342,10 @@ const Contact = () => {
               </AccordionItem>
             </Accordion>
 
-            <div className="mt-12 text-center">
-              <p className="text-muted-foreground mb-4">
-                Didn't find your question?
-              </p>
-              <Button asChild size="sm">
-                <a href="#contact-form">Talk to our experts</a>
-              </Button>
-            </div>
+            
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;
