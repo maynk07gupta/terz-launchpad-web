@@ -1,12 +1,9 @@
 import { useEffect } from "react";
-
 const Terms = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-accent/5 py-[8vh]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(var(--primary)/0.08),transparent_50%)]" />
@@ -23,9 +20,7 @@ const Terms = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Please read these terms carefully before using our services
             </p>
-            <p className="text-sm text-muted-foreground/70 mt-4">
-              Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-            </p>
+            
           </div>
         </div>
       </section>
@@ -208,8 +203,6 @@ const Terms = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Terms;
