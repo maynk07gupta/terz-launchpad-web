@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Mail, Phone, Sparkles } from "lucide-react";
+import { ArrowUpRight, Mail, Phone, Sparkles, Shield, ShieldCheck } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const companyLinks = [
@@ -215,11 +215,28 @@ const Footer = () => {
           </div>
 
           <div className="md:justify-self-end">
-            <div className="grid grid-cols-2 gap-3 rounded-2xl border border-border bg-secondary/70 p-4 text-xs uppercase tracking-[0.25em] text-muted-foreground md:inline-grid">
-              <div className="text-foreground">ISO 13485 Ready</div>
-              <div className="text-foreground">Pan-India Experts</div>
-              <div className="text-foreground">24h Response</div>
-              <div className="text-foreground">Global Launchpad</div>
+            <div className="space-y-4">
+              {/* Trust Badges */}
+              <div className="flex flex-wrap gap-3">
+                <div className="group flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 px-4 py-2.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-md">
+                  <ShieldCheck className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                    ISO 13485 Aligned
+                  </span>
+                </div>
+                <div className="group flex items-center gap-2 rounded-xl border border-accent/40 bg-accent/10 px-4 py-2.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-md">
+                  <Shield className="h-5 w-5 text-accent transition-transform duration-300 group-hover:scale-110" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                    CDSCO Compliant
+                  </span>
+                </div>
+              </div>
+              {/* Additional Credentials */}
+              <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                <span className="rounded-lg border border-border bg-secondary/70 px-3 py-1.5 text-foreground">Pan-India Experts</span>
+                <span className="rounded-lg border border-border bg-secondary/70 px-3 py-1.5 text-foreground">24h Response</span>
+                <span className="rounded-lg border border-border bg-secondary/70 px-3 py-1.5 text-foreground">Global Launchpad</span>
+              </div>
             </div>
           </div>
         </div>
