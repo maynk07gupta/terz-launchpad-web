@@ -99,12 +99,14 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="space-y-6 md:space-y-8">
-            <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/18 via-primary/10 to-secondary/60 p-8 md:p-10 shadow-[0_20px_60px_-25px_hsla(209,38%,20%,0.22)] transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_26px_76px_-28px_hsla(209,38%,20%,0.3)]">
-              <div aria-hidden className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/25 blur-3xl" />
-              <div className="relative">
+          <div className="h-full">
+            <div className="relative h-full overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/18 via-primary/10 to-secondary/60 shadow-[0_20px_60px_-25px_hsla(209,38%,20%,0.22)] transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-[0_26px_76px_-28px_hsla(209,38%,20%,0.3)] group">
+              <div aria-hidden className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/25 blur-3xl transition-all duration-500 group-hover:blur-[4rem]" />
+              
+              {/* Our Promise Section */}
+              <div className="relative p-8 md:p-10 border-b border-primary/20">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5">
-                  <Sparkles className="h-4 w-4 text-primary" />
+                  <Sparkles className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-110" />
                   <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
                     Our Promise
                   </span>
@@ -116,32 +118,33 @@ const Footer = () => {
                   </span>
                 </h3>
               </div>
-            </div>
 
-            <div className="rounded-3xl border border-border bg-secondary/80 p-5 md:p-8 shadow-[0_18px_48px_-22px_hsla(209,32%,22%,0.2)] backdrop-blur">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-                Contact
-              </h3>
-              <ul className="mt-4 space-y-5">
-                {contactMethods.map(({
-                icon: Icon,
-                label,
-                value,
-                href
-              }) => <li key={value} className="group flex items-start gap-3">
-                    <span className="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-transform duration-300 group-hover:-translate-y-1">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-                        {label}
-                      </p>
-                      <a href={href} className="text-sm font-medium text-foreground transition-all duration-300 hover:text-primary">
-                        {value}
-                      </a>
-                    </div>
-                  </li>)}
-              </ul>
+              {/* Contact Section */}
+              <div className="relative p-5 md:p-8">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+                  Contact
+                </h3>
+                <ul className="mt-4 space-y-5">
+                  {contactMethods.map(({
+                  icon: Icon,
+                  label,
+                  value,
+                  href
+                }) => <li key={value} className="group/item flex items-start gap-3">
+                      <span className="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/15 text-primary transition-transform duration-300 group-hover/item:-translate-y-1 group-hover/item:scale-110">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
+                          {label}
+                        </p>
+                        <a href={href} className="text-sm font-medium text-foreground transition-all duration-300 hover:text-primary">
+                          {value}
+                        </a>
+                      </div>
+                    </li>)}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
