@@ -21,24 +21,23 @@ const Contact = () => {
       {/* Header */}
       <section className="py-[3vh] lg:py-[4vh] flex items-center bg-gradient-to-br from-primary/5 via-background to-primary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Contact Us
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Talk to our regulatory experts
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Ready to simplify your compliance journey? Get in touch with our team today.
+            <p className="text-lg text-muted-foreground">
+              Share a few details and we'll get back to you within 1 business day.
             </p>
           </div>
         </div>
       </section>
 
       {/* Contact Form and Info */}
-      <section className="py-8 lg:py-12 container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-8 lg:py-12 container mx-auto px-4 sm:px-6 lg:px-8" id="contact-form">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Contact Form */}
-            <div>
-              <h2 className="text-2xl font-bold text-foreground mb-6">Send Us a Message</h2>
+            <div className="lg:col-span-2">
               <Card>
                 <CardContent className="pt-6">
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -48,13 +47,13 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
+                      <Label htmlFor="email">Work Email *</Label>
                       <Input id="email" type="email" placeholder="john@example.com" required className="w-full" />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input id="phone" type="tel" placeholder="+91 98765 43210" className="w-full" />
+                      <Label htmlFor="phone">Phone / WhatsApp Number *</Label>
+                      <Input id="phone" type="tel" placeholder="+91 98765 43210" required className="w-full" />
                     </div>
 
                     <div className="space-y-2">
@@ -63,8 +62,8 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="service">Service Interested In</Label>
-                      <select id="service" className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground">
+                      <Label htmlFor="service">Service Interested In *</Label>
+                      <select id="service" required className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground">
                         <option value="">Select a service</option>
                         <option value="medical-devices">Medical Devices</option>
                         <option value="ivd">In-Vitro Diagnostics</option>
@@ -77,31 +76,23 @@ const Contact = () => {
                       </select>
                     </div>
 
-                    {/* New inquiry type selection */}
                     <div className="space-y-2">
-                      <Label htmlFor="inquiryType">Inquiry Type *</Label>
-                      <select id="inquiryType" required className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground">
-                        <option value="">Select inquiry type</option>
-                        <option value="general">General Enquiry</option>
-                        <option value="support">Support</option>
-                        <option value="sales">Sales/Service</option>
-                        <option value="consultation">Consultation</option>
-                        <option value="other">Other</option>
-                      </select>
+                      <Label htmlFor="message">Message *</Label>
+                      <Textarea 
+                        id="message" 
+                        placeholder="Tell us about your product, service and compliance needs..." 
+                        required 
+                        rows={6} 
+                        className="w-full" 
+                      />
                     </div>
 
-                    {/* New attachments field */}
                     <div className="space-y-2">
-                      <Label htmlFor="attachments">Attachments</Label>
+                      <Label htmlFor="attachments">Attachments (optional)</Label>
                       <Input id="attachments" type="file" className="w-full" multiple />
                       <p className="text-sm text-muted-foreground">
                         You can upload relevant documents (PDF, DOCX, etc.).
                       </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message *</Label>
-                      <Textarea id="message" placeholder="Tell us about your compliance needs..." required rows={6} className="w-full" />
                     </div>
 
                     <Button type="submit" className="w-full" size="lg">
@@ -109,128 +100,97 @@ const Contact = () => {
                     </Button>
 
                     <p className="text-sm text-muted-foreground text-center">
-                      We'll get back to you within 1 business day.
+                      We usually respond within 1 business day.
                     </p>
                   </form>
                 </CardContent>
               </Card>
             </div>
 
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h2>
-                <p className="text-muted-foreground mb-6">
-                  Thank you for your interest in Terz Compliance. We are just a phone call or email away and ready to assist you with your regulatory needs.
-                </p>
-              </div>
-
-              {/* Contact Cards */}
-              <div className="space-y-4">
-                <Card className="hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Mail className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1">Email Us</h3>
-                        <a href="mailto:info@terzcompliance.com" className="text-muted-foreground hover:text-primary transition-colors">
-                          info@terzcompliance.com
-                        </a>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          For general inquiries and quotes
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Phone className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
-                        <a href="tel:+919876543210" className="text-muted-foreground hover:text-primary transition-colors">
-                          +91 98765 43210
-                        </a>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          Monday - Friday, 9:00 AM - 6:00 PM IST
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <MessageSquare className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1">Remote Support</h3>
-                        <p className="text-muted-foreground">
-                          Completely remote – reach us from anywhere in India
-                        </p>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          We serve clients nationwide
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* New Chat Card */}
-                <Card className="hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <MessageSquare className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1">Chat with Us</h3>
-                        <a href="https://wa.me/919876543210" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
-                          Start WhatsApp Chat
-                        </a>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          Available Mon - Fri, 9:00 AM - 6:00 PM IST
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* New Schedule Card */}
-                <Card className="hover:shadow-md transition-shadow">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Calendar className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground mb-1">Schedule a Meeting</h3>
-                        <a href="https://calendly.com/terzcompliance/consultation" className="text-muted-foreground hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
-                          Book Now
-                        </a>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          Choose a convenient time for your consultation
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Additional Info */}
-              <Card className="bg-primary/5 border-primary/20">
+            {/* Contact Options */}
+            <div className="space-y-6">
+              {/* Card 1 - Call or email */}
+              <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="pt-6">
-                  <h3 className="font-semibold text-foreground mb-3">Free Initial Consultation</h3>
-                  <p className="text-muted-foreground text-sm">
-                    Not sure where to start? Schedule a free 30-minute consultation with our regulatory experts. We'll assess your needs and provide initial guidance at no cost.
+                  <h3 className="font-semibold text-foreground mb-2">Call or email us</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Have an urgent question? Reach out directly.
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <Mail className="h-4 w-4 text-primary flex-shrink-0" />
+                      <a 
+                        href="mailto:info@terzcompliance.com" 
+                        className="text-sm text-foreground hover:text-primary transition-colors break-all"
+                      >
+                        info@terzcompliance.com
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Phone className="h-4 w-4 text-primary flex-shrink-0" />
+                      <a 
+                        href="tel:+919876543210" 
+                        className="text-sm text-foreground hover:text-primary transition-colors"
+                      >
+                        +91 98765 43210
+                      </a>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      Monday – Friday, 9:00 AM – 6:00 PM IST
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Card 2 - WhatsApp */}
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="pt-6">
+                  <h3 className="font-semibold text-foreground mb-2">Chat on WhatsApp</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Start a WhatsApp chat with our team.
+                    Available Mon – Fri, 9:00 AM – 6:00 PM IST.
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full" 
+                    asChild
+                  >
+                    <a 
+                      href="https://wa.me/919876543210" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <MessageSquare className="h-4 w-4 mr-2" />
+                      Start WhatsApp chat
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Card 3 - Free consultation */}
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="pt-6">
+                  <h3 className="font-semibold text-foreground mb-2">Book a free 30-minute consultation</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Not sure where to start? Schedule a session and we'll review your product and the approvals you need.
+                  </p>
+                  <Button 
+                    size="sm" 
+                    className="w-full mb-3" 
+                    asChild
+                  >
+                    <a 
+                      href="https://calendly.com/terzcompliance/consultation" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <Calendar className="h-4 w-4 mr-2" />
+                      Schedule a call
+                    </a>
+                  </Button>
+                  <p className="text-xs text-muted-foreground text-center">
+                    We serve clients across India and work fully remote.
                   </p>
                 </CardContent>
               </Card>
