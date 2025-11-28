@@ -111,8 +111,10 @@ const Footer = () => {
                     Our Promise
                   </span>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold leading-tight text-heading">
-                  At Terz Compliance, we don't just meet timelines —{" "}
+                <h3 className="text-2xl md:text-3xl font-bold leading-tight">
+                  <span className="text-[#a855f7]" style={{ textShadow: '0 0 10px #a855f7, 0 0 20px #a855f7, 0 0 30px #a855f7' }}>
+                    At Terz Compliance, we don&apos;t just meet timelines —{" "}
+                  </span>
                   <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
                     we redefine them.
                   </span>
