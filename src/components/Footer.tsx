@@ -171,7 +171,13 @@ const Footer = () => {
                 <div className="group flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 px-3 py-1.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-md">
                   <ShieldCheck className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" />
                   <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                    ISO 13485 Aligned
+                    ISO 9001
+                  </span>
+                </div>
+                <div className="group flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 px-3 py-1.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-md">
+                  <ShieldCheck className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" />
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                    ISO 10002
                   </span>
                 </div>
                 <div className="group flex items-center gap-2 rounded-xl border border-accent/40 bg-accent/10 px-3 py-1.5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-md">
