@@ -113,7 +113,7 @@ const Footer = () => {
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold leading-tight">
                   <span className="text-primary-foreground">
-                    At Terz Compliance, we don&apos;t just meet timelines —{" "}
+                    At Terz Compliance, we don&apos;t just meet timelines -{" "}
                   </span>
                   <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
                     we redefine them.
