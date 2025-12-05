@@ -195,7 +195,7 @@ const Terms = () => {
                   <span className="font-medium text-foreground">Email:</span> info@terzcompliance.com
                 </p>
                 <p className="flex items-center gap-2">
-                  <span className="font-medium text-foreground">Phone:</span> +91 98765 43210
+                  <span className="font-medium text-foreground">Phone:</span> +91 79838 58470
                 </p>
               </div>
             </div>
