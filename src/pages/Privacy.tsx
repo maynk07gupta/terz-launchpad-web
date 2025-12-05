@@ -58,7 +58,7 @@ const Privacy = () => {
                 </p>
                 <ul className="list-none pl-0 space-y-2 mt-4">
                   <li>Email: info@terzcompliance.com</li>
-                  <li>Phone: +91 98765 43210</li>
+                  <li>Phone: +91 79838 58470</li>
                 </ul>
               </section>
             </div>

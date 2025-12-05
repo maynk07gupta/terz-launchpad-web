@@ -42,8 +42,8 @@ const contactMethods = [{
 }, {
   icon: Phone,
   label: "Call our experts",
-  value: "+91 98765 43210",
-  href: "tel:+919876543210"
+  value: "+91 79838 58470",
+  href: "tel:+917983858470"
 }];
 const Footer = () => {
   return <footer className="relative overflow-hidden border-t border-border bg-gradient-to-br from-background via-card to-secondary/80 text-foreground">
@@ -199,7 +199,7 @@ const Footer = () => {
             Save time on mobile—tap below to reach us instantly.
           </p>
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <a href="tel:+919876543210" className="flex flex-col items-center justify-center gap-1 rounded-2xl border border-border bg-secondary/80 px-3 py-4 text-foreground transition-transform duration-300 hover:-translate-y-1 hover:border-primary/40">
+            <a href="tel:+917983858470" className="flex flex-col items-center justify-center gap-1 rounded-2xl border border-border bg-secondary/80 px-3 py-4 text-foreground transition-transform duration-300 hover:-translate-y-1 hover:border-primary/40">
               <Phone className="h-5 w-5" />
               <span className="text-xs font-semibold uppercase tracking-[0.2em]">
                 Call

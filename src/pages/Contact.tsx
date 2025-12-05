@@ -53,7 +53,7 @@ const Contact = () => {
 
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone / WhatsApp Number *</Label>
-                      <Input id="phone" type="tel" placeholder="+91 98765 43210" required className="w-full" />
+                      <Input id="phone" type="tel" placeholder="+91 79838 58470" required className="w-full" />
                     </div>
 
                     <div className="space-y-2">
@@ -129,10 +129,10 @@ const Contact = () => {
                     <div className="flex items-center gap-2">
                       <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                       <a 
-                        href="tel:+919876543210" 
+                        href="tel:+917983858470" 
                         className="text-sm text-foreground hover:text-primary transition-colors"
                       >
-                        +91 98765 43210
+                        +91 79838 58470
                       </a>
                     </div>
                     <p className="text-xs text-muted-foreground">
@@ -157,7 +157,7 @@ const Contact = () => {
                     asChild
                   >
                     <a 
-                      href="https://wa.me/919876543210" 
+                      href="https://wa.me/917983858470" 
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
