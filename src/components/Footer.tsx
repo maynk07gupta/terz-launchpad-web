@@ -202,7 +202,7 @@ const Footer = () => {
             Quick Connect
           </h4>
           <p className="mt-2 text-foreground">
-            Save time on mobile—tap below to reach us instantly.
+            Save time on mobile - tap below to reach us instantly.
           </p>
           <div className="mt-4 grid grid-cols-2 gap-3">
             <a href="tel:+917983858470" className="flex flex-col items-center justify-center gap-1 rounded-2xl border border-border bg-secondary/80 px-3 py-4 text-foreground transition-transform duration-300 hover:-translate-y-1 hover:border-primary/40">

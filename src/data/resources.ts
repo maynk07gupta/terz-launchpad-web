@@ -217,7 +217,7 @@ export const resources: ResourceItem[] = [
     ],
     content: [
       {
-        body: "Audit preparedness is no longer seasonal. Treat compliance documentation like a product backlog—prioritised, visible, and collaborative.",
+        body: "Audit preparedness is no longer seasonal. Treat compliance documentation like a product backlog - prioritised, visible, and collaborative.",
       },
       {
         heading: "Create modular document kits",

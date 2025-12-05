@@ -343,7 +343,7 @@ const Home = () => {
                 Regulatory compliance, retold as your launch story
               </h1>
               <p className="text-base lg:text-lg text-muted-foreground/90">
-                Navigate CDSCO, CDSCO (IVD), BIS, LMPC, and EPR frameworks with a partner that choreographs every step—from dossier builds to post-market vigilance.
+                Navigate CDSCO, CDSCO (IVD), BIS, LMPC, and EPR frameworks with a partner that choreographs every step - from dossier builds to post-market vigilance.
               </p>
               <div className="mt-6 lg:mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="bg-primary shadow-[0_20px_40px_-20px_hsla(209,53%,23%,0.55)] hover:bg-primary/90">
