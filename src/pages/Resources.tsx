@@ -307,7 +307,7 @@ const Resources = () => {
                 {/* Result Label (only when not compressed) */}
                 {!isCompressed && (
                   <p className="mt-3 text-center text-xs text-muted-foreground transition-all duration-500">
-                    {resultLabel} — Filters update in real time as you type.
+                    {resultLabel} - Filters update in real time as you type.
                   </p>
                 )}
               </div>
@@ -392,7 +392,7 @@ const Resources = () => {
             <Sparkles className="mx-auto h-10 w-10 text-primary" />
             <h2 className="mt-6 text-3xl font-semibold">Stay ahead of every compliance move</h2>
             <p className="mt-4 text-muted-foreground">
-              Join 4,000+ professionals receiving our weekly regulatory signal report. No spam — just precise insights you can action immediately.
+              Join 4,000+ professionals receiving our weekly regulatory signal report. No spam - just precise insights you can action immediately.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
               <Input

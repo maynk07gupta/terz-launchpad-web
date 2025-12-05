@@ -101,7 +101,7 @@ const About = () => {
                 </h1>
                 <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
                   Terz Compliance is a specialized regulatory partner for manufacturers, importers and innovators entering the Indian market.
-                  We simplify approvals across medical devices, in-vitro diagnostics, cosmetics, food, EPR, Legal Metrology and more—so your team can launch faster with confidence.
+                  We simplify approvals across medical devices, in-vitro diagnostics, cosmetics, food, EPR, Legal Metrology and more - so your team can launch faster with confidence.
                 </p>
                 <p className="text-base text-foreground/70 font-medium">
                   From first-time importers to global brands, we’ve helped teams navigate India’s regulations without surprises or guesswork.
@@ -137,7 +137,7 @@ const About = () => {
                               <span>Trusted approvals</span>
                             </div>
                             <p className="text-sm text-foreground font-semibold leading-relaxed">
-                              BIS, CDSCO, FSSAI, EPR and Legal Metrology — mapped into predictable steps.
+                              BIS, CDSCO, FSSAI, EPR and Legal Metrology - mapped into predictable steps.
                             </p>
                           </div>
                         </div>
@@ -203,7 +203,7 @@ const About = () => {
                   Instead of accepting that as “just the way it is”, we decided to build a partner that does things differently.
                 </p>
                 <p>
-                  We started by mapping every major Indian approval pathway—BIS, CDSCO, Legal Metrology, FSSAI, EPR and more—and breaking them into clear, repeatable steps. Then we combined this with proactive communication, transparent fees and a completely remote model so clients anywhere in the world could work with us easily.
+                  We started by mapping every major Indian approval pathway - BIS, CDSCO, Legal Metrology, FSSAI, EPR and more - and breaking them into clear, repeatable steps. Then we combined this with proactive communication, transparent fees and a completely remote model so clients anywhere in the world could work with us easily.
                 </p>
                 <p>
                   Today, Terz Compliance supports manufacturers, importers and distributors of all sizes. Whether you’re launching a single SKU or an entire portfolio, our job is to make your regulatory journey predictable, documented and stress-free.
@@ -270,7 +270,7 @@ const About = () => {
                 year: "Today",
                 title: "A predictable regulatory partner",
                 description:
-                  "Today, we act as an extended regulatory team for companies of all sizes—bringing structured processes, honest timelines and documentation that stands up to scrutiny.",
+                  "Today, we act as an extended regulatory team for companies of all sizes - bringing structured processes, honest timelines and documentation that stands up to scrutiny.",
                 icon: ShieldCheck,
               }].map((item, index) => (
                 <div
