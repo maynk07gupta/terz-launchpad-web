@@ -303,69 +303,70 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[85vh] lg:min-h-[90vh] flex items-center py-12 lg:py-0">
         {/* Background gradient */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-background/95 to-brand-900/20" />
-        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full bg-sky-500/10 blur-3xl" />
-        
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-background/95 to-brand-900/25" />
+        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/25 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full bg-sky-500/15 blur-3xl" />
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_30%,rgba(103,178,255,0.12),transparent_40%),radial-gradient(circle_at_70%_80%,rgba(16,78,139,0.35),transparent_45%)]" />
+
         {/* Vignette overlay for text contrast */}
-        <div className="absolute inset-0 -z-5 bg-gradient-to-r from-background via-background/80 to-transparent lg:w-[65%]" />
+        <div className="absolute inset-0 -z-5 bg-gradient-to-r from-background/95 via-background/85 to-transparent lg:w-[65%]" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid items-center gap-10 lg:gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="grid items-center gap-10 lg:gap-14 lg:grid-cols-[1.6fr_1fr]">
             {/* Left Column - Text Content (60%) */}
-            <div className="order-2 lg:order-1 max-w-2xl">
+            <div className="order-2 lg:order-1 max-w-3xl space-y-4 lg:space-y-5">
               {/* Section Label */}
-              <span className="mb-4 lg:mb-5 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs lg:text-sm font-semibold uppercase tracking-widest text-primary">
-                Regulatory Approvals Simplified
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-[11px] sm:text-xs lg:text-sm font-semibold uppercase tracking-[0.25em] text-primary">
+                Regulatory approvals simplified
               </span>
-              
+
               {/* Main Heading */}
-              <h1 className="mb-4 lg:mb-5 text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl xl:text-[3.5rem]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-bold leading-tight text-foreground drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
                 Accelerate India's regulatory approvals.
               </h1>
-              
+
               {/* Sub-heading */}
-              <h2 className="mb-3 text-lg lg:text-xl font-medium text-primary/90">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-primary/90">
                 Your end-to-end partner for BIS, CDSCO, Legal Metrology, EPR & more.
               </h2>
-              
+
               {/* Supporting Line */}
-              <p className="text-base lg:text-lg text-muted-foreground/90 leading-relaxed">
+              <p className="text-lg sm:text-xl text-muted-foreground/90 leading-relaxed">
                 We help manufacturers and importers across medical devices, IVDs, cosmetics and beyond launch faster with confidence.
               </p>
-              
+
               {/* CTAs */}
-              <div className="mt-7 lg:mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Button asChild size="lg" className="bg-primary text-base lg:text-lg px-7 py-5 lg:py-6 shadow-[0_20px_40px_-20px_hsla(209,53%,23%,0.55)] hover:bg-primary/90">
+              <div className="pt-2 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <Button asChild size="lg" className="bg-primary text-base sm:text-lg px-7 py-5 lg:py-6 shadow-[0_20px_40px_-20px_hsla(209,53%,23%,0.55)] hover:bg-primary/90">
                   <Link to="/contact">
                     Book a consultation <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild variant="link" className="text-foreground/80 hover:text-primary group underline underline-offset-4 decoration-foreground/30 hover:decoration-primary">
+                <Button asChild variant="link" className="text-base sm:text-lg text-foreground/80 hover:text-primary group underline underline-offset-6 decoration-foreground/30 hover:decoration-primary">
                   <Link to="/services" className="flex items-center gap-1">
                     Explore all services <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
               </div>
-              
+
               {/* Trust Signals - Slim line of badges */}
-              <div className="mt-8 lg:mt-10 flex flex-wrap items-center gap-x-2 gap-y-2 text-xs lg:text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/40 px-3 py-1.5 border border-border/30">
+              <div className="pt-3 lg:pt-4 flex flex-wrap items-center gap-x-2.5 gap-y-2 text-xs sm:text-sm lg:text-base text-muted-foreground">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/40 px-3 py-1.5 border border-border/30 shadow-[0_10px_25px_-20px_rgba(0,0,0,0.45)]">
                   <Shield className="h-3.5 w-3.5 text-primary" />
                   ISO 13485 aligned
                 </span>
                 <span className="text-muted-foreground/40">•</span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/40 px-3 py-1.5 border border-border/30">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/40 px-3 py-1.5 border border-border/30 shadow-[0_10px_25px_-20px_rgba(0,0,0,0.45)]">
                   <CheckCircle className="h-3.5 w-3.5 text-primary" />
                   CDSCO compliant
                 </span>
                 <span className="text-muted-foreground/40">•</span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/40 px-3 py-1.5 border border-border/30">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/40 px-3 py-1.5 border border-border/30 shadow-[0_10px_25px_-20px_rgba(0,0,0,0.45)]">
                   <Globe2 className="h-3.5 w-3.5 text-primary" />
                   Pan-India experts
                 </span>
                 <span className="text-muted-foreground/40">•</span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/40 px-3 py-1.5 border border-border/30">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-muted/40 px-3 py-1.5 border border-border/30 shadow-[0_10px_25px_-20px_rgba(0,0,0,0.45)]">
                   24-hour response
                 </span>
               </div>
