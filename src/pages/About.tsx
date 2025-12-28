@@ -1,100 +1,71 @@
-import {
-  Users,
-  Award,
-  DollarSign,
-  Target,
-  Lightbulb,
-  Building2,
-  Boxes,
-  ShieldCheck,
-  FileCheck2,
-} from "lucide-react";
+import { Users, Award, DollarSign, Target, Lightbulb, Building2, Boxes, ShieldCheck, FileCheck2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useRef } from "react";
-
 const About = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
-
     let scrollInterval: NodeJS.Timeout;
     let isHovered = false;
-
     const startAutoScroll = () => {
       scrollInterval = setInterval(() => {
         if (!isHovered && container) {
           const maxScroll = container.scrollWidth - container.clientWidth;
           const currentScroll = container.scrollLeft;
-
           if (currentScroll >= maxScroll) {
-            container.scrollTo({ left: 0, behavior: "smooth" });
+            container.scrollTo({
+              left: 0,
+              behavior: "smooth"
+            });
           } else {
-            container.scrollBy({ left: 420, behavior: "smooth" });
+            container.scrollBy({
+              left: 420,
+              behavior: "smooth"
+            });
           }
         }
       }, 3000);
     };
-
     const handleMouseEnter = () => {
       isHovered = true;
     };
-
     const handleMouseLeave = () => {
       isHovered = false;
     };
-
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
     startAutoScroll();
-
     return () => {
       clearInterval(scrollInterval);
       container.removeEventListener("mouseenter", handleMouseEnter);
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
-
-
-  const values = [
-    {
-      icon: Target,
-      title: "Mission-Driven",
-      description:
-        "Empowering life science companies to bring products to market efficiently and ethically by simplifying regulatory compliance.",
-    },
-    {
-      icon: Award,
-      title: "Quality First",
-      description:
-        "We focus on first-pass approval with meticulous documentation that meets the highest regulatory standards.",
-    },
-    {
-      icon: Users,
-      title: "Client Partnership",
-      description:
-        "Your success is our success. We provide dedicated support as your single point of contact throughout the journey.",
-    },
-    {
-      icon: DollarSign,
-      title: "Transparent & Fair",
-      description:
-        "Honest communication, predictable timelines, and cost-effective solutions with no hidden fees.",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const values = [{
+    icon: Target,
+    title: "Mission-Driven",
+    description: "Empowering life science companies to bring products to market efficiently and ethically by simplifying regulatory compliance."
+  }, {
+    icon: Award,
+    title: "Quality First",
+    description: "We focus on first-pass approval with meticulous documentation that meets the highest regulatory standards."
+  }, {
+    icon: Users,
+    title: "Client Partnership",
+    description: "Your success is our success. We provide dedicated support as your single point of contact throughout the journey."
+  }, {
+    icon: DollarSign,
+    title: "Transparent & Fair",
+    description: "Honest communication, predictable timelines, and cost-effective solutions with no hidden fees."
+  }];
+  return <div className="min-h-screen bg-background">
       {/* Header / Hero */}
       <section className="bg-gradient-to-br from-primary/5 via-background to-primary/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[650px] lg:min-h-[80vh]">
             <div className="space-y-6 lg:space-y-8 max-w-3xl lg:pr-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-sm font-medium text-primary">
-                <FileCheck2 className="h-4 w-4" />
-                <span>About Terz Compliance</span>
-              </div>
+              
               <div className="space-y-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                   Regulatory approvals for India, done right the first time.
@@ -108,16 +79,10 @@ const About = () => {
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-4">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:shadow-primary/40"
-                >
+                <a href="#contact" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition hover:shadow-primary/40">
                   Book a consultation
                 </a>
-                <a
-                  href="#services"
-                  className="inline-flex items-center justify-center text-base font-semibold text-primary underline-offset-4 hover:underline"
-                >
+                <a href="#services" className="inline-flex items-center justify-center text-base font-semibold text-primary underline-offset-4 hover:underline">
                   Explore our services
                 </a>
               </div>
@@ -246,37 +211,26 @@ const About = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {[{
-                year: "2019",
-                title: "The Insight",
-                description:
-                  "Working inside compliance and industry, we kept seeing good products delayed by unclear documentation and fragmented advice.",
-                icon: Lightbulb,
-              },
-              {
-                year: "2020",
-                title: "Terz Compliance is founded",
-                description:
-                  "We set up Terz Compliance with one goal: make India’s approval process clearer, faster and more predictable for manufacturers and importers.",
-                icon: Building2,
-              },
-              {
-                year: "2022",
-                title: "Scaling across categories",
-                description:
-                  "Our work expanded from medical devices and IVDs into cosmetics, food, EPR and Legal Metrology, supported by a fully remote model serving clients across India and abroad.",
-                icon: Boxes,
-              },
-              {
-                year: "Today",
-                title: "A predictable regulatory partner",
-                description:
-                  "Today, we act as an extended regulatory team for companies of all sizes - bringing structured processes, honest timelines and documentation that stands up to scrutiny.",
-                icon: ShieldCheck,
-              }].map((item, index) => (
-                <div
-                  key={item.year}
-                  className="relative h-full rounded-2xl border border-primary/15 bg-background/70 p-6 shadow-md shadow-primary/10"
-                >
+              year: "2019",
+              title: "The Insight",
+              description: "Working inside compliance and industry, we kept seeing good products delayed by unclear documentation and fragmented advice.",
+              icon: Lightbulb
+            }, {
+              year: "2020",
+              title: "Terz Compliance is founded",
+              description: "We set up Terz Compliance with one goal: make India’s approval process clearer, faster and more predictable for manufacturers and importers.",
+              icon: Building2
+            }, {
+              year: "2022",
+              title: "Scaling across categories",
+              description: "Our work expanded from medical devices and IVDs into cosmetics, food, EPR and Legal Metrology, supported by a fully remote model serving clients across India and abroad.",
+              icon: Boxes
+            }, {
+              year: "Today",
+              title: "A predictable regulatory partner",
+              description: "Today, we act as an extended regulatory team for companies of all sizes - bringing structured processes, honest timelines and documentation that stands up to scrutiny.",
+              icon: ShieldCheck
+            }].map((item, index) => <div key={item.year} className="relative h-full rounded-2xl border border-primary/15 bg-background/70 p-6 shadow-md shadow-primary/10">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20">
                       <item.icon className="h-6 w-6" />
@@ -287,11 +241,8 @@ const About = () => {
                     </div>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                  {index < 3 && (
-                    <div className="hidden lg:block absolute top-10 -right-3 h-px w-6 bg-gradient-to-r from-primary/40 to-primary" aria-hidden />
-                  )}
-                </div>
-              ))}
+                  {index < 3 && <div className="hidden lg:block absolute top-10 -right-3 h-px w-6 bg-gradient-to-r from-primary/40 to-primary" aria-hidden />}
+                </div>)}
             </div>
           </div>
         </div>
@@ -305,8 +256,7 @@ const About = () => {
               Our Mission & Values
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {values.map((value, index) => (
-                <Card key={index}>
+              {values.map((value, index) => <Card key={index}>
                   <CardContent className="pt-6">
                     <value.icon className="h-12 w-12 text-primary mb-4" />
                     <h3 className="text-xl font-semibold text-foreground mb-2">
@@ -314,8 +264,7 @@ const About = () => {
                     </h3>
                     <p className="text-muted-foreground">{value.description}</p>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </div>
@@ -364,10 +313,7 @@ const About = () => {
               Real experiences from industry professionals who trust Terz Compliance
             </p>
             <div className="relative">
-              <div 
-                ref={scrollContainerRef}
-                className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40"
-              >
+              <div ref={scrollContainerRef} className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40">
                 <div className="flex gap-6 min-w-max px-2">
                   <Card className="w-[400px] flex-shrink-0">
                     <CardContent className="pt-6 h-full flex flex-col">
@@ -447,8 +393,6 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default About;
