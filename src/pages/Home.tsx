@@ -8,7 +8,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import BioSureLogo from "@/assets/clients/biosure.svg";
 import DermavitaLogo from "@/assets/clients/dermavita.svg";
@@ -22,6 +21,7 @@ import IecImage from "@/assets/iec.jpg";
 import IvdImage from "@/assets/ivd.jpg";
 import LmpcImage from "@/assets/lmpc.jpg";
 import MedicalDevicesImage from "@/assets/medical-devices.jpg";
+import HeroRegulatoryImage from "@/assets/hero-regulatory.jpg";
 type HeroService = {
   title: string;
   headline: string;
@@ -232,10 +232,7 @@ const clients: Client[] = [{
 }];
 const glassPanel = "border border-border/70 bg-card/80 backdrop-blur shadow-surface-sm";
 const Home = () => {
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
-  const [activeHeroService, setActiveHeroService] = React.useState(0);
-  const heroIntervalRef = React.useRef<NodeJS.Timeout | null>(null);
   const [activeAudience, setActiveAudience] = React.useState<AudienceKey>("importers");
   const processRef = React.useRef<HTMLDivElement | null>(null);
   const [processInView, setProcessInView] = React.useState(false);
@@ -281,30 +278,12 @@ const Home = () => {
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
+  
   const handleLeadFormSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     navigate("/contact");
   }, [navigate]);
-  React.useEffect(() => {
-    if (!isMobile) {
-      heroIntervalRef.current = setInterval(() => {
-        setActiveHeroService(previous => (previous + 1) % heroServices.length);
-      }, 7000);
-    }
-    return () => {
-      if (heroIntervalRef.current) {
-        clearInterval(heroIntervalRef.current);
-        heroIntervalRef.current = null;
-      }
-    };
-  }, [isMobile]);
-  const handleHeroSelect = React.useCallback((index: number) => {
-    setActiveHeroService(index);
-    if (heroIntervalRef.current) {
-      clearInterval(heroIntervalRef.current);
-      heroIntervalRef.current = null;
-    }
-  }, []);
+  
   React.useEffect(() => {
     if (!processRef.current) return;
     const observer = new IntersectionObserver(entries => {
@@ -320,109 +299,112 @@ const Home = () => {
     observer.observe(processRef.current);
     return () => observer.disconnect();
   }, []);
-  const activeHero = heroServices[activeHeroService];
   return <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center py-8 lg:py-[20px]">
-        <div className="absolute inset-0 -z-20">
-          <img src={activeHero.image} alt={`${activeHero.title} background`} className="h-full w-full object-cover" />
-        </div>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background/95 via-background/85 to-background/95" />
-        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-sky-500/20 blur-3xl" />
-        <div className="absolute left-1/2 top-1/2 hidden h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/10 bg-primary/10 opacity-60 lg:block" />
+      <section className="relative overflow-hidden min-h-[85vh] lg:min-h-[90vh] flex items-center py-12 lg:py-0">
+        {/* Background gradient */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-background/95 to-brand-900/20" />
+        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full bg-sky-500/10 blur-3xl" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-[1fr_1.2fr]">
-            <div className="max-w-2xl">
-              <span className="mb-4 lg:mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs lg:text-sm font-medium text-primary">
-                <span className="h-2 w-2 rounded-full bg-primary" />
-                Compliance for importers & manufacturers
+          <div className="grid items-center gap-10 lg:gap-16 lg:grid-cols-[1.2fr_1fr]">
+            {/* Left Column - Text Content (55-60%) */}
+            <div className="order-2 lg:order-1 max-w-2xl">
+              {/* Section Label */}
+              <span className="mb-4 lg:mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs lg:text-sm font-semibold uppercase tracking-widest text-primary">
+                Regulatory Approvals Simplified
               </span>
+              
+              {/* Main Heading */}
               <h1 className="mb-4 lg:mb-6 text-3xl font-bold leading-tight text-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
-                Regulatory compliance, retold as your launch story
+                Accelerate India's regulatory approvals.
               </h1>
-              <p className="text-base lg:text-lg text-muted-foreground/90">
-                Navigate CDSCO, CDSCO (IVD), BIS, LMPC, and EPR frameworks with a partner that choreographs every step - from dossier builds to post-market vigilance.
+              
+              {/* Sub-heading */}
+              <h2 className="mb-4 text-lg lg:text-xl font-medium text-primary/90">
+                Your end-to-end partner for BIS, CDSCO, Legal Metrology, EPR & other Indian compliance.
+              </h2>
+              
+              {/* Supporting Line */}
+              <p className="text-base lg:text-lg text-muted-foreground/90 leading-relaxed">
+                We guide manufacturers and importers across medical devices, IVD, cosmetics and more through India's regulatory maze so you can launch faster with confidence.
               </p>
-              <div className="mt-6 lg:mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-primary shadow-[0_20px_40px_-20px_hsla(209,53%,23%,0.55)] hover:bg-primary/90">
+              
+              {/* CTAs */}
+              <div className="mt-8 lg:mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <Button asChild size="lg" className="bg-primary text-lg px-8 py-6 shadow-[0_20px_40px_-20px_hsla(209,53%,23%,0.55)] hover:bg-primary/90">
                   <Link to="/contact">
-                    Schedule a strategy call <ArrowRight className="ml-2 h-5 w-5" />
+                    Book a free consultation <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="border-white/20 text-foreground transition hover:border-primary/40 hover:bg-white/10">
-                  <Link to="/services">Explore full service lineup</Link>
+                <Button asChild variant="link" className="text-foreground/80 hover:text-primary group">
+                  <Link to="/services" className="flex items-center gap-1">
+                    Explore services <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </Button>
               </div>
-              <div className="mt-6 lg:mt-10 grid gap-3 sm:grid-cols-2">
-                {heroStats.map(stat => <div key={stat.label} className={cn("rounded-2xl p-4 lg:p-5 shadow-[0_20px_50px_-35px_hsla(209,53%,23%,0.7)]", glassPanel)}>
-                    <p className="text-xs font-semibold uppercase tracking-[0.3em] text-muted-foreground">
-                      {stat.label}
-                    </p>
-                    <p className="mt-2 lg:mt-3 text-2xl lg:text-3xl font-semibold capitalize text-primary">{stat.value}</p>
-                  </div>)}
+              
+              {/* Trust Signals */}
+              <div className="mt-10 lg:mt-12 flex flex-wrap items-center gap-6 lg:gap-8">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Shield className="h-5 w-5 text-primary" />
+                  <span>ISO 13485 aligned</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Globe2 className="h-5 w-5 text-primary" />
+                  <span>Pan-India regulatory experts</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="h-5 w-5 text-primary" />
+                  <span>24-hour response</span>
+                </div>
               </div>
             </div>
 
-            <div className="relative mx-auto w-full">
-              <div className="absolute -left-12 -top-10 h-32 w-32 rounded-full bg-primary/30 blur-2xl" />
-              <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-sky-500/20 blur-3xl" />
-              <Card className={cn("relative overflow-hidden shadow-[0_60px_140px_-70px_hsla(209,53%,23%,0.75)] transition", glassPanel)}>
-                <div className={cn("absolute inset-0 -z-10 bg-gradient-to-br", activeHero.accent)} />
-                <CardContent className="relative space-y-4 lg:space-y-6 p-0">
-                  {/* Service Image */}
-                  <div className="relative h-48 lg:h-64 overflow-hidden">
-                    <img src={activeHero.image} alt={activeHero.title} className="h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
-                    <div className="absolute bottom-4 left-6 right-6">
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15 text-primary backdrop-blur">
-                          <activeHero.icon className="h-6 w-6" />
-                        </span>
-                        <div>
-                          <p className="text-xs text-muted-foreground">Focus area</p>
-                          <p className="text-lg font-semibold text-foreground">{activeHero.title}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Service Content */}
-                  <div className="px-6 lg:px-8 pb-6 lg:pb-8 space-y-4 lg:space-y-5">
-                    <div className="space-y-3">
-                      <h2 className="text-xl lg:text-2xl font-semibold text-foreground leading-tight">{activeHero.headline}</h2>
-                      <p className="text-sm leading-relaxed text-muted-foreground">{activeHero.description}</p>
-                    </div>
-                    <div className="rounded-2xl border border-white/5 bg-white/5 p-4 lg:p-5">
-                      <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary/80">
-                        How we help
-                      </p>
-                      <ul className="mt-3 lg:mt-4 space-y-2.5 lg:space-y-3 text-sm text-muted-foreground">
-                        {activeHero.highlights.map(highlight => <li key={highlight} className="flex items-start gap-2">
-                            <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                            <span>{highlight}</span>
-                          </li>)}
-                      </ul>
-                    </div>
-                    <Button asChild variant="secondary" className="w-full group inline-flex items-center justify-center gap-2 border-white/20 bg-white/10 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-white/20">
-                      <Link to="/services">
-                        Explore this service
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {heroServices.map((service, index) => <button key={service.title} type="button" onClick={() => handleHeroSelect(index)} onMouseEnter={() => !isMobile && handleHeroSelect(index)} className={cn("group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 text-left transition", activeHeroService === index ? "border-primary/60 bg-primary/10 text-foreground shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.6)]" : "hover:border-primary/40 hover:bg-white/15")}>
-                    <span className={cn("flex h-10 w-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary transition-transform", activeHeroService === index ? "scale-105" : "group-hover:scale-105")}>
-                      <service.icon className="h-5 w-5" />
-                    </span>
-                    <span className="text-sm font-medium text-foreground">{service.title}</span>
-                  </button>)}
+            {/* Right Column - Hero Image (40-45%) */}
+            <div className="order-1 lg:order-2 relative">
+              <div className="absolute -left-8 -top-8 h-32 w-32 rounded-full bg-primary/20 blur-2xl" />
+              <div className="absolute -bottom-8 -right-8 h-40 w-40 rounded-full bg-sky-500/15 blur-3xl" />
+              <div className="relative overflow-hidden rounded-3xl border border-border/50 shadow-[0_60px_140px_-70px_hsla(209,53%,23%,0.75)]">
+                <img 
+                  src={HeroRegulatoryImage} 
+                  alt="Regulatory compliance specialist reviewing documents with India map overlay" 
+                  className="w-full h-auto object-cover aspect-[4/3]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Overview Cards - Moved from Hero */}
+      <section className="relative py-16 lg:py-20">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-white/5 to-transparent" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <h2 className="text-2xl lg:text-3xl font-bold text-foreground">Our Core Services</h2>
+            <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+              Comprehensive regulatory support across India's key compliance frameworks
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {heroServices.map((service, index) => (
+              <Link 
+                key={service.title} 
+                to="/services"
+                className={cn(
+                  "group flex flex-col items-center gap-3 rounded-2xl border border-border/50 bg-card/60 backdrop-blur p-5 text-center transition-all duration-300",
+                  "hover:border-primary/50 hover:bg-card/80 hover:-translate-y-1 hover:shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.5)]"
+                )}
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary transition-transform group-hover:scale-110">
+                  <service.icon className="h-6 w-6" />
+                </span>
+                <span className="text-sm font-medium text-foreground">{service.title}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
