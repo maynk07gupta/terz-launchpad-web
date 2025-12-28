@@ -55,6 +55,21 @@ export const HeroServiceCarousel = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mediaQuery.matches) {
+      setIsPlaying(false);
+    }
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsPlaying(!event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning) return;
     setIsTransitioning(true);
@@ -86,24 +101,29 @@ export const HeroServiceCarousel = () => {
   }, [isPlaying, goToNext]);
 
   return (
-    <div 
+    <div
       className="relative w-full h-full min-h-[320px] lg:min-h-[420px]"
       role="region"
       aria-label="Service showcase carousel"
       aria-roledescription="carousel"
+      aria-live="polite"
     >
       {/* Main Carousel Container */}
-      <div className="relative w-full h-full overflow-hidden rounded-2xl lg:rounded-3xl border border-border/40 shadow-[0_40px_100px_-50px_hsla(209,53%,23%,0.6)]">
+      <div className="relative w-full h-full overflow-hidden rounded-2xl lg:rounded-3xl border border-border/40 shadow-[0_40px_100px_-50px_hsla(209,53%,23%,0.6)] bg-gradient-to-b from-background/75 via-background/50 to-background/80">
+        <span className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 rounded-full bg-background/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary border border-primary/30 backdrop-blur">
+          Service preview
+        </span>
         {/* Slides */}
         {serviceSlides.map((slide, index) => (
           <div
             key={slide.id}
             className={cn(
               "absolute inset-0 transition-all duration-500 ease-out",
-              index === currentIndex 
-                ? "opacity-100 scale-100 z-10" 
+              index === currentIndex
+                ? "opacity-100 scale-100 z-10"
                 : "opacity-0 scale-105 z-0"
             )}
+            id={`hero-service-slide-${slide.id}`}
             role="group"
             aria-roledescription="slide"
             aria-label={`${index + 1} of ${serviceSlides.length}: ${slide.title}`}
@@ -115,6 +135,7 @@ export const HeroServiceCarousel = () => {
               alt={`${slide.title} - ${slide.caption}`}
               className="absolute inset-0 w-full h-full object-cover"
               loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
             />
             
             {/* Gradient Overlay */}
@@ -160,6 +181,7 @@ export const HeroServiceCarousel = () => {
           onClick={togglePlayPause}
           className="absolute top-3 right-3 z-20 p-2 rounded-full bg-background/70 backdrop-blur border border-border/50 text-foreground/80 hover:bg-background hover:text-foreground transition-all"
           aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+          aria-pressed={!isPlaying}
         >
           {isPlaying ? (
             <Pause className="h-4 w-4" />
@@ -188,6 +210,8 @@ export const HeroServiceCarousel = () => {
             role="tab"
             aria-selected={index === currentIndex}
             aria-label={`Go to ${slide.title} slide`}
+            aria-controls={`hero-service-slide-${slide.id}`}
+            tabIndex={index === currentIndex ? 0 : -1}
           />
         ))}
       </div>
