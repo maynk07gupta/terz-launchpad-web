@@ -78,13 +78,7 @@ const Contact = () => {
 
                     <div className="space-y-2">
                       <Label htmlFor="message">Message *</Label>
-                      <Textarea 
-                        id="message" 
-                        placeholder="Tell us about your product, service and compliance needs..." 
-                        required 
-                        rows={6} 
-                        className="w-full" 
-                      />
+                      <Textarea id="message" placeholder="Tell us about your product, service and compliance needs..." required rows={6} className="w-full" />
                     </div>
 
                     <div className="space-y-2">
@@ -119,19 +113,13 @@ const Contact = () => {
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
                       <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                      <a 
-                        href="mailto:info@terzcompliance.com" 
-                        className="text-sm text-foreground hover:text-primary transition-colors break-all"
-                      >
+                      <a href="mailto:info@terzcompliance.com" className="text-sm text-foreground hover:text-primary transition-colors break-all">
                         info@terzcompliance.com
                       </a>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                      <a 
-                        href="tel:+917983858470" 
-                        className="text-sm text-foreground hover:text-primary transition-colors"
-                      >
+                      <a href="tel:+917983858470" className="text-sm text-foreground hover:text-primary transition-colors">
                         +91 79838 58470
                       </a>
                     </div>
@@ -150,17 +138,8 @@ const Contact = () => {
                     Start a WhatsApp chat with our team.
                     Available Mon – Fri, 9:00 AM – 6:00 PM IST.
                   </p>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full" 
-                    asChild
-                  >
-                    <a 
-                      href="https://wa.me/917983858470" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
+                  <Button variant="outline" size="sm" className="w-full" asChild>
+                    <a href="https://wa.me/917983858470" target="_blank" rel="noopener noreferrer">
                       <MessageSquare className="h-4 w-4 mr-2" />
                       Start WhatsApp chat
                     </a>
@@ -170,29 +149,7 @@ const Contact = () => {
 
               {/* Card 3 - Free consultation */}
               <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold text-foreground mb-2">Book a free 30-minute consultation</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Not sure where to start? Schedule a session and we'll review your product and the approvals you need.
-                  </p>
-                  <Button 
-                    size="sm" 
-                    className="w-full mb-3" 
-                    asChild
-                  >
-                    <a 
-                      href="https://calendly.com/terzcompliance/consultation" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      <Calendar className="h-4 w-4 mr-2" />
-                      Schedule a call
-                    </a>
-                  </Button>
-                  <p className="text-xs text-muted-foreground text-center">
-                    We serve clients across India and work fully remote.
-                  </p>
-                </CardContent>
+                
               </Card>
             </div>
           </div>
