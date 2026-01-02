@@ -93,11 +93,7 @@ const About = () => {
               <div className="relative w-full max-w-xl">
                 <div className="absolute inset-0 -translate-x-6 translate-y-6 rounded-3xl bg-primary/10 blur-3xl" aria-hidden />
                 <div className="relative overflow-hidden rounded-3xl border border-primary/20 shadow-2xl">
-                  <img 
-                    src={aboutHeroImage} 
-                    alt="Navigating India's Regulatory Maze - Your trusted partner in compliance strategy and solutions" 
-                    className="w-full h-auto object-cover"
-                  />
+                  <img src={aboutHeroImage} alt="Navigating India's Regulatory Maze - Your trusted partner in compliance strategy and solutions" className="w-full h-auto object-cover" />
                 </div>
               </div>
             </div>
