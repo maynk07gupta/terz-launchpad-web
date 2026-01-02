@@ -1,4 +1,5 @@
-import { Users, Award, DollarSign, Target, Lightbulb, Building2, Boxes, ShieldCheck, FileCheck2 } from "lucide-react";
+import { Users, Award, DollarSign, Target, Lightbulb, Building2, Boxes, ShieldCheck } from "lucide-react";
+import aboutHeroImage from "@/assets/about-hero.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useRef } from "react";
 const About = () => {
@@ -91,58 +92,12 @@ const About = () => {
             <div className="relative h-full flex items-center justify-center">
               <div className="relative w-full max-w-xl">
                 <div className="absolute inset-0 -translate-x-6 translate-y-6 rounded-3xl bg-primary/10 blur-3xl" aria-hidden />
-                <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-background via-primary/5 to-primary/10 shadow-2xl">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-primary/20 via-background to-primary/30 flex items-center justify-center">
-                    <div className="grid grid-cols-2 gap-4 p-8 w-full h-full">
-                      <div className="flex flex-col gap-4">
-                        <div className="flex-1 rounded-2xl bg-white/80 p-4 shadow-md shadow-primary/10 ring-1 ring-primary/10">
-                          <div className="h-full rounded-xl border border-dashed border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 flex flex-col items-start justify-center gap-3 p-4">
-                            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                              <ShieldCheck className="h-4 w-4" />
-                              <span>Trusted approvals</span>
-                            </div>
-                            <p className="text-sm text-foreground font-semibold leading-relaxed">
-                              BIS, CDSCO, FSSAI, EPR and Legal Metrology - mapped into predictable steps.
-                            </p>
-                          </div>
-                        </div>
-                        <div className="flex-1 rounded-2xl bg-white/70 p-4 shadow-md shadow-primary/10 ring-1 ring-primary/10">
-                          <div className="h-full rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 flex items-center justify-between px-4 py-3">
-                            <div>
-                              <p className="text-xs uppercase tracking-wide text-primary font-semibold">Nationwide support</p>
-                              <p className="text-sm text-muted-foreground">Remote-first team across India</p>
-                            </div>
-                            <div className="h-12 w-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-                              <FileCheck2 className="h-6 w-6 text-primary" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col gap-4">
-                        <div className="flex-1 rounded-2xl bg-white/70 p-4 shadow-md shadow-primary/10 ring-1 ring-primary/10">
-                          <div className="h-full rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 p-4 flex flex-col justify-between">
-                            <div className="text-xs uppercase tracking-wide text-primary font-semibold">India launch kit</div>
-                            <div className="space-y-2 text-sm text-muted-foreground">
-                              <p>• Documentation readiness</p>
-                              <p>• Category-specific roadmaps</p>
-                              <p>• Clear timelines & fees</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex-1 rounded-2xl bg-white/80 p-4 shadow-md shadow-primary/10 ring-1 ring-primary/10">
-                          <div className="h-full rounded-xl border border-dashed border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 flex flex-col justify-center gap-3 p-4">
-                            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                              <FileCheck2 className="h-4 w-4" />
-                              <span>Launch-ready</span>
-                            </div>
-                            <p className="text-sm text-foreground font-semibold leading-relaxed">
-                              Visualizing approvals across devices, diagnostics, cosmetics and more for confident entries.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="relative overflow-hidden rounded-3xl border border-primary/20 shadow-2xl">
+                  <img 
+                    src={aboutHeroImage} 
+                    alt="Navigating India's Regulatory Maze - Your trusted partner in compliance strategy and solutions" 
+                    className="w-full h-auto object-cover"
+                  />
                 </div>
               </div>
             </div>
