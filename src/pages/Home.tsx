@@ -237,53 +237,49 @@ const Home = () => {
   const processRef = React.useRef<HTMLDivElement | null>(null);
   const [processInView, setProcessInView] = React.useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
-
     let scrollInterval: NodeJS.Timeout;
     let isHovered = false;
-
     const startAutoScroll = () => {
       scrollInterval = setInterval(() => {
         if (!isHovered && container) {
           const maxScroll = container.scrollWidth - container.clientWidth;
           const currentScroll = container.scrollLeft;
-
           if (currentScroll >= maxScroll) {
-            container.scrollTo({ left: 0, behavior: "smooth" });
+            container.scrollTo({
+              left: 0,
+              behavior: "smooth"
+            });
           } else {
-            container.scrollBy({ left: 420, behavior: "smooth" });
+            container.scrollBy({
+              left: 420,
+              behavior: "smooth"
+            });
           }
         }
       }, 3000);
     };
-
     const handleMouseEnter = () => {
       isHovered = true;
     };
-
     const handleMouseLeave = () => {
       isHovered = false;
     };
-
     container.addEventListener("mouseenter", handleMouseEnter);
     container.addEventListener("mouseleave", handleMouseLeave);
     startAutoScroll();
-
     return () => {
       clearInterval(scrollInterval);
       container.removeEventListener("mouseenter", handleMouseEnter);
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
-  
   const handleLeadFormSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     navigate("/contact");
   }, [navigate]);
-  
   React.useEffect(() => {
     if (!processRef.current) return;
     const observer = new IntersectionObserver(entries => {
@@ -393,21 +389,12 @@ const Home = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {heroServices.map((service, index) => (
-              <Link 
-                key={service.title} 
-                to="/services"
-                className={cn(
-                  "group flex flex-col items-center gap-3 rounded-2xl border border-border/50 bg-card/60 backdrop-blur p-5 text-center transition-all duration-300",
-                  "hover:border-primary/50 hover:bg-card/80 hover:-translate-y-1 hover:shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.5)]"
-                )}
-              >
+            {heroServices.map((service, index) => <Link key={service.title} to="/services" className={cn("group flex flex-col items-center gap-3 rounded-2xl border border-border/50 bg-card/60 backdrop-blur p-5 text-center transition-all duration-300", "hover:border-primary/50 hover:bg-card/80 hover:-translate-y-1 hover:shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.5)]")}>
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary transition-transform group-hover:scale-110">
                   <service.icon className="h-6 w-6" />
                 </span>
                 <span className="text-sm font-medium text-foreground">{service.title}</span>
-              </Link>
-            ))}
+              </Link>)}
           </div>
         </div>
       </section>
@@ -490,13 +477,9 @@ const Home = () => {
                 </div>)}
             </div>
             <div className="relative w-full">
-              <div 
-                ref={scrollContainerRef}
-                className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40"
-              >
+              <div ref={scrollContainerRef} className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40">
                 <div className="flex gap-6 min-w-max px-2">
-                  {testimonials.map((testimonial, index) => (
-                    <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-[0_35px_120px_-60px_hsla(209,53%,35%,0.6)]", glassPanel)}>
+                  {testimonials.map((testimonial, index) => <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-[0_35px_120px_-60px_hsla(209,53%,35%,0.6)]", glassPanel)}>
                       <CardContent className="flex flex-col gap-6 p-8 text-left h-full">
                         <Quote className="h-10 w-10 text-primary flex-shrink-0" />
                         <p className="text-base leading-relaxed text-muted-foreground flex-grow italic">"{testimonial.quote}"</p>
@@ -506,8 +489,7 @@ const Home = () => {
                           <p className="text-sm text-muted-foreground">{testimonial.company}</p>
                         </div>
                       </CardContent>
-                    </Card>
-                  ))}
+                    </Card>)}
                 </div>
               </div>
               <p className="text-sm text-center text-muted-foreground mt-6">
@@ -547,28 +529,7 @@ const Home = () => {
       </section>
 
       {/* Differentiators */}
-      <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,hsla(162,66%,32%,0.1),transparent_65%)]" />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Why teams choose Terz</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Predictable approvals, transparent communication, and a partner that safeguards compliance long after launch.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {differentiators.map(item => <Card key={item.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-70px_hsla(209,53%,28%,0.55)]", glassPanel)}>
-                <CardContent className="space-y-4 p-6">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/40 bg-primary/15">
-                    <CheckCircle className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                </CardContent>
-              </Card>)}
-          </div>
-        </div>
-      </section>
+      
 
       {/* CTA Section with Inline Form */}
       <section className="relative py-24 lg:py-[12px]">
