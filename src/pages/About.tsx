@@ -182,9 +182,16 @@ const About = () => {
               description: "Today, we act as an extended regulatory team for companies of all sizes - bringing structured processes, honest timelines and documentation that stands up to scrutiny.",
               icon: ShieldCheck
             }].map((item, index) => <div key={item.year} className="relative h-full rounded-2xl border border-primary/15 bg-background/70 p-6 shadow-md shadow-primary/10">
+                  {/* Image Placeholder */}
+                  <div className="mb-4 h-32 w-full rounded-lg bg-muted/50 border border-border/50 flex items-center justify-center overflow-hidden">
+                    <div className="text-muted-foreground/60 text-sm flex flex-col items-center gap-2">
+                      <item.icon className="h-8 w-8" />
+                      <span>Image placeholder</span>
+                    </div>
+                  </div>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20">
-                      <item.icon className="h-6 w-6" />
+                    <div className="h-10 w-10 rounded-full bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20">
+                      <item.icon className="h-5 w-5" />
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-wide text-primary font-semibold">{item.year}</p>
