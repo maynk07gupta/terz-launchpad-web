@@ -1,9 +1,15 @@
 import { Users, Award, DollarSign, Target, Lightbulb, Building2, Boxes, ShieldCheck } from "lucide-react";
 import aboutHeroImage from "@/assets/about-hero.png";
+import timeline2019 from "@/assets/timeline-2019.jpg";
+import timeline2020 from "@/assets/timeline-2020.jpg";
+import timeline2022 from "@/assets/timeline-2022.jpg";
+import timelineToday from "@/assets/timeline-today.jpg";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useRef } from "react";
+
 const About = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
@@ -43,6 +49,7 @@ const About = () => {
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
+
   const values = [{
     icon: Target,
     title: "Mission-Driven",
@@ -60,7 +67,35 @@ const About = () => {
     title: "Transparent & Fair",
     description: "Honest communication, predictable timelines, and cost-effective solutions with no hidden fees."
   }];
-  return <div className="min-h-screen bg-background">
+
+  const timelineItems = [{
+    year: "2019",
+    title: "The Insight",
+    description: "Working inside compliance and industry, we kept seeing good products delayed by unclear documentation and fragmented advice.",
+    icon: Lightbulb,
+    image: timeline2019
+  }, {
+    year: "2020",
+    title: "Terz Compliance is founded",
+    description: "We set up Terz Compliance with one goal: make India's approval process clearer, faster and more predictable for manufacturers and importers.",
+    icon: Building2,
+    image: timeline2020
+  }, {
+    year: "2022",
+    title: "Scaling across categories",
+    description: "Our work expanded from medical devices and IVDs into cosmetics, food, EPR and Legal Metrology, supported by a fully remote model serving clients across India and abroad.",
+    icon: Boxes,
+    image: timeline2022
+  }, {
+    year: "Today",
+    title: "A predictable regulatory partner",
+    description: "Today, we act as an extended regulatory team for companies of all sizes - bringing structured processes, honest timelines and documentation that stands up to scrutiny.",
+    icon: ShieldCheck,
+    image: timelineToday
+  }];
+
+  return (
+    <div className="min-h-screen bg-background">
       {/* Header / Hero */}
       <section className="bg-gradient-to-br from-primary/5 via-background to-primary/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,7 +111,7 @@ const About = () => {
                   We simplify approvals across medical devices, in-vitro diagnostics, cosmetics, food, EPR, Legal Metrology and more - so your team can launch faster with confidence.
                 </p>
                 <p className="text-base text-foreground/70 font-medium">
-                  From first-time importers to global brands, we’ve helped teams navigate India’s regulations without surprises or guesswork.
+                  From first-time importers to global brands, we've helped teams navigate India's regulations without surprises or guesswork.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-4">
@@ -116,13 +151,13 @@ const About = () => {
               </p>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Instead of accepting that as “just the way it is”, we decided to build a partner that does things differently.
+                  Instead of accepting that as "just the way it is", we decided to build a partner that does things differently.
                 </p>
                 <p>
                   We started by mapping every major Indian approval pathway - BIS, CDSCO, Legal Metrology, FSSAI, EPR and more - and breaking them into clear, repeatable steps. Then we combined this with proactive communication, transparent fees and a completely remote model so clients anywhere in the world could work with us easily.
                 </p>
                 <p>
-                  Today, Terz Compliance supports manufacturers, importers and distributors of all sizes. Whether you’re launching a single SKU or an entire portfolio, our job is to make your regulatory journey predictable, documented and stress-free.
+                  Today, Terz Compliance supports manufacturers, importers and distributors of all sizes. Whether you're launching a single SKU or an entire portfolio, our job is to make your regulatory journey predictable, documented and stress-free.
                 </p>
               </div>
             </div>
@@ -151,7 +186,7 @@ const About = () => {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-8 mb-10">
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
-                  <span>How we’ve grown</span>
+                  <span>How we've grown</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-foreground">From Uttarakhand to a pan-India partner</h3>
                 <p className="text-muted-foreground">
@@ -161,33 +196,15 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-              {[{
-              year: "2019",
-              title: "The Insight",
-              description: "Working inside compliance and industry, we kept seeing good products delayed by unclear documentation and fragmented advice.",
-              icon: Lightbulb
-            }, {
-              year: "2020",
-              title: "Terz Compliance is founded",
-              description: "We set up Terz Compliance with one goal: make India’s approval process clearer, faster and more predictable for manufacturers and importers.",
-              icon: Building2
-            }, {
-              year: "2022",
-              title: "Scaling across categories",
-              description: "Our work expanded from medical devices and IVDs into cosmetics, food, EPR and Legal Metrology, supported by a fully remote model serving clients across India and abroad.",
-              icon: Boxes
-            }, {
-              year: "Today",
-              title: "A predictable regulatory partner",
-              description: "Today, we act as an extended regulatory team for companies of all sizes - bringing structured processes, honest timelines and documentation that stands up to scrutiny.",
-              icon: ShieldCheck
-            }].map((item, index) => <div key={item.year} className="relative h-full rounded-2xl border border-primary/15 bg-background/70 p-6 shadow-md shadow-primary/10">
-                  {/* Image Placeholder */}
-                  <div className="mb-4 h-32 w-full rounded-lg bg-muted/50 border border-border/50 flex items-center justify-center overflow-hidden">
-                    <div className="text-muted-foreground/60 text-sm flex flex-col items-center gap-2">
-                      <item.icon className="h-8 w-8" />
-                      <span>Image placeholder</span>
-                    </div>
+              {timelineItems.map((item, index) => (
+                <div key={item.year} className="relative h-full rounded-2xl border border-primary/15 bg-background/70 p-6 shadow-md shadow-primary/10">
+                  {/* Timeline Image */}
+                  <div className="mb-4 h-32 w-full rounded-lg overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={`${item.year} - ${item.title}`}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="h-10 w-10 rounded-full bg-primary/10 text-primary flex items-center justify-center ring-1 ring-primary/20">
@@ -200,7 +217,8 @@ const About = () => {
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                   {index < 3 && <div className="hidden lg:block absolute top-10 -right-3 h-px w-6 bg-gradient-to-r from-primary/40 to-primary" aria-hidden />}
-                </div>)}
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -214,7 +232,8 @@ const About = () => {
               Our Mission & Values
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {values.map((value, index) => <Card key={index}>
+              {values.map((value, index) => (
+                <Card key={index}>
                   <CardContent className="pt-6">
                     <value.icon className="h-12 w-12 text-primary mb-4" />
                     <h3 className="text-xl font-semibold text-foreground mb-2">
@@ -222,7 +241,8 @@ const About = () => {
                     </h3>
                     <p className="text-muted-foreground">{value.description}</p>
                   </CardContent>
-                </Card>)}
+                </Card>
+              ))}
             </div>
           </div>
         </div>
@@ -351,6 +371,8 @@ const About = () => {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default About;
