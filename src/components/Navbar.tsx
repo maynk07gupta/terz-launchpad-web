@@ -28,16 +28,16 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50">
-      <div className="relative border-b border-border/70 bg-card shadow-[0_18px_48px_-22px_hsla(209,53%,23%,0.3)]">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-primary/10 via-primary/50 to-primary/10" />
+      <div className="relative border-b border-border/60 bg-card/95 backdrop-blur-sm shadow-surface">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-primary/5 via-primary/20 to-primary/5" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link
               to="/"
-              className="group relative flex items-center rounded-full border border-border/80 bg-card/90 px-4 py-2 shadow-[0_14px_34px_-18px_hsla(209,32%,22%,0.28)] transition-all duration-300 hover:scale-110 hover:shadow-[0_30px_70px_-20px_hsla(209,32%,22%,0.6)]"
+              className="group relative flex items-center rounded-full border border-border/60 bg-card px-4 py-2 shadow-surface-sm transition-all duration-300 hover:scale-110 hover:shadow-lg"
             >
-              <span className="absolute inset-0 rounded-full bg-background/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="absolute inset-0 rounded-full bg-primary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <img src={logo} alt="Terz Compliance" className="relative z-10 h-10 sm:h-12 transition-transform duration-300 group-hover:scale-105" />
             </Link>
 
@@ -69,14 +69,14 @@ const Navbar = () => {
                 </button>
                 {servicesOpen && (
                   <div className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3">
-                    <div className="rounded-2xl border border-border/70 bg-card p-2 shadow-[0_24px_60px_-28px_hsla(209,38%,20%,0.22)] ring-1 ring-primary/10 animate-in fade-in zoom-in-95">
+                    <div className="rounded-2xl border border-border/60 bg-card p-2 shadow-lg ring-1 ring-primary/5 animate-in fade-in zoom-in-95">
                       {services.map((service) => (
                         <Link
                           key={service.name}
                           to={service.path}
                           className="group/link relative block overflow-hidden rounded-xl px-4 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 hover:translate-x-1 hover:text-primary"
                         >
-                          <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-primary/15 via-primary/5 to-primary/15 opacity-0 transition-all duration-300 group-hover/link:translate-y-0 group-hover/link:opacity-100" />
+                          <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-primary/8 via-primary/3 to-primary/8 opacity-0 transition-all duration-300 group-hover/link:translate-y-0 group-hover/link:opacity-100" />
                           {service.name}
                         </Link>
                       ))}
@@ -90,10 +90,10 @@ const Navbar = () => {
               <NavItem to="/about" label="About" isActive={isActive("/about")} />
               <Button
                 asChild
-                className="group relative overflow-hidden rounded-full bg-primary px-6 text-sm font-semibold shadow-[0_18px_40px_-18px_hsla(209,53%,23%,0.35)] transition-all duration-300 hover:scale-[1.02] hover:bg-primary/90 hover:shadow-[0_22px_48px_-18px_hsla(209,53%,23%,0.45)]"
+                className="group relative overflow-hidden rounded-full bg-primary px-6 text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-primary-hover"
               >
                 <Link to="/contact">
-                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-60 transition-transform duration-700 group-hover:translate-x-full" />
+                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-60 transition-transform duration-700 group-hover:translate-x-full" />
                   <span className="relative z-10">Contact Us</span>
                 </Link>
               </Button>
@@ -102,7 +102,7 @@ const Navbar = () => {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-border/80 bg-card/80 text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-card hover:shadow-[0_14px_34px_-18px_hsla(209,32%,22%,0.28)] lg:hidden"
+              className="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-border/60 bg-card text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md lg:hidden"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -111,7 +111,7 @@ const Navbar = () => {
           {/* Mobile Navigation */}
           {isOpen && (
             <div className="animate-in slide-in-from-top-4 py-6 lg:hidden">
-              <div className="flex flex-col space-y-4 rounded-3xl border border-border/70 bg-card p-6 shadow-[0_22px_60px_-26px_hsla(209,38%,20%,0.24)]">
+              <div className="flex flex-col space-y-4 rounded-3xl border border-border/60 bg-card p-6 shadow-lg">
                 <Link
                   to="/"
                   className={`text-base font-semibold transition-all duration-300 ${
@@ -175,10 +175,10 @@ const Navbar = () => {
                 />
                 <Button
                   asChild
-                  className="group relative w-full overflow-hidden rounded-full bg-primary py-3 text-base font-semibold shadow-[0_18px_40px_-18px_hsla(209,53%,23%,0.35)] transition-all duration-300 hover:scale-[1.01] hover:bg-primary/90 hover:shadow-[0_22px_48px_-18px_hsla(209,53%,23%,0.45)]"
+                  className="group relative w-full overflow-hidden rounded-full bg-primary py-3 text-base font-semibold shadow-lg transition-all duration-300 hover:scale-[1.01] hover:bg-primary-hover"
                 >
                   <Link to="/contact" onClick={() => setIsOpen(false)}>
-                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/50 to-white/0 opacity-60 transition-transform duration-700 group-hover:translate-x-full" />
+                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-white/0 via-white/30 to-white/0 opacity-60 transition-transform duration-700 group-hover:translate-x-full" />
                     <span className="relative z-10">Contact Us</span>
                   </Link>
                 </Button>
@@ -203,11 +203,11 @@ const NavItem = ({ to, label, isActive }: NavItemProps) => (
     className={`group relative overflow-hidden rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 ${
       isActive
         ? "text-primary"
-        : "text-muted-foreground hover:text-primary hover:shadow-[0_10px_30px_-12px_hsla(209,53%,23%,0.3)]"
+        : "text-muted-foreground hover:text-primary hover:shadow-md"
     }`}
   >
     <span
-      className={`absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-primary/15 via-primary/5 to-primary/15 transition-all duration-300 ${
+      className={`absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-primary/8 via-primary/3 to-primary/8 transition-all duration-300 ${
         isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
       }`}
     />

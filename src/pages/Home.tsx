@@ -230,7 +230,7 @@ const clients: Client[] = [{
   name: "Orion Devices",
   logo: OrionLogo
 }];
-const glassPanel = "border border-border/70 bg-card/80 backdrop-blur shadow-surface-sm";
+const glassPanel = "border border-border/60 bg-card shadow-surface";
 const Home = () => {
   const navigate = useNavigate();
   const [activeAudience, setActiveAudience] = React.useState<AudienceKey>("importers");
@@ -298,14 +298,14 @@ const Home = () => {
   return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden min-h-[85vh] lg:min-h-[90vh] flex items-center py-12 lg:py-0">
-        {/* Background gradient */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-background/95 to-brand-900/25" />
-        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/25 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full bg-sky-500/15 blur-3xl" />
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_30%,rgba(103,178,255,0.12),transparent_40%),radial-gradient(circle_at_70%_80%,rgba(16,78,139,0.35),transparent_45%)]" />
+        {/* Background gradient - Light professional */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-secondary/50 to-brand-50" />
+        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/8 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full bg-accent/6 blur-3xl" />
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_30%,hsla(209,53%,23%,0.04),transparent_40%),radial-gradient(circle_at_70%_80%,hsla(162,66%,32%,0.06),transparent_45%)]" />
 
-        {/* Vignette overlay for text contrast */}
-        <div className="absolute inset-0 -z-5 bg-gradient-to-r from-background/95 via-background/85 to-transparent lg:w-[65%]" />
+        {/* Subtle vignette overlay */}
+        <div className="absolute inset-0 -z-5 bg-gradient-to-r from-background/80 via-transparent to-transparent lg:w-[60%]" />
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid items-center gap-10 lg:gap-14 lg:grid-cols-[1.6fr_1fr]">
@@ -317,7 +317,7 @@ const Home = () => {
               </span>
 
               {/* Main Heading */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-bold leading-tight text-foreground drop-shadow-[0_10px_35px_rgba(0,0,0,0.35)]">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] font-bold leading-tight text-heading">
                 Accelerate India's regulatory approvals.
               </h1>
 
@@ -378,9 +378,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Overview Cards - Moved from Hero */}
+      {/* Services Overview Cards */}
       <section className="relative py-16 lg:py-20">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-white/5 to-transparent" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-secondary/30 to-background" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center">
             <h2 className="text-2xl lg:text-3xl font-bold text-foreground">Our Core Services</h2>
@@ -389,7 +389,7 @@ const Home = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {heroServices.map((service, index) => <Link key={service.title} to="/services" className={cn("group flex flex-col items-center gap-3 rounded-2xl border border-border/50 bg-card/60 backdrop-blur p-5 text-center transition-all duration-300", "hover:border-primary/50 hover:bg-card/80 hover:-translate-y-1 hover:shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.5)]")}>
+            {heroServices.map((service, index) => <Link key={service.title} to="/services" className={cn("group flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-card p-5 text-center transition-all duration-300 shadow-surface-sm", "hover:border-primary/40 hover:bg-card hover:-translate-y-1 hover:shadow-lg")}>
                 <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary transition-transform group-hover:scale-110">
                   <service.icon className="h-6 w-6" />
                 </span>
@@ -401,10 +401,10 @@ const Home = () => {
 
       {/* Client Journey Story */}
       <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-secondary/40 via-background to-background" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {journeyColumns.map(column => <Card key={column.title} className={cn("transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_35px_120px_-60px_hsla(209,53%,23%,0.65)]", glassPanel)}>
+            {journeyColumns.map(column => <Card key={column.title} className={cn("transition-all duration-300 hover:-translate-y-1 hover:shadow-lg", glassPanel)}>
                 <CardContent className="pt-8">
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-primary/40 bg-primary/20 text-lg font-bold text-primary">
                     {column.title === "The Challenge" && "01"}
@@ -421,7 +421,7 @@ const Home = () => {
 
       {/* Services Overview */}
       <section className="relative py-20 lg:py-[10px]">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,hsla(209,53%,23%,0.16),transparent_65%)]" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-brand-50/50 to-background" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">How we support every team</h2>
@@ -430,14 +430,14 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="mx-auto flex max-w-lg items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-sm">
-            {(["importers", "manufacturers"] as AudienceKey[]).map(audience => <button key={audience} type="button" onClick={() => setActiveAudience(audience)} className={cn("flex-1 rounded-full px-4 py-2 font-semibold capitalize transition", activeAudience === audience ? "bg-primary text-primary-foreground shadow-[0_12px_35px_-18px_hsla(209,53%,23%,0.65)]" : "text-foreground/70 hover:text-foreground")} aria-pressed={activeAudience === audience}>
+          <div className="mx-auto flex max-w-lg items-center justify-center rounded-full border border-border bg-secondary/60 p-2 text-sm shadow-surface-sm">
+            {(["importers", "manufacturers"] as AudienceKey[]).map(audience => <button key={audience} type="button" onClick={() => setActiveAudience(audience)} className={cn("flex-1 rounded-full px-4 py-2 font-semibold capitalize transition", activeAudience === audience ? "bg-primary text-primary-foreground shadow-md" : "text-muted-foreground hover:text-foreground")} aria-pressed={activeAudience === audience}>
                 {audience}
               </button>)}
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {audienceServices[activeAudience].map(service => <Card key={service.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_30px_100px_-60px_hsla(209,53%,23%,0.7)]", glassPanel)}>
+            {audienceServices[activeAudience].map(service => <Card key={service.title} className={cn("h-full transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg", glassPanel)}>
                 <CardContent className="pt-6">
                   <service.icon className="mb-4 h-12 w-12 text-primary transition-transform" />
                   <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
@@ -450,7 +450,7 @@ const Home = () => {
             <p className="text-sm text-muted-foreground">
               Need support across both tracks? We orchestrate importer and manufacturer workflows together.
             </p>
-            <Button asChild size="lg" className="bg-primary shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.75)] hover:bg-primary/90">
+            <Button asChild size="lg" className="bg-primary shadow-lg hover:bg-primary-hover">
               <Link to="/services">
                 View detailed services <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -461,7 +461,7 @@ const Home = () => {
 
       {/* Trust Signals */}
       <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,hsla(162,66%,32%,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-accent-100/30 to-background" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center gap-10 text-center">
             <div className="max-w-2xl">
@@ -471,15 +471,15 @@ const Home = () => {
                 Over a decade of approvals for manufacturers, importers, and innovators expanding into India's regulated markets.
               </p>
             </div>
-            <div className="flex w-full flex-wrap items-center justify-center gap-4 rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur">
-              {clients.map(client => <div key={client.name} className="flex h-24 w-40 items-center justify-center rounded-2xl bg-background/60 p-4 transition hover:scale-[1.02] hover:bg-background">
+            <div className="flex w-full flex-wrap items-center justify-center gap-4 rounded-3xl border border-border/60 bg-card/80 p-6 shadow-surface">
+              {clients.map(client => <div key={client.name} className="flex h-24 w-40 items-center justify-center rounded-2xl bg-secondary/60 p-4 transition hover:scale-[1.02] hover:bg-secondary border border-border/40">
                   <img src={client.logo} alt={client.name} className="max-h-full w-full object-contain" />
                 </div>)}
             </div>
             <div className="relative w-full">
               <div ref={scrollContainerRef} className="overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40">
                 <div className="flex gap-6 min-w-max px-2">
-                  {testimonials.map((testimonial, index) => <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/20 shadow-[0_35px_120px_-60px_hsla(209,53%,35%,0.6)]", glassPanel)}>
+                  {testimonials.map((testimonial, index) => <Card key={index} className={cn("w-[450px] flex-shrink-0 overflow-hidden border-primary/15 shadow-lg", glassPanel)}>
                       <CardContent className="flex flex-col gap-6 p-8 text-left h-full">
                         <Quote className="h-10 w-10 text-primary flex-shrink-0" />
                         <p className="text-base leading-relaxed text-muted-foreground flex-grow italic">"{testimonial.quote}"</p>
@@ -502,7 +502,7 @@ const Home = () => {
 
       {/* 6-Step Process */}
       <section ref={processRef} className="relative py-20 lg:py-[10px]">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom,hsla(209,53%,35%,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-secondary/40 to-background" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-foreground lg:text-4xl">Our 6-step compliance timeline</h2>
@@ -533,14 +533,14 @@ const Home = () => {
 
       {/* CTA Section with Inline Form */}
       <section className="relative py-24 lg:py-[12px]">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,hsla(209,53%,35%,0.12),transparent_70%)]" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-brand-50/40 to-background" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={cn("relative overflow-hidden rounded-3xl p-8 shadow-[0_60px_140px_-70px_hsla(209,53%,23%,0.75)] lg:p-12", glassPanel)}>
-            <div className="absolute -left-24 top-10 h-40 w-40 rounded-full bg-primary/20 blur-3xl" />
-            <div className="absolute -bottom-28 right-0 h-64 w-64 rounded-full bg-sky-500/15 blur-3xl" />
+          <div className={cn("relative overflow-hidden rounded-3xl p-8 shadow-lg lg:p-12", glassPanel)}>
+            <div className="absolute -left-24 top-10 h-40 w-40 rounded-full bg-primary/8 blur-3xl" />
+            <div className="absolute -bottom-28 right-0 h-64 w-64 rounded-full bg-accent/6 blur-3xl" />
             <div className="relative grid gap-12 lg:grid-cols-2 lg:items-start">
               <div>
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-primary">
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-primary">
                   Start your compliance roadmap
                 </span>
                 <h2 className="mt-4 text-3xl font-bold text-foreground lg:text-4xl">
@@ -579,7 +579,7 @@ const Home = () => {
                     <Label htmlFor="lead-notes">Product or compliance goals</Label>
                     <Textarea id="lead-notes" name="notes" placeholder="Tell us about your device, cosmetic line, or expansion plans." rows={4} />
                   </div>
-                  <Button type="submit" size="lg" className="w-full bg-primary shadow-[0_20px_45px_-25px_hsla(209,53%,23%,0.75)] hover:bg-primary/90">
+                  <Button type="submit" size="lg" className="w-full bg-primary shadow-lg hover:bg-primary-hover">
                     Schedule my assessment
                   </Button>
                   <p className="text-xs text-muted-foreground">

@@ -8,29 +8,29 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Global defaults - Warm Neutral & Blue (Exact palette from image) */
-    --background: 30 10% 96%; /* #F6F5F5 - Warm light gray background */
-    --foreground: 225 15% 16%; /* #22252D - Deep dark text */
+    /* Professional Light Theme - Cool neutral with subtle warmth */
+    --background: 220 14% 97%; /* #F7F8FA - Cool professional gray */
+    --foreground: 220 20% 18%; /* #252A33 - Deep charcoal for text */
 
     --card: 0 0% 100%; /* #FFFFFF - Pure white card surface */
-    --card-foreground: 225 15% 16%;
+    --card-foreground: 220 20% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 225 15% 16%;
+    --popover-foreground: 220 20% 18%;
 
     /* Primary brand - Deep Navy Blue */
     --primary: 209 53% 23%; /* #1C3C5A - Deep navy */
     --primary-foreground: 0 0% 100%;
     --primary-hover: 209 58% 18%;
 
-    /* Secondary/muted surfaces - warm neutrals */
-    --secondary: 30 10% 94%; /* Slightly lighter warm gray */
-    --secondary-foreground: 225 15% 16%;
+    /* Secondary/muted surfaces - cool light grays */
+    --secondary: 220 14% 94%; /* Slightly darker than background */
+    --secondary-foreground: 220 20% 18%;
 
-    --muted: 30 10% 92%;
-    --muted-foreground: 25 8% 45%; /* #77706A - Warm muted gray */
+    --muted: 220 12% 91%;
+    --muted-foreground: 220 10% 45%; /* #6B7280 - Medium gray */
 
-    /* Accent - Warm Teal */
+    /* Accent - Teal */
     --accent: 162 66% 32%; /* #1C8864 - Warm teal */
     --accent-foreground: 0 0% 100%;
 
@@ -38,56 +38,60 @@ All colors MUST be HSL.
     --destructive: 2 72% 52%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Borders and inputs */
-    --border: 30 10% 88%;
-    --input: 30 10% 92%;
+    /* Borders and inputs - subtle for light theme */
+    --border: 220 14% 88%;
+    --input: 220 14% 92%;
     --ring: 162 66% 32%;
 
-    /* Headings */
-    --heading: 209 53% 23%; /* Deep navy for headings */
+    /* Headings - Deep navy for authority */
+    --heading: 209 53% 23%;
 
     /* Brand color shades - Navy Blue ramp */
-    --brand-50: 209 50% 95%;
-    --brand-100: 209 52% 88%;
-    --brand-200: 209 53% 72%;
-    --brand-300: 209 53% 56%;
-    --brand-400: 209 53% 40%;
-    --brand-500: 209 53% 28%;
+    --brand-50: 209 50% 96%;
+    --brand-100: 209 52% 90%;
+    --brand-200: 209 53% 78%;
+    --brand-300: 209 53% 62%;
+    --brand-400: 209 53% 46%;
+    --brand-500: 209 53% 34%;
     --brand-600: 209 53% 23%;
     --brand-700: 209 58% 18%;
+    --brand-900: 209 60% 12%;
 
-    /* Accent warm teal shades */
-    --accent-100: 162 60% 90%;
-    --accent-200: 162 62% 75%;
-    --accent-300: 162 64% 55%;
+    /* Accent teal shades */
+    --accent-100: 162 55% 92%;
+    --accent-200: 162 58% 78%;
+    --accent-300: 162 62% 58%;
     --accent-500: 162 66% 32%;
     --accent-600: 162 68% 25%;
 
-    /* Status colors tuned for contrast */
+    /* Status colors for light theme */
     --success: 162 66% 32%;
-    --success-bg: 162 60% 90%;
+    --success-bg: 162 55% 94%;
     --success-text: 162 68% 20%;
 
     --warning: 37 94% 48%;
-    --warning-bg: 38 88% 92%;
+    --warning-bg: 38 88% 94%;
     --warning-text: 32 74% 20%;
 
     --error: 356 78% 50%;
-    --error-bg: 355 74% 92%;
+    --error-bg: 355 74% 94%;
     --error-text: 350 72% 18%;
 
     --radius: 0.5rem;
 
-    /* Subtle gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(209, 53%, 28%), hsl(209, 58%, 18%));
-    --gradient-hero: linear-gradient(135deg, hsl(30, 10%, 96%) 0%, hsl(209, 53%, 23%) 60%, hsl(162, 66%, 32%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(30, 10%, 94%) 100%);
+    /* Professional light gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(209, 53%, 23%), hsl(162, 66%, 32%));
+    --gradient-hero: linear-gradient(135deg, hsl(220, 14%, 97%) 0%, hsl(220, 20%, 94%) 50%, hsl(209, 40%, 92%) 100%);
+    --gradient-section: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(220, 14%, 96%) 100%);
+    --gradient-section-alt: linear-gradient(180deg, hsl(220, 14%, 96%) 0%, hsl(0, 0%, 100%) 100%);
+    --gradient-subtle-blue: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(209, 40%, 97%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(209, 53%, 23%) 0%, hsl(162, 66%, 32%) 100%);
 
-    /* Very soft shadows tuned to the Warm Neutral & Blue palette */
-    --shadow-sm: 0 2px 6px -2px hsl(209 28% 20% / 0.12);
-    --shadow-md: 0 8px 18px -8px hsl(209 32% 22% / 0.16);
-    --shadow-lg: 0 16px 40px -18px hsl(209 38% 20% / 0.18);
-    --shadow-brand: 0 20px 50px -24px hsl(162 66% 32% / 0.22);
+    /* Light theme shadows - subtle navy-tinted */
+    --shadow-sm: 0 1px 3px hsla(209, 28%, 20%, 0.06);
+    --shadow-md: 0 4px 12px hsla(209, 32%, 22%, 0.08);
+    --shadow-lg: 0 12px 32px hsla(209, 38%, 20%, 0.12);
+    --shadow-brand: 0 20px 50px -24px hsla(162, 66%, 32%, 0.18);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -152,6 +156,16 @@ All colors MUST be HSL.
 
   .shadow-surface-brand {
     box-shadow: var(--shadow-brand);
+  }
+
+  /* Light theme glass panel */
+  .glass-panel {
+    @apply border border-border/60 bg-card/90 backdrop-blur-sm shadow-surface;
+  }
+
+  /* Gradient text for accents */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
   }
 }
 
