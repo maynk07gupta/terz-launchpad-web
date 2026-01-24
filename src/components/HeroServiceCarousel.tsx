@@ -109,8 +109,8 @@ export const HeroServiceCarousel = () => {
       aria-live="polite"
     >
       {/* Main Carousel Container */}
-      <div className="relative w-full h-full overflow-hidden rounded-2xl lg:rounded-3xl border border-border/40 shadow-[0_40px_100px_-50px_hsla(209,53%,23%,0.6)] bg-gradient-to-b from-background/75 via-background/50 to-background/80">
-        <span className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 rounded-full bg-background/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary border border-primary/30 backdrop-blur">
+      <div className="relative w-full h-full overflow-hidden rounded-2xl lg:rounded-3xl border border-border/50 shadow-lg bg-card">
+        <span className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 rounded-full bg-card/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary border border-primary/20 backdrop-blur-sm shadow-sm">
           Service preview
         </span>
         {/* Slides */}
@@ -138,8 +138,8 @@ export const HeroServiceCarousel = () => {
               decoding="async"
             />
             
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
+            {/* Gradient Overlay - lighter for light theme */}
+            <div className="absolute inset-0 bg-gradient-to-t from-card/95 via-card/40 to-transparent" />
             
             {/* Caption Overlay */}
             <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-7">
@@ -149,7 +149,7 @@ export const HeroServiceCarousel = () => {
                   ? "translate-y-0 opacity-100" 
                   : "translate-y-4 opacity-0"
               )}>
-                <h3 className="text-lg lg:text-xl font-bold text-foreground mb-1">
+                <h3 className="text-lg lg:text-xl font-bold text-heading mb-1">
                   {slide.title}
                 </h3>
                 <p className="text-sm lg:text-base text-muted-foreground">
@@ -163,14 +163,14 @@ export const HeroServiceCarousel = () => {
         {/* Navigation Arrows */}
         <button
           onClick={goToPrev}
-          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-background/70 backdrop-blur border border-border/50 text-foreground/80 hover:bg-background hover:text-foreground transition-all opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100"
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 text-foreground/80 hover:bg-card hover:text-foreground hover:shadow-md transition-all opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100"
           aria-label="Previous slide"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
         <button
           onClick={goToNext}
-          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-background/70 backdrop-blur border border-border/50 text-foreground/80 hover:bg-background hover:text-foreground transition-all opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100"
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 text-foreground/80 hover:bg-card hover:text-foreground hover:shadow-md transition-all opacity-0 group-hover:opacity-100 hover:opacity-100 focus:opacity-100"
           aria-label="Next slide"
         >
           <ChevronRight className="h-5 w-5" />
@@ -179,7 +179,7 @@ export const HeroServiceCarousel = () => {
         {/* Play/Pause Control */}
         <button
           onClick={togglePlayPause}
-          className="absolute top-3 right-3 z-20 p-2 rounded-full bg-background/70 backdrop-blur border border-border/50 text-foreground/80 hover:bg-background hover:text-foreground transition-all"
+          className="absolute top-3 right-3 z-20 p-2 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 text-foreground/80 hover:bg-card hover:text-foreground hover:shadow-md transition-all"
           aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
           aria-pressed={!isPlaying}
         >
