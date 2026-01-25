@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 type StepDetailCardProps = {
   stepNumber: number;
@@ -20,7 +21,6 @@ type StepDetailCardProps = {
   icon: LucideIcon;
   serviceName: string;
   serviceLink: string;
-  // Placeholder content - can be filled in later
   keyDocuments?: string[];
   typicalTimeline?: string;
   deliverables?: string[];
@@ -49,203 +49,233 @@ const StepDetailCard = ({
   const hasDeliverables = deliverables && deliverables.length > 0;
   const hasTips = tips && tips.length > 0;
 
+  const placeholderCards = [
+    {
+      icon: FileText,
+      title: "Key Documents Required",
+      hasContent: hasDocuments,
+      content: keyDocuments,
+      emptyText: "Content to be added",
+    },
+    {
+      icon: Clock,
+      title: "Typical Timeline",
+      hasContent: hasTimeline,
+      content: typicalTimeline,
+      emptyText: "Duration to be added",
+      isString: true,
+    },
+    {
+      icon: Package,
+      title: "Deliverables",
+      hasContent: hasDeliverables,
+      content: deliverables,
+      emptyText: "Content to be added",
+    },
+    {
+      icon: Lightbulb,
+      title: "Pro Tips",
+      hasContent: hasTips,
+      content: tips,
+      emptyText: "Content to be added",
+    },
+  ];
+
   return (
-    <Card className="overflow-hidden border-primary/20 bg-gradient-to-br from-background to-secondary/20 shadow-lg animate-fade-in">
-      <CardContent className="p-6 lg:p-8">
-        {/* Service link */}
-        <Link
-          to={serviceLink}
-          className="mb-4 inline-flex items-center gap-1 text-sm text-primary hover:underline transition-colors"
-        >
-          This procedure applies to our {serviceName} Service →
-        </Link>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={`${stepNumber}-${title}`}
+        initial={{ opacity: 0, x: 30, scale: 0.98 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        exit={{ opacity: 0, x: -30, scale: 0.98 }}
+        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+      >
+        <Card className="overflow-hidden border-primary/20 bg-gradient-to-br from-background to-secondary/20 shadow-lg">
+          <CardContent className="p-6 lg:p-8">
+            {/* Service link */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
+            >
+              <Link
+                to={serviceLink}
+                className="mb-4 inline-flex items-center gap-1 text-sm text-primary hover:underline transition-colors"
+              >
+                This procedure applies to our {serviceName} Service →
+              </Link>
+            </motion.div>
 
-        {/* Step header */}
-        <div className="flex items-start gap-4 mb-6">
-          <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg">
-            <Icon className="h-7 w-7" />
-          </div>
-          <div className="flex-1">
-            <span className="text-xs font-semibold uppercase tracking-widest text-primary">
-              Step {stepNumber} of {totalSteps}
-            </span>
-            <h3 className="text-xl lg:text-2xl font-bold text-foreground mt-1">
-              {title}
-            </h3>
-          </div>
-        </div>
-
-        {/* Description */}
-        <p className="text-muted-foreground leading-relaxed mb-6">
-          {description}
-        </p>
-
-        {/* Placeholder sections grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          {/* Key Documents */}
-          <Card
-            className={cn(
-              "border-2 transition-all duration-300",
-              hasDocuments
-                ? "border-border bg-background"
-                : "border-dashed border-muted-foreground/30 bg-muted/20"
-            )}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <FileText className="h-5 w-5 text-primary" />
-                <h4 className="font-semibold text-foreground">
-                  Key Documents Required
-                </h4>
+            {/* Step header */}
+            <motion.div
+              className="flex items-start gap-4 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.4 }}
+            >
+              <motion.div
+                className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg"
+                initial={{ scale: 0, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 15,
+                  delay: 0.2,
+                }}
+              >
+                <Icon className="h-7 w-7" />
+              </motion.div>
+              <div className="flex-1">
+                <motion.span
+                  className="text-xs font-semibold uppercase tracking-widest text-primary"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.25 }}
+                >
+                  Step {stepNumber} of {totalSteps}
+                </motion.span>
+                <motion.h3
+                  className="text-xl lg:text-2xl font-bold text-foreground mt-1"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.3 }}
+                >
+                  {title}
+                </motion.h3>
               </div>
-              {hasDocuments ? (
-                <ul className="space-y-1">
-                  {keyDocuments.map((doc, index) => (
-                    <li
-                      key={index}
-                      className="flex items-center gap-2 text-sm text-muted-foreground"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
-                      {doc}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-sm text-muted-foreground italic">
-                  Content to be added
-                </p>
-              )}
-            </CardContent>
-          </Card>
+            </motion.div>
 
-          {/* Typical Timeline */}
-          <Card
-            className={cn(
-              "border-2 transition-all duration-300",
-              hasTimeline
-                ? "border-border bg-background"
-                : "border-dashed border-muted-foreground/30 bg-muted/20"
-            )}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <Clock className="h-5 w-5 text-primary" />
-                <h4 className="font-semibold text-foreground">
-                  Typical Timeline
-                </h4>
-              </div>
-              {hasTimeline ? (
-                <p className="text-sm text-muted-foreground">{typicalTimeline}</p>
-              ) : (
-                <p className="text-sm text-muted-foreground italic">
-                  Duration to be added
-                </p>
-              )}
-            </CardContent>
-          </Card>
+            {/* Description */}
+            <motion.p
+              className="text-muted-foreground leading-relaxed mb-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.35, duration: 0.4 }}
+            >
+              {description}
+            </motion.p>
 
-          {/* Deliverables */}
-          <Card
-            className={cn(
-              "border-2 transition-all duration-300",
-              hasDeliverables
-                ? "border-border bg-background"
-                : "border-dashed border-muted-foreground/30 bg-muted/20"
-            )}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <Package className="h-5 w-5 text-primary" />
-                <h4 className="font-semibold text-foreground">Deliverables</h4>
-              </div>
-              {hasDeliverables ? (
-                <ul className="space-y-1">
-                  {deliverables.map((item, index) => (
-                    <li
-                      key={index}
-                      className="flex items-center gap-2 text-sm text-muted-foreground"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-sm text-muted-foreground italic">
-                  Content to be added
-                </p>
-              )}
-            </CardContent>
-          </Card>
+            {/* Placeholder sections grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              {placeholderCards.map((card, index) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + index * 0.08, duration: 0.4 }}
+                >
+                  <Card
+                    className={cn(
+                      "border-2 transition-all duration-300 hover:shadow-md",
+                      card.hasContent
+                        ? "border-border bg-background"
+                        : "border-dashed border-muted-foreground/30 bg-muted/20"
+                    )}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <motion.div
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <card.icon className="h-5 w-5 text-primary" />
+                        </motion.div>
+                        <h4 className="font-semibold text-foreground">
+                          {card.title}
+                        </h4>
+                      </div>
+                      {card.hasContent ? (
+                        card.isString ? (
+                          <p className="text-sm text-muted-foreground">
+                            {card.content as string}
+                          </p>
+                        ) : (
+                          <ul className="space-y-1">
+                            {(card.content as string[]).map((item, idx) => (
+                              <motion.li
+                                key={idx}
+                                className="flex items-center gap-2 text-sm text-muted-foreground"
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.5 + idx * 0.05 }}
+                              >
+                                <span className="h-1.5 w-1.5 rounded-full bg-primary/60" />
+                                {item}
+                              </motion.li>
+                            ))}
+                          </ul>
+                        )
+                      ) : (
+                        <p className="text-sm text-muted-foreground italic">
+                          {card.emptyText}
+                        </p>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
 
-          {/* Pro Tips */}
-          <Card
-            className={cn(
-              "border-2 transition-all duration-300",
-              hasTips
-                ? "border-border bg-background"
-                : "border-dashed border-muted-foreground/30 bg-muted/20"
-            )}
-          >
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <Lightbulb className="h-5 w-5 text-primary" />
-                <h4 className="font-semibold text-foreground">Pro Tips</h4>
-              </div>
-              {hasTips ? (
-                <ul className="space-y-1">
-                  {tips.map((tip, index) => (
-                    <li
-                      key={index}
-                      className="flex items-start gap-2 text-sm text-muted-foreground"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary/60 mt-1.5 flex-shrink-0" />
-                      {tip}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-sm text-muted-foreground italic">
-                  Content to be added
-                </p>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+            {/* Navigation buttons */}
+            <motion.div
+              className="flex items-center justify-between pt-4 border-t border-border"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Button
+                variant="outline"
+                onClick={onPrevious}
+                disabled={stepNumber === 1}
+                className="gap-2 group"
+              >
+                <motion.span
+                  className="inline-block"
+                  whileHover={{ x: -3 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </motion.span>
+                Previous Step
+              </Button>
 
-        {/* Navigation buttons */}
-        <div className="flex items-center justify-between pt-4 border-t border-border">
-          <Button
-            variant="outline"
-            onClick={onPrevious}
-            disabled={stepNumber === 1}
-            className="gap-2"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            Previous Step
-          </Button>
+              <Button
+                onClick={onNext}
+                disabled={stepNumber === totalSteps}
+                className="gap-2 group"
+              >
+                Next Step
+                <motion.span
+                  className="inline-block"
+                  whileHover={{ x: 3 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </motion.span>
+              </Button>
+            </motion.div>
 
-          <Button
-            onClick={onNext}
-            disabled={stepNumber === totalSteps}
-            className="gap-2"
-          >
-            Next Step
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
-
-        {/* CTA at bottom */}
-        <div className="mt-6 pt-6 border-t border-border text-center">
-          <p className="text-muted-foreground mb-3">
-            Ready to start your {serviceName} journey?
-          </p>
-          <Button asChild size="lg" className="shadow-lg shadow-primary/25">
-            <Link to="/contact">Get Expert Assistance →</Link>
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+            {/* CTA at bottom */}
+            <motion.div
+              className="mt-6 pt-6 border-t border-border text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.4 }}
+            >
+              <p className="text-muted-foreground mb-3">
+                Ready to start your {serviceName} journey?
+              </p>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button asChild size="lg" className="shadow-lg shadow-primary/25">
+                  <Link to="/contact">Get Expert Assistance →</Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
