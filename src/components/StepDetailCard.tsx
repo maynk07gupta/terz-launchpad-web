@@ -91,22 +91,8 @@ const StepDetailCard = ({
         transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
       >
         <Card className="overflow-hidden border-primary/20 bg-gradient-to-br from-background to-secondary/20 shadow-lg">
-          <CardContent className="p-6 lg:p-8">
-            {/* Service link */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.3 }}
-            >
-              <Link
-                to={serviceLink}
-                className="mb-4 inline-flex items-center gap-1 text-sm text-primary hover:underline transition-colors"
-              >
-                This procedure applies to our {serviceName} Service →
-              </Link>
-            </motion.div>
-
-            {/* Step header */}
+        <CardContent className="p-6 lg:p-8">
+          {/* Step header */}
             <motion.div
               className="flex items-start gap-4 mb-6"
               initial={{ opacity: 0, y: 20 }}
