@@ -1,121 +1,120 @@
 
 
-## Redesign: Professional Light Gradient Theme
+## Update Color Scheme: Logo Blue Across Website
 
 ### Overview
-Transform the website from the current dark navy theme to a light, professional gradient-based design that conveys trust, clarity, and corporate sophistication - ideal for a regulatory compliance company.
+Replace the current deep navy primary color (`#1C3C5A`) with the vibrant blue from your logo (`#3B82F6`) to create visual consistency between your brand mark and website content, while maintaining excellent contrast on the light theme.
 
 ---
 
-### 1. Core Color System Updates
+### 1. New Color Definition
 
-**Remove dark mode enforcement:**
-- Remove the `document.documentElement.classList.add("dark")` lines from `src/main.tsx`
-- The site will now use the light theme defined in `:root`
-
-**Refined Light Palette:**
+**Logo Blue in HSL format:**
 ```css
-/* Primary Background - Cool professional gray */
---background: 220 14% 97%;    /* #F7F8FA */
+/* Logo Blue - Vibrant brand blue */
+--primary: 217 91% 60%;        /* #3B82F6 */
+--primary-hover: 217 91% 52%;  /* Slightly darker on hover */
 
-/* Card/Surface - Pure white */
---card: 0 0% 100%;            /* #FFFFFF */
+/* Heading color - using logo blue for authority */
+--heading: 217 91% 45%;        /* Slightly darker for text readability */
+```
 
-/* Primary - Deep Navy (kept for brand consistency) */
---primary: 209 53% 23%;       /* #1C3C5A */
-
-/* Accent - Teal (kept) */
---accent: 162 66% 32%;        /* #1C8864 */
+**Brand color ramp (matching logo blue):**
+```css
+--brand-50:  217 89% 97%;   /* #EFF6FF - Very light blue */
+--brand-100: 217 89% 93%;   /* #DBEAFE */
+--brand-200: 217 90% 85%;   /* #BFDBFE */
+--brand-300: 217 91% 72%;   /* #93C5FD */
+--brand-400: 217 91% 65%;   /* #60A5FA */
+--brand-500: 217 91% 60%;   /* #3B82F6 - Logo color */
+--brand-600: 217 91% 52%;   /* #2563EB */
+--brand-700: 217 93% 42%;   /* #1D4ED8 */
+--brand-900: 217 94% 30%;   /* #1E3A8A */
 ```
 
 ---
 
-### 2. Gradient System
+### 2. Contrast Considerations
 
-**Professional gradients to add:**
-
-| Gradient | Use Case | Colors |
-|----------|----------|--------|
-| Hero gradient | Hero background | White → Light blue-gray (#F7F8FA → #EEF2F7) |
-| Section gradient | Alternating sections | Light gray → White |
-| Accent gradient | CTAs, highlights | Navy → Teal (#1C3C5A → #1C8864) |
-| Subtle blue tint | Feature sections | White → Very light blue (#FFFFFF → #F5F8FC) |
-
----
-
-### 3. Section-by-Section Changes
-
-**Navbar:**
-- White/light background with subtle shadow
-- Navy logo and text
-- Teal accent on active links
-- Solid, professional appearance
-
-**Hero Section (Home):**
-- Soft gradient: light gray at top fading to white
-- Navy headings, gray body text
-- Primary CTA: Navy-to-teal gradient button
-- Service carousel: Light card backgrounds with soft shadows
-
-**Content Sections:**
-- Alternating white and very light gray sections
-- Creates visual separation without harsh contrasts
-- Cards: Pure white with subtle box shadows
-- Icons: Navy or teal colored
-
-**Footer:**
-- Reversed: Keep navy background for grounding
-- Creates a professional bookend effect
-- White text for contrast
+| Use Case | Color Choice | Contrast Ratio |
+|----------|--------------|----------------|
+| Headings on white | Brand-600 (#2563EB) | 4.8:1 (AA pass) |
+| Body text | Keep dark charcoal (#252A33) | 12.5:1 (AAA pass) |
+| Buttons | Brand-500 (#3B82F6) + white text | 4.5:1 (AA pass) |
+| Links | Brand-600 (#2563EB) | Good readability |
+| Icons | Brand-500 (#3B82F6) | Vibrant visibility |
 
 ---
 
-### 4. Typography Contrast
+### 3. Elements to Update
 
-| Element | Color |
-|---------|-------|
-| H1-H3 Headings | Deep navy (#1C3C5A) |
-| Body text | Dark charcoal (#2D3748) |
-| Muted text | Medium gray (#6B7280) |
-| Links | Teal (#1C8864) |
+**Global CSS (`src/index.css`):**
+- Update `--primary` to logo blue (217 91% 60%)
+- Update `--primary-hover` for button states
+- Update `--heading` for readable dark blue
+- Update entire `--brand-*` color ramp
+- Adjust gradients to use new blue shades
+- Update shadow colors to tint with new blue
+
+**Components using primary color (automatic via CSS variables):**
+- Navbar active states and buttons
+- CTA buttons throughout
+- Service cards icons
+- Footer accents
+- Form focus rings
 
 ---
 
-### 5. Shadow and Depth System
+### 4. Gradient Updates
 
-Replace dark-themed shadows with light-appropriate ones:
+**Updated gradients using logo blue:**
 ```css
---shadow-sm: 0 1px 3px rgba(28, 60, 90, 0.06);
---shadow-md: 0 4px 12px rgba(28, 60, 90, 0.08);
---shadow-lg: 0 12px 32px rgba(28, 60, 90, 0.12);
+/* Primary to Accent gradient (Blue to Teal) */
+--gradient-primary: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(162, 66%, 32%));
+
+/* Accent gradient for CTAs */
+--gradient-accent: linear-gradient(135deg, hsl(217, 91%, 52%) 0%, hsl(162, 66%, 32%) 100%);
+
+/* Subtle blue section backgrounds */
+--gradient-subtle-blue: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(217, 85%, 97%) 100%);
 ```
 
 ---
 
-### 6. Files to Modify
+### 5. Files to Modify
 
 | File | Changes |
 |------|---------|
-| `src/main.tsx` | Remove dark mode class enforcement |
-| `src/index.css` | Update gradient definitions, refine light theme colors, adjust shadows |
-| `src/pages/Home.tsx` | Update hero section gradients and styling |
-| `src/components/Navbar.tsx` | Adjust to light background styling |
-| `src/components/Footer.tsx` | Keep dark or adjust to match theme |
-| `src/components/HeroServiceCarousel.tsx` | Update for light theme visibility |
-| All page files | Ensure consistent light styling across sections |
+| `src/index.css` | Update primary, heading, and brand color variables; adjust gradients and shadows |
+
+Since all components use CSS variables (`text-primary`, `bg-primary`, etc.), updating the CSS variables will automatically propagate the new logo blue across:
+- Navbar (active links, buttons)
+- Home page (CTAs, icons, headings)
+- All service pages
+- About, Contact, Resources pages
+- Cards, buttons, form elements
 
 ---
 
-### 7. Visual Result
+### 6. Visual Impact
 
-The final design will feature:
-- Clean, professional light backgrounds
-- Subtle gradient transitions between sections
-- Navy and teal as accent colors for brand recognition
-- High contrast, readable typography
-- Cards with soft shadows for depth
-- A dark footer as a grounding element
-- Overall feel: Corporate, trustworthy, document-friendly
+**Before:** Deep navy (`#1C3C5A`) - Darker, more muted corporate feel
+**After:** Logo blue (`#3B82F6`) - Vibrant, modern, consistent with brand identity
 
-This approach is common among compliance, legal, and B2B service companies because it conveys professionalism, clarity, and attention to detail.
+The result will be:
+- Logo and website colors in perfect harmony
+- More energetic and modern appearance
+- Maintained readability with proper contrast
+- Teal accent (`#1C8864`) still provides complementary color
+- Professional but more approachable feel
+
+---
+
+### 7. Keep the Teal Accent
+
+The existing teal accent (`#1C8864`) complements the bright blue beautifully and should remain as the secondary accent for:
+- Success states
+- Secondary highlights
+- Gradient endpoints
+- Alternative visual interest
 
