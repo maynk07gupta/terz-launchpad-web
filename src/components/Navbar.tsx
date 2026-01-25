@@ -33,12 +33,8 @@ const Navbar = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link
-              to="/"
-              className="group relative flex items-center rounded-full border border-border/60 bg-card px-4 py-2 shadow-surface-sm transition-all duration-300 hover:scale-110 hover:shadow-lg"
-            >
-              <span className="absolute inset-0 rounded-full bg-primary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <img src={logo} alt="Terz Compliance" className="relative z-10 h-10 sm:h-12 transition-transform duration-300 group-hover:scale-105" />
+            <Link to="/">
+              <img src={logo} alt="Terz Compliance" className="h-10 sm:h-12" />
             </Link>
 
             {/* Desktop Navigation */}
