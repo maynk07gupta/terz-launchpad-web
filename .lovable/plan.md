@@ -1,260 +1,216 @@
 
 
-## Procedure Page Complete Redesign Plan
+## Merge Services and Procedure Pages - Implementation Plan
 
 ### Overview
-Transform the Procedure page from a confusing tabbed card layout into a **professional, visual roadmap experience** with clear progression, consistent branding, and placeholder sections for future content.
+Consolidate the **Services** and **Procedure** pages into a single, comprehensive **Services** page that combines the visual hero elements from the current service pages with the roadmap-style procedure system.
 
 ---
 
-### Phase 1: Remove Neon Gradients - Adopt Professional Color Palette
+### Phase 1: Page Structure Design
 
-**Current Problem:** 10 clashing neon gradients cause visual fatigue
-
-**Solution:** Replace with brand-consistent, subtle styling
-
-| Element | Current | New |
-|---------|---------|-----|
-| Step Preview Card | `from-sky-500 via-cyan-500 to-blue-600` (neon) | `bg-gradient-to-br from-primary/10 to-accent/10` with `border-primary/30` |
-| Active Step Indicator | Neon gradient background | `bg-primary` circle with white number |
-| Completed Steps | Same as active | `bg-primary/20` with checkmark |
-| Upcoming Steps | Same as active | `bg-muted` with gray number |
-
-**Files to modify:** `src/pages/Procedure.tsx` (remove `gradientPalette` array, update `StepPreview` component)
-
----
-
-### Phase 2: Create Visual Roadmap Structure
-
-**New Layout Architecture:**
+**New Unified Layout per Service:**
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  HERO: Service Title + Brief Description                    │
-├─────────────────────────────────────────────────────────────┤
-│  PHASE NAVIGATION: [Assessment] [Preparation] [Submission]  │
-│                    [Review] [Approval]                       │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ●────────●────────●────────●────────○  (Progress Line)     │
-│  1        2        3        4        5                       │
-│                                                             │
-│  ┌─────────────────────────────────────────────────────┐   │
-│  │  ACTIVE STEP DETAIL CARD                            │   │
-│  │  ┌──────────┐  Step 3: Submit Application           │   │
-│  │  │   Icon   │  ─────────────────────────────────    │   │
-│  │  │          │  Description text here...             │   │
-│  │  └──────────┘                                       │   │
-│  │                                                     │   │
-│  │  ┌─────────────────────────────────────────────┐   │   │
-│  │  │  📋 Key Documents Required (placeholder)    │   │   │
-│  │  │  • Document 1                               │   │   │
-│  │  │  • Document 2                               │   │   │
-│  │  └─────────────────────────────────────────────┘   │   │
-│  │                                                     │   │
-│  │  ┌─────────────────────────────────────────────┐   │   │
-│  │  │  ⏱️ Typical Timeline (placeholder)          │   │   │
-│  │  │  2-4 weeks                                  │   │   │
-│  │  └─────────────────────────────────────────────┘   │   │
-│  │                                                     │   │
-│  │  [Previous Step]              [Next Step →]         │   │
-│  └─────────────────────────────────────────────────────┘   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
++----------------------------------------------------------+
+|  HERO SECTION (from Service pages)                       |
+|  - Full-width background image (medical-devices.jpg, etc)|
+|  - Service title + tagline + description                 |
+|  - Gradient overlay (current primary/accent style)       |
++----------------------------------------------------------+
+|                                                          |
+|  ROLE SELECTION (Manufacturer / Importer toggle)         |
+|                                                          |
++----------------------------------------------------------+
+|                                                          |
+|  ROADMAP TIMELINE (current Procedure design)             |
+|  [Step 1]---[Step 2]---[Step 3]---[Step 4]...           |
+|                                                          |
+|  +----------------------------------------------------+  |
+|  |  STEP DETAIL CARD                                  |  |
+|  |  - Step title + description + icon                 |  |
+|  |  - Key Documents placeholder                       |  |
+|  |  - Timeline placeholder                            |  |
+|  |  - Deliverables + Pro Tips                         |  |
+|  +----------------------------------------------------+  |
+|                                                          |
++----------------------------------------------------------+
+|  CTA: Get Started with This Service                      |
++----------------------------------------------------------+
 ```
-
-**Key Visual Elements:**
-- Horizontal progress line with numbered circles
-- Active step highlighted with primary color
-- Completed steps show checkmarks
-- Click/tap to navigate between steps
-- Smooth transitions between steps
 
 ---
 
-### Phase 3: Restructure Content with Placeholder Sections
+### Phase 2: Data Structure Enhancement
 
-**New Step Data Structure:**
+**Extend `ProcedureCategory` type to include service content:**
 
 ```typescript
-type ProcedureStep = {
+type ServiceProcedure = {
+  id: string;
   title: string;
+  tagline: string;
   description: string;
-  phase: string; // "Assessment" | "Preparation" | "Submission" | "Review" | "Approval"
-  icon: LucideIcon;
-  // Placeholder sections - content to be added later
-  keyDocuments?: string[]; // List of required documents
-  typicalTimeline?: string; // e.g., "2-4 weeks"
-  deliverables?: string[]; // What client receives at this step
-  tips?: string[]; // Pro tips or common pitfalls
+  image: string; // Import from assets
+  badge?: string;
+  manufacturerSteps: ProcedureStep[];
+  importerSteps: ProcedureStep[];
 };
 ```
 
-**Placeholder Cards Within Each Step:**
-1. **Key Documents Required** - Empty state with "Content coming soon" or placeholder items
-2. **Typical Timeline** - Placeholder for duration estimates
-3. **Deliverables** - What client receives at this step
-4. **Pro Tips** - Common pitfalls or advice
+**Merge data from all 6 services:**
+
+| Service | Image Asset | Tagline | Badge |
+|---------|-------------|---------|-------|
+| Medical Devices | medical-devices.jpg | "Smooth CDSCO registration for manufacturers and importers" | CDSCO |
+| IVD | ivd.jpg | "Expert IVD compliance and regulatory support" | ISO 13485 |
+| Cosmetics | cosmetics.jpg | "Fast-track cosmetic product registration" | BIS |
+| LMPC | lmpc.jpg | "LMPC compliance made simple" | State-Level |
+| IEC | iec.jpg | "IEC registration and comprehensive support" | Lifetime Valid |
+| EPR | epr.jpg | "EPR compliance and sustainability solutions" | CPCB |
 
 ---
 
-### Phase 4: Create Horizontal Progress Timeline Component
+### Phase 3: Component Updates
 
-**New Component: `RoadmapTimeline.tsx`**
+**3.1 Update `Procedure.tsx` (rename conceptually to Services+Procedure)**
 
-Features:
-- Horizontal line connecting all steps
-- Numbered circles for each step (1, 2, 3...)
-- Visual states: completed (checkmark), active (primary color), upcoming (muted)
-- Click to navigate
-- Responsive: horizontal scroll on mobile with touch gestures
-- Smooth animations when transitioning
+- Add hero section with dynamic image based on selected service
+- Add role toggle (Manufacturer/Importer) that switches the roadmap steps
+- Keep the existing `RoadmapTimeline` and `StepDetailCard` components
+- Dynamic content changes based on both service AND role selection
 
-**Styling:**
-- Line: `h-1 bg-gradient-to-r from-primary to-primary/50`
-- Active circle: `bg-primary text-white w-10 h-10`
-- Completed: `bg-primary/80 text-white` with CheckCircle icon
-- Upcoming: `bg-muted border-2 border-muted-foreground/30`
-
----
-
-### Phase 5: Improve Tab Navigation
-
-**Current:** 6 tabs that wrap awkwardly
-
-**New Design:**
-- Replace tabs with a dropdown selector on mobile
-- Keep horizontal tabs on desktop but style as pill buttons
-- Add icons to each tab for visual distinction
-- Show step count badge (e.g., "Medical Devices (8 steps)")
-
-**Tab styling:**
-```css
-/* Inactive */
-bg-secondary/50 text-muted-foreground border border-border
-
-/* Active */
-bg-primary text-primary-foreground shadow-lg
-```
-
----
-
-### Phase 6: Add Service Page Links
-
-Add a connection between Procedure and Service pages:
-
-**At the top of each procedure:**
-> "This procedure applies to our [Medical Devices Service →](/services/medical-devices)"
-
-**At the bottom of each procedure:**
-> CTA: "Ready to start? [Get Expert Assistance →]"
-
----
-
-### Phase 7: Differentiate Content Per Service
-
-Group steps into meaningful phases and add unique context:
-
-| Service | Unique Elements to Add |
-|---------|------------------------|
-| Medical Devices | Device class badges (A, B, C, D), OSMD portal reference |
-| IVD | Performance evaluation emphasis, ISO 13485 callout |
-| Cosmetics | BIS standards reference, ingredient compliance |
-| LMPC | State-level variations, packaging focus |
-| IEC | Lifetime validity highlight, DGFT reference |
-| EPR | Environmental focus, CPCB portal reference |
-
----
-
-### Phase 8: Add Scroll Animations
-
-Apply the same animation system from the About page:
-
-- Fade-up for section headers
-- Scale-in for step cards
-- Slide transitions between steps
-- Hover micro-interactions on timeline circles
-
----
-
-### Phase 9: Mobile-First Roadmap
-
-**Mobile Layout:**
-- Vertical timeline (line on left, content on right)
-- Swipe gestures to navigate steps
-- Collapsible step details
-- Sticky progress indicator at top
-
----
-
-### Files to Create/Modify
-
-| File | Action | Description |
-|------|--------|-------------|
-| `src/pages/Procedure.tsx` | Major Rewrite | New roadmap layout, remove neon gradients |
-| `src/components/RoadmapTimeline.tsx` | Create | Horizontal progress line component |
-| `src/components/StepDetailCard.tsx` | Create | Expanded step view with placeholders |
-| `src/index.css` | Minor Update | Add any new utility classes needed |
-
----
-
-### Placeholder Content Structure
-
-For each step, create these placeholder sections that you can fill in later:
+**3.2 Modify Hero to be Dynamic:**
 
 ```tsx
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-  {/* Key Documents Placeholder */}
-  <Card className="border-dashed border-2 border-muted-foreground/30">
-    <CardContent className="p-4">
-      <div className="flex items-center gap-2 mb-2">
-        <FileText className="h-5 w-5 text-primary" />
-        <h4 className="font-semibold">Key Documents Required</h4>
-      </div>
-      <p className="text-sm text-muted-foreground italic">
-        Content to be added
-      </p>
-    </CardContent>
-  </Card>
-  
-  {/* Timeline Placeholder */}
-  <Card className="border-dashed border-2 border-muted-foreground/30">
-    <CardContent className="p-4">
-      <div className="flex items-center gap-2 mb-2">
-        <Clock className="h-5 w-5 text-primary" />
-        <h4 className="font-semibold">Typical Timeline</h4>
-      </div>
-      <p className="text-sm text-muted-foreground italic">
-        Duration to be added
-      </p>
-    </CardContent>
-  </Card>
-</div>
+{/* Dynamic Hero based on selected service */}
+<section className="relative py-20 lg:py-32 overflow-hidden">
+  <div className="absolute inset-0">
+    <img
+      src={activeService.image}
+      alt={activeService.title}
+      className="w-full h-full object-cover brightness-[0.85]"
+    />
+    <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/70 to-accent/70 mix-blend-multiply" />
+  </div>
+  <div className="container relative z-10">
+    <h1>{activeService.title}</h1>
+    <p>{activeService.tagline}</p>
+    <p>{activeService.description}</p>
+  </div>
+</section>
 ```
+
+---
+
+### Phase 4: Navigation Changes
+
+**4.1 Update Navbar dropdown to link to the new unified page:**
+
+| Current Path | New Path |
+|--------------|----------|
+| `/services/medical-devices` | `/services#medical-devices` |
+| `/services/ivd` | `/services#ivd` |
+| `/services/cosmetics` | `/services#cosmetics` |
+| `/services/lmpc` | `/services#lmpc` |
+| `/services/iec` | `/services#iec` |
+| `/services/epr` | `/services#epr` |
+
+**4.2 Update main nav items:**
+- Remove "Procedure" from navigation (merged into Services)
+- Keep "Services" dropdown with all 6 services
+
+**4.3 URL State Management:**
+- Use URL hash (`#medical-devices`) to auto-select service on page load
+- Update URL when user switches services for shareability
+
+---
+
+### Phase 5: Route Cleanup
+
+**5.1 Remove individual service page routes from `App.tsx`:**
+
+```diff
+- <Route path="/services/medical-devices" element={<MedicalDevices />} />
+- <Route path="/services/ivd" element={<IVD />} />
+- <Route path="/services/cosmetics" element={<Cosmetics />} />
+- <Route path="/services/lmpc" element={<LMPC />} />
+- <Route path="/services/iec" element={<IEC />} />
+- <Route path="/services/epr" element={<EPR />} />
+- <Route path="/procedure" element={<Procedure />} />
++ <Route path="/services" element={<Services />} />
+```
+
+**5.2 Keep old routes as redirects (optional) for backward compatibility**
+
+---
+
+### Phase 6: Feature Additions
+
+**6.1 Service Selector Pills (above roadmap):**
+- Keep the current pill-style service tabs from Procedure page
+- Animate hero background change when switching services
+
+**6.2 Role Toggle Integration:**
+- Place Manufacturer/Importer toggle between hero and roadmap
+- Different steps shown based on role selection
+- Reset to step 1 when role changes
+
+**6.3 Smooth Transitions:**
+- Fade transition when switching services (hero image crossfade)
+- Slide animation for roadmap content change
+- Scale-in for step cards
+
+---
+
+### Phase 7: Files to Modify/Delete
+
+| File | Action |
+|------|--------|
+| `src/pages/Services.tsx` | **Major Rewrite** - Merge with Procedure logic |
+| `src/pages/Procedure.tsx` | **Delete** - Merged into Services |
+| `src/pages/services/MedicalDevices.tsx` | **Delete** - Content merged |
+| `src/pages/services/IVD.tsx` | **Delete** - Content merged |
+| `src/pages/services/Cosmetics.tsx` | **Delete** - Content merged |
+| `src/pages/services/LMPC.tsx` | **Delete** - Content merged |
+| `src/pages/services/IEC.tsx` | **Delete** - Content merged |
+| `src/pages/services/EPR.tsx` | **Delete** - Content merged |
+| `src/components/Navbar.tsx` | **Update** - Change dropdown links |
+| `src/App.tsx` | **Update** - Simplify routes |
+| `src/components/RoadmapTimeline.tsx` | **Keep** - Reuse as-is |
+| `src/components/StepDetailCard.tsx` | **Keep** - Reuse as-is |
+
+---
+
+### Phase 8: Mobile Considerations
+
+- Service selector becomes horizontal scrollable on mobile (current behavior)
+- Role toggle stacks vertically on small screens
+- Roadmap stays vertical on mobile (current behavior)
+- Hero image aspect ratio maintained with `object-cover`
 
 ---
 
 ### Implementation Order
 
-1. Create `RoadmapTimeline.tsx` component
-2. Create `StepDetailCard.tsx` with placeholder sections
-3. Rewrite `Procedure.tsx` with new layout structure
-4. Remove all neon gradient code
-5. Apply professional color scheme
-6. Add scroll animations
-7. Add links between Procedure and Service pages
-8. Test mobile responsiveness
-9. Add micro-interactions
+1. Create new unified data structure with all service + procedure content
+2. Rewrite `Services.tsx` with dynamic hero + role toggle + roadmap
+3. Add URL hash handling for direct service linking
+4. Update `Navbar.tsx` dropdown links
+5. Update `App.tsx` routes (remove old, simplify new)
+6. Delete old service pages and Procedure page
+7. Add smooth transitions between services
+8. Test all links and mobile responsiveness
 
 ---
 
 ### Expected Outcome
 
-A clean, professional roadmap that:
-- Uses your brand blue palette consistently
-- Shows clear progression through phases
-- Has placeholder sections ready for content
-- Links to relevant service pages
-- Works beautifully on mobile
-- Matches the polished feel of the improved About page
+A single, powerful **Services** page that:
+- Shows rich visual hero with service-specific imagery
+- Allows role-based (Manufacturer/Importer) process viewing
+- Displays professional roadmap with placeholder content sections
+- Supports direct linking via URL hash
+- Eliminates redundant pages and navigation complexity
+- Matches the polished design of the improved About page
 
