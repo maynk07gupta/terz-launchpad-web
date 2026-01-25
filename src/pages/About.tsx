@@ -291,7 +291,7 @@ const About = () => {
                       <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
                         "Mr. Batra brought remarkable professionalism, expertise, and strategic insight from day one. He understood our business requirements quickly and delivered effective solutions ahead of schedule. His clear communication and ability to demystify complex compliance requirements made him a trusted advisor to our team."
                       </p>
-                      <div className="border-t border-border pt-4">
+                      <div className="pt-4">
                         <p className="font-semibold text-foreground">Hemendra Dave, PGDBM, MBA</p>
                         <p className="text-sm text-primary font-medium mt-1">Regulatory Head</p>
                         <p className="text-sm text-muted-foreground">Envision Scientific, Concept Medical</p>
@@ -305,7 +305,7 @@ const About = () => {
                       <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
                         "I highly recommend Vasu Batra for his outstanding expertise in medical device registration with Indian authorities. His deep knowledge, proactive approach, and ability to navigate complex processes were instrumental in securing timely clearance. His strong relationships with authorities ensured a smooth approval process."
                       </p>
-                      <div className="border-t border-border pt-4">
+                      <div className="pt-4">
                         <p className="font-semibold text-foreground">Andrew Tang</p>
                         <p className="text-sm text-primary font-medium mt-1">Chief Executive Officer</p>
                         <p className="text-sm text-muted-foreground">Mobilab, USA</p>
@@ -319,7 +319,7 @@ const About = () => {
                       <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
                         "As a consultant who handles the medical devices regulatory approvals, Vasu is meticulous and conscientious while preparing and vetting documents, leaving little room for errors, saving time and money for his clients. Calm and courteous, he is also a pleasure to deal with."
                       </p>
-                      <div className="border-t border-border pt-4">
+                      <div className="pt-4">
                         <p className="font-semibold text-foreground">Anil Kumar Nair</p>
                         <p className="text-sm text-primary font-medium mt-1">Managing Director</p>
                         <p className="text-sm text-muted-foreground">Geuder Asia Pacific Pvt. Ltd, Singapore</p>
@@ -333,7 +333,7 @@ const About = () => {
                       <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
                         "Had worked with Vasu on medical device registration in India, a person with strong work ethics, extremely responsive and knows his field of work well. His inputs had been a guiding light in getting medical devices registered in India."
                       </p>
-                      <div className="border-t border-border pt-4">
+                      <div className="pt-4">
                         <p className="font-semibold text-foreground">Steven Choy</p>
                         <p className="text-sm text-primary font-medium mt-1">Business Consultant</p>
                         <p className="text-sm text-muted-foreground">SEED, Japan</p>
@@ -347,7 +347,7 @@ const About = () => {
                       <p className="text-muted-foreground mb-6 italic leading-relaxed flex-grow">
                         "Vasu is super efficient in registration work. He helped with urgent paperwork ahead of deadlines and is ever ready to help even at odd hours. Truly appreciate his effort in going the extra mile for his clients."
                       </p>
-                      <div className="border-t border-border pt-4">
+                      <div className="pt-4">
                         <p className="font-semibold text-foreground">Toinali Chophi</p>
                         <p className="text-sm text-primary font-medium mt-1">CEO</p>
                         <p className="text-sm text-muted-foreground">Beautybarnindia</p>
@@ -357,9 +357,6 @@ const About = () => {
                   </Card>
                 </div>
               </div>
-              <p className="text-sm text-center text-muted-foreground mt-6">
-                Scroll horizontally to read more testimonials →
-              </p>
             </div>
           </div>
         </div>
