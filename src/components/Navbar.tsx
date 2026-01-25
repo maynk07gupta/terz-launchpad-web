@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
@@ -8,17 +8,25 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const services = [
-    { name: "Medical Devices", path: "/services/medical-devices" },
-    { name: "In-Vitro Diagnostics", path: "/services/ivd" },
-    { name: "Cosmetics", path: "/services/cosmetics" },
-    { name: "Legal Metrology", path: "/services/lmpc" },
-    { name: "Import Export Code", path: "/services/iec" },
-    { name: "EPR", path: "/services/epr" },
+    { name: "Medical Devices", hash: "medical-devices" },
+    { name: "In-Vitro Diagnostics", hash: "ivd" },
+    { name: "Cosmetics", hash: "cosmetics" },
+    { name: "Legal Metrology", hash: "lmpc" },
+    { name: "Import Export Code", hash: "iec" },
+    { name: "EPR", hash: "epr" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
+  const isServicesActive = location.pathname === "/services";
+
+  const handleServiceClick = (hash: string) => {
+    setServicesOpen(false);
+    setIsOpen(false);
+    navigate(`/services#${hash}`);
+  };
 
   useEffect(() => {
     if (!isOpen) {
@@ -50,7 +58,7 @@ const Navbar = () => {
                 <button
                   onClick={() => setServicesOpen((prev) => !prev)}
                   className={`relative flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
-                    servicesOpen ? "text-primary" : "text-muted-foreground"
+                    servicesOpen || isServicesActive ? "text-primary" : "text-muted-foreground"
                   }`}
                   aria-expanded={servicesOpen}
                   aria-haspopup="true"
@@ -67,14 +75,14 @@ const Navbar = () => {
                   <div className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3">
                     <div className="rounded-2xl border border-border/60 bg-card p-2 shadow-lg ring-1 ring-primary/5 animate-in fade-in zoom-in-95">
                       {services.map((service) => (
-                        <Link
+                        <button
                           key={service.name}
-                          to={service.path}
-                          className="group/link relative block overflow-hidden rounded-xl px-4 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 hover:translate-x-1 hover:text-primary"
+                          onClick={() => handleServiceClick(service.hash)}
+                          className="group/link relative block w-full text-left overflow-hidden rounded-xl px-4 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 hover:translate-x-1 hover:text-primary"
                         >
                           <span className="absolute inset-0 translate-y-full bg-gradient-to-r from-primary/8 via-primary/3 to-primary/8 opacity-0 transition-all duration-300 group-hover/link:translate-y-0 group-hover/link:opacity-100" />
                           {service.name}
-                        </Link>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -82,7 +90,6 @@ const Navbar = () => {
               </div>
 
               <NavItem to="/resources" label="Resources" isActive={isActive("/resources")} />
-              <NavItem to="/procedure" label="Procedure" isActive={isActive("/procedure")} />
               <NavItem to="/about" label="About" isActive={isActive("/about")} />
               <Button
                 asChild
@@ -125,7 +132,7 @@ const Navbar = () => {
                   <button
                     onClick={() => setServicesOpen(!servicesOpen)}
                     className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-base font-semibold transition-colors duration-300 ${
-                      servicesOpen ? "bg-primary/10 text-primary" : "text-muted-foreground"
+                      servicesOpen || isServicesActive ? "bg-primary/10 text-primary" : "text-muted-foreground"
                     }`}
                   >
                     Services
@@ -138,14 +145,13 @@ const Navbar = () => {
                   {servicesOpen && (
                     <div className="mt-3 ml-2 space-y-2 border-l border-primary/30 pl-4">
                       {services.map((service) => (
-                        <Link
+                        <button
                           key={service.name}
-                          to={service.path}
-                          className="block text-sm font-medium text-muted-foreground transition-all duration-300 hover:translate-x-1 hover:text-primary"
-                          onClick={() => setIsOpen(false)}
+                          onClick={() => handleServiceClick(service.hash)}
+                          className="block w-full text-left text-sm font-medium text-muted-foreground transition-all duration-300 hover:translate-x-1 hover:text-primary"
                         >
                           {service.name}
-                        </Link>
+                        </button>
                       ))}
                     </div>
                   )}
@@ -155,12 +161,6 @@ const Navbar = () => {
                   to="/resources"
                   label="Resources"
                   isActive={isActive("/resources")}
-                  onClick={() => setIsOpen(false)}
-                />
-                <LinkListItem
-                  to="/procedure"
-                  label="Procedure"
-                  isActive={isActive("/procedure")}
                   onClick={() => setIsOpen(false)}
                 />
                 <LinkListItem
