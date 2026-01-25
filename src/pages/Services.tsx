@@ -6,6 +6,8 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Button } from "@/components/ui/button";
 import RoadmapTimeline from "@/components/RoadmapTimeline";
 import StepDetailCard from "@/components/StepDetailCard";
+import FloatingElements from "@/components/FloatingElements";
+import { motion, AnimatePresence } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
@@ -670,38 +672,89 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
         ref={heroRef}
         className="relative overflow-hidden py-20 lg:py-32"
       >
-        <div className="absolute inset-0">
-          <img
-            src={activeService?.image}
-            alt={activeService?.title}
-            className="w-full h-full object-cover brightness-[0.85] transition-all duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/70 to-accent/70 mix-blend-multiply" />
-        </div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div
-            className={cn(
-              "max-w-3xl transition-all duration-700",
-              heroVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeService?.id}
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.5 }}
           >
-            {activeService?.badge && (
-              <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white">
-                {activeService.badge}
-              </span>
-            )}
-            <h1 className="mb-6 text-4xl font-bold text-white lg:text-6xl">
-              {activeService?.title}
-            </h1>
-            <p className="text-xl lg:text-2xl text-white/90 mb-4">
-              {activeService?.tagline}
-            </p>
-            <p className="text-lg text-white/80">
+            <img
+              src={activeService?.image}
+              alt={activeService?.title}
+              className="w-full h-full object-cover brightness-[0.85]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/70 to-accent/70 mix-blend-multiply" />
+          </motion.div>
+        </AnimatePresence>
+        
+        {/* Floating Elements */}
+        <FloatingElements variant="services" />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            className="max-w-3xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6 }}
+          >
+            <AnimatePresence mode="wait">
+              {activeService?.badge && (
+                <motion.span
+                  key={activeService.badge}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.3 }}
+                  className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white"
+                >
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="w-2 h-2 rounded-full bg-white/80"
+                  />
+                  {activeService.badge}
+                </motion.span>
+              )}
+            </AnimatePresence>
+            
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={activeService?.title}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 30 }}
+                transition={{ duration: 0.4 }}
+                className="mb-6 text-4xl font-bold text-white lg:text-6xl"
+              >
+                {activeService?.title}
+              </motion.h1>
+            </AnimatePresence>
+            
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={activeService?.tagline}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                className="text-xl lg:text-2xl text-white/90 mb-4"
+              >
+                {activeService?.tagline}
+              </motion.p>
+            </AnimatePresence>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg text-white/80"
+            >
               {activeService?.description}
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
@@ -784,24 +837,51 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
           </div>
 
           <div className="flex justify-center gap-4 mb-10">
-            <Button
-              variant={selectedRole === "manufacturer" ? "default" : "outline"}
-              onClick={() => handleRoleChange("manufacturer")}
-              size="lg"
-              className="min-w-[160px] gap-2"
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <Factory className="h-4 w-4" />
-              Manufacturer
-            </Button>
-            <Button
-              variant={selectedRole === "importer" ? "default" : "outline"}
-              onClick={() => handleRoleChange("importer")}
-              size="lg"
-              className="min-w-[160px] gap-2"
+              <Button
+                variant={selectedRole === "manufacturer" ? "default" : "outline"}
+                onClick={() => handleRoleChange("manufacturer")}
+                size="lg"
+                className={cn(
+                  "min-w-[160px] gap-2 transition-all duration-300",
+                  selectedRole === "manufacturer" && "shadow-lg shadow-primary/25"
+                )}
+              >
+                <motion.span
+                  animate={selectedRole === "manufacturer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Factory className="h-4 w-4" />
+                </motion.span>
+                Manufacturer
+              </Button>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <Building2 className="h-4 w-4" />
-              Importer
-            </Button>
+              <Button
+                variant={selectedRole === "importer" ? "default" : "outline"}
+                onClick={() => handleRoleChange("importer")}
+                size="lg"
+                className={cn(
+                  "min-w-[160px] gap-2 transition-all duration-300",
+                  selectedRole === "importer" && "shadow-lg shadow-primary/25"
+                )}
+              >
+                <motion.span
+                  animate={selectedRole === "importer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Building2 className="h-4 w-4" />
+                </motion.span>
+                Importer
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
