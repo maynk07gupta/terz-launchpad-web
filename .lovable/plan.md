@@ -1,203 +1,260 @@
 
 
-## About Us Page Improvements - Animation-Focused Plan
+## Procedure Page Complete Redesign Plan
 
 ### Overview
-This plan implements all improvements from the original proposal **except the founders/team section**, with a **strong focus on micro-animations** to create a polished, professional user experience.
+Transform the Procedure page from a confusing tabbed card layout into a **professional, visual roadmap experience** with clear progression, consistent branding, and placeholder sections for future content.
 
 ---
 
-### Phase 1: Quick Fixes (5 min)
+### Phase 1: Remove Neon Gradients - Adopt Professional Color Palette
 
-**1.1 Fix Broken Anchor Links**
-- Change `href="#contact"` to `/contact` (line 119)
-- Change `href="#services"` to `/services` (line 122)
+**Current Problem:** 10 clashing neon gradients cause visual fatigue
 
-**1.2 Alternate Section Backgrounds**
-- Mission & Values: Keep `bg-secondary/30`
-- Fee Structure: Change to `bg-background` for visual rhythm/separation
+**Solution:** Replace with brand-consistent, subtle styling
 
----
+| Element | Current | New |
+|---------|---------|-----|
+| Step Preview Card | `from-sky-500 via-cyan-500 to-blue-600` (neon) | `bg-gradient-to-br from-primary/10 to-accent/10` with `border-primary/30` |
+| Active Step Indicator | Neon gradient background | `bg-primary` circle with white number |
+| Completed Steps | Same as active | `bg-primary/20` with checkmark |
+| Upcoming Steps | Same as active | `bg-muted` with gray number |
 
-### Phase 2: Add Statistics Section (15 min)
-
-Add a new impactful stats band **after the "Our Story" section** with animated counters:
-
-| Stat | Value |
-|------|-------|
-| Products Approved | 200+ |
-| Global Clients | 50+ |
-| First-Pass Approval Rate | 98% |
-| Years Experience | 5+ |
-
-**Styling:**
-- Full-width gradient background: `bg-gradient-to-r from-primary to-accent`
-- White text with large numbers
-- Count-up animation on scroll (using `useScrollAnimation` hook)
-- 2x2 grid on mobile, 4 columns on desktop
+**Files to modify:** `src/pages/Procedure.tsx` (remove `gradientPalette` array, update `StepPreview` component)
 
 ---
 
-### Phase 3: Enhance Fee Structure Section (10 min)
+### Phase 2: Create Visual Roadmap Structure
 
-Transform plain text into a more visual and actionable section:
-- Add 3 icon-based feature cards:
-  - "Detailed Breakdown" - shows regulatory vs service fees
-  - "No Hidden Costs" - transparent pricing promise
-  - "First-Pass Focus" - save money by avoiding delays
-- Add CTA button: "Request a Quote" linking to `/contact`
-- Each card gets hover animation (scale + shadow lift)
-
----
-
-### Phase 5: Testimonial Enhancements (10 min)
-
-**5.1 Navigation Dots**
-- Add dot indicators below the carousel
-- Active dot highlighted with `bg-primary`, inactive with `bg-muted-foreground/30`
-- Smooth transition between states
-
-**5.2 Edge Fade Effects**
-- Add gradient fade on left edge (white to transparent)
-- Add gradient fade on right edge (transparent to white)
-- Indicates more content is available in both directions
-
----
-
-### Phase 6: Final CTA Section (10 min)
-
-Add a conversion-focused section **before the footer**:
+**New Layout Architecture:**
 
 ```
-"Ready to simplify your India market entry?"
-[Book a Free Consultation]  [Explore Our Services]
+┌─────────────────────────────────────────────────────────────┐
+│  HERO: Service Title + Brief Description                    │
+├─────────────────────────────────────────────────────────────┤
+│  PHASE NAVIGATION: [Assessment] [Preparation] [Submission]  │
+│                    [Review] [Approval]                       │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  ●────────●────────●────────●────────○  (Progress Line)     │
+│  1        2        3        4        5                       │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │  ACTIVE STEP DETAIL CARD                            │   │
+│  │  ┌──────────┐  Step 3: Submit Application           │   │
+│  │  │   Icon   │  ─────────────────────────────────    │   │
+│  │  │          │  Description text here...             │   │
+│  │  └──────────┘                                       │   │
+│  │                                                     │   │
+│  │  ┌─────────────────────────────────────────────┐   │   │
+│  │  │  📋 Key Documents Required (placeholder)    │   │   │
+│  │  │  • Document 1                               │   │   │
+│  │  │  • Document 2                               │   │   │
+│  │  └─────────────────────────────────────────────┘   │   │
+│  │                                                     │   │
+│  │  ┌─────────────────────────────────────────────┐   │   │
+│  │  │  ⏱️ Typical Timeline (placeholder)          │   │   │
+│  │  │  2-4 weeks                                  │   │   │
+│  │  └─────────────────────────────────────────────┘   │   │
+│  │                                                     │   │
+│  │  [Previous Step]              [Next Step →]         │   │
+│  └─────────────────────────────────────────────────────┘   │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-**Styling:**
-- Gradient background: `bg-gradient-to-br from-primary/5 via-background to-accent/10`
-- Centered text with prominent heading
-- Two CTA buttons with hover animations
-- Fade-in animation on scroll
+**Key Visual Elements:**
+- Horizontal progress line with numbered circles
+- Active step highlighted with primary color
+- Completed steps show checkmarks
+- Click/tap to navigate between steps
+- Smooth transitions between steps
 
 ---
 
-### Phase 7: Micro-Animations (Primary Focus - 20 min)
+### Phase 3: Restructure Content with Placeholder Sections
 
-#### 7.1 New Animation Keyframes in `tailwind.config.ts`
+**New Step Data Structure:**
 
 ```typescript
-keyframes: {
-  "fade-up": {
-    "0%": { opacity: "0", transform: "translateY(20px)" },
-    "100%": { opacity: "1", transform: "translateY(0)" }
-  },
-  "fade-in": {
-    "0%": { opacity: "0" },
-    "100%": { opacity: "1" }
-  },
-  "scale-in": {
-    "0%": { opacity: "0", transform: "scale(0.95)" },
-    "100%": { opacity: "1", transform: "scale(1)" }
-  },
-  "slide-in-left": {
-    "0%": { opacity: "0", transform: "translateX(-20px)" },
-    "100%": { opacity: "1", transform: "translateX(0)" }
-  },
-  "slide-in-right": {
-    "0%": { opacity: "0", transform: "translateX(20px)" },
-    "100%": { opacity: "1", transform: "translateX(0)" }
-  },
-  "count-up": {
-    "0%": { opacity: "0", transform: "translateY(10px)" },
-    "100%": { opacity: "1", transform: "translateY(0)" }
-  }
-}
+type ProcedureStep = {
+  title: string;
+  description: string;
+  phase: string; // "Assessment" | "Preparation" | "Submission" | "Review" | "Approval"
+  icon: LucideIcon;
+  // Placeholder sections - content to be added later
+  keyDocuments?: string[]; // List of required documents
+  typicalTimeline?: string; // e.g., "2-4 weeks"
+  deliverables?: string[]; // What client receives at this step
+  tips?: string[]; // Pro tips or common pitfalls
+};
 ```
 
-#### 7.2 Scroll-Triggered Animations in `About.tsx`
-
-Using the existing `useScrollAnimation` hook, apply animations to:
-
-| Section | Animation | Delay Pattern |
-|---------|-----------|---------------|
-| Hero heading | `fade-up` | 0ms |
-| Hero paragraph | `fade-up` | 150ms |
-| Hero CTAs | `fade-up` | 300ms |
-| Hero image | `scale-in` | 200ms |
-| Our Story text | `slide-in-left` | 0ms |
-| Our Story image | `slide-in-right` | 200ms |
-| Timeline cards | `fade-up` | Staggered 100ms each |
-| Values cards | `scale-in` | Staggered 100ms each |
-| Stats numbers | `count-up` | Staggered 150ms each |
-| Fee Structure cards | `fade-up` | Staggered 100ms each |
-| Testimonial section | `fade-in` | 0ms |
-| Final CTA | `fade-up` | 0ms |
-
-#### 7.3 Hover Microinteractions
-
-**Cards (Values, Timeline, Fee Structure):**
-```css
-transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:-translate-y-1
-```
-
-**CTA Buttons:**
-```css
-transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5
-```
-
-**Testimonial Cards:**
-```css
-transition-all duration-300 hover:shadow-md hover:border-primary/20
-```
-
-#### 7.4 Statistics Counter Animation
-
-Create a `useCountUp` hook or inline effect that:
-- Triggers when section enters viewport
-- Animates numbers from 0 to target value
-- Duration: 2 seconds with easeOut timing
-- Runs only once (no repeat on re-scroll)
+**Placeholder Cards Within Each Step:**
+1. **Key Documents Required** - Empty state with "Content coming soon" or placeholder items
+2. **Typical Timeline** - Placeholder for duration estimates
+3. **Deliverables** - What client receives at this step
+4. **Pro Tips** - Common pitfalls or advice
 
 ---
 
-### Files to Modify
+### Phase 4: Create Horizontal Progress Timeline Component
 
-| File | Changes |
-|------|---------|
-| `src/pages/About.tsx` | All structural changes, new sections, animation classes, scroll hooks |
-| `tailwind.config.ts` | New keyframes and animation utilities |
+**New Component: `RoadmapTimeline.tsx`**
+
+Features:
+- Horizontal line connecting all steps
+- Numbered circles for each step (1, 2, 3...)
+- Visual states: completed (checkmark), active (primary color), upcoming (muted)
+- Click to navigate
+- Responsive: horizontal scroll on mobile with touch gestures
+- Smooth animations when transitioning
+
+**Styling:**
+- Line: `h-1 bg-gradient-to-r from-primary to-primary/50`
+- Active circle: `bg-primary text-white w-10 h-10`
+- Completed: `bg-primary/80 text-white` with CheckCircle icon
+- Upcoming: `bg-muted border-2 border-muted-foreground/30`
 
 ---
 
-### Animation Utility Classes Summary
+### Phase 5: Improve Tab Navigation
 
-The following animation classes will be available after implementation:
+**Current:** 6 tabs that wrap awkwardly
 
-- `animate-fade-up` - Fade in while sliding up
-- `animate-fade-in` - Simple fade in
-- `animate-scale-in` - Fade in with slight scale
-- `animate-slide-in-left` - Slide in from left
-- `animate-slide-in-right` - Slide in from right
-- `animate-count-up` - For stat numbers
+**New Design:**
+- Replace tabs with a dropdown selector on mobile
+- Keep horizontal tabs on desktop but style as pill buttons
+- Add icons to each tab for visual distinction
+- Show step count badge (e.g., "Medical Devices (8 steps)")
 
-These work with delay modifiers using inline styles:
-```jsx
-style={{ animationDelay: '150ms' }}
+**Tab styling:**
+```css
+/* Inactive */
+bg-secondary/50 text-muted-foreground border border-border
+
+/* Active */
+bg-primary text-primary-foreground shadow-lg
+```
+
+---
+
+### Phase 6: Add Service Page Links
+
+Add a connection between Procedure and Service pages:
+
+**At the top of each procedure:**
+> "This procedure applies to our [Medical Devices Service →](/services/medical-devices)"
+
+**At the bottom of each procedure:**
+> CTA: "Ready to start? [Get Expert Assistance →]"
+
+---
+
+### Phase 7: Differentiate Content Per Service
+
+Group steps into meaningful phases and add unique context:
+
+| Service | Unique Elements to Add |
+|---------|------------------------|
+| Medical Devices | Device class badges (A, B, C, D), OSMD portal reference |
+| IVD | Performance evaluation emphasis, ISO 13485 callout |
+| Cosmetics | BIS standards reference, ingredient compliance |
+| LMPC | State-level variations, packaging focus |
+| IEC | Lifetime validity highlight, DGFT reference |
+| EPR | Environmental focus, CPCB portal reference |
+
+---
+
+### Phase 8: Add Scroll Animations
+
+Apply the same animation system from the About page:
+
+- Fade-up for section headers
+- Scale-in for step cards
+- Slide transitions between steps
+- Hover micro-interactions on timeline circles
+
+---
+
+### Phase 9: Mobile-First Roadmap
+
+**Mobile Layout:**
+- Vertical timeline (line on left, content on right)
+- Swipe gestures to navigate steps
+- Collapsible step details
+- Sticky progress indicator at top
+
+---
+
+### Files to Create/Modify
+
+| File | Action | Description |
+|------|--------|-------------|
+| `src/pages/Procedure.tsx` | Major Rewrite | New roadmap layout, remove neon gradients |
+| `src/components/RoadmapTimeline.tsx` | Create | Horizontal progress line component |
+| `src/components/StepDetailCard.tsx` | Create | Expanded step view with placeholders |
+| `src/index.css` | Minor Update | Add any new utility classes needed |
+
+---
+
+### Placeholder Content Structure
+
+For each step, create these placeholder sections that you can fill in later:
+
+```tsx
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+  {/* Key Documents Placeholder */}
+  <Card className="border-dashed border-2 border-muted-foreground/30">
+    <CardContent className="p-4">
+      <div className="flex items-center gap-2 mb-2">
+        <FileText className="h-5 w-5 text-primary" />
+        <h4 className="font-semibold">Key Documents Required</h4>
+      </div>
+      <p className="text-sm text-muted-foreground italic">
+        Content to be added
+      </p>
+    </CardContent>
+  </Card>
+  
+  {/* Timeline Placeholder */}
+  <Card className="border-dashed border-2 border-muted-foreground/30">
+    <CardContent className="p-4">
+      <div className="flex items-center gap-2 mb-2">
+        <Clock className="h-5 w-5 text-primary" />
+        <h4 className="font-semibold">Typical Timeline</h4>
+      </div>
+      <p className="text-sm text-muted-foreground italic">
+        Duration to be added
+      </p>
+    </CardContent>
+  </Card>
+</div>
 ```
 
 ---
 
 ### Implementation Order
 
-1. Add keyframes to `tailwind.config.ts`
-2. Fix anchor links in About.tsx
-3. Add scroll animation hooks to existing sections
-4. Add hover states to all cards
-5. Add Statistics section with counter animation
-6. Enhance Fee Structure with icon cards + CTA
-7. Add testimonial navigation dots + edge fades
-8. Add Final CTA section
-9. Alternate section backgrounds
+1. Create `RoadmapTimeline.tsx` component
+2. Create `StepDetailCard.tsx` with placeholder sections
+3. Rewrite `Procedure.tsx` with new layout structure
+4. Remove all neon gradient code
+5. Apply professional color scheme
+6. Add scroll animations
+7. Add links between Procedure and Service pages
+8. Test mobile responsiveness
+9. Add micro-interactions
 
-**Estimated: 2-3 implementation messages**
+---
+
+### Expected Outcome
+
+A clean, professional roadmap that:
+- Uses your brand blue palette consistently
+- Shows clear progression through phases
+- Has placeholder sections ready for content
+- Links to relevant service pages
+- Works beautifully on mobile
+- Matches the polished feel of the improved About page
 
