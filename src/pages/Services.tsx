@@ -580,16 +580,39 @@ const serviceCatalog: ServiceProcedure[] = [
   },
 ];
 
+import ServicesOverview from "@/components/ServicesOverview";
+
 const Services = () => {
   const location = useLocation();
-  const [activeServiceId, setActiveServiceId] = useState(serviceCatalog[0]?.id ?? "");
+  const hash = location.hash.replace("#", "");
+
+  // If no hash, show overview page
+  if (!hash) {
+    return <ServicesOverview />;
+  }
+
+  // If hash present, render the detail view
+  return <ServiceDetail initialServiceId={hash} />;
+};
+
+type ServiceDetailProps = {
+  initialServiceId: string;
+};
+
+const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
+  const location = useLocation();
+  const [activeServiceId, setActiveServiceId] = useState(
+    serviceCatalog.some((s) => s.id === initialServiceId)
+      ? initialServiceId
+      : serviceCatalog[0]?.id ?? ""
+  );
   const [selectedRole, setSelectedRole] = useState<"manufacturer" | "importer">("manufacturer");
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const isMobile = useIsMobile();
   const { ref: heroRef, isVisible: heroVisible } = useScrollAnimation();
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
 
-  // Handle URL hash for direct service linking
+  // Handle URL hash changes for direct service linking
   useEffect(() => {
     const hash = location.hash.replace("#", "");
     if (hash && serviceCatalog.some((s) => s.id === hash)) {

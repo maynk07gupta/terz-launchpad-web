@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
@@ -55,22 +56,36 @@ const Navbar = () => {
                 onMouseEnter={() => setServicesOpen(true)}
                 onMouseLeave={() => setServicesOpen(false)}
               >
-                <button
-                  onClick={() => setServicesOpen((prev) => !prev)}
-                  className={`relative flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
-                    servicesOpen || isServicesActive ? "text-primary" : "text-muted-foreground"
-                  }`}
-                  aria-expanded={servicesOpen}
-                  aria-haspopup="true"
-                >
-                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 via-primary/0 to-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  Services
-                  <ChevronDown
-                    className={`ml-1 h-4 w-4 transition-transform duration-300 ${
-                      servicesOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
+                <div className="flex items-center">
+                  <Link
+                    to="/services"
+                    onClick={() => setServicesOpen(false)}
+                    className={cn(
+                      "relative rounded-l-full px-4 py-2 text-sm font-semibold transition-all duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+                      isServicesActive ? "text-primary" : "text-muted-foreground"
+                    )}
+                  >
+                    <span className="absolute inset-0 rounded-l-full bg-gradient-to-r from-primary/10 via-primary/0 to-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    Services
+                  </Link>
+                  <button
+                    onClick={() => setServicesOpen((prev) => !prev)}
+                    className={cn(
+                      "relative rounded-r-full px-2 py-2 text-sm transition-all duration-300 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+                      servicesOpen || isServicesActive ? "text-primary" : "text-muted-foreground"
+                    )}
+                    aria-expanded={servicesOpen}
+                    aria-haspopup="true"
+                  >
+                    <span className="absolute inset-0 rounded-r-full bg-gradient-to-r from-primary/10 via-primary/0 to-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <ChevronDown
+                      className={cn(
+                        "h-4 w-4 transition-transform duration-300",
+                        servicesOpen ? "rotate-180" : ""
+                      )}
+                    />
+                  </button>
+                </div>
                 {servicesOpen && (
                   <div className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3">
                     <div className="rounded-2xl border border-border/60 bg-card p-2 shadow-lg ring-1 ring-primary/5 animate-in fade-in zoom-in-95">
@@ -127,21 +142,36 @@ const Navbar = () => {
                   Home
                 </Link>
 
-                {/* Mobile Services Accordion */}
+                {/* Mobile Services - Split layout */}
                 <div>
-                  <button
-                    onClick={() => setServicesOpen(!servicesOpen)}
-                    className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-base font-semibold transition-colors duration-300 ${
-                      servicesOpen || isServicesActive ? "bg-primary/10 text-primary" : "text-muted-foreground"
-                    }`}
-                  >
-                    Services
-                    <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-300 ${
-                        servicesOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
+                  <div className="flex items-center justify-between rounded-2xl px-4 py-3 transition-colors duration-300">
+                    <Link
+                      to="/services"
+                      onClick={() => setIsOpen(false)}
+                      className={cn(
+                        "text-base font-semibold transition-colors duration-300",
+                        isServicesActive ? "text-primary" : "text-muted-foreground hover:text-primary"
+                      )}
+                    >
+                      Services
+                    </Link>
+                    <button
+                      onClick={() => setServicesOpen(!servicesOpen)}
+                      className={cn(
+                        "p-2 rounded-lg transition-all duration-300 hover:bg-primary/10",
+                        servicesOpen ? "text-primary" : "text-muted-foreground"
+                      )}
+                      aria-expanded={servicesOpen}
+                      aria-label="Toggle services menu"
+                    >
+                      <ChevronRight
+                        className={cn(
+                          "h-4 w-4 transition-transform duration-300",
+                          servicesOpen && "rotate-90"
+                        )}
+                      />
+                    </button>
+                  </div>
                   {servicesOpen && (
                     <div className="mt-3 ml-2 space-y-2 border-l border-primary/30 pl-4">
                       {services.map((service) => (
