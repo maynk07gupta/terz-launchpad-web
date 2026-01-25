@@ -1,5 +1,6 @@
 import { Users, Award, DollarSign, Target, Lightbulb, Building2, Boxes, ShieldCheck } from "lucide-react";
 import aboutHeroImage from "@/assets/about-hero.png";
+import ourStoryImage from "@/assets/our-story.png";
 import timeline2019 from "@/assets/timeline-2019.jpg";
 import timeline2020 from "@/assets/timeline-2020.jpg";
 import timeline2022 from "@/assets/timeline-2022.jpg";
@@ -163,20 +164,12 @@ const About = () => {
             </div>
             <div className="relative h-full">
               <div className="absolute inset-0 translate-x-6 translate-y-6 rounded-3xl bg-primary/10 blur-3xl" aria-hidden />
-              <div className="relative rounded-3xl overflow-hidden border border-primary/15 bg-gradient-to-br from-background via-primary/5 to-primary/10 shadow-2xl">
-                <div className="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[4/5] flex items-center justify-center p-6">
-                  <div className="w-full h-full rounded-2xl bg-white/80 ring-1 ring-primary/10 shadow-lg shadow-primary/20 flex items-center justify-center">
-                    <div className="mx-auto max-w-sm text-center space-y-3 p-6">
-                      <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-primary/10 text-primary mx-auto">
-                        <Users className="h-7 w-7" />
-                      </div>
-                      <p className="text-lg font-semibold text-foreground">Real people, real expertise</p>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        A remote-first team collaborating with clients worldwide, reviewing documents, timelines and approvals together.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              <div className="relative rounded-3xl overflow-hidden border border-primary/15 shadow-2xl">
+                <img 
+                  src={ourStoryImage} 
+                  alt="Simplifying India's Regulatory Approvals - Terz Compliance" 
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </div>
           </div>
