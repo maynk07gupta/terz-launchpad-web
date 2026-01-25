@@ -6,6 +6,10 @@ import timeline2019 from "@/assets/timeline-2019.jpg";
 import timeline2020 from "@/assets/timeline-2020.jpg";
 import timeline2022 from "@/assets/timeline-2022.jpg";
 import timelineToday from "@/assets/timeline-today.jpg";
+import missionDrivenBg from "@/assets/mission-driven-bg.jpg";
+import qualityFirstBg from "@/assets/quality-first-bg.jpg";
+import clientPartnershipBg from "@/assets/client-partnership-bg.jpg";
+import transparentFairBg from "@/assets/transparent-fair-bg.jpg";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
@@ -104,19 +108,23 @@ const About = () => {
   const values = [{
     icon: Target,
     title: "Mission-Driven",
-    description: "Empowering life science companies to bring products to market efficiently and ethically by simplifying regulatory compliance."
+    description: "Empowering life science companies to bring products to market efficiently and ethically by simplifying regulatory compliance.",
+    bgImage: missionDrivenBg
   }, {
     icon: Award,
     title: "Quality First",
-    description: "We focus on first-pass approval with meticulous documentation that meets the highest regulatory standards."
+    description: "We focus on first-pass approval with meticulous documentation that meets the highest regulatory standards.",
+    bgImage: qualityFirstBg
   }, {
     icon: Users,
     title: "Client Partnership",
-    description: "Your success is our success. We provide dedicated support as your single point of contact throughout the journey."
+    description: "Your success is our success. We provide dedicated support as your single point of contact throughout the journey.",
+    bgImage: clientPartnershipBg
   }, {
     icon: DollarSign,
     title: "Transparent & Fair",
-    description: "Honest communication, predictable timelines, and cost-effective solutions with no hidden fees."
+    description: "Honest communication, predictable timelines, and cost-effective solutions with no hidden fees.",
+    bgImage: transparentFairBg
   }];
   const timelineItems = [{
     year: "2019",
@@ -338,16 +346,22 @@ const About = () => {
               Our Mission & Values
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {values.map((value, index) => <Card key={index} className={`transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:-translate-y-1 ${valuesRef.isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} style={{
+              {values.map((value, index) => <Card key={index} className={`overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:-translate-y-1 ${valuesRef.isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`} style={{
               transitionDelay: valuesRef.isVisible ? `${index * 100}ms` : "0ms"
             }}>
-                  <CardContent className="pt-6">
-                    <value.icon className="h-12 w-12 text-primary mb-4" />
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
-                      {value.title}
-                    </h3>
-                    <p className="text-muted-foreground">{value.description}</p>
-                  </CardContent>
+                  <div className="relative">
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center opacity-20"
+                      style={{ backgroundImage: `url(${value.bgImage})` }}
+                    />
+                    <CardContent className="pt-6 relative z-10">
+                      <value.icon className="h-12 w-12 text-primary mb-4" />
+                      <h3 className="text-xl font-semibold text-foreground mb-2">
+                        {value.title}
+                      </h3>
+                      <p className="text-muted-foreground">{value.description}</p>
+                    </CardContent>
+                  </div>
                 </Card>)}
             </div>
           </div>
