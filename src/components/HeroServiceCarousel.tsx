@@ -43,7 +43,7 @@ const serviceSlides: ServiceSlide[] = [
   {
     id: "other-services",
     title: "Other Services",
-    caption: "BIS, EPR, WPC & more",
+    caption: "EPR, WPC & more",
     image: MarketEntryImage,
   },
 ];

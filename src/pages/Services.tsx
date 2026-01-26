@@ -253,14 +253,14 @@ const serviceCatalog: ServiceProcedure[] = [
     title: "Cosmetics (CDSCO)",
     tagline: "Fast-track cosmetic product registration",
     description:
-      "Complete cosmetics registration services for domestic and imported products. Ensure compliance with BIS and CDSCO standards.",
+      "Complete cosmetics registration services for domestic and imported products. Ensure compliance with CDSCO standards.",
     image: cosmeticsImg,
-    badge: "BIS",
+    badge: "CDSCO",
     manufacturerSteps: [
       {
         title: "Product Formulation Review",
         description:
-          "Ensure formulation complies with BIS and CDSCO permitted ingredients list.",
+          "Ensure formulation complies with CDSCO permitted ingredients list.",
         icon: Beaker,
         phase: "Assessment",
       },

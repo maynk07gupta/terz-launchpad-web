@@ -253,7 +253,7 @@ const About = () => {
                   Instead of accepting that as "just the way it is", we decided to build a partner that does things differently.
                 </p>
                 <p>
-                  We started by mapping every major Indian approval pathway - BIS, CDSCO, Legal Metrology, FSSAI, EPR and more - and breaking them into clear, repeatable steps. Then we combined this with proactive communication, transparent fees and a completely remote model so clients anywhere in the world could work with us easily.
+                  We started by mapping every major Indian approval pathway - CDSCO, Legal Metrology, FSSAI, EPR and more - and breaking them into clear, repeatable steps. Then we combined this with proactive communication, transparent fees and a completely remote model so clients anywhere in the world could work with us easily.
                 </p>
                 <p>
                   Today, Terz Compliance supports manufacturers, importers and distributors of all sizes. Whether you're launching a single SKU or an entire portfolio, our job is to make your regulatory journey predictable, documented and stress-free.
@@ -458,7 +458,7 @@ const About = () => {
               Ready to simplify your India market entry?
             </h2>
             <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Whether you're navigating CDSCO, BIS, FSSAI or any other regulatory pathway, we're here to make your journey predictable and stress-free.
+              Whether you're navigating CDSCO, FSSAI or any other regulatory pathway, we're here to make your journey predictable and stress-free.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="rounded-full text-base px-8 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5">
