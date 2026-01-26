@@ -51,7 +51,7 @@ const servicesData: ServiceCardData[] = [
     title: "Legal Metrology",
     tagline: "LMPC compliance made simple",
     image: lmpcImg,
-    badge: "State-Level",
+    badge: "Central-Level",
   },
   {
     id: "iec",

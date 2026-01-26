@@ -338,7 +338,7 @@ const serviceCatalog: ServiceProcedure[] = [
     description:
       "Legal metrology compliance for packaged commodities. Ensure your products meet all labeling and packaging requirements.",
     image: lmpcImg,
-    badge: "State-Level",
+    badge: "Central-Level",
     manufacturerSteps: [
       {
         title: "Packaging Compliance Audit",
