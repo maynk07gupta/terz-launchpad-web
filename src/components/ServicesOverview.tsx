@@ -37,7 +37,7 @@ const servicesData: ServiceCardData[] = [
     title: "In-Vitro Diagnostics",
     tagline: "Expert IVD compliance and regulatory support",
     image: ivdImg,
-    badge: "ISO 13485",
+    badge: "CDSCO",
   },
   {
     id: "cosmetics",

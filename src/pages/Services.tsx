@@ -172,7 +172,7 @@ const serviceCatalog: ServiceProcedure[] = [
     description:
       "Specialized regulatory assistance for in-vitro diagnostic medical devices. Navigate CDSCO requirements with confidence.",
     image: ivdImg,
-    badge: "ISO 13485",
+    badge: "CDSCO",
     manufacturerSteps: [
       {
         title: "IVD Classification Analysis",
