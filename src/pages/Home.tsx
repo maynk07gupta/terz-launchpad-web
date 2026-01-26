@@ -66,10 +66,10 @@ const heroServices: HeroService[] = [{
 }, {
   title: "Cosmetics",
   headline: "Fast-track cosmetic launches across India",
-  description: "Simplify ingredient reviews, safety dossiers, and post-approval notifications with a team that understands BIS nuances.",
+  description: "Simplify ingredient reviews, safety dossiers, and post-approval notifications with a team that understands regulatory nuances.",
   icon: Sparkles,
   image: CosmeticsImage,
-  highlights: ["BIS registration & documentation", "Adverse event reporting playbooks", "Artwork & labelling compliance"],
+  highlights: ["Product registration & documentation", "Adverse event reporting playbooks", "Artwork & labelling compliance"],
   accent: "from-accent-100/70 via-accent-200/60 to-accent-500/45"
 }, {
   title: "Legal Metrology",
@@ -323,7 +323,7 @@ const Home = () => {
 
               {/* Sub-heading */}
               <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-primary/90">
-                Your end-to-end partner for BIS, CDSCO, Legal Metrology, EPR & more.
+                Your end-to-end partner for CDSCO, Legal Metrology, EPR & more.
               </h2>
 
               {/* Supporting Line */}

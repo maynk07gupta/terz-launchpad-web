@@ -44,7 +44,7 @@ const servicesData: ServiceCardData[] = [
     title: "Cosmetics",
     tagline: "Fast-track cosmetic product registration",
     image: cosmeticsImg,
-    badge: "BIS",
+    badge: "CDSCO",
   },
   {
     id: "lmpc",

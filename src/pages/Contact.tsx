@@ -176,7 +176,7 @@ const Contact = () => {
                 </AccordionTrigger>
                 <AccordionContent>
                   <p className="text-muted-foreground">
-                    We support BIS certification, CDSCO approvals for medical devices and in-vitro diagnostics, cosmetics registration, Legal Metrology approvals, WPC/ETA, EPR and other Indian regulatory requirements. If you are unsure which approvals apply to your product, contact us and we will map the applicable regulations for you.
+                    We support CDSCO approvals for medical devices and in-vitro diagnostics, cosmetics registration, Legal Metrology approvals, WPC/ETA, EPR and other Indian regulatory requirements. If you are unsure which approvals apply to your product, contact us and we will map the applicable regulations for you.
                   </p>
                 </AccordionContent>
               </AccordionItem>
