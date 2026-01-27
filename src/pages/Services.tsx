@@ -623,6 +623,9 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
     }
   }, [location.hash]);
 
+  // Services that support both manufacturer and importer roles
+  const dualRoleServices = ["medical-devices", "ivd"];
+
   const activeService = useMemo(
     () =>
       serviceCatalog.find((service) => service.id === activeServiceId) ??
@@ -630,8 +633,14 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
     [activeServiceId]
   );
 
+  // Check if current service supports both roles
+  const hasDualRoles = dualRoleServices.includes(activeServiceId);
+
+  // For non-dual-role services, always use manufacturer steps
+  const effectiveRole = hasDualRoles ? selectedRole : "manufacturer";
+
   const activeSteps =
-    selectedRole === "manufacturer"
+    effectiveRole === "manufacturer"
       ? activeService?.manufacturerSteps
       : activeService?.importerSteps;
 
@@ -640,6 +649,10 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
   const handleServiceChange = (value: string) => {
     setActiveServiceId(value);
     setActiveStepIndex(0);
+    // Reset to manufacturer when switching to a single-role service
+    if (!dualRoleServices.includes(value)) {
+      setSelectedRole("manufacturer");
+    }
     // Update URL hash for shareability
     window.history.replaceState(null, "", `#${value}`);
   };
@@ -827,62 +840,75 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
               : "opacity-0 translate-y-8"
           )}
         >
-          <div className="text-center mb-8">
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-              Choose Your Role
-            </h2>
-            <p className="text-muted-foreground">
-              Select whether you're a manufacturer or importer to see the specific process
-            </p>
-          </div>
+          {hasDualRoles ? (
+            <>
+              <div className="text-center mb-8">
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
+                  Choose Your Role
+                </h2>
+                <p className="text-muted-foreground">
+                  Select whether you're a manufacturer or importer to see the specific process
+                </p>
+              </div>
 
-          <div className="flex justify-center gap-4 mb-10">
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <Button
-                variant={selectedRole === "manufacturer" ? "default" : "outline"}
-                onClick={() => handleRoleChange("manufacturer")}
-                size="lg"
-                className={cn(
-                  "min-w-[160px] gap-2 transition-all duration-300",
-                  selectedRole === "manufacturer" && "shadow-lg shadow-primary/25"
-                )}
-              >
-                <motion.span
-                  animate={selectedRole === "manufacturer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
-                  transition={{ duration: 0.5 }}
+              <div className="flex justify-center gap-4 mb-10">
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <Factory className="h-4 w-4" />
-                </motion.span>
-                Manufacturer
-              </Button>
-            </motion.div>
-            
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <Button
-                variant={selectedRole === "importer" ? "default" : "outline"}
-                onClick={() => handleRoleChange("importer")}
-                size="lg"
-                className={cn(
-                  "min-w-[160px] gap-2 transition-all duration-300",
-                  selectedRole === "importer" && "shadow-lg shadow-primary/25"
-                )}
-              >
-                <motion.span
-                  animate={selectedRole === "importer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
-                  transition={{ duration: 0.5 }}
+                  <Button
+                    variant={selectedRole === "manufacturer" ? "default" : "outline"}
+                    onClick={() => handleRoleChange("manufacturer")}
+                    size="lg"
+                    className={cn(
+                      "min-w-[160px] gap-2 transition-all duration-300",
+                      selectedRole === "manufacturer" && "shadow-lg shadow-primary/25"
+                    )}
+                  >
+                    <motion.span
+                      animate={selectedRole === "manufacturer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Factory className="h-4 w-4" />
+                    </motion.span>
+                    Manufacturer
+                  </Button>
+                </motion.div>
+                
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <Building2 className="h-4 w-4" />
-                </motion.span>
-                Importer
-              </Button>
-            </motion.div>
-          </div>
+                  <Button
+                    variant={selectedRole === "importer" ? "default" : "outline"}
+                    onClick={() => handleRoleChange("importer")}
+                    size="lg"
+                    className={cn(
+                      "min-w-[160px] gap-2 transition-all duration-300",
+                      selectedRole === "importer" && "shadow-lg shadow-primary/25"
+                    )}
+                  >
+                    <motion.span
+                      animate={selectedRole === "importer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Building2 className="h-4 w-4" />
+                    </motion.span>
+                    Importer
+                  </Button>
+                </motion.div>
+              </div>
+            </>
+          ) : (
+            <div className="text-center mb-10">
+              <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
+                Manufacturer Process
+              </h2>
+              <p className="text-muted-foreground">
+                Follow the step-by-step registration process below
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
