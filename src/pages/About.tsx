@@ -31,19 +31,19 @@ const About = () => {
 
   // Count up hooks for statistics
   const productsCount = useCountUp({
+    end: 100,
+    suffix: "k+"
+  });
+  const clientsCount = useCountUp({
     end: 200,
     suffix: "+"
   });
-  const clientsCount = useCountUp({
-    end: 50,
-    suffix: "+"
-  });
-  const approvalCount = useCountUp({
-    end: 98,
+  const transparencyCount = useCountUp({
+    end: 100,
     suffix: "%"
   });
   const yearsCount = useCountUp({
-    end: 5,
+    end: 15,
     suffix: "+"
   });
   useEffect(() => {
@@ -314,7 +314,7 @@ const About = () => {
               <p className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2">
                 {productsCount.count}
               </p>
-              <p className="text-primary-foreground/80 font-medium">Products Approved</p>
+              <p className="text-primary-foreground/80 font-medium">Products Registered</p>
             </div>
             <div ref={clientsCount.ref} className={`text-center transition-all duration-500 delay-100 ${statsRef.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
               <p className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2">
@@ -322,11 +322,11 @@ const About = () => {
               </p>
               <p className="text-primary-foreground/80 font-medium">Global Clients</p>
             </div>
-            <div ref={approvalCount.ref} className={`text-center transition-all duration-500 delay-200 ${statsRef.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
+            <div ref={transparencyCount.ref} className={`text-center transition-all duration-500 delay-200 ${statsRef.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
               <p className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2">
-                {approvalCount.count}
+                {transparencyCount.count}
               </p>
-              <p className="text-primary-foreground/80 font-medium">First-Pass Approval</p>
+              <p className="text-primary-foreground/80 font-medium">Transparency</p>
             </div>
             <div ref={yearsCount.ref} className={`text-center transition-all duration-500 delay-300 ${statsRef.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}>
               <p className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2">

@@ -33,10 +33,10 @@ const StatItem = ({ icon: Icon, value, suffix, label, delay }: StatItemProps) =>
 };
 
 const stats = [
-  { icon: Award, value: 200, suffix: "+", label: "Products Approved" },
-  { icon: Users, value: 50, suffix: "+", label: "Global Clients" },
-  { icon: TrendingUp, value: 98, suffix: "%", label: "First-Pass Approval" },
-  { icon: Clock, value: 5, suffix: "+", label: "Years Experience" },
+  { icon: Award, value: 100, suffix: "k+", label: "Products Registered" },
+  { icon: Users, value: 200, suffix: "+", label: "Global Clients" },
+  { icon: TrendingUp, value: 100, suffix: "%", label: "Transparency" },
+  { icon: Clock, value: 15, suffix: "+", label: "Years Experience" },
 ];
 
 export const StatsBar = () => {
