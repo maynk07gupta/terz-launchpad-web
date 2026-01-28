@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Stethoscope, FlaskConical, Sparkles, Scale, FileText, Recycle } from "lucide-react";
-import logo from "@/assets/logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const services = [
@@ -13,9 +12,9 @@ const services = [
 ];
 
 const orbitSizes = {
-  1: { rx: 100, ry: 45 },   // Inner orbit - primary services
-  2: { rx: 155, ry: 70 },   // Middle orbit
-  3: { rx: 210, ry: 95 },   // Outer orbit
+  1: { rx: 150, ry: 70 },   // Inner orbit - primary services
+  2: { rx: 215, ry: 100 },  // Middle orbit
+  3: { rx: 280, ry: 130 },  // Outer orbit
 };
 
 const orbitDurations = {
@@ -26,16 +25,91 @@ const orbitDurations = {
 
 export const GlobeAnimation = () => {
   const isMobile = useIsMobile();
-  const size = isMobile ? 320 : 480;
+  const size = isMobile ? 360 : 620;
   const centerX = size / 2;
   const centerY = size / 2;
+  const globeSize = isMobile ? 250 : 380;
+  const globeInnerSize = isMobile ? 190 : 290;
 
   return (
-    <div className="relative" style={{ width: size, height: size }}>
-      {/* Background glow - enhanced */}
-      <div className="absolute inset-[-20%] rounded-full bg-gradient-to-br from-primary/25 via-primary/15 to-accent/20 blur-3xl" />
-      <div className="absolute inset-[10%] rounded-full bg-gradient-to-tr from-primary/20 to-accent/15 blur-2xl" />
-      <div className="absolute inset-[30%] rounded-full bg-primary/10 blur-xl animate-pulse" />
+    <div
+      className="relative mx-auto w-[min(94vw,620px)] h-[min(94vw,620px)] lg:w-[min(90vw,620px)] lg:h-[min(90vw,620px)]"
+      style={{ width: size, height: size }}
+    >
+      {/* Starfield background */}
+      <div
+        className="absolute inset-0 rounded-full opacity-60"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px)",
+          backgroundSize: "26px 26px, 42px 42px",
+          backgroundPosition: "0 0, 10px 15px",
+        }}
+      />
+
+      {/* Background glow */}
+      <div className="absolute inset-[-20%] rounded-full bg-gradient-to-br from-emerald-400/25 via-emerald-500/20 to-cyan-400/25 blur-3xl" />
+      <div className="absolute inset-[4%] rounded-full bg-gradient-to-tr from-emerald-400/25 to-cyan-400/20 blur-2xl" />
+      <div className="absolute inset-[20%] rounded-full bg-emerald-400/15 blur-xl animate-pulse" />
+
+      {/* Globe core */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 rounded-full bg-gradient-to-br from-emerald-300 via-emerald-500 to-cyan-500 shadow-[0_0_120px_rgba(16,185,129,0.5)]"
+        style={{
+          width: globeSize,
+          height: globeSize,
+          marginLeft: -globeSize / 2,
+          marginTop: -globeSize / 2,
+        }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
+      >
+        <div
+          className="absolute inset-[8%] rounded-full opacity-90"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px)",
+            backgroundSize: "7px 7px",
+          }}
+        />
+        <div className="absolute inset-[12%] rounded-full bg-gradient-to-br from-emerald-200/70 via-emerald-400/45 to-cyan-400/45 blur-sm" />
+        <div
+          className="absolute inset-[10%] rounded-full opacity-70"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(16,185,129,0.9) 1px, transparent 1px)",
+            backgroundSize: "5px 5px",
+            mixBlendMode: "screen",
+          }}
+        />
+      </motion.div>
+
+      {/* Inner glow core */}
+      <div
+        className="absolute left-1/2 top-1/2 rounded-full bg-[radial-gradient(circle,rgba(253,224,71,0.65),transparent_65%)]"
+        style={{
+          width: globeInnerSize,
+          height: globeInnerSize,
+          marginLeft: -globeInnerSize / 2,
+          marginTop: -globeInnerSize / 2,
+        }}
+      />
+
+      {/* Light spikes */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-70">
+        <div className="relative h-full w-full">
+          {[...Array(32)].map((_, i) => (
+            <div
+              key={`spike-${i}`}
+              className="absolute left-1/2 top-1/2 h-[18%] w-[2px] origin-bottom rounded-full bg-emerald-300/50"
+              style={{
+                transform: `translate(-50%, -100%) rotate(${i * 11.25}deg)`,
+                filter: "blur(0.4px)",
+              }}
+            />
+          ))}
+        </div>
+      </div>
       
       {/* Main SVG */}
       <svg
@@ -57,12 +131,12 @@ export const GlobeAnimation = () => {
                 rx={rx * scale}
                 ry={ry * scale}
                 fill="none"
-                stroke={orbit === 1 ? "hsl(217, 91%, 60%)" : orbit === 2 ? "hsl(162, 66%, 40%)" : "hsl(var(--border))"}
-                strokeWidth={orbit === 1 ? 2.5 : orbit === 2 ? 1.5 : 1}
-                strokeDasharray={orbit === 1 ? "8 4" : "5 5"}
-                opacity={orbit === 1 ? 0.7 : orbit === 2 ? 0.5 : 0.35}
+                stroke={orbit === 1 ? "rgba(16,185,129,0.65)" : orbit === 2 ? "rgba(34,211,238,0.55)" : "rgba(148,163,184,0.35)"}
+                strokeWidth={orbit === 1 ? 2 : orbit === 2 ? 1.5 : 1}
+                strokeDasharray={orbit === 1 ? "10 6" : "6 6"}
+                opacity={orbit === 1 ? 0.65 : orbit === 2 ? 0.5 : 0.3}
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: orbit === 1 ? 0.7 : orbit === 2 ? 0.5 : 0.35 }}
+                animate={{ pathLength: 1, opacity: orbit === 1 ? 0.65 : orbit === 2 ? 0.5 : 0.3 }}
                 transition={{ duration: 1.5, delay: orbit * 0.2 }}
               />
             </g>
@@ -70,43 +144,48 @@ export const GlobeAnimation = () => {
         })}
       </svg>
 
-      {/* Center Logo */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.3, type: "spring" }}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+      {/* Dotted continent overlay */}
+      <motion.svg
+        className="absolute left-1/2 top-1/2 z-20"
+        width={globeSize}
+        height={globeSize}
+        viewBox="0 0 400 400"
+        style={{ marginLeft: -globeSize / 2, marginTop: -globeSize / 2 }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
       >
-        <div className="relative">
-          {/* Pulse ring */}
-          <motion.div
-            className="absolute inset-0 rounded-full bg-primary/30"
-            animate={{
-              scale: [1, 1.4, 1],
-              opacity: [0.5, 0, 0.5],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+        <defs>
+          <radialGradient id="globe-highlight" cx="35%" cy="40%" r="55%">
+            <stop offset="0%" stopColor="rgba(253,224,71,0.7)" />
+            <stop offset="55%" stopColor="rgba(16,185,129,0.35)" />
+            <stop offset="100%" stopColor="rgba(6,95,70,0.2)" />
+          </radialGradient>
+          <mask id="globe-mask">
+            <circle cx="200" cy="200" r="185" fill="white" />
+          </mask>
+        </defs>
+        <g mask="url(#globe-mask)">
+          <circle cx="200" cy="200" r="185" fill="url(#globe-highlight)" />
+          <path
+            d="M70 160 L95 140 L120 150 L140 135 L165 140 L190 155 L210 150 L230 165 L240 190 L225 215 L200 225 L175 235 L150 230 L130 215 L115 200 L95 185 Z"
+            stroke="rgba(34,211,238,0.7)"
+            strokeWidth="2"
+            fill="none"
           />
-          <div 
-            className="flex items-center justify-center rounded-full bg-card border-2 border-primary/50 shadow-xl shadow-primary/40"
-            style={{ 
-              width: isMobile ? 70 : 95, 
-              height: isMobile ? 70 : 95 
-            }}
-          >
-            <img 
-              src={logo} 
-              alt="Terz" 
-              className="object-contain"
-              style={{ width: isMobile ? 44 : 58, height: isMobile ? 44 : 58 }}
-            />
-          </div>
-        </div>
-      </motion.div>
+          <path
+            d="M210 110 L240 105 L275 120 L300 145 L320 170 L330 195 L315 215 L290 220 L265 210 L245 190 L230 170 L215 150 Z"
+            stroke="rgba(34,211,238,0.6)"
+            strokeWidth="2"
+            fill="none"
+          />
+          <path
+            d="M240 235 L270 240 L300 255 L315 280 L305 305 L275 315 L250 305 L230 285 L225 260 Z"
+            stroke="rgba(34,211,238,0.6)"
+            strokeWidth="2"
+            fill="none"
+          />
+        </g>
+      </motion.svg>
 
       {/* Orbiting service icons */}
       {services.map((service, index) => {
@@ -156,17 +235,17 @@ export const GlobeAnimation = () => {
             }}
           >
           <motion.div
-            className={`flex items-center justify-center rounded-full bg-card border-2 shadow-lg cursor-pointer transition-colors ${
+            className={`flex items-center justify-center rounded-full bg-card/90 border-2 shadow-lg cursor-pointer transition-colors ${
               service.isPrimary
-                ? "border-primary/70 shadow-primary/35 hover:border-primary hover:shadow-primary/50"
-                : "border-border shadow-muted/25 hover:border-accent/60 hover:shadow-accent/25"
+                ? "border-emerald-400/70 shadow-emerald-400/40 hover:border-emerald-400 hover:shadow-emerald-400/60"
+                : "border-border shadow-muted/25 hover:border-cyan-300/60 hover:shadow-cyan-300/25"
             }`}
             style={{ width: iconSize, height: iconSize }}
             whileHover={{ scale: 1.2, y: -5 }}
             whileTap={{ scale: 0.95 }}
           >
             <service.icon
-              className={`${service.isPrimary ? "text-primary" : "text-muted-foreground"}`}
+              className={`${service.isPrimary ? "text-emerald-500" : "text-muted-foreground"}`}
               style={{ 
                 width: service.isPrimary ? (isMobile ? 26 : 32) : (isMobile ? 20 : 26),
                 height: service.isPrimary ? (isMobile ? 26 : 32) : (isMobile ? 20 : 26),
@@ -196,7 +275,7 @@ export const GlobeAnimation = () => {
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-primary/40"
+          className="absolute rounded-full bg-emerald-300/40"
           style={{
             width: Math.random() * 4 + 2,
             height: Math.random() * 4 + 2,

@@ -15,22 +15,31 @@ const trustBadges = [
 
 export const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden min-h-[90vh] lg:min-h-screen flex items-center py-12 lg:py-0">
-      {/* Enhanced Background Elements - Higher contrast */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-secondary/60 to-brand-100" />
-      <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/15 blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full bg-accent/12 blur-3xl" />
-      <div className="absolute top-1/2 right-0 h-[300px] w-[300px] rounded-full bg-primary/10 blur-3xl" />
+    <section className="relative overflow-hidden min-h-screen flex items-center py-12 lg:py-0 bg-slate-950 text-white">
+      {/* Deep space background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+      <div
+        className="absolute inset-0 -z-10 opacity-40"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)",
+          backgroundSize: "30px 30px, 60px 60px",
+          backgroundPosition: "0 0, 15px 20px",
+        }}
+      />
+      <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl" />
+      <div className="absolute top-1/2 right-0 h-[300px] w-[300px] rounded-full bg-emerald-400/10 blur-3xl" />
       
       {/* Enhanced decorative dots - more visible */}
-      <div className="absolute top-20 left-[15%] h-3 w-3 rounded-full bg-primary/60 animate-pulse" />
-      <div className="absolute top-32 left-[25%] h-2 w-2 rounded-full bg-accent/70" />
-      <div className="absolute bottom-40 left-[10%] h-4 w-4 rounded-full bg-primary/50" />
-      <div className="absolute top-40 right-[20%] h-3 w-3 rounded-full bg-accent/60" />
-      <div className="absolute bottom-20 right-[15%] h-2 w-2 rounded-full bg-primary/50 animate-pulse" />
+      <div className="absolute top-20 left-[15%] h-3 w-3 rounded-full bg-emerald-300/60 animate-pulse" />
+      <div className="absolute top-32 left-[25%] h-2 w-2 rounded-full bg-cyan-300/70" />
+      <div className="absolute bottom-40 left-[10%] h-4 w-4 rounded-full bg-emerald-300/50" />
+      <div className="absolute top-40 right-[20%] h-3 w-3 rounded-full bg-cyan-300/60" />
+      <div className="absolute bottom-20 right-[15%] h-2 w-2 rounded-full bg-emerald-300/50 animate-pulse" />
       
       {/* Radial gradient overlay - enhanced */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_30%,hsla(217,91%,60%,0.08),transparent_40%),radial-gradient(circle_at_70%_80%,hsla(162,66%,32%,0.1),transparent_45%)]" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_30%,rgba(34,211,238,0.12),transparent_40%),radial-gradient(circle_at_70%_80%,rgba(16,185,129,0.12),transparent_45%)]" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-[55%_45%]">
@@ -46,11 +55,11 @@ export const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.4 }}
-              className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-4 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-primary"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-300/40 bg-emerald-400/10 px-4 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-emerald-200"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-300"></span>
               </span>
               Your Regulatory Partner
             </motion.span>
@@ -60,11 +69,11 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold leading-[1.15] text-foreground"
-              style={{ textShadow: "0 2px 4px hsla(0, 0%, 0%, 0.05)" }}
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold leading-[1.15] text-white"
+              style={{ textShadow: "0 2px 10px rgba(0, 0, 0, 0.35)" }}
             >
               Comprehensive{" "}
-              <span className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-emerald-300 via-emerald-200 to-cyan-200 bg-clip-text text-transparent">
                 Regulatory & Compliance
               </span>{" "}
               Solutions in India
@@ -75,7 +84,7 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="text-lg sm:text-xl lg:text-2xl font-medium text-foreground/90"
+              className="text-lg sm:text-xl lg:text-2xl font-medium text-white/80"
             >
               End-to-End Solutions for Medical Devices, IVDs, Cosmetics, and Beyond
             </motion.h2>
