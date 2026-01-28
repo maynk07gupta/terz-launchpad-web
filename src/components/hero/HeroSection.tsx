@@ -15,7 +15,7 @@ const trustBadges = [
 
 export const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden min-h-[90vh] lg:min-h-screen flex items-center py-12 lg:py-0">
+    <section className="relative overflow-hidden min-h-screen flex items-center py-12 lg:py-0">
       {/* Enhanced Background Elements - Higher contrast */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-secondary/60 to-brand-100" />
       <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/15 blur-3xl" />
