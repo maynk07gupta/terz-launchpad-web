@@ -1,169 +1,123 @@
 
 
-# Hero & Sub-Hero Section Complete Redesign
+# Hero Section Complete Overhaul - Dynamic Animations & Visual Fix
 
-## Overview
-A striking, modern hero section inspired by cliniexperts.com's dynamic layout, featuring floating service cards, animated graphical elements, and a clear visual hierarchy that prioritizes Medical Devices and In-Vitro Diagnostics as primary expertise areas.
+## Problems Identified
+
+### 1. Mobile Blank Space Issue
+- The right column in HeroSection uses `isMobile` to conditionally render either floating cards or carousel
+- The HeroServiceCarousel has `min-h-[320px]` but appears to not be rendering properly
+- Large blank space between hero text and stats bar
+
+### 2. Faded/Light Appearance
+- Background gradients use very low opacity values (`bg-primary/5`, `bg-primary/8`)
+- Left vignette `from-background/90` creates washed-out effect
+- Decorative dots are barely visible (`bg-primary/30`, `bg-accent/40`)
+- Missing strong visual anchors and contrast
+
+### 3. Lack of Motion Animations
+- Current animations are entrance-only (fade in, slide in)
+- No continuous motion that creates visual interest
+- Missing the dynamic, engaging feel of sites like cliniexperts
 
 ---
 
-## Design Concept
+## Proposed Solutions
 
-### Visual Inspiration from CliniExperts
-- **Floating service cards** arranged around the hero content (not just a carousel)
-- **Rich graphical illustrations** representing each service category
-- **Interactive quick-links** to key service areas
-- **Bold typography** with clear value proposition
-- **Animated elements** that respond to user interaction
+### A. Main Hero Section - Add 3D Globe-Like Animation
 
----
+**Concept**: Create a rotating 3D globe effect using concentric rings with orbiting service icons, similar to a rotating earth visualization.
 
-## Hero Section Redesign
-
-### Layout Structure
-
+**Implementation**:
 ```text
-┌──────────────────────────────────────────────────────────────────────────┐
-│  HERO SECTION - Full Viewport Height                                      │
-│                                                                           │
-│  ┌─────────────────────────────┐    ┌────────────────────────────────┐   │
-│  │                             │    │  FLOATING SERVICE CARDS        │   │
-│  │  HEADLINE AREA              │    │  ┌─────────┐ ┌─────────┐       │   │
-│  │  • Animated badge           │    │  │ Medical │ │   IVD   │       │   │
-│  │  • Main headline            │    │  │ Devices │ │         │       │   │
-│  │  • Sub-headline             │    │  │ (LARGE) │ │ (LARGE) │       │   │
-│  │  • CTA buttons              │    │  └─────────┘ └─────────┘       │   │
-│  │                             │    │  ┌────────┐ ┌────────┐         │   │
-│  │  QUICK LINKS (4 pills)      │    │  │Cosmetic│ │  LMPC  │         │   │
-│  │  [India Reg] [IAA] [Global] │    │  └────────┘ └────────┘         │   │
-│  │  [All Services]             │    │  ┌────────┐ ┌────────┐         │   │
-│  │                             │    │  │  IEC   │ │  EPR   │         │   │
-│  └─────────────────────────────┘    │  └────────┘ └────────┘         │   │
-│                                     └────────────────────────────────┘   │
-│  ┌───────────────────────────────────────────────────────────────────┐   │
-│  │ TRUST BADGES BAR - ISO 13485 | CDSCO Compliant | Pan-India | 24hr │   │
-│  └───────────────────────────────────────────────────────────────────┘   │
-└──────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│  MAIN HERO - GLOBE ANIMATION                                 │
+│                                                              │
+│  ┌─────────────────┐    ┌─────────────────────────────────┐ │
+│  │  Text Content   │    │     3D GLOBE ANIMATION          │ │
+│  │  (Enhanced)     │    │                                  │ │
+│  │                 │    │    ╭─────────────────────╮       │ │
+│  │                 │    │   ╱    ╭───────────╮    ╲       │ │
+│  │                 │    │  │   ╱   [MD Icon]  ╲   │       │ │
+│  │                 │    │  │  │    TERZ LOGO   │  │       │ │
+│  │                 │    │  │   ╲  [IVD Icon]  ╱   │       │ │
+│  │                 │    │   ╲    ╰───────────╯   ╱        │ │
+│  │                 │    │    ╰─────────────────╯          │ │
+│  │                 │    │   (Orbiting rings + icons)      │ │
+│  └─────────────────┘    └─────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-### Left Column (55% width)
+**New Component**: `GlobeAnimation.tsx`
+- SVG-based 3D globe with:
+  - 3 concentric elliptical orbits rotating at different speeds
+  - 6 service icons positioned on the orbits
+  - MD and IVD on the innermost (fastest) orbit - highlighted
+  - Cosmetics and LMPC on middle orbit
+  - IEC and EPR on outer (slowest) orbit
+  - Central Terz logo with pulse effect
+  - Connecting animated dashed lines
+  - Gradient glow behind globe
+- Framer Motion for continuous rotation
+- 3D perspective transform for depth illusion
 
-**Content Hierarchy:**
-1. **Animated Badge** - "Your Regulatory Partner" with pulse animation
-2. **Main Headline** - "Comprehensive Regulatory & Compliance Solutions in India"
-   - Gradient text effect on key words
-   - Staggered letter/word animation on load
-3. **Sub-headline** - "End-to-End Solutions for Medical Devices, IVDs, Cosmetics, and Beyond"
-4. **CTA Buttons** - Primary "Book Consultation" + Ghost "Explore Services"
+### B. Sub-Hero Section - Vertical Scrolling Info Animation
 
-**Quick-Link Pills (New Element):**
-- 4 clickable pills with icons (similar to cliniexperts)
-- India Regulatory Services
-- Indian Authorized Agent (IAA)
-- Global Regulatory Services
-- All Services
+**Concept**: Replace static circular infographic with a vertically scrolling marquee of info cards/facts that continuously loop.
 
-**Design:**
-- Pills have icons + text
-- Hover: slight lift + primary border glow
-- Stagger entrance animation (100ms delay each)
-
-### Right Column (45% width) - Floating Service Cards
-
-**Card Layout:**
-- 6 service cards arranged in a 2x3 asymmetric grid
-- Top 2 cards (Medical Devices, IVD) are **larger and more prominent**
-- Bottom 4 cards (Cosmetics, LMPC, IEC, EPR) are smaller
-
-**Card Design:**
-- Each card has:
-  - Relevant illustration/image (from existing assets)
-  - Service category label (e.g., "For Importer" or "CDSCO")
-  - Service name in bold
-  - One-line description
-  - Subtle gradient overlay
-- Hover: card lifts, image zooms slightly, border glows
-
-**Animations:**
-- Cards float in from right with stagger (150ms delay)
-- Continuous subtle float animation (different delays per card)
-- Mouse parallax effect on desktop (cards move slightly with cursor)
-
-### Background Elements
-
-- **Gradient mesh** - subtle blue-to-teal radial gradients
-- **Floating icons** - use existing FloatingElements component
-- **Decorative dots/circles** - positioned around the hero
-- **Vignette overlay** on left side for text contrast
-
----
-
-## Sub-Hero Section (New)
-
-### Purpose
-Expand on the hero with a dedicated services overview that clearly shows the expertise hierarchy.
-
-### Layout Structure
-
+**Implementation**:
 ```text
-┌──────────────────────────────────────────────────────────────────────────┐
-│  SUB-HERO - Regulatory Services Overview                                  │
-│                                                                           │
-│  SECTION HEADER                                                           │
-│  "Our Regulatory and Compliance Services in India"                        │
-│                                                                           │
-│  ┌────────────────────────────────┐  ┌─────────────────────────────────┐ │
-│  │  TEXT BLOCK                    │  │  CIRCULAR INFOGRAPHIC           │ │
-│  │                                │  │                                  │ │
-│  │  Terz specializes in providing │  │      ┌─────┐                    │ │
-│  │  comprehensive 360-degree      │  │  ┌───┤ MD  ├───┐                │ │
-│  │  regulatory and compliance     │  │  │   └─────┘   │                │ │
-│  │  services in India...          │  │  │     ▲       │                │ │
-│  │                                │  │  │   TERZ      │                │ │
-│  │  [Read More →]                 │  │  │   LOGO      │                │ │
-│  │                                │  │  └─────────────┘                │ │
-│  └────────────────────────────────┘  │  (Icons orbit around center)    │ │
-│                                      └─────────────────────────────────┘ │
-│                                                                           │
-│  REGULATORY AUTHORITIES BAR                                               │
-│  [CDSCO] [FSSAI] [BIS] [WPC] [LEGAL METROLOGY] [CPCB]                    │
-│                                                                           │
-└──────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│  SUB-HERO - VERTICAL SCROLL ANIMATION                        │
+│                                                              │
+│  ┌─────────────────┐    ┌─────────────────────────────────┐ │
+│  │  Text Content   │    │  VERTICAL MARQUEE               │ │
+│  │                 │    │  ┌─────────────────────────┐    │ │
+│  │  • Deep MD/IVD  │    │  │ ▲ 100k+ Products        │    │ │
+│  │  • 360° support │    │  │   Registered            │    │ │
+│  │  • Proven track │    │  ├─────────────────────────┤    │ │
+│  │  • Pan-India    │    │  │ ▲ CDSCO Expert Team     │    │ │
+│  │                 │    │  │   24-hour Response      │    │ │
+│  │  [Learn More →] │    │  ├─────────────────────────┤    │ │
+│  │                 │    │  │ ▲ 200+ Global Clients   │    │ │
+│  │                 │    │  │   Worldwide             │    │ │
+│  │                 │    │  ├─────────────────────────┤ ↑  │ │
+│  │                 │    │  │ ▲ 15+ Years Experience  │ │  │ │
+│  │                 │    │  │   (scrolling up)        │ │  │ │
+│  │                 │    │  └─────────────────────────┘    │ │
+│  └─────────────────┘    └─────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-### Left Column (50%) - Text Content
+**New Component**: `VerticalMarquee.tsx`
+- CSS animation-based infinite vertical scroll
+- 8-10 info cards with:
+  - Icon on left
+  - Stat/headline text
+  - Supporting description
+- Smooth infinite loop (duplicated content for seamless scroll)
+- Hover to pause effect
+- Gradient fade at top/bottom edges
 
-**Content:**
-- Section headline with accent color
-- 2-3 paragraph description of Terz's expertise
-- Emphasis on deep experience in Medical Devices and IVDs
-- "Read More" link to About page
+### C. Visual Contrast Fixes
 
-**Animations:**
-- Fade up on scroll into view
-- Staggered paragraph reveals
+**Background Enhancements**:
+| Current | Proposed |
+|---------|----------|
+| `bg-primary/8` | `bg-primary/15` |
+| `bg-accent/6` | `bg-accent/12` |
+| `bg-primary/5` | `bg-primary/10` |
+| Decorative dots `bg-primary/30` | `bg-primary/50` |
 
-### Right Column (50%) - Circular Infographic
+**Text Contrast Fixes**:
+- Remove the heavy left vignette overlay
+- Increase headline font weight
+- Add subtle text-shadow for depth
 
-**Design:**
-- Center: Terz logo or India map graphic
-- Orbiting icons: 6 service categories arranged in a circle
-- Medical Devices and IVD icons are larger/highlighted
-- Connecting lines/paths between icons and center
-- Optional: subtle rotation animation
-
-**Animations:**
-- Draw-in effect for connecting lines
-- Icons fade in sequentially (MD first, then IVD, then others)
-- Gentle continuous rotation on desktop
-
-### Regulatory Authorities Bar
-
-**Design:**
-- Full-width bar with authority logos/badges
-- CDSCO | BIS | WPC | LEGAL METROLOGY | CPCB | FSSAI
-- Grayscale by default, color on hover
-- Subtle slide-in animation
+**Mobile Layout Fix**:
+- On mobile, show simplified globe animation (no orbit, static icons)
+- OR show a horizontal scrolling card strip
+- Ensure proper min-height for mobile hero
 
 ---
 
@@ -171,120 +125,94 @@ Expand on the hero with a dedicated services overview that clearly shows the exp
 
 ### New Components to Create
 
-| Component | Purpose |
-|-----------|---------|
-| `HeroSection.tsx` | Complete hero section with floating cards |
-| `HeroServiceCard.tsx` | Individual floating service card |
-| `QuickLinkPills.tsx` | Quick navigation pills |
-| `SubHeroSection.tsx` | Sub-hero with text + infographic |
-| `CircularInfographic.tsx` | Animated circular service diagram |
-| `AuthoritiesBar.tsx` | Regulatory authorities logo bar |
+| Component | Location | Purpose |
+|-----------|----------|---------|
+| `GlobeAnimation.tsx` | `src/components/hero/` | 3D rotating globe with orbiting service icons |
+| `VerticalMarquee.tsx` | `src/components/hero/` | Infinite vertical scrolling info cards |
 
 ### Files to Modify
 
 | File | Changes |
 |------|---------|
-| `src/pages/Home.tsx` | Replace current hero with new components |
-| `src/index.css` | Add new keyframes for orbit animation, etc. |
+| `src/components/hero/HeroSection.tsx` | Replace floating cards with GlobeAnimation, fix backgrounds |
+| `src/components/hero/SubHeroSection.tsx` | Replace CircularInfographic with VerticalMarquee |
+| `src/index.css` | Add new keyframes for orbit and marquee animations |
 
-### Components to Remove/Replace
+### Animation Keyframes to Add
 
-- Current hero section in Home.tsx (lines 87-221)
-- HeroServiceCarousel can be kept as an alternative mobile view
+```css
+/* 3D Orbit rotation */
+@keyframes orbit-1 {
+  from { transform: rotateX(60deg) rotateZ(0deg); }
+  to { transform: rotateX(60deg) rotateZ(360deg); }
+}
 
-### Animation Details
+@keyframes orbit-2 {
+  from { transform: rotateX(60deg) rotateZ(120deg); }
+  to { transform: rotateX(60deg) rotateZ(480deg); }
+}
 
-**Hero Load Sequence:**
-1. Background gradient fades in (0-0.3s)
-2. Badge pulses in (0.2s)
-3. Headline slides in from left (0.3-0.6s)
-4. Sub-headline fades up (0.5-0.8s)
-5. CTAs scale in with spring (0.6-0.9s)
-6. Quick-link pills stagger in (0.7-1.1s)
-7. Service cards float in from right (0.5-1.5s staggered)
-8. Trust badges fade in (1.0-1.3s)
+@keyframes orbit-3 {
+  from { transform: rotateX(60deg) rotateZ(240deg); }
+  to { transform: rotateX(60deg) rotateZ(600deg); }
+}
 
-**Sub-Hero Scroll Animations:**
-1. Section fades up when 10% visible
-2. Text paragraphs stagger in
-3. Infographic lines draw themselves
-4. Service icons pop in sequentially
-5. Authorities bar slides in from bottom
+/* Vertical marquee */
+@keyframes scroll-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+```
 
-### Responsive Behavior
+### Vertical Marquee Info Cards Content
 
-**Desktop (1024px+):**
-- Two-column layout for hero
-- Floating cards in grid
-- Full circular infographic
-
-**Tablet (768px - 1023px):**
-- Stacked layout (text above, cards below)
-- Cards in 2x3 grid
-- Simplified infographic (no orbit animation)
-
-**Mobile (< 768px):**
-- Single column
-- Keep existing HeroServiceCarousel for card display
-- Replace infographic with simple icon grid
-- Quick-links become scrollable row
+| Icon | Headline | Description |
+|------|----------|-------------|
+| Award | 100k+ Products | Successfully registered across India |
+| Users | 200+ Clients | Global manufacturers trust Terz |
+| Clock | 24-Hour Response | Pan-India expert availability |
+| Shield | 15+ Years | Deep regulatory experience |
+| FileCheck | CDSCO Expertise | Medical Device specialists |
+| Flask | IVD Focus | In-Vitro Diagnostics mastery |
+| Sparkles | Cosmetics | Complete registration support |
+| Scale | Legal Metrology | Packaging compliance experts |
 
 ---
 
-## Service Priority Visualization
+## Mobile Responsiveness
 
-### Hero Card Sizing (Priority Order)
+### Main Hero (Mobile)
+- Globe becomes a static circular arrangement (no 3D rotation)
+- OR horizontal auto-scrolling service cards
+- Full-width text content stacked above
 
-| Service | Card Size | Position | Visual Treatment |
-|---------|-----------|----------|------------------|
-| Medical Devices | Large (200px h) | Top-left | Gold border accent, "Primary" badge |
-| In-Vitro Diagnostics | Large (200px h) | Top-right | Gold border accent, "Primary" badge |
-| Cosmetics | Medium (160px h) | Middle-left | Standard treatment |
-| Legal Metrology | Medium (160px h) | Middle-right | Standard treatment |
-| IEC | Standard (140px h) | Bottom-left | Standard treatment |
-| EPR Compliance | Standard (140px h) | Bottom-right | Standard treatment |
-
-### Visual Cues for Expertise Hierarchy
-- Top 2 cards have subtle gold/amber border
-- "Primary Expertise" badge on MD and IVD cards
-- Slightly larger images and bolder typography
-- More prominent hover effects
+### Sub-Hero (Mobile)
+- Vertical marquee continues but slower
+- Smaller card heights
+- Single column layout
 
 ---
 
-## Assets Required
+## Performance Considerations
 
-### Existing Assets to Use
-- `medical-devices.jpg` - Hero card background
-- `ivd.jpg` - Hero card background
-- `cosmetics.jpg` - Hero card background
-- `lmpc.jpg` - Hero card background (Legal Metrology)
-- `iec.jpg` - Hero card background
-- `epr.jpg` - Hero card background
-- `logo.png` - Center of infographic
-
-### New Assets to Consider (Optional)
-- Custom illustrations for each service (similar to cliniexperts)
-- Regulatory authority logos (CDSCO, BIS, etc.)
-- India map silhouette for infographic center
+1. **CSS Animations over JS**: Use `@keyframes` for continuous animations (GPU-accelerated)
+2. **will-change**: Add `will-change: transform` to animated elements
+3. **Reduced Motion**: Pause animations if `prefers-reduced-motion` is set
+4. **Lazy Rendering**: Use `IntersectionObserver` for sub-hero animations
 
 ---
 
-## Expected Outcome
+## Expected Visual Outcome
 
-**Before:**
-- Standard two-column hero with carousel
-- Services hidden in a carousel that auto-rotates
-- No clear visual hierarchy of expertise
-- Missing sub-hero context section
+**Before**:
+- Static, faded hero with blank mobile areas
+- No motion or visual interest
+- Weak contrast and washed-out appearance
 
-**After:**
-- Dynamic, cliniexperts-inspired hero with floating cards
-- All 6 services visible immediately with clear hierarchy
-- Medical Devices and IVD prominently featured as primary expertise
-- Interactive quick-links for navigation
-- Rich sub-hero section with circular infographic
-- Regulatory authorities bar for credibility
-- Smooth, choreographed animations throughout
-- Mobile-optimized with carousel fallback
+**After**:
+- Dynamic 3D globe with orbiting service icons (main hero)
+- Continuously scrolling vertical info cards (sub-hero)
+- Strong visual contrast with vibrant backgrounds
+- Engaging animations that draw users in
+- Properly responsive mobile layout with no blank spaces
 
