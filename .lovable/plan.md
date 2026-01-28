@@ -1,261 +1,343 @@
 
 
-## Services Page Complete Design Enhancement Plan
+# Complete Home Page Redesign Plan
 
-### Overview
-Transform both the Services Overview and Service Detail pages into highly animated, visually engaging experiences featuring custom graphical characters, Lottie animations, staggered entrance effects, and interactive micro-interactions.
-
----
-
-### Phase 1: Create Animated Graphical Characters/Illustrations
-
-**1.1 Service-Specific Mascot Illustrations**
-
-Create or integrate animated SVG/Lottie characters for each service:
-
-| Service | Character Concept | Animation |
-|---------|-------------------|-----------|
-| Medical Devices | Friendly robot/scientist with stethoscope | Subtle head bob, blinking eyes |
-| IVD | Lab technician character with test tube | Pouring/mixing animation loop |
-| Cosmetics | Beauty character with sparkles | Applying product, sparkle effects |
-| LMPC | Scale/balance character | Weighing motion, balance tilt |
-| IEC | Globe character with briefcase | Walking/traveling animation |
-| EPR | Leaf/nature character | Growing/blooming loop |
-
-**Implementation:**
-- Use Lottie animations (lightweight, vector-based)
-- Create `src/components/ServiceCharacter.tsx` component
-- Characters appear on service cards and hero sections
-- Animate on hover and on scroll-into-view
-
-**1.2 Hero Section Animated Illustration**
-- Add a central animated graphic showing regulatory journey
-- Floating document icons, checkmarks appearing, progress indicators
-- Parallax effect on scroll
+## Executive Summary
+A comprehensive redesign of the Home page to create a modern, high-converting landing experience with stunning visuals, smooth animations, and an optimized user journey that guides visitors from awareness to action.
 
 ---
 
-### Phase 2: Enhanced Page Entrance Animations
+## Current State Analysis
 
-**2.1 Services Overview Page**
+### Existing Sections (Top to Bottom)
+1. **Hero Section** - Two-column layout with carousel (currently working well)
+2. **Our Core Services** - 6 icon cards in a row (repetitive, low impact)
+3. **Client Journey Story** - Challenge/Solution/Outcome cards (good concept, needs visual upgrade)
+4. **How We Support Every Team** - Toggle between Importers/Manufacturers (functional but dated)
+5. **Trust Signals** - Client logos + horizontal testimonial scroll (cluttered)
+6. **6-Step Process Timeline** - Grid of steps (needs better visual flow)
+7. **CTA with Inline Form** - Assessment booking form (solid, keep enhanced)
 
+### Key Issues Identified
+- Too many sections creating cognitive overload
+- Repetitive service displays (hero carousel + icon grid + toggle cards)
+- Testimonials section too long and horizontal scrolling feels awkward
+- Missing strong visual hierarchy and breathing room
+- No animated statistics or social proof highlights
+- Process timeline lacks visual connection between steps
+
+---
+
+## Proposed New Layout
+
+### Section Order & Purpose
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│  1. HERO SECTION (Enhanced)                                 │
+│  - Bold headline + animated subtitle                        │
+│  - Interactive service carousel (keep existing)             │
+│  - Trust badges + micro-stats inline                        │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  2. ANIMATED STATS BAR (New)                                │
+│  - 4 key metrics with count-up animation                    │
+│  - Full-width gradient band                                 │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  3. SERVICES SHOWCASE (Redesigned)                          │
+│  - Large interactive cards (3x2 grid)                       │
+│  - Image backgrounds with hover effects                     │
+│  - Uses AnimatedServiceCard component                       │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  4. WHY TERZ / VALUE PROPOSITION (New Design)               │
+│  - Replaces Journey columns + differentiators               │
+│  - 4 value cards with icons + brief text                    │
+│  - Clean grid layout with animations                        │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  5. PROCESS TIMELINE (Enhanced)                             │
+│  - Visual connected timeline (horizontal desktop)           │
+│  - Animated step circles with progress line                 │
+│  - Staggered reveal on scroll                               │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  6. SOCIAL PROOF (Redesigned)                               │
+│  - Client logos row (subtle, smaller)                       │
+│  - Featured testimonial (1-2 large cards, auto-rotate)      │
+│  - Clean and impactful                                      │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│  7. FINAL CTA (Enhanced)                                    │
+│  - Two-column layout: copy + inline form                    │
+│  - Floating elements background                             │
+│  - Animated button with pulse glow                          │
+└─────────────────────────────────────────────────────────────┘
 ```
-Animation Sequence:
-1. Hero text slides in from left (0ms)
-2. Hero badge fades in (200ms delay)
-3. Service cards stagger in from bottom (300ms + 100ms each)
-4. Each card has its own scroll-trigger animation
-5. Why Choose Us cards cascade in with scale effect
-6. CTA section pulses subtly on arrival
-```
-
-**New Animations to Add:**
-- `animate-slide-in-left` for hero content
-- `animate-stagger-up` for service cards grid
-- `animate-scale-bounce` for value proposition cards
-- `animate-pulse-glow` for CTA buttons
-
-**2.2 Service Detail Page**
-
-```
-Animation Sequence:
-1. Hero image parallax effect on load
-2. Service selector pills slide in from top
-3. Role toggle buttons scale-in with spring effect
-4. Timeline steps appear one-by-one with connection line drawing
-5. Step detail card slides in from right when step changes
-6. Placeholder sections stagger in within the card
-```
 
 ---
 
-### Phase 3: Interactive Roadmap Timeline Enhancements
+## Detailed Section Specifications
 
-**3.1 Animated Progress Line**
-- Progress line draws itself when section scrolls into view
-- Uses CSS `stroke-dasharray` animation for SVG path
-- Glowing effect on active segment
+### 1. Hero Section (Enhanced)
 
-**3.2 Step Circle Animations**
-- Completed steps: Checkmark draws itself with stroke animation
-- Active step: Pulsing ring animation + gentle bounce
-- Hover: Scale up with shadow increase
-- Click: Ripple effect spreading outward
+**Layout:** 60/40 two-column (keep existing structure)
 
-**3.3 Step Transition Effects**
-- When navigating between steps:
-  - Current card slides out left/right
-  - New card slides in from opposite direction
-  - Smooth crossfade (300ms)
-  - Icon in step detail card rotates/bounces on change
+**Left Column Enhancements:**
+- Animated badge that pulses gently on load
+- Main headline with gradient text effect on key words
+- Add subtle floating icons behind text (documents, checkmarks)
+- Trust badges get micro-interaction on hover (slight lift)
 
-**3.4 Mobile Vertical Timeline**
-- Connection line draws progressively as user scrolls
-- Each step node pulses when becoming active
-- Swipe gesture support for step navigation
+**Right Column:**
+- Keep HeroServiceCarousel (already polished)
+- Add subtle parallax effect on mouse movement
+- Glow effect behind carousel on hover
+
+**Animations:**
+- Headline slides in from left (0.6s)
+- Subheadline fades up (0.4s delay)
+- CTAs scale in with spring effect
+- Trust badges stagger in (100ms each)
 
 ---
 
-### Phase 4: Service Card Micro-Interactions
+### 2. Animated Stats Bar (New Section)
 
-**4.1 Overview Page Cards**
-- **On Hover:**
-  - Image zooms slightly (current) + subtle parallax shift
-  - Badge pulses with glow effect
-  - Service character peeks in from corner
-  - Button arrow animates right
-  
-- **On Scroll Into View:**
-  - Staggered entrance (100ms delay between cards)
-  - Scale from 0.9 to 1.0 with opacity fade
-  
-- **On Click:**
-  - Card briefly scales down (press effect)
-  - Ripple emanates from click point
+**Purpose:** Immediate social proof and credibility
 
-**4.2 Service Selector Pills (Detail Page)**
-- Active pill: Animated underline draws itself
-- Hover: Background gradient shifts
-- Transition between services: Crossfade hero image (500ms)
+**Stats to Display:**
+| Metric | Value | Animation |
+|--------|-------|-----------|
+| Products Approved | 200+ | Count up from 0 |
+| Global Clients | 50+ | Count up from 0 |
+| First-Pass Approval | 98% | Count up from 0 |
+| Years Experience | 5+ | Count up from 0 |
+
+**Design:**
+- Full-width gradient band (primary to accent)
+- White text on gradient
+- 4-column grid (stacks to 2x2 on mobile)
+- Each stat has icon above number
+- Triggers when scrolled into view
 
 ---
 
-### Phase 5: Role Toggle Animation
+### 3. Services Showcase (Redesigned)
 
-**5.1 Toggle Button Enhancements**
-- Selected state: Button fills with color from center outward
-- Icon inside button: Slight rotation/bounce on selection
-- Background: Subtle gradient shift animation
+**Layout:** 2x3 grid of large image cards
 
-**5.2 Content Transition on Role Change**
-- Timeline steps: Slide out → Slide in (from opposite direction)
-- Step detail card: Crossfade with scale effect
-- Reset animation for timeline progress line
+**Card Design:**
+- Use existing `AnimatedServiceCard` component
+- Full image background with gradient overlay
+- Badge (CDSCO, Central-Level, etc.) top-left
+- Service title + one-line tagline
+- "Learn More →" button on hover
 
----
+**Services:**
+1. Medical Devices - CDSCO
+2. In-Vitro Diagnostics - CDSCO
+3. Cosmetics - CDSCO
+4. Legal Metrology - Central-Level
+5. Import Export Code - Lifetime Valid
+6. EPR Compliance - CPCB
 
-### Phase 6: Hero Section Upgrades
-
-**6.1 Parallax Background**
-- Hero image moves slightly on scroll (subtle parallax)
-- Gradient overlay has animated gradient shift
-
-**6.2 Floating Animated Elements**
-- Add floating document icons, checkmarks, certificates
-- Use Framer Motion for physics-based floating
-- Elements respond to mouse movement (subtle parallax)
-
-**6.3 Animated Badge**
-- Service badge (CDSCO, BIS, etc.) pulses gently
-- Slight shimmer effect on load
+**Animations:**
+- Staggered entrance (100ms delay between cards)
+- Image zoom on hover
+- Button slides up on hover
+- Badge pulses gently
 
 ---
 
-### Phase 7: New Components to Create
+### 4. Why Terz / Value Proposition
 
+**Layout:** 4-column grid (2x2 on tablet, 1-column mobile)
+
+**Values to Highlight:**
+| Icon | Title | Description |
+|------|-------|-------------|
+| Shield | Expert Guidance | Seasoned regulatory professionals with deep domain expertise |
+| Clock | Fast Processing | Streamlined processes to minimize your time-to-market |
+| Users | Complete Support | End-to-end assistance from application to approval |
+| DollarSign | Transparent Pricing | Clear, upfront costs with no hidden fees |
+
+**Design:**
+- Clean white cards with subtle border
+- Large icon (brand blue) in circle background
+- Bold title + 1-2 line description
+- Hover: card lifts, icon rotates slightly
+
+**Animations:**
+- Cards stagger in from bottom on scroll
+- Icon animates on hover (scale + slight rotation)
+
+---
+
+### 5. Process Timeline (Enhanced)
+
+**Layout:** Horizontal connected timeline (desktop), vertical (mobile)
+
+**Steps (6 total):**
+1. Intake - Align on product goals, timelines, and regulatory pathways
+2. Gap Assessment - Audit documentation, testing, and labelling to surface gaps early
+3. Dossier Build - Assemble regulator-ready files with technical, legal, and quality inputs
+4. Filing - Submit applications and respond to authority interactions
+5. Query Management - Handle clarifications, hearings, and supplemental evidence
+6. Approval & Beyond - Onboard operations teams and monitor obligations post-approval
+
+**Design:**
+- Step circles connected by animated progress line
+- Active/completed steps highlighted with primary color
+- Step details appear below timeline on hover/click
+- Clean numbered circles (01, 02, 03...)
+
+**Animations:**
+- Progress line draws itself when section enters viewport
+- Step circles pulse sequentially (100ms delay)
+- Content fades up when step is active
+- Checkmark draws itself for completed steps
+
+---
+
+### 6. Social Proof (Redesigned)
+
+**Part A: Client Logos**
+- Single row of 6 logos
+- Subtle grayscale → color on hover
+- Smaller than current design (less visual weight)
+- Caption: "Trusted by leading manufacturers and importers"
+
+**Part B: Featured Testimonials**
+- 1-2 large testimonial cards (auto-rotate every 5s)
+- Quote icon (primary color)
+- Large quote text
+- Name, role, company below
+- Navigation dots
+- No horizontal scroll (cleaner UX)
+
+**Animations:**
+- Logos fade in with stagger
+- Testimonial crossfades between cards
+- Quote icon pulses gently
+
+---
+
+### 7. Final CTA Section (Enhanced)
+
+**Layout:** Two-column (text left, form right)
+
+**Left Column:**
+- Badge: "Start your compliance roadmap"
+- Headline: "Book a 30-minute assessment with a regulatory specialist"
+- Supporting text + 3 bullet points with checkmarks
+- Background: subtle gradient + floating icons
+
+**Right Column:**
+- Inline form (Name, Email, Company, Message)
+- Submit button with pulse-glow animation
+- Privacy policy link
+
+**Animations:**
+- Content slides in from left
+- Form slides in from right
+- Floating background icons move gently
+- Button pulses continuously (attention grabber)
+
+---
+
+## Technical Implementation
+
+### New Components to Create
 | Component | Purpose |
 |-----------|---------|
-| `AnimatedLottieCharacter.tsx` | Wrapper for Lottie service characters |
-| `AnimatedProgressLine.tsx` | SVG-based animated timeline connector |
-| `FloatingElements.tsx` | Parallax floating icons for hero sections |
-| `RippleButton.tsx` | Button with click ripple effect |
-| `AnimatedServiceCard.tsx` | Enhanced card with all micro-interactions |
-| `StaggeredGrid.tsx` | Grid container with staggered children animations |
-| `DrawingCheckmark.tsx` | SVG checkmark that draws itself |
+| `StatsBar.tsx` | Animated statistics band |
+| `ProcessTimeline.tsx` (home-specific) | Horizontal timeline with connected steps |
+| `TestimonialCarousel.tsx` | Auto-rotating testimonial display |
+| `ValuePropositionGrid.tsx` | 4-card value highlight grid |
+
+### Existing Components to Reuse
+- `AnimatedServiceCard` - for services grid
+- `FloatingElements` - for CTA background
+- `HeroServiceCarousel` - keep as-is
+- `useScrollAnimation` hook - for scroll triggers
+- `useCountUp` hook - for statistics animation
+- `useStaggeredAnimation` hook - for grid entrances
+
+### Files to Modify
+| File | Changes |
+|------|---------|
+| `src/pages/Home.tsx` | Complete rewrite with new sections |
+| `src/index.css` | Add any new animation keyframes if needed |
+
+### Sections to Remove
+- "Our Core Services" icon grid (redundant with new services showcase)
+- "Client Journey Story" cards (merged into value proposition)
+- "How we support every team" toggle (simplified into services grid)
+- Horizontal testimonial scroll (replaced with carousel)
+- Differentiators section (merged into value proposition)
 
 ---
 
-### Phase 8: Animation Library Integration
+## Responsive Design Notes
 
-**Option A: Framer Motion (Recommended)**
-- Best for React, physics-based animations
-- Excellent gesture support
-- Layout animations built-in
-- Install: Already compatible with project
+### Desktop (1024px+)
+- Hero: 60/40 columns
+- Stats: 4 columns
+- Services: 3 columns
+- Values: 4 columns
+- Timeline: Horizontal
+- Testimonials: Large cards
+- CTA: 2 columns
 
-**Option B: GSAP (Alternative)**
-- More powerful for complex sequences
-- Better timeline control
-- Slightly larger bundle
+### Tablet (768px - 1023px)
+- Hero: 55/45 columns
+- Stats: 2 columns (2x2)
+- Services: 2 columns (2x3)
+- Values: 2 columns (2x2)
+- Timeline: Horizontal (compressed)
+- Testimonials: Medium cards
+- CTA: Stacked
 
-**Recommendation:** Use Framer Motion for most animations, with CSS keyframes for simpler effects.
-
----
-
-### Phase 9: Performance Optimization
-
-- Use `will-change` CSS property sparingly
-- Implement `prefers-reduced-motion` media query support
-- Lazy load Lottie animations
-- Use `IntersectionObserver` for scroll-triggered animations (already have `useScrollAnimation`)
-- Debounce parallax calculations
-- Use CSS transforms instead of position changes
-
----
-
-### Phase 10: Mobile-Specific Animations
-
-- Reduce animation complexity on mobile (performance)
-- Replace hover effects with tap feedback
-- Swipe gestures for step navigation
-- Simpler parallax or disable on mobile
-- Touch ripple effects on buttons
+### Mobile (< 768px)
+- Hero: Single column (carousel first)
+- Stats: 2 columns (2x2)
+- Services: Single column
+- Values: Single column
+- Timeline: Vertical
+- Testimonials: Full-width single card
+- CTA: Stacked with full-width form
 
 ---
 
-### Files to Create/Modify
+## Performance Considerations
 
-| File | Action | Description |
-|------|--------|-------------|
-| `src/components/AnimatedServiceCharacter.tsx` | Create | Lottie character wrapper |
-| `src/components/FloatingElements.tsx` | Create | Parallax floating icons |
-| `src/components/RoadmapTimeline.tsx` | Major Update | Add drawing line, pulsing nodes |
-| `src/components/StepDetailCard.tsx` | Update | Add slide transitions, stagger children |
-| `src/components/ServicesOverview.tsx` | Update | Add staggered grid, enhanced cards |
-| `src/pages/Services.tsx` | Update | Add hero parallax, role toggle animation |
-| `src/hooks/useStaggeredAnimation.tsx` | Create | Hook for staggered entrances |
-| `src/hooks/useParallax.tsx` | Create | Hook for parallax effects |
-| `src/index.css` | Update | Add new keyframe animations |
-| `tailwind.config.ts` | Update | Add new animation utilities |
+1. **Lazy load images** below the fold
+2. **Intersection Observer** for scroll-triggered animations
+3. **CSS transforms** instead of position changes
+4. **Reduced motion support** via `prefers-reduced-motion`
+5. **Debounced parallax** calculations if mouse-tracking is added
 
 ---
 
-### Implementation Priority Order
+## Expected Outcome
 
-1. **Week 1: Core Animations**
-   - Enhance RoadmapTimeline with animated progress line
-   - Add step transition animations
-   - Implement staggered entrance for service cards
-
-2. **Week 2: Micro-Interactions**
-   - Role toggle animation
-   - Service card hover effects
-   - Button ripple effects
-   - Step circle pulse/bounce
-
-3. **Week 3: Graphical Characters**
-   - Create/source Lottie illustrations for each service
-   - Integrate into hero sections and cards
-   - Add hover trigger animations
-
-4. **Week 4: Polish & Performance**
-   - Hero parallax effects
-   - Floating elements
-   - Mobile optimization
-   - Reduced motion support
-
----
-
-### Expected Visual Outcome
-
-**Before:** Static cards, basic fades, no characters, minimal interactivity
+**Before:** Cluttered, repetitive sections with dated layout and horizontal scroll UX issues
 
 **After:**
-- Engaging animated characters that represent each service
-- Smooth, choreographed page entrance sequences
-- Interactive timeline with drawing progress line
-- Satisfying micro-interactions on every click/hover
-- Professional but playful feel matching modern SaaS websites
-- Seamless transitions between services and steps
-- Mobile-optimized touch interactions
+- Clean, modern design with clear visual hierarchy
+- Engaging animations that guide the eye down the page
+- Streamlined content (fewer sections, more impact)
+- Strong social proof with animated statistics
+- Interactive process timeline that tells a story
+- Conversion-optimized CTA with inline form
+- Mobile-first responsive design
+- Performance-optimized animations
 
