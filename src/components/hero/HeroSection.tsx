@@ -30,6 +30,12 @@ export const HeroSection = () => {
       <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
       <div className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full bg-cyan-400/10 blur-3xl" />
       <div className="absolute top-1/2 right-0 h-[300px] w-[300px] rounded-full bg-emerald-400/10 blur-3xl" />
+    <section className="relative overflow-hidden min-h-screen flex items-center py-12 lg:py-0">
+      {/* Enhanced Background Elements - Higher contrast */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-secondary/60 to-brand-100" />
+      <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/15 blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full bg-accent/12 blur-3xl" />
+      <div className="absolute top-1/2 right-0 h-[300px] w-[300px] rounded-full bg-primary/10 blur-3xl" />
       
       {/* Enhanced decorative dots - more visible */}
       <div className="absolute top-20 left-[15%] h-3 w-3 rounded-full bg-emerald-300/60 animate-pulse" />

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Stethoscope, FlaskConical, Sparkles, Scale, FileText, Recycle } from "lucide-react";
+import { Stethoscope, FlaskConical, Sparkles, Scale, FileText, Recycle, BookOpenCheck } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const services = [
@@ -34,6 +35,15 @@ export const GlobeAnimation = () => {
   return (
     <div
       className="relative mx-auto w-[min(94vw,620px)] h-[min(94vw,620px)] lg:w-[min(90vw,620px)] lg:h-[min(90vw,620px)]"
+  const size = isMobile ? 340 : 560;
+  const centerX = size / 2;
+  const centerY = size / 2;
+  const globeSize = isMobile ? 200 : 320;
+  const globeInnerSize = isMobile ? 150 : 250;
+
+  return (
+    <div
+      className="relative mx-auto w-[min(92vw,560px)] h-[min(92vw,560px)] lg:w-[min(90vw,560px)] lg:h-[min(90vw,560px)]"
       style={{ width: size, height: size }}
     >
       {/* Starfield background */}
@@ -44,6 +54,13 @@ export const GlobeAnimation = () => {
             "radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px)",
           backgroundSize: "26px 26px, 42px 42px",
           backgroundPosition: "0 0, 10px 15px",
+        className="absolute inset-0 rounded-full"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,0.25) 1px, transparent 1px)",
+          backgroundSize: "28px 28px, 45px 45px",
+          backgroundPosition: "0 0, 10px 15px",
+          opacity: 0.35,
         }}
       />
 
@@ -55,6 +72,13 @@ export const GlobeAnimation = () => {
       {/* Globe core */}
       <motion.div
         className="absolute left-1/2 top-1/2 rounded-full bg-gradient-to-br from-emerald-300 via-emerald-500 to-cyan-500 shadow-[0_0_120px_rgba(16,185,129,0.5)]"
+      <div className="absolute inset-[-18%] rounded-full bg-gradient-to-br from-emerald-400/30 via-emerald-500/20 to-cyan-400/30 blur-3xl" />
+      <div className="absolute inset-[5%] rounded-full bg-gradient-to-tr from-emerald-400/20 to-cyan-400/20 blur-2xl" />
+      <div className="absolute inset-[22%] rounded-full bg-emerald-400/15 blur-xl animate-pulse" />
+
+      {/* Globe core */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 rounded-full bg-gradient-to-br from-emerald-300 via-emerald-500 to-cyan-500 shadow-[0_0_80px_rgba(16,185,129,0.45)]"
         style={{
           width: globeSize,
           height: globeSize,
@@ -82,6 +106,17 @@ export const GlobeAnimation = () => {
             mixBlendMode: "screen",
           }}
         />
+        transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+      >
+        <div
+          className="absolute inset-[8%] rounded-full opacity-80"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px)",
+            backgroundSize: "8px 8px",
+          }}
+        />
+        <div className="absolute inset-[14%] rounded-full bg-gradient-to-br from-emerald-200/60 via-emerald-400/40 to-cyan-400/40 blur-sm" />
       </motion.div>
 
       {/* Inner glow core */}
@@ -105,6 +140,15 @@ export const GlobeAnimation = () => {
               style={{
                 transform: `translate(-50%, -100%) rotate(${i * 11.25}deg)`,
                 filter: "blur(0.4px)",
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative h-full w-full">
+          {[...Array(24)].map((_, i) => (
+            <div
+              key={`spike-${i}`}
+              className="absolute left-1/2 top-1/2 h-[22%] w-[2px] origin-bottom rounded-full bg-emerald-300/40"
+              style={{
+                transform: `translate(-50%, -100%) rotate(${i * 15}deg)`,
+                filter: "blur(0.5px)",
               }}
             />
           ))}
@@ -186,6 +230,41 @@ export const GlobeAnimation = () => {
           />
         </g>
       </motion.svg>
+      {/* Center Consultant Badge */}
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.3, type: "spring" }}
+        className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
+      >
+        <div className="relative">
+          {/* Pulse ring */}
+          <motion.div
+            className="absolute inset-0 rounded-full bg-emerald-400/40"
+            animate={{
+              scale: [1, 1.4, 1],
+              opacity: [0.5, 0, 0.5],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <div 
+            className="flex items-center justify-center rounded-full bg-card/90 border-2 border-emerald-400/60 shadow-xl shadow-emerald-400/40"
+            style={{ 
+              width: isMobile ? 64 : 88, 
+              height: isMobile ? 64 : 88 
+            }}
+          >
+            <div className="flex flex-col items-center justify-center gap-1 text-emerald-700">
+              <BookOpenCheck className="h-6 w-6" />
+              <span className="text-[10px] font-semibold uppercase tracking-wide">Consult</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Orbiting service icons */}
       {services.map((service, index) => {
