@@ -165,31 +165,31 @@ const About = () => {
     description: "Our meticulous approach aims for first-pass approval, saving you time and money on resubmissions."
   }];
   const testimonials = [{
-    quote: "Mr. Batra brought remarkable professionalism, expertise, and strategic insight from day one. He understood our business requirements quickly and delivered effective solutions ahead of schedule. His clear communication and ability to demystify complex compliance requirements made him a trusted advisor to our team.",
+    quote: "Terz Compliance brought remarkable professionalism, expertise, and strategic insight from day one. They understood our business requirements quickly and delivered effective solutions ahead of schedule. Their clear communication and ability to demystify complex compliance requirements made them a trusted advisor to our team.",
     name: "Hemendra Dave, PGDBM, MBA",
     role: "Regulatory Head",
     company: "Envision Scientific, Concept Medical",
     date: "April 6, 2025"
   }, {
-    quote: "I highly recommend Vasu Batra for his outstanding expertise in medical device registration with Indian authorities. His deep knowledge, proactive approach, and ability to navigate complex processes were instrumental in securing timely clearance. His strong relationships with authorities ensured a smooth approval process.",
+    quote: "I highly recommend Terz Compliance for their outstanding expertise in medical device registration with Indian authorities. Their deep knowledge, proactive approach, and ability to navigate complex processes were instrumental in securing timely clearance. Their strong relationships with authorities ensured a smooth approval process.",
     name: "Andrew Tang",
     role: "Chief Executive Officer",
     company: "Mobilab, USA",
     date: "February 11, 2025"
   }, {
-    quote: "As a consultant who handles the medical devices regulatory approvals, Vasu is meticulous and conscientious while preparing and vetting documents, leaving little room for errors, saving time and money for his clients. Calm and courteous, he is also a pleasure to deal with.",
+    quote: "As a consultant who handles the medical devices regulatory approvals, Terz is meticulous and conscientious while preparing and vetting documents, leaving little room for errors, saving time and money for their clients. Professional and courteous, they are also a pleasure to deal with.",
     name: "Anil Kumar Nair",
     role: "Managing Director",
     company: "Geuder Asia Pacific Pvt. Ltd, Singapore",
     date: "November 20, 2024"
   }, {
-    quote: "Had worked with Vasu on medical device registration in India, a person with strong work ethics, extremely responsive and knows his field of work well. His inputs had been a guiding light in getting medical devices registered in India.",
+    quote: "Had worked with Terz Compliance on medical device registration in India, a team with strong work ethics, extremely responsive and knows their field of work well. Their inputs had been a guiding light in getting medical devices registered in India.",
     name: "Steven Choy",
     role: "Business Consultant",
     company: "SEED, Japan",
     date: "April 23, 2024"
   }, {
-    quote: "Vasu is super efficient in registration work. He helped with urgent paperwork ahead of deadlines and is ever ready to help even at odd hours. Truly appreciate his effort in going the extra mile for his clients.",
+    quote: "Terz Compliance is super efficient in registration work. They helped with urgent paperwork ahead of deadlines and are ever ready to help even at odd hours. Truly appreciate their effort in going the extra mile for their clients.",
     name: "Toinali Chophi",
     role: "CEO",
     company: "Beautybarnindia",

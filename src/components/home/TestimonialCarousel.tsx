@@ -11,31 +11,31 @@ import ZenithLogo from "@/assets/clients/zenith.svg";
 
 const testimonials = [
   {
-    quote: "Mr. Batra brought remarkable professionalism, expertise, and strategic insight from day one. He understood our business requirements quickly and delivered effective solutions ahead of schedule.",
+    quote: "Terz Compliance brought remarkable professionalism, expertise, and strategic insight from day one. They understood our business requirements quickly and delivered effective solutions ahead of schedule.",
     name: "Hemendra Dave",
     role: "Regulatory Head",
     company: "Envision Scientific",
   },
   {
-    quote: "I highly recommend Vasu Batra for his outstanding expertise in medical device registration with Indian authorities. His deep knowledge and proactive approach were instrumental in securing timely clearance.",
+    quote: "I highly recommend Terz Compliance for their outstanding expertise in medical device registration with Indian authorities. Their deep knowledge and proactive approach were instrumental in securing timely clearance.",
     name: "Andrew Tang",
     role: "Chief Executive Officer",
     company: "Mobilab, USA",
   },
   {
-    quote: "Vasu is meticulous and conscientious while preparing and vetting documents, leaving little room for errors, saving time and money for his clients. Calm and courteous, he is also a pleasure to deal with.",
+    quote: "Terz is meticulous and conscientious while preparing and vetting documents, leaving little room for errors, saving time and money for their clients. Professional and courteous, they are also a pleasure to deal with.",
     name: "Anil Kumar Nair",
     role: "Managing Director",
     company: "Geuder Asia Pacific",
   },
   {
-    quote: "Had worked with Vasu on medical device registration in India, a person with strong work ethics, extremely responsive and knows his field of work well. His inputs had been a guiding light.",
+    quote: "Had worked with Terz Compliance on medical device registration in India, a team with strong work ethics, extremely responsive and knows their field of work well. Their inputs had been a guiding light.",
     name: "Steven Choy",
     role: "Business Consultant",
     company: "SEED, Japan",
   },
   {
-    quote: "Vasu is super efficient in registration work. He helped with urgent paperwork ahead of deadlines and is ever ready to help even at odd hours. Truly appreciate his effort in going the extra mile.",
+    quote: "Terz Compliance is super efficient in registration work. They helped with urgent paperwork ahead of deadlines and are ever ready to help even at odd hours. Truly appreciate their effort in going the extra mile.",
     name: "Toinali Chophi",
     role: "CEO",
     company: "Beautybarnindia",
