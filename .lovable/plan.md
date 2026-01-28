@@ -1,343 +1,290 @@
 
 
-# Complete Home Page Redesign Plan
+# Hero & Sub-Hero Section Complete Redesign
 
-## Executive Summary
-A comprehensive redesign of the Home page to create a modern, high-converting landing experience with stunning visuals, smooth animations, and an optimized user journey that guides visitors from awareness to action.
-
----
-
-## Current State Analysis
-
-### Existing Sections (Top to Bottom)
-1. **Hero Section** - Two-column layout with carousel (currently working well)
-2. **Our Core Services** - 6 icon cards in a row (repetitive, low impact)
-3. **Client Journey Story** - Challenge/Solution/Outcome cards (good concept, needs visual upgrade)
-4. **How We Support Every Team** - Toggle between Importers/Manufacturers (functional but dated)
-5. **Trust Signals** - Client logos + horizontal testimonial scroll (cluttered)
-6. **6-Step Process Timeline** - Grid of steps (needs better visual flow)
-7. **CTA with Inline Form** - Assessment booking form (solid, keep enhanced)
-
-### Key Issues Identified
-- Too many sections creating cognitive overload
-- Repetitive service displays (hero carousel + icon grid + toggle cards)
-- Testimonials section too long and horizontal scrolling feels awkward
-- Missing strong visual hierarchy and breathing room
-- No animated statistics or social proof highlights
-- Process timeline lacks visual connection between steps
+## Overview
+A striking, modern hero section inspired by cliniexperts.com's dynamic layout, featuring floating service cards, animated graphical elements, and a clear visual hierarchy that prioritizes Medical Devices and In-Vitro Diagnostics as primary expertise areas.
 
 ---
 
-## Proposed New Layout
+## Design Concept
 
-### Section Order & Purpose
+### Visual Inspiration from CliniExperts
+- **Floating service cards** arranged around the hero content (not just a carousel)
+- **Rich graphical illustrations** representing each service category
+- **Interactive quick-links** to key service areas
+- **Bold typography** with clear value proposition
+- **Animated elements** that respond to user interaction
+
+---
+
+## Hero Section Redesign
+
+### Layout Structure
 
 ```text
-┌─────────────────────────────────────────────────────────────┐
-│  1. HERO SECTION (Enhanced)                                 │
-│  - Bold headline + animated subtitle                        │
-│  - Interactive service carousel (keep existing)             │
-│  - Trust badges + micro-stats inline                        │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│  2. ANIMATED STATS BAR (New)                                │
-│  - 4 key metrics with count-up animation                    │
-│  - Full-width gradient band                                 │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│  3. SERVICES SHOWCASE (Redesigned)                          │
-│  - Large interactive cards (3x2 grid)                       │
-│  - Image backgrounds with hover effects                     │
-│  - Uses AnimatedServiceCard component                       │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│  4. WHY TERZ / VALUE PROPOSITION (New Design)               │
-│  - Replaces Journey columns + differentiators               │
-│  - 4 value cards with icons + brief text                    │
-│  - Clean grid layout with animations                        │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│  5. PROCESS TIMELINE (Enhanced)                             │
-│  - Visual connected timeline (horizontal desktop)           │
-│  - Animated step circles with progress line                 │
-│  - Staggered reveal on scroll                               │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│  6. SOCIAL PROOF (Redesigned)                               │
-│  - Client logos row (subtle, smaller)                       │
-│  - Featured testimonial (1-2 large cards, auto-rotate)      │
-│  - Clean and impactful                                      │
-└─────────────────────────────────────────────────────────────┘
-                            ↓
-┌─────────────────────────────────────────────────────────────┐
-│  7. FINAL CTA (Enhanced)                                    │
-│  - Two-column layout: copy + inline form                    │
-│  - Floating elements background                             │
-│  - Animated button with pulse glow                          │
-└─────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────┐
+│  HERO SECTION - Full Viewport Height                                      │
+│                                                                           │
+│  ┌─────────────────────────────┐    ┌────────────────────────────────┐   │
+│  │                             │    │  FLOATING SERVICE CARDS        │   │
+│  │  HEADLINE AREA              │    │  ┌─────────┐ ┌─────────┐       │   │
+│  │  • Animated badge           │    │  │ Medical │ │   IVD   │       │   │
+│  │  • Main headline            │    │  │ Devices │ │         │       │   │
+│  │  • Sub-headline             │    │  │ (LARGE) │ │ (LARGE) │       │   │
+│  │  • CTA buttons              │    │  └─────────┘ └─────────┘       │   │
+│  │                             │    │  ┌────────┐ ┌────────┐         │   │
+│  │  QUICK LINKS (4 pills)      │    │  │Cosmetic│ │  LMPC  │         │   │
+│  │  [India Reg] [IAA] [Global] │    │  └────────┘ └────────┘         │   │
+│  │  [All Services]             │    │  ┌────────┐ ┌────────┐         │   │
+│  │                             │    │  │  IEC   │ │  EPR   │         │   │
+│  └─────────────────────────────┘    │  └────────┘ └────────┘         │   │
+│                                     └────────────────────────────────┘   │
+│  ┌───────────────────────────────────────────────────────────────────┐   │
+│  │ TRUST BADGES BAR - ISO 13485 | CDSCO Compliant | Pan-India | 24hr │   │
+│  └───────────────────────────────────────────────────────────────────┘   │
+└──────────────────────────────────────────────────────────────────────────┘
 ```
 
----
+### Left Column (55% width)
 
-## Detailed Section Specifications
+**Content Hierarchy:**
+1. **Animated Badge** - "Your Regulatory Partner" with pulse animation
+2. **Main Headline** - "Comprehensive Regulatory & Compliance Solutions in India"
+   - Gradient text effect on key words
+   - Staggered letter/word animation on load
+3. **Sub-headline** - "End-to-End Solutions for Medical Devices, IVDs, Cosmetics, and Beyond"
+4. **CTA Buttons** - Primary "Book Consultation" + Ghost "Explore Services"
 
-### 1. Hero Section (Enhanced)
-
-**Layout:** 60/40 two-column (keep existing structure)
-
-**Left Column Enhancements:**
-- Animated badge that pulses gently on load
-- Main headline with gradient text effect on key words
-- Add subtle floating icons behind text (documents, checkmarks)
-- Trust badges get micro-interaction on hover (slight lift)
-
-**Right Column:**
-- Keep HeroServiceCarousel (already polished)
-- Add subtle parallax effect on mouse movement
-- Glow effect behind carousel on hover
-
-**Animations:**
-- Headline slides in from left (0.6s)
-- Subheadline fades up (0.4s delay)
-- CTAs scale in with spring effect
-- Trust badges stagger in (100ms each)
-
----
-
-### 2. Animated Stats Bar (New Section)
-
-**Purpose:** Immediate social proof and credibility
-
-**Stats to Display:**
-| Metric | Value | Animation |
-|--------|-------|-----------|
-| Products Approved | 200+ | Count up from 0 |
-| Global Clients | 50+ | Count up from 0 |
-| First-Pass Approval | 98% | Count up from 0 |
-| Years Experience | 5+ | Count up from 0 |
+**Quick-Link Pills (New Element):**
+- 4 clickable pills with icons (similar to cliniexperts)
+- India Regulatory Services
+- Indian Authorized Agent (IAA)
+- Global Regulatory Services
+- All Services
 
 **Design:**
-- Full-width gradient band (primary to accent)
-- White text on gradient
-- 4-column grid (stacks to 2x2 on mobile)
-- Each stat has icon above number
-- Triggers when scrolled into view
+- Pills have icons + text
+- Hover: slight lift + primary border glow
+- Stagger entrance animation (100ms delay each)
 
----
+### Right Column (45% width) - Floating Service Cards
 
-### 3. Services Showcase (Redesigned)
-
-**Layout:** 2x3 grid of large image cards
+**Card Layout:**
+- 6 service cards arranged in a 2x3 asymmetric grid
+- Top 2 cards (Medical Devices, IVD) are **larger and more prominent**
+- Bottom 4 cards (Cosmetics, LMPC, IEC, EPR) are smaller
 
 **Card Design:**
-- Use existing `AnimatedServiceCard` component
-- Full image background with gradient overlay
-- Badge (CDSCO, Central-Level, etc.) top-left
-- Service title + one-line tagline
-- "Learn More →" button on hover
-
-**Services:**
-1. Medical Devices - CDSCO
-2. In-Vitro Diagnostics - CDSCO
-3. Cosmetics - CDSCO
-4. Legal Metrology - Central-Level
-5. Import Export Code - Lifetime Valid
-6. EPR Compliance - CPCB
+- Each card has:
+  - Relevant illustration/image (from existing assets)
+  - Service category label (e.g., "For Importer" or "CDSCO")
+  - Service name in bold
+  - One-line description
+  - Subtle gradient overlay
+- Hover: card lifts, image zooms slightly, border glows
 
 **Animations:**
-- Staggered entrance (100ms delay between cards)
-- Image zoom on hover
-- Button slides up on hover
-- Badge pulses gently
+- Cards float in from right with stagger (150ms delay)
+- Continuous subtle float animation (different delays per card)
+- Mouse parallax effect on desktop (cards move slightly with cursor)
+
+### Background Elements
+
+- **Gradient mesh** - subtle blue-to-teal radial gradients
+- **Floating icons** - use existing FloatingElements component
+- **Decorative dots/circles** - positioned around the hero
+- **Vignette overlay** on left side for text contrast
 
 ---
 
-### 4. Why Terz / Value Proposition
+## Sub-Hero Section (New)
 
-**Layout:** 4-column grid (2x2 on tablet, 1-column mobile)
+### Purpose
+Expand on the hero with a dedicated services overview that clearly shows the expertise hierarchy.
 
-**Values to Highlight:**
-| Icon | Title | Description |
-|------|-------|-------------|
-| Shield | Expert Guidance | Seasoned regulatory professionals with deep domain expertise |
-| Clock | Fast Processing | Streamlined processes to minimize your time-to-market |
-| Users | Complete Support | End-to-end assistance from application to approval |
-| DollarSign | Transparent Pricing | Clear, upfront costs with no hidden fees |
+### Layout Structure
+
+```text
+┌──────────────────────────────────────────────────────────────────────────┐
+│  SUB-HERO - Regulatory Services Overview                                  │
+│                                                                           │
+│  SECTION HEADER                                                           │
+│  "Our Regulatory and Compliance Services in India"                        │
+│                                                                           │
+│  ┌────────────────────────────────┐  ┌─────────────────────────────────┐ │
+│  │  TEXT BLOCK                    │  │  CIRCULAR INFOGRAPHIC           │ │
+│  │                                │  │                                  │ │
+│  │  Terz specializes in providing │  │      ┌─────┐                    │ │
+│  │  comprehensive 360-degree      │  │  ┌───┤ MD  ├───┐                │ │
+│  │  regulatory and compliance     │  │  │   └─────┘   │                │ │
+│  │  services in India...          │  │  │     ▲       │                │ │
+│  │                                │  │  │   TERZ      │                │ │
+│  │  [Read More →]                 │  │  │   LOGO      │                │ │
+│  │                                │  │  └─────────────┘                │ │
+│  └────────────────────────────────┘  │  (Icons orbit around center)    │ │
+│                                      └─────────────────────────────────┘ │
+│                                                                           │
+│  REGULATORY AUTHORITIES BAR                                               │
+│  [CDSCO] [FSSAI] [BIS] [WPC] [LEGAL METROLOGY] [CPCB]                    │
+│                                                                           │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+### Left Column (50%) - Text Content
+
+**Content:**
+- Section headline with accent color
+- 2-3 paragraph description of Terz's expertise
+- Emphasis on deep experience in Medical Devices and IVDs
+- "Read More" link to About page
+
+**Animations:**
+- Fade up on scroll into view
+- Staggered paragraph reveals
+
+### Right Column (50%) - Circular Infographic
 
 **Design:**
-- Clean white cards with subtle border
-- Large icon (brand blue) in circle background
-- Bold title + 1-2 line description
-- Hover: card lifts, icon rotates slightly
+- Center: Terz logo or India map graphic
+- Orbiting icons: 6 service categories arranged in a circle
+- Medical Devices and IVD icons are larger/highlighted
+- Connecting lines/paths between icons and center
+- Optional: subtle rotation animation
 
 **Animations:**
-- Cards stagger in from bottom on scroll
-- Icon animates on hover (scale + slight rotation)
+- Draw-in effect for connecting lines
+- Icons fade in sequentially (MD first, then IVD, then others)
+- Gentle continuous rotation on desktop
 
----
-
-### 5. Process Timeline (Enhanced)
-
-**Layout:** Horizontal connected timeline (desktop), vertical (mobile)
-
-**Steps (6 total):**
-1. Intake - Align on product goals, timelines, and regulatory pathways
-2. Gap Assessment - Audit documentation, testing, and labelling to surface gaps early
-3. Dossier Build - Assemble regulator-ready files with technical, legal, and quality inputs
-4. Filing - Submit applications and respond to authority interactions
-5. Query Management - Handle clarifications, hearings, and supplemental evidence
-6. Approval & Beyond - Onboard operations teams and monitor obligations post-approval
+### Regulatory Authorities Bar
 
 **Design:**
-- Step circles connected by animated progress line
-- Active/completed steps highlighted with primary color
-- Step details appear below timeline on hover/click
-- Clean numbered circles (01, 02, 03...)
-
-**Animations:**
-- Progress line draws itself when section enters viewport
-- Step circles pulse sequentially (100ms delay)
-- Content fades up when step is active
-- Checkmark draws itself for completed steps
-
----
-
-### 6. Social Proof (Redesigned)
-
-**Part A: Client Logos**
-- Single row of 6 logos
-- Subtle grayscale → color on hover
-- Smaller than current design (less visual weight)
-- Caption: "Trusted by leading manufacturers and importers"
-
-**Part B: Featured Testimonials**
-- 1-2 large testimonial cards (auto-rotate every 5s)
-- Quote icon (primary color)
-- Large quote text
-- Name, role, company below
-- Navigation dots
-- No horizontal scroll (cleaner UX)
-
-**Animations:**
-- Logos fade in with stagger
-- Testimonial crossfades between cards
-- Quote icon pulses gently
-
----
-
-### 7. Final CTA Section (Enhanced)
-
-**Layout:** Two-column (text left, form right)
-
-**Left Column:**
-- Badge: "Start your compliance roadmap"
-- Headline: "Book a 30-minute assessment with a regulatory specialist"
-- Supporting text + 3 bullet points with checkmarks
-- Background: subtle gradient + floating icons
-
-**Right Column:**
-- Inline form (Name, Email, Company, Message)
-- Submit button with pulse-glow animation
-- Privacy policy link
-
-**Animations:**
-- Content slides in from left
-- Form slides in from right
-- Floating background icons move gently
-- Button pulses continuously (attention grabber)
+- Full-width bar with authority logos/badges
+- CDSCO | BIS | WPC | LEGAL METROLOGY | CPCB | FSSAI
+- Grayscale by default, color on hover
+- Subtle slide-in animation
 
 ---
 
 ## Technical Implementation
 
 ### New Components to Create
+
 | Component | Purpose |
 |-----------|---------|
-| `StatsBar.tsx` | Animated statistics band |
-| `ProcessTimeline.tsx` (home-specific) | Horizontal timeline with connected steps |
-| `TestimonialCarousel.tsx` | Auto-rotating testimonial display |
-| `ValuePropositionGrid.tsx` | 4-card value highlight grid |
-
-### Existing Components to Reuse
-- `AnimatedServiceCard` - for services grid
-- `FloatingElements` - for CTA background
-- `HeroServiceCarousel` - keep as-is
-- `useScrollAnimation` hook - for scroll triggers
-- `useCountUp` hook - for statistics animation
-- `useStaggeredAnimation` hook - for grid entrances
+| `HeroSection.tsx` | Complete hero section with floating cards |
+| `HeroServiceCard.tsx` | Individual floating service card |
+| `QuickLinkPills.tsx` | Quick navigation pills |
+| `SubHeroSection.tsx` | Sub-hero with text + infographic |
+| `CircularInfographic.tsx` | Animated circular service diagram |
+| `AuthoritiesBar.tsx` | Regulatory authorities logo bar |
 
 ### Files to Modify
+
 | File | Changes |
 |------|---------|
-| `src/pages/Home.tsx` | Complete rewrite with new sections |
-| `src/index.css` | Add any new animation keyframes if needed |
+| `src/pages/Home.tsx` | Replace current hero with new components |
+| `src/index.css` | Add new keyframes for orbit animation, etc. |
 
-### Sections to Remove
-- "Our Core Services" icon grid (redundant with new services showcase)
-- "Client Journey Story" cards (merged into value proposition)
-- "How we support every team" toggle (simplified into services grid)
-- Horizontal testimonial scroll (replaced with carousel)
-- Differentiators section (merged into value proposition)
+### Components to Remove/Replace
+
+- Current hero section in Home.tsx (lines 87-221)
+- HeroServiceCarousel can be kept as an alternative mobile view
+
+### Animation Details
+
+**Hero Load Sequence:**
+1. Background gradient fades in (0-0.3s)
+2. Badge pulses in (0.2s)
+3. Headline slides in from left (0.3-0.6s)
+4. Sub-headline fades up (0.5-0.8s)
+5. CTAs scale in with spring (0.6-0.9s)
+6. Quick-link pills stagger in (0.7-1.1s)
+7. Service cards float in from right (0.5-1.5s staggered)
+8. Trust badges fade in (1.0-1.3s)
+
+**Sub-Hero Scroll Animations:**
+1. Section fades up when 10% visible
+2. Text paragraphs stagger in
+3. Infographic lines draw themselves
+4. Service icons pop in sequentially
+5. Authorities bar slides in from bottom
+
+### Responsive Behavior
+
+**Desktop (1024px+):**
+- Two-column layout for hero
+- Floating cards in grid
+- Full circular infographic
+
+**Tablet (768px - 1023px):**
+- Stacked layout (text above, cards below)
+- Cards in 2x3 grid
+- Simplified infographic (no orbit animation)
+
+**Mobile (< 768px):**
+- Single column
+- Keep existing HeroServiceCarousel for card display
+- Replace infographic with simple icon grid
+- Quick-links become scrollable row
 
 ---
 
-## Responsive Design Notes
+## Service Priority Visualization
 
-### Desktop (1024px+)
-- Hero: 60/40 columns
-- Stats: 4 columns
-- Services: 3 columns
-- Values: 4 columns
-- Timeline: Horizontal
-- Testimonials: Large cards
-- CTA: 2 columns
+### Hero Card Sizing (Priority Order)
 
-### Tablet (768px - 1023px)
-- Hero: 55/45 columns
-- Stats: 2 columns (2x2)
-- Services: 2 columns (2x3)
-- Values: 2 columns (2x2)
-- Timeline: Horizontal (compressed)
-- Testimonials: Medium cards
-- CTA: Stacked
+| Service | Card Size | Position | Visual Treatment |
+|---------|-----------|----------|------------------|
+| Medical Devices | Large (200px h) | Top-left | Gold border accent, "Primary" badge |
+| In-Vitro Diagnostics | Large (200px h) | Top-right | Gold border accent, "Primary" badge |
+| Cosmetics | Medium (160px h) | Middle-left | Standard treatment |
+| Legal Metrology | Medium (160px h) | Middle-right | Standard treatment |
+| IEC | Standard (140px h) | Bottom-left | Standard treatment |
+| EPR Compliance | Standard (140px h) | Bottom-right | Standard treatment |
 
-### Mobile (< 768px)
-- Hero: Single column (carousel first)
-- Stats: 2 columns (2x2)
-- Services: Single column
-- Values: Single column
-- Timeline: Vertical
-- Testimonials: Full-width single card
-- CTA: Stacked with full-width form
+### Visual Cues for Expertise Hierarchy
+- Top 2 cards have subtle gold/amber border
+- "Primary Expertise" badge on MD and IVD cards
+- Slightly larger images and bolder typography
+- More prominent hover effects
 
 ---
 
-## Performance Considerations
+## Assets Required
 
-1. **Lazy load images** below the fold
-2. **Intersection Observer** for scroll-triggered animations
-3. **CSS transforms** instead of position changes
-4. **Reduced motion support** via `prefers-reduced-motion`
-5. **Debounced parallax** calculations if mouse-tracking is added
+### Existing Assets to Use
+- `medical-devices.jpg` - Hero card background
+- `ivd.jpg` - Hero card background
+- `cosmetics.jpg` - Hero card background
+- `lmpc.jpg` - Hero card background (Legal Metrology)
+- `iec.jpg` - Hero card background
+- `epr.jpg` - Hero card background
+- `logo.png` - Center of infographic
+
+### New Assets to Consider (Optional)
+- Custom illustrations for each service (similar to cliniexperts)
+- Regulatory authority logos (CDSCO, BIS, etc.)
+- India map silhouette for infographic center
 
 ---
 
 ## Expected Outcome
 
-**Before:** Cluttered, repetitive sections with dated layout and horizontal scroll UX issues
+**Before:**
+- Standard two-column hero with carousel
+- Services hidden in a carousel that auto-rotates
+- No clear visual hierarchy of expertise
+- Missing sub-hero context section
 
 **After:**
-- Clean, modern design with clear visual hierarchy
-- Engaging animations that guide the eye down the page
-- Streamlined content (fewer sections, more impact)
-- Strong social proof with animated statistics
-- Interactive process timeline that tells a story
-- Conversion-optimized CTA with inline form
-- Mobile-first responsive design
-- Performance-optimized animations
+- Dynamic, cliniexperts-inspired hero with floating cards
+- All 6 services visible immediately with clear hierarchy
+- Medical Devices and IVD prominently featured as primary expertise
+- Interactive quick-links for navigation
+- Rich sub-hero section with circular infographic
+- Regulatory authorities bar for credibility
+- Smooth, choreographed animations throughout
+- Mobile-optimized with carousel fallback
 
