@@ -12,13 +12,68 @@ import { StatsBar } from "@/components/home/StatsBar";
 import { ValuePropositionGrid } from "@/components/home/ValuePropositionGrid";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
 import { TestimonialCarousel } from "@/components/home/TestimonialCarousel";
-import PlanetServicesSection from "@/components/PlanetServicesSection";
+import AnimatedServiceCard from "@/components/AnimatedServiceCard";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { motion } from "framer-motion";
+
+// Service data for the showcase grid
+import MedicalDevicesImage from "@/assets/medical-devices.jpg";
+import IvdImage from "@/assets/ivd.jpg";
+import CosmeticsImage from "@/assets/cosmetics.jpg";
+import LmpcImage from "@/assets/lmpc.jpg";
+import IecImage from "@/assets/iec.jpg";
+import EprImage from "@/assets/epr.jpg";
+
+const services = [
+  {
+    id: "medical-devices",
+    title: "Medical Devices",
+    tagline: "CDSCO submissions prepared end-to-end with risk-based documentation reviews.",
+    image: MedicalDevicesImage,
+    badge: "CDSCO",
+  },
+  {
+    id: "ivd",
+    title: "In-Vitro Diagnostics",
+    tagline: "Performance evaluation oversight and IVD import licensing support.",
+    image: IvdImage,
+    badge: "CDSCO",
+  },
+  {
+    id: "cosmetics",
+    title: "Cosmetics",
+    tagline: "Product registration, safety dossiers, and artwork compliance.",
+    image: CosmeticsImage,
+    badge: "CDSCO",
+  },
+  {
+    id: "legal-metrology",
+    title: "Legal Metrology",
+    tagline: "Model approval, packaging validation, and audit-ready reports.",
+    image: LmpcImage,
+    badge: "Central-Level",
+  },
+  {
+    id: "iec",
+    title: "Import Export Code",
+    tagline: "IEC registration, renewals, and supply chain partner onboarding.",
+    image: IecImage,
+    badge: "Lifetime Valid",
+  },
+  {
+    id: "epr",
+    title: "EPR Compliance",
+    tagline: "Annual returns, recycling partner management, and evidence tracking.",
+    image: EprImage,
+    badge: "CPCB",
+  },
+];
 
 const glassPanel = "border border-border/60 bg-card shadow-surface";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { ref: servicesRef, isVisible: servicesVisible } = useScrollAnimation();
 
   const handleLeadFormSubmit = React.useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,8 +94,42 @@ const Home = () => {
       {/* ========== SECTION 3: Animated Stats Bar ========== */}
       <StatsBar />
 
-      {/* ========== SECTION 3: Planet Services Showcase ========== */}
-      <PlanetServicesSection />
+      {/* ========== SECTION 3: Services Showcase ========== */}
+      <section className="relative py-16 lg:py-24">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-secondary/30 to-background" />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+              Our Services
+            </span>
+            <h2 className="mt-4 text-3xl font-bold text-heading lg:text-4xl">
+              Comprehensive Regulatory Support
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+              End-to-end compliance solutions across India's key regulatory frameworks.
+            </p>
+          </div>
+
+          <div
+            ref={servicesRef}
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {services.map((service, index) => (
+              <AnimatedServiceCard
+                key={service.id}
+                id={service.id}
+                title={service.title}
+                tagline={service.tagline}
+                image={service.image}
+                badge={service.badge}
+                index={index}
+                isVisible={servicesVisible}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ========== SECTION 4: Value Proposition Grid ========== */}
       <ValuePropositionGrid />
