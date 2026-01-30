@@ -290,4 +290,41 @@ All colors MUST be HSL.
   .animate-bounce-subtle {
     animation: bounce-subtle 1s ease-in-out infinite;
   }
+
+  /* Globe animations */
+  @keyframes globe-spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+
+  @keyframes globe-glow {
+    0%, 100% { 
+      box-shadow: 
+        0 0 60px hsla(217, 91%, 60%, 0.4),
+        0 0 120px hsla(217, 91%, 60%, 0.2);
+    }
+    50% { 
+      box-shadow: 
+        0 0 80px hsla(217, 91%, 60%, 0.5),
+        0 0 150px hsla(217, 91%, 60%, 0.3);
+    }
+  }
+
+  @keyframes orbit-dash {
+    from { stroke-dashoffset: 100; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  .animate-globe-spin {
+    animation: globe-spin 60s linear infinite;
+  }
+
+  .animate-globe-glow {
+    animation: globe-glow 3s ease-in-out infinite;
+  }
+
+  .animate-orbit-dash {
+    stroke-dasharray: 8 4;
+    animation: orbit-dash 20s linear infinite;
+  }
 }

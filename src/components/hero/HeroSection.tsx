@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Globe2, Shield, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { QuickLinkPills } from "./QuickLinkPills";
-import { GlobeAnimation } from "./GlobeAnimation";
+import { PlanetaryOrbitHero } from "./PlanetaryOrbitHero";
 
 const trustBadges = [
   { icon: Shield, label: "ISO 13485 aligned" },
@@ -136,14 +136,14 @@ export const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Globe Animation */}
+          {/* Right Column - Planetary Orbit Animation */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.7, ease: "easeOut" }}
             className="order-1 lg:order-2 flex justify-center items-center"
           >
-            <GlobeAnimation />
+            <PlanetaryOrbitHero />
           </motion.div>
         </div>
       </div>
