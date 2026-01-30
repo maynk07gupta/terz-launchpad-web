@@ -22,7 +22,7 @@ const services = [
     icon: Stethoscope,
     borderColor: "#3B82F6",
     glowColor: "#3B82F6",
-    startAngle: 270, // Front-right
+    startAngle: 270,
   },
   {
     id: "ivd",
@@ -32,7 +32,7 @@ const services = [
     icon: FlaskConical,
     borderColor: "#14B8A6",
     glowColor: "#14B8A6",
-    startAngle: 90, // Front-left
+    startAngle: 90,
   },
   {
     id: "cosmetics",
@@ -42,7 +42,7 @@ const services = [
     icon: Sparkles,
     borderColor: "#EC4899",
     glowColor: "#EC4899",
-    startAngle: 330, // Back-right
+    startAngle: 330,
   },
   {
     id: "lmpc",
@@ -52,7 +52,7 @@ const services = [
     icon: Scale,
     borderColor: "#F59E0B",
     glowColor: "#F59E0B",
-    startAngle: 150, // Back-left
+    startAngle: 150,
   },
   {
     id: "iec",
@@ -62,7 +62,7 @@ const services = [
     icon: FileCheck,
     borderColor: "#22C55E",
     glowColor: "#22C55E",
-    startAngle: 30, // Side-right
+    startAngle: 30,
   },
   {
     id: "epr",
@@ -72,7 +72,7 @@ const services = [
     icon: Recycle,
     borderColor: "#6366F1",
     glowColor: "#6366F1",
-    startAngle: 210, // Side-left
+    startAngle: 210,
   },
 ];
 
@@ -87,28 +87,28 @@ interface OrbitConfig {
 const getOrbitConfig = (isMobile: boolean, isTablet: boolean): OrbitConfig => {
   if (isMobile) {
     return {
-      radiusX: 130,
-      radiusY: 75,
+      radiusX: 140,
+      radiusY: 80,
       duration: 30,
-      globeSize: 100,
-      planetSize: 55,
+      globeSize: 180,
+      planetSize: 50,
     };
   }
   if (isTablet) {
     return {
-      radiusX: 200,
-      radiusY: 110,
+      radiusX: 220,
+      radiusY: 130,
       duration: 26,
-      globeSize: 150,
-      planetSize: 75,
+      globeSize: 250,
+      planetSize: 65,
     };
   }
   return {
-    radiusX: 260,
-    radiusY: 145,
+    radiusX: 320,
+    radiusY: 180,
     duration: 24,
-    globeSize: 180,
-    planetSize: 95,
+    globeSize: 320,
+    planetSize: 85,
   };
 };
 
@@ -135,7 +135,7 @@ export const PlanetaryOrbitHero: React.FC = () => {
     
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
-      const elapsed = (timestamp - startTime) / 1000; // seconds
+      const elapsed = (timestamp - startTime) / 1000;
       setTime(elapsed);
       animationId = requestAnimationFrame(animate);
     };
@@ -144,7 +144,7 @@ export const PlanetaryOrbitHero: React.FC = () => {
     return () => cancelAnimationFrame(animationId);
   }, []);
   
-  // Calculate planet positions
+  // Calculate planet positions with occlusion
   const calculatePlanetProps = (startAngle: number) => {
     const { radiusX, radiusY, duration } = config;
     
@@ -156,16 +156,30 @@ export const PlanetaryOrbitHero: React.FC = () => {
     const x = Math.cos(angleRad) * radiusX;
     const y = Math.sin(angleRad) * radiusY;
     
-    // Scale based on Y position (front = larger, back = smaller)
-    // Y ranges from -radiusY (top/back) to +radiusY (bottom/front)
-    const normalizedY = y / radiusY; // -1 to 1
-    const scale = 0.7 + (normalizedY + 1) * 0.3; // 0.7 to 1.3
+    // Normalized Y: -1 (top/back) to +1 (bottom/front)
+    const normalizedY = y / radiusY;
     
-    // Opacity based on position (back planets slightly faded)
-    const opacity = 0.6 + (normalizedY + 1) * 0.2; // 0.6 to 1.0
+    // Scale: front = larger (1.4x), back = smaller (0.6x)
+    const scale = 0.6 + (normalizedY + 1) * 0.4;
     
-    // Z-index based on Y position
-    const zIndex = Math.round(50 + normalizedY * 40); // 10 to 90
+    // Occlusion: planets behind Earth (normalizedY < -0.2) should be hidden
+    const isBehindEarth = normalizedY < -0.2;
+    
+    // Opacity: visible in front, fade out when going behind
+    let opacity = 1;
+    if (normalizedY < -0.2) {
+      // Fade out as it goes behind
+      opacity = Math.max(0, (normalizedY + 0.5) / 0.3);
+    } else if (normalizedY < 0.2) {
+      // Partial visibility on sides
+      opacity = 0.7 + (normalizedY + 0.2) * 0.75;
+    }
+    
+    // Z-index: front planets ABOVE Earth (60+), back planets BELOW (20-40)
+    // Earth is at z-index 50
+    const zIndex = isBehindEarth 
+      ? Math.round(20 + (normalizedY + 1) * 20)
+      : Math.round(55 + normalizedY * 35);
     
     return { x, y, scale, opacity, zIndex };
   };
@@ -176,11 +190,33 @@ export const PlanetaryOrbitHero: React.FC = () => {
       style={{
         width: config.radiusX * 2 + config.planetSize * 1.5,
         height: config.radiusY * 2 + config.planetSize * 2,
-        minHeight: 300,
+        minHeight: isMobile ? 350 : 500,
       }}
     >
+      {/* Subtle orbit path indicator */}
+      <svg
+        className="absolute pointer-events-none"
+        style={{
+          width: config.radiusX * 2 + 20,
+          height: config.radiusY * 2 + 20,
+          opacity: 0.15,
+        }}
+        viewBox={`0 0 ${config.radiusX * 2 + 20} ${config.radiusY * 2 + 20}`}
+      >
+        <ellipse
+          cx={config.radiusX + 10}
+          cy={config.radiusY + 10}
+          rx={config.radiusX}
+          ry={config.radiusY}
+          fill="none"
+          stroke="hsl(var(--primary))"
+          strokeWidth="1"
+          strokeDasharray="8 4"
+        />
+      </svg>
+      
       {/* Central Earth Globe */}
-      <div className="absolute" style={{ zIndex: 40 }}>
+      <div className="absolute" style={{ zIndex: 50 }}>
         <EarthGlobe size={config.globeSize} />
       </div>
       

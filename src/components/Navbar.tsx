@@ -36,7 +36,7 @@ const Navbar = () => {
   }, [isOpen]);
 
   return (
-    <nav className="sticky top-0 z-50">
+    <nav className="sticky top-0 z-[100]">
       <div className="relative border-b border-border/60 bg-card/95 backdrop-blur-sm shadow-surface">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-primary/5 via-primary/20 to-primary/5" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
