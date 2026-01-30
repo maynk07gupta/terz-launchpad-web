@@ -1,218 +1,374 @@
 
 
-# Hero Section Complete Overhaul - Dynamic Animations & Visual Fix
+# Planet-Style Service Showcase Design
 
-## Problems Identified
+## Inspiration Analysis
 
-### 1. Mobile Blank Space Issue
-- The right column in HeroSection uses `isMobile` to conditionally render either floating cards or carousel
-- The HeroServiceCarousel has `min-h-[320px]` but appears to not be rendering properly
-- Large blank space between hero text and stats bar
+Based on the YouTube Shorts video "Spaceedu about earth website design", the key design elements are:
 
-### 2. Faded/Light Appearance
-- Background gradients use very low opacity values (`bg-primary/5`, `bg-primary/8`)
-- Left vignette `from-background/90` creates washed-out effect
-- Decorative dots are barely visible (`bg-primary/30`, `bg-accent/40`)
-- Missing strong visual anchors and contrast
-
-### 3. Lack of Motion Animations
-- Current animations are entrance-only (fade in, slide in)
-- No continuous motion that creates visual interest
-- Missing the dynamic, engaging feel of sites like cliniexperts
+```text
+┌────────────────────────────────────────────────────────────────────────────┐
+│  SPACEEDU DESIGN ELEMENTS                                                   │
+│                                                                             │
+│  • Dark space-themed background with starfield                              │
+│  • Large 3D glowing planet sphere as central focal point                    │
+│  • Gradient glow effects (blue/cyan/white halos)                            │
+│  • Text overlays with service/fact information                              │
+│  • Smooth orbital/planetary animations                                      │
+│  • Tab navigation (Planets, Trailer, Tickets)                               │
+│  • Minimalist typography with high contrast                                 │
+│                                                                             │
+└────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## Proposed Solutions
+## Proposed Design: Planet-Style Service Cards
 
-### A. Main Hero Section - Add 3D Globe-Like Animation
+Transform each of Terz's 6 services into individual "planet" visualizations, creating a solar system of regulatory expertise.
 
-**Concept**: Create a rotating 3D globe effect using concentric rings with orbiting service icons, similar to a rotating earth visualization.
+### Visual Concept
 
-**Implementation**:
 ```text
-┌──────────────────────────────────────────────────────────────┐
-│  MAIN HERO - GLOBE ANIMATION                                 │
-│                                                              │
-│  ┌─────────────────┐    ┌─────────────────────────────────┐ │
-│  │  Text Content   │    │     3D GLOBE ANIMATION          │ │
-│  │  (Enhanced)     │    │                                  │ │
-│  │                 │    │    ╭─────────────────────╮       │ │
-│  │                 │    │   ╱    ╭───────────╮    ╲       │ │
-│  │                 │    │  │   ╱   [MD Icon]  ╲   │       │ │
-│  │                 │    │  │  │    TERZ LOGO   │  │       │ │
-│  │                 │    │  │   ╲  [IVD Icon]  ╱   │       │ │
-│  │                 │    │   ╲    ╰───────────╯   ╱        │ │
-│  │                 │    │    ╰─────────────────╯          │ │
-│  │                 │    │   (Orbiting rings + icons)      │ │
-│  └─────────────────┘    └─────────────────────────────────┘ │
-└──────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────┐
+│                        SERVICES - PLANET SHOWCASE                          │
+│                                                                            │
+│  ┌─────────────────────────────────────────────────────────────────────┐  │
+│  │                    [Dark Space Background]                           │  │
+│  │              ★    ✦         ✧        ★      ✦                       │  │
+│  │                                                                      │  │
+│  │       ┌─────────────┐              ┌─────────────┐                  │  │
+│  │       │   ◉ GLOW    │              │   ◉ GLOW    │                  │  │
+│  │       │   /    \    │              │   /    \    │                  │  │
+│  │       │  (  MD  )   │              │  ( IVD )    │ ← Larger planets │  │
+│  │       │   \    /    │              │   \    /    │                  │  │
+│  │       │    ◉        │              │    ◉        │                  │  │
+│  │       │             │              │             │                  │  │
+│  │       │ Medical     │              │ In-Vitro    │                  │  │
+│  │       │ Devices     │              │ Diagnostics │                  │  │
+│  │       └─────────────┘              └─────────────┘                  │  │
+│  │                                                                      │  │
+│  │    ┌────────┐  ┌────────┐  ┌────────┐  ┌────────┐                   │  │
+│  │    │   ◎    │  │   ◎    │  │   ◎    │  │   ◎    │ ← Smaller planets │  │
+│  │    │Cosmetic│  │ LMPC   │  │  IEC   │  │  EPR   │                   │  │
+│  │    └────────┘  └────────┘  └────────┘  └────────┘                   │  │
+│  │                                                                      │  │
+│  └─────────────────────────────────────────────────────────────────────┘  │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
 ```
 
-**New Component**: `GlobeAnimation.tsx`
-- SVG-based 3D globe with:
-  - 3 concentric elliptical orbits rotating at different speeds
-  - 6 service icons positioned on the orbits
-  - MD and IVD on the innermost (fastest) orbit - highlighted
-  - Cosmetics and LMPC on middle orbit
-  - IEC and EPR on outer (slowest) orbit
-  - Central Terz logo with pulse effect
-  - Connecting animated dashed lines
-  - Gradient glow behind globe
-- Framer Motion for continuous rotation
-- 3D perspective transform for depth illusion
+---
 
-### B. Sub-Hero Section - Vertical Scrolling Info Animation
+## Component Architecture
 
-**Concept**: Replace static circular infographic with a vertically scrolling marquee of info cards/facts that continuously loop.
+### New Component: `PlanetServiceCard.tsx`
 
-**Implementation**:
+Each service rendered as a glowing 3D planet sphere with:
+
+| Feature | Implementation |
+|---------|----------------|
+| 3D Sphere | CSS `border-radius: 50%` with radial gradients |
+| Glow Effect | Multi-layer box-shadows with colored blur |
+| Orbit Ring | Thin dashed elliptical border around planet |
+| Surface Texture | Dot pattern overlay (like current globe) |
+| Hover Animation | Scale up, intensify glow, rotate slightly |
+| Click Action | Navigate to service detail page |
+
+### Planet Visual Structure
+
 ```text
-┌──────────────────────────────────────────────────────────────┐
-│  SUB-HERO - VERTICAL SCROLL ANIMATION                        │
-│                                                              │
-│  ┌─────────────────┐    ┌─────────────────────────────────┐ │
-│  │  Text Content   │    │  VERTICAL MARQUEE               │ │
-│  │                 │    │  ┌─────────────────────────┐    │ │
-│  │  • Deep MD/IVD  │    │  │ ▲ 100k+ Products        │    │ │
-│  │  • 360° support │    │  │   Registered            │    │ │
-│  │  • Proven track │    │  ├─────────────────────────┤    │ │
-│  │  • Pan-India    │    │  │ ▲ CDSCO Expert Team     │    │ │
-│  │                 │    │  │   24-hour Response      │    │ │
-│  │  [Learn More →] │    │  ├─────────────────────────┤    │ │
-│  │                 │    │  │ ▲ 200+ Global Clients   │    │ │
-│  │                 │    │  │   Worldwide             │    │ │
-│  │                 │    │  ├─────────────────────────┤ ↑  │ │
-│  │                 │    │  │ ▲ 15+ Years Experience  │ │  │ │
-│  │                 │    │  │   (scrolling up)        │ │  │ │
-│  │                 │    │  └─────────────────────────┘    │ │
-│  └─────────────────┘    └─────────────────────────────────┘ │
-└──────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────┐
+│           PLANET ANATOMY                  │
+│                                          │
+│       ╭──── Outer Glow (blur-3xl)        │
+│      ╱                                    │
+│     ╱    ╭── Ring/Orbit (dashed)         │
+│    ╱    ╱                                 │
+│   ◉────┼───( ○ Planet Core )             │
+│         \     │                           │
+│          \    └── Surface pattern         │
+│           \                               │
+│            └── Inner glow (blur-xl)       │
+│                                          │
+│   Below sphere:                           │
+│   ┌────────────────────────┐             │
+│   │ Service Name (bold)    │             │
+│   │ Tagline (muted)        │             │
+│   │ [Explore →] button     │             │
+│   └────────────────────────┘             │
+└──────────────────────────────────────────┘
 ```
 
-**New Component**: `VerticalMarquee.tsx`
-- CSS animation-based infinite vertical scroll
-- 8-10 info cards with:
-  - Icon on left
-  - Stat/headline text
-  - Supporting description
-- Smooth infinite loop (duplicated content for seamless scroll)
-- Hover to pause effect
-- Gradient fade at top/bottom edges
+### Color Scheme Per Service (Priority Order)
 
-### C. Visual Contrast Fixes
+| Service | Planet Color | Glow Color | Size |
+|---------|--------------|------------|------|
+| Medical Devices | Blue gradient (brand) | Cyan/Blue | Extra Large |
+| In-Vitro Diagnostics | Teal gradient | Emerald/Cyan | Extra Large |
+| Cosmetics | Pink/Purple gradient | Magenta | Medium |
+| Legal Metrology | Orange/Gold gradient | Amber | Medium |
+| IEC | Green gradient | Lime | Standard |
+| EPR | Blue-Gray gradient | Slate/Blue | Standard |
 
-**Background Enhancements**:
-| Current | Proposed |
-|---------|----------|
-| `bg-primary/8` | `bg-primary/15` |
-| `bg-accent/6` | `bg-accent/12` |
-| `bg-primary/5` | `bg-primary/10` |
-| Decorative dots `bg-primary/30` | `bg-primary/50` |
+---
 
-**Text Contrast Fixes**:
-- Remove the heavy left vignette overlay
-- Increase headline font weight
-- Add subtle text-shadow for depth
+## Section Layout
 
-**Mobile Layout Fix**:
-- On mobile, show simplified globe animation (no orbit, static icons)
-- OR show a horizontal scrolling card strip
-- Ensure proper min-height for mobile hero
+### Desktop Layout (3-Column Grid)
+
+```text
+┌──────────────────────────────────────────────────────────────────┐
+│                 Our Regulatory Universe                           │
+│                                                                   │
+│    ┌────────────────┐   ┌────────────────┐   ┌────────────────┐  │
+│    │                │   │                │   │                │  │
+│    │    ◉◉◉◉       │   │     ◉◉◉◉      │   │      ◉◉       │  │
+│    │   ◉    ◉      │   │    ◉    ◉     │   │     ◉  ◉      │  │
+│    │   ◉ MD  ◉     │   │   ◉ IVD  ◉    │   │    ◉ COS ◉    │  │
+│    │   ◉    ◉      │   │    ◉    ◉     │   │     ◉  ◉      │  │
+│    │    ◉◉◉◉       │   │     ◉◉◉◉      │   │      ◉◉       │  │
+│    │                │   │                │   │                │  │
+│    │ Medical        │   │  In-Vitro      │   │  Cosmetics     │  │
+│    │ Devices        │   │  Diagnostics   │   │                │  │
+│    │ [Explore →]    │   │  [Explore →]   │   │  [Explore →]   │  │
+│    └────────────────┘   └────────────────┘   └────────────────┘  │
+│                                                                   │
+│    ┌────────────────┐   ┌────────────────┐   ┌────────────────┐  │
+│    │      ◉◉       │   │      ◉◉       │   │      ◉◉       │  │
+│    │     ◉  ◉      │   │     ◉  ◉      │   │     ◉  ◉      │  │
+│    │    ◉LMPC◉     │   │    ◉ IEC◉     │   │    ◉ EPR◉     │  │
+│    │     ◉  ◉      │   │     ◉  ◉      │   │     ◉  ◉      │  │
+│    │      ◉◉       │   │      ◉◉       │   │      ◉◉       │  │
+│    │                │   │                │   │                │  │
+│    │ Legal          │   │  Import Export │   │  EPR           │  │
+│    │ Metrology      │   │  Code          │   │  Compliance    │  │
+│    │ [Explore →]    │   │  [Explore →]   │   │  [Explore →]   │  │
+│    └────────────────┘   └────────────────┘   └────────────────┘  │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+### Mobile Layout (2-Column Grid)
+
+- First row: 2 large primary planets (MD, IVD)
+- Second row: 2 medium planets (Cosmetics, LMPC)
+- Third row: 2 standard planets (IEC, EPR)
 
 ---
 
 ## Technical Implementation
 
-### New Components to Create
+### Files to Create
 
-| Component | Location | Purpose |
-|-----------|----------|---------|
-| `GlobeAnimation.tsx` | `src/components/hero/` | 3D rotating globe with orbiting service icons |
-| `VerticalMarquee.tsx` | `src/components/hero/` | Infinite vertical scrolling info cards |
+| File | Purpose |
+|------|---------|
+| `src/components/PlanetServiceCard.tsx` | Individual planet service card component |
+| `src/components/PlanetServicesSection.tsx` | Container section with dark space background |
 
 ### Files to Modify
 
 | File | Changes |
 |------|---------|
-| `src/components/hero/HeroSection.tsx` | Replace floating cards with GlobeAnimation, fix backgrounds |
-| `src/components/hero/SubHeroSection.tsx` | Replace CircularInfographic with VerticalMarquee |
-| `src/index.css` | Add new keyframes for orbit and marquee animations |
+| `src/pages/Home.tsx` | Replace `AnimatedServiceCard` grid with new `PlanetServicesSection` |
+| `src/index.css` | Add new keyframes for planet animations |
 
 ### Animation Keyframes to Add
 
 ```css
-/* 3D Orbit rotation */
-@keyframes orbit-1 {
-  from { transform: rotateX(60deg) rotateZ(0deg); }
-  to { transform: rotateX(60deg) rotateZ(360deg); }
+/* Planet rotation */
+@keyframes planet-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-@keyframes orbit-2 {
-  from { transform: rotateX(60deg) rotateZ(120deg); }
-  to { transform: rotateX(60deg) rotateZ(480deg); }
+/* Glow pulse */
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 30px rgba(var(--planet-color), 0.4),
+      0 0 60px rgba(var(--planet-color), 0.2);
+  }
+  50% { 
+    box-shadow: 
+      0 0 50px rgba(var(--planet-color), 0.6),
+      0 0 80px rgba(var(--planet-color), 0.3);
+  }
 }
 
-@keyframes orbit-3 {
-  from { transform: rotateX(60deg) rotateZ(240deg); }
-  to { transform: rotateX(60deg) rotateZ(600deg); }
+/* Star twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
 }
 
-/* Vertical marquee */
-@keyframes scroll-up {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
+/* Orbit line animation */
+@keyframes orbit-dash {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
 }
 ```
 
-### Vertical Marquee Info Cards Content
+---
 
-| Icon | Headline | Description |
-|------|----------|-------------|
-| Award | 100k+ Products | Successfully registered across India |
-| Users | 200+ Clients | Global manufacturers trust Terz |
-| Clock | 24-Hour Response | Pan-India expert availability |
-| Shield | 15+ Years | Deep regulatory experience |
-| FileCheck | CDSCO Expertise | Medical Device specialists |
-| Flask | IVD Focus | In-Vitro Diagnostics mastery |
-| Sparkles | Cosmetics | Complete registration support |
-| Scale | Legal Metrology | Packaging compliance experts |
+## PlanetServiceCard Component Specs
+
+### Props Interface
+
+```typescript
+interface PlanetServiceCardProps {
+  id: string;
+  title: string;
+  tagline: string;
+  badge: string;
+  size: "xl" | "md" | "sm";
+  gradientFrom: string;
+  gradientTo: string;
+  glowColor: string;
+  index: number;
+}
+```
+
+### Visual Layers (Inside to Outside)
+
+1. **Core sphere** - Solid gradient background
+2. **Surface texture** - Radial dot pattern overlay
+3. **Inner highlight** - Top-left white gradient for 3D effect
+4. **Shadow** - Bottom-right darker gradient
+5. **Orbit ring** - Dashed ellipse circling planet
+6. **Outer glow** - Blurred colored shadow
+7. **Floating particles** - Small dots around planet
+
+### Hover Effects
+
+- Scale: `1.08` on hover
+- Glow intensity: Increase blur radius and opacity
+- Orbit ring: Start subtle rotation animation
+- Text: Slide up reveal of tagline
 
 ---
 
-## Mobile Responsiveness
+## Background Design
 
-### Main Hero (Mobile)
-- Globe becomes a static circular arrangement (no 3D rotation)
-- OR horizontal auto-scrolling service cards
-- Full-width text content stacked above
+### Starfield Background
 
-### Sub-Hero (Mobile)
-- Vertical marquee continues but slower
-- Smaller card heights
-- Single column layout
+```css
+.space-background {
+  background: 
+    /* Stars layer 1 - small */
+    radial-gradient(1px 1px at 20px 30px, white 50%, transparent),
+    radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8) 50%, transparent),
+    radial-gradient(1px 1px at 50px 160px, white 50%, transparent),
+    /* ... more star positions ... */
+    /* Base gradient - dark blue to near-black */
+    linear-gradient(to bottom, #0a0e1a 0%, #060a14 100%);
+  background-size: 200px 200px, 200px 200px, 200px 200px, 100% 100%;
+}
+```
+
+### Nebula Accents
+
+- Subtle purple/blue gradient blobs in corners
+- Low opacity (10-20%) for atmosphere without distraction
 
 ---
 
-## Performance Considerations
+## Service Data Configuration
 
-1. **CSS Animations over JS**: Use `@keyframes` for continuous animations (GPU-accelerated)
-2. **will-change**: Add `will-change: transform` to animated elements
-3. **Reduced Motion**: Pause animations if `prefers-reduced-motion` is set
-4. **Lazy Rendering**: Use `IntersectionObserver` for sub-hero animations
+```typescript
+const planetServices = [
+  {
+    id: "medical-devices",
+    title: "Medical Devices",
+    tagline: "CDSCO submissions prepared end-to-end",
+    badge: "CDSCO",
+    size: "xl",
+    gradientFrom: "#3B82F6", // Blue
+    gradientTo: "#06B6D4",   // Cyan
+    glowColor: "59, 130, 246", // RGB for box-shadow
+  },
+  {
+    id: "ivd",
+    title: "In-Vitro Diagnostics",
+    tagline: "Performance evaluation oversight",
+    badge: "CDSCO",
+    size: "xl",
+    gradientFrom: "#14B8A6", // Teal
+    gradientTo: "#10B981",   // Emerald
+    glowColor: "20, 184, 166",
+  },
+  {
+    id: "cosmetics",
+    title: "Cosmetics",
+    tagline: "Product registration & safety dossiers",
+    badge: "CDSCO",
+    size: "md",
+    gradientFrom: "#EC4899", // Pink
+    gradientTo: "#A855F7",   // Purple
+    glowColor: "236, 72, 153",
+  },
+  {
+    id: "legal-metrology",
+    title: "Legal Metrology",
+    tagline: "Model approval & packaging validation",
+    badge: "Central-Level",
+    size: "md",
+    gradientFrom: "#F59E0B", // Amber
+    gradientTo: "#EF4444",   // Orange-red
+    glowColor: "245, 158, 11",
+  },
+  {
+    id: "iec",
+    title: "Import Export Code",
+    tagline: "IEC registration & renewals",
+    badge: "Lifetime Valid",
+    size: "sm",
+    gradientFrom: "#22C55E", // Green
+    gradientTo: "#84CC16",   // Lime
+    glowColor: "34, 197, 94",
+  },
+  {
+    id: "epr",
+    title: "EPR Compliance",
+    tagline: "Annual returns & recycling management",
+    badge: "CPCB",
+    size: "sm",
+    gradientFrom: "#6366F1", // Indigo
+    gradientTo: "#8B5CF6",   // Violet
+    glowColor: "99, 102, 241",
+  },
+];
+```
+
+---
+
+## Responsive Behavior
+
+| Breakpoint | Layout | Planet Sizes |
+|------------|--------|--------------|
+| Desktop (1024px+) | 3 columns | XL: 200px, MD: 160px, SM: 140px |
+| Tablet (768px-1023px) | 2 columns | XL: 180px, MD: 150px, SM: 130px |
+| Mobile (<768px) | 2 columns stacked | XL: 140px, MD: 120px, SM: 100px |
+
+---
+
+## Performance Optimizations
+
+1. **CSS Animations**: All planet rotations use pure CSS for GPU acceleration
+2. **will-change**: Applied to animated elements
+3. **Reduced Motion**: Respect `prefers-reduced-motion` - disable rotations
+4. **Lazy Loading**: Only animate planets when in viewport using `whileInView`
 
 ---
 
 ## Expected Visual Outcome
 
-**Before**:
-- Static, faded hero with blank mobile areas
-- No motion or visual interest
-- Weak contrast and washed-out appearance
+**Before**: Standard card grid with images, borders, and text - light themed
 
-**After**:
-- Dynamic 3D globe with orbiting service icons (main hero)
-- Continuously scrolling vertical info cards (sub-hero)
-- Strong visual contrast with vibrant backgrounds
-- Engaging animations that draw users in
-- Properly responsive mobile layout with no blank spaces
+**After**: Immersive dark space-themed section with:
+- 6 glowing planet spheres representing each service
+- MD and IVD as large prominent "primary" planets
+- Subtle orbital animations and pulsing glow effects
+- Starfield background with nebula accents
+- Smooth hover interactions with scale and glow intensification
+- Clear visual hierarchy showing expertise priorities
 
