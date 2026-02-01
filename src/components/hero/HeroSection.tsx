@@ -1,14 +1,28 @@
 import * as React from "react";
+import { Suspense } from "react";
 import { motion } from "framer-motion";
-import { EarthGlobe } from "./EarthGlobe";
+import { Earth3D } from "./Earth3D";
 import { PlanetaryOrbitHero } from "./PlanetaryOrbitHero";
 import { useIsMobile } from "@/hooks/use-mobile";
+
+// Fallback while 3D loads
+const GlobeFallback = ({ size }: { size: number }) => (
+  <div 
+    className="rounded-full animate-pulse"
+    style={{ 
+      width: size, 
+      height: size,
+      background: "radial-gradient(circle at 60% 40%, hsl(200, 70%, 35%), hsl(220, 60%, 15%))",
+      boxShadow: "0 0 100px hsla(200, 80%, 50%, 0.3)",
+    }}
+  />
+);
 
 export const HeroSection = () => {
   const isMobile = useIsMobile();
   
   // Globe size based on viewport
-  const globeSize = isMobile ? 450 : 800;
+  const globeSize = isMobile ? 500 : 900;
   
   return (
     <section className="relative overflow-hidden min-h-screen">
@@ -19,8 +33,8 @@ export const HeroSection = () => {
           background: `linear-gradient(180deg, 
             hsl(225, 35%, 8%) 0%, 
             hsl(225, 40%, 6%) 30%,
-            hsl(228, 45%, 5%) 60%,
-            hsl(230, 50%, 3%) 100%
+            hsl(228, 45%, 4%) 60%,
+            hsl(230, 50%, 2%) 100%
           )`,
         }}
       />
@@ -30,22 +44,22 @@ export const HeroSection = () => {
         className="absolute inset-0 -z-5"
         style={{
           background: `
-            radial-gradient(1px 1px at 10% 20%, hsla(0, 0%, 100%, 0.5) 50%, transparent),
-            radial-gradient(1px 1px at 25% 15%, hsla(0, 0%, 100%, 0.4) 50%, transparent),
-            radial-gradient(1.5px 1.5px at 40% 25%, hsla(0, 0%, 100%, 0.6) 50%, transparent),
-            radial-gradient(1px 1px at 55% 10%, hsla(0, 0%, 100%, 0.3) 50%, transparent),
-            radial-gradient(1px 1px at 70% 22%, hsla(0, 0%, 100%, 0.5) 50%, transparent),
-            radial-gradient(1.5px 1.5px at 85% 18%, hsla(0, 0%, 100%, 0.4) 50%, transparent),
-            radial-gradient(1px 1px at 15% 45%, hsla(0, 0%, 100%, 0.35) 50%, transparent),
-            radial-gradient(1px 1px at 30% 55%, hsla(0, 0%, 100%, 0.45) 50%, transparent),
-            radial-gradient(1.5px 1.5px at 60% 40%, hsla(0, 0%, 100%, 0.5) 50%, transparent),
-            radial-gradient(1px 1px at 80% 50%, hsla(0, 0%, 100%, 0.4) 50%, transparent),
-            radial-gradient(1px 1px at 90% 35%, hsla(0, 0%, 100%, 0.35) 50%, transparent),
-            radial-gradient(1px 1px at 5% 60%, hsla(0, 0%, 100%, 0.3) 50%, transparent),
-            radial-gradient(1.5px 1.5px at 45% 65%, hsla(0, 0%, 100%, 0.4) 50%, transparent),
-            radial-gradient(1px 1px at 75% 70%, hsla(0, 0%, 100%, 0.5) 50%, transparent)
+            radial-gradient(1px 1px at 10% 15%, hsla(0, 0%, 100%, 0.6) 50%, transparent),
+            radial-gradient(1.5px 1.5px at 25% 8%, hsla(0, 0%, 100%, 0.5) 50%, transparent),
+            radial-gradient(1px 1px at 40% 20%, hsla(0, 0%, 100%, 0.7) 50%, transparent),
+            radial-gradient(1px 1px at 55% 5%, hsla(0, 0%, 100%, 0.4) 50%, transparent),
+            radial-gradient(1.5px 1.5px at 70% 18%, hsla(0, 0%, 100%, 0.6) 50%, transparent),
+            radial-gradient(1px 1px at 85% 12%, hsla(0, 0%, 100%, 0.5) 50%, transparent),
+            radial-gradient(1px 1px at 15% 35%, hsla(0, 0%, 100%, 0.45) 50%, transparent),
+            radial-gradient(1.5px 1.5px at 30% 45%, hsla(0, 0%, 100%, 0.55) 50%, transparent),
+            radial-gradient(1px 1px at 60% 32%, hsla(0, 0%, 100%, 0.6) 50%, transparent),
+            radial-gradient(1px 1px at 80% 42%, hsla(0, 0%, 100%, 0.5) 50%, transparent),
+            radial-gradient(1.5px 1.5px at 92% 28%, hsla(0, 0%, 100%, 0.45) 50%, transparent),
+            radial-gradient(1px 1px at 5% 55%, hsla(0, 0%, 100%, 0.4) 50%, transparent),
+            radial-gradient(1px 1px at 45% 58%, hsla(0, 0%, 100%, 0.5) 50%, transparent),
+            radial-gradient(1.5px 1.5px at 75% 62%, hsla(0, 0%, 100%, 0.55) 50%, transparent)
           `,
-          opacity: 0.7,
+          opacity: 0.8,
         }}
       />
       
@@ -57,37 +71,39 @@ export const HeroSection = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.3 }}
+        transition={{ duration: 1.2, delay: 0.5 }}
         className="absolute inset-x-0 flex items-center justify-center"
         style={{
-          top: isMobile ? "15%" : "20%",
+          top: isMobile ? "12%" : "18%",
           zIndex: 40,
         }}
       >
         <PlanetaryOrbitHero />
       </motion.div>
 
-      {/* Large Earth at bottom */}
+      {/* Large 3D Earth at bottom */}
       <motion.div
-        initial={{ opacity: 0, y: 100 }}
+        initial={{ opacity: 0, y: 150 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute left-1/2 -translate-x-1/2"
+        transition={{ duration: 1.8, ease: "easeOut" }}
+        className="absolute left-1/2"
         style={{
           bottom: 0,
-          transform: `translateX(-50%) translateY(${isMobile ? "45%" : "35%"})`,
+          transform: `translateX(-50%) translateY(${isMobile ? "50%" : "38%"})`,
           zIndex: 30,
         }}
       >
-        <EarthGlobe size={globeSize} />
+        <Suspense fallback={<GlobeFallback size={globeSize} />}>
+          <Earth3D size={globeSize} />
+        </Suspense>
       </motion.div>
       
-      {/* Bottom gradient fade */}
+      {/* Bottom gradient fade for smooth transition */}
       <div 
-        className="absolute bottom-0 inset-x-0 h-32 pointer-events-none"
+        className="absolute bottom-0 inset-x-0 h-24 pointer-events-none"
         style={{
           background: `linear-gradient(to top, 
-            hsl(230, 50%, 3%) 0%, 
+            hsl(230, 50%, 2%) 0%, 
             transparent 100%
           )`,
           zIndex: 60,
