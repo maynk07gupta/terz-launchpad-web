@@ -1,287 +1,293 @@
 
 
-# Hero Section Redesign - Full-Screen Orbital System with Realistic Earth
+# Hero Section Redesign - Photorealistic 3D Earth at Bottom
 
-## Issues Identified
+## Design Reference Analysis
 
-### 1. Hero Section Layout
-- Currently has two-column layout (55% text, 45% orbit)
-- User wants **ONLY the orbit animation** in the hero section
-- Text content, CTAs, quick links, and trust badges need to be removed or relocated
+Based on the reference image (SpaceEdu "Explore Space" design), the key visual elements are:
 
-### 2. Earth Globe Issues
-- Current globe is too small and appears 2D (flat gradients)
-- Has Terz logo overlaid in the center (needs removal)
-- Needs to be the **biggest element** and more **realistic/3D looking**
-
-### 3. Navbar Z-Index Problem
-- Current navbar has `z-50` but orbit elements can overlap when scrolling
-- Need to ensure header ALWAYS stays on top layer
-
-### 4. Planet Occlusion (Key Feature)
-- Currently planets at the back are visible (just scaled down and faded)
-- User wants planets to **hide BEHIND the Earth** when they orbit to the back
-- This creates a realistic planetary system effect
+```text
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  REFERENCE IMAGE ANALYSIS                                                       │
+│                                                                                 │
+│  Key Features:                                                                  │
+│  • Photorealistic Earth globe (not SVG/illustrated)                             │
+│  • Globe positioned at BOTTOM of viewport                                       │
+│  • Only top ~60% of globe visible (rest clips below screen)                     │
+│  • Dark space background with depth                                             │
+│  • Strong atmospheric glow (blue rim light)                                     │
+│  • City lights visible on dark side                                             │
+│  • Realistic cloud patterns and terrain                                         │
+│  • Dramatic lighting from top-right                                             │
+│  • Text content ABOVE the globe                                                 │
+└────────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## Proposed Solutions
+## Proposed Hero Layout
 
-### A. Hero Section - Orbit Only Layout
-
-**Remove from HeroSection:**
-- Badge text ("Your Regulatory Partner")
-- Main headline and sub-headline
-- CTA buttons (Book Consultation, Explore Services)
-- QuickLinkPills component
-- Trust badges
-
-**New Layout:**
 ```text
-┌────────────────────────────────────────────────────────────────┐
-│  NAVBAR (z-index: 100+)                                        │
-├────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│                                                                 │
-│                    ○ (hidden behind Earth)                      │
-│                 ╱                      ╲                        │
-│              ○                            ○                     │
-│           (side)    ┌──────────────┐   (side)                  │
-│                     │              │                            │
-│                     │    EARTH     │                            │
-│                     │   (LARGE)    │                            │
-│                     │   REALISTIC  │                            │
-│                     │              │                            │
-│                     └──────────────┘                            │
-│              ●                            ●                     │
-│           (FRONT)                      (FRONT)                  │
-│            LARGE                        LARGE                   │
-│                 ╲                      ╱                        │
-│                    ○ (hidden behind Earth)                      │
-│                                                                 │
-└────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  NAVBAR (z-index: 100)                                                          │
+├────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                 │
+│                         ○ (behind Earth)                                        │
+│                      ╱                ╲                                         │
+│                   ○                      ○                                      │
+│               (side)    SERVICE         (side)                                  │
+│                         PLANETS                                                 │
+│                   ●                      ●                                      │
+│               (FRONT)                (FRONT)                                    │
+│                      ╲                ╱                                         │
+│  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
+│                                                                                 │
+│              ╭───────────────────────────────────────────╮                      │
+│            ╱     PHOTOREALISTIC 3D EARTH GLOBE            ╲                     │
+│           │      ┌───────────────────────────────┐         │                    │
+│           │      │     Atmosphere Glow (blue)    │         │                    │
+│           │      │  ┌───────────────────────┐    │         │                    │
+│           │      │  │   Realistic texture   │    │         │                    │
+│           │      │  │   • Continents        │    │         │                    │
+│           │      │  │   • Clouds            │    │         │                    │
+│           │      │  │   • City lights       │    │         │                    │
+│           │      │  │   • Ocean reflections │    │         │                    │
+│           │      │  └───────────────────────┘    │         │                    │
+│           │      └───────────────────────────────┘         │                    │
+├───────────┴──────────────────────────────────────────────────────────────┬──────┤
+│  (Globe extends below viewport - only top 60-70% visible)                 │      │
+└────────────────────────────────────────────────────────────────────────────────┘
 ```
-
-### B. Realistic 3D Earth Globe
-
-**Current Problems:**
-- Simple SVG with flat gradients
-- Too small (180px on desktop)
-- Terz logo in center disrupts the Earth look
-
-**New Earth Design:**
-```text
-┌────────────────────────────────────────────────┐
-│          REALISTIC 3D EARTH GLOBE              │
-│                                                │
-│    Size: 300-350px (desktop), 200px (mobile)   │
-│                                                │
-│   ┌─────────────────────────────────────────┐  │
-│   │   ╭────────────────────────────╮        │  │
-│   │  ╱   Atmosphere glow (outer)    ╲       │  │
-│   │ │  ╭────────────────────────╮    │      │  │
-│   │ │ ╱   Ocean base gradient    ╲   │      │  │
-│   │ │ │  ╭──────────────────╮    │   │      │  │
-│   │ │ │ │   Continent SVG    │   │   │      │  │
-│   │ │ │ │   (detailed paths) │   │   │      │  │
-│   │ │ │  ╰──────────────────╯    │   │      │  │
-│   │ │ │    Lat/Long grid lines   │   │      │  │
-│   │ │  ╲   Cloud layer overlay  ╱    │      │  │
-│   │ │   ╰────────────────────╯       │      │  │
-│   │ │      Specular highlight        │      │  │
-│   │  ╲     (top-left shine)         ╱       │  │
-│   │   ╰────────────────────────────╯        │  │
-│   │        Shadow (bottom-right)            │  │
-│   └─────────────────────────────────────────┘  │
-│                                                │
-│   Layers (inside to outside):                  │
-│   1. Ocean gradient (deep blue to cyan)        │
-│   2. Continent shapes (teal/green)             │
-│   3. Lat/long grid (white, 20% opacity)        │
-│   4. Cloud wisps (white, 15% opacity)          │
-│   5. Specular highlight (top-left)             │
-│   6. Shadow (bottom-right)                     │
-│   7. Atmosphere glow (blue halo)               │
-│                                                │
-│   Animation: Slow continuous rotation          │
-│   (CSS transform: rotateY)                     │
-└────────────────────────────────────────────────┘
-```
-
-### C. Planet Occlusion System
-
-**Current Behavior:**
-- All planets visible at all times
-- Back planets just scaled down (0.7x) and faded (0.6 opacity)
-- Z-index range: 10-90, but Earth is always z-40
-
-**New Behavior:**
-```text
-FRONT OF ORBIT (Y > 0):
-┌─────────────────────────────────────────────┐
-│   Planet visible, larger (1.3x), z-index 60+ │
-│   Renders IN FRONT of Earth                  │
-└─────────────────────────────────────────────┘
-
-BACK OF ORBIT (Y < threshold):
-┌─────────────────────────────────────────────┐
-│   Planet HIDDEN (opacity: 0 or behind clip)  │
-│   OR: z-index < Earth's z-index              │
-│   Creates realistic "behind Earth" effect    │
-└─────────────────────────────────────────────┘
-```
-
-**Implementation Options:**
-1. **Z-Index Method**: Earth z-index = 50, back planets z-index < 50, front planets z-index > 50
-2. **Opacity Fade**: Planets at Y < -0.3 fade to opacity 0
-3. **Clip Path**: Use CSS clip-path on the container to hide back planets
-
-**Recommended: Hybrid Approach**
-- Front planets (Y > 0): z-index 60-90, full opacity
-- Side planets (Y ~ 0): z-index 40-60, slight fade
-- Back planets (Y < -0.3): z-index 10-30, fade to 0 opacity (hidden)
-
-### D. Navbar Z-Index Fix
-
-**Current:** `z-50`
-**New:** `z-[100]` or higher
-
-This ensures the navbar stays above all orbital elements.
 
 ---
 
-## Technical Implementation
+## Technical Approach
 
-### Files to Modify
+### Option: Enhanced CSS 3D Globe (Recommended)
+
+Since we can't use WebGL/Three.js in this React/Vite setup, we'll create a **photorealistic CSS 3D globe** with multiple layers:
+
+```text
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  ENHANCED 3D GLOBE LAYER STRUCTURE                                              │
+│                                                                                 │
+│  Layer 7: Outer atmosphere glow (blue halo, blur-3xl)                           │
+│  Layer 6: Inner atmosphere rim (subtle edge glow)                               │
+│  Layer 5: Cloud layer (animated subtle drift)                                   │
+│  Layer 4: City lights overlay (orange dots on dark areas)                       │
+│  Layer 3: Continent texture (detailed shapes with gradients)                    │
+│  Layer 2: Ocean layer (deep blue with specular highlights)                      │
+│  Layer 1: Core sphere (base gradient)                                           │
+│                                                                                 │
+│  3D Effects:                                                                    │
+│  • Stronger specular highlight (top-right, like sunlight)                       │
+│  • Deep shadow on dark side (bottom-left)                                       │
+│  • Terminator line (day/night boundary)                                         │
+│  • Atmospheric scattering effect (blue edge glow)                               │
+└────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Implementation Details
+
+### 1. EarthGlobe.tsx Enhancements
+
+**Current Issues:**
+- Globe is too small (320px)
+- Positioned in center
+- Simple SVG continents look flat
+- Lacks photorealistic depth
+
+**New Features:**
+- Much larger globe (600-800px on desktop)
+- Positioned at bottom, extending below viewport
+- Multiple gradient layers for depth
+- Enhanced lighting effects (terminator line)
+- City lights on night side
+- Stronger atmospheric glow
+- Slow rotation animation
+
+### 2. HeroSection.tsx Layout Changes
+
+**New Layout Structure:**
+```text
+<section className="relative overflow-hidden min-h-screen">
+  {/* Dark space background */}
+  <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a] to-[#050810]" />
+  
+  {/* Stars/particles (optional) */}
+  
+  {/* Orbiting planets - positioned higher */}
+  <div className="absolute top-1/4 left-1/2 -translate-x-1/2">
+    <OrbitSystem />
+  </div>
+  
+  {/* Large Earth at bottom */}
+  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[35%]">
+    <EarthGlobe size={700} />
+  </div>
+</section>
+```
+
+### 3. New Globe Visual Layers
+
+```typescript
+// Enhanced layer structure for photorealistic effect
+const GlobeLayers = {
+  // Core ocean gradient
+  ocean: `radial-gradient(circle at 65% 35%,
+    hsl(205, 85%, 45%) 0%,
+    hsl(210, 80%, 35%) 30%,
+    hsl(215, 75%, 25%) 50%,
+    hsl(220, 70%, 15%) 70%,
+    hsl(225, 65%, 8%) 100%
+  )`,
+  
+  // Day/night terminator
+  terminator: `linear-gradient(135deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.7) 60%,
+    rgba(0, 0, 0, 0.9) 100%
+  )`,
+  
+  // Specular highlight (sunlight)
+  specular: `radial-gradient(ellipse 50% 40% at 65% 30%,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.2) 40%,
+    transparent 70%
+  )`,
+  
+  // Atmospheric rim glow
+  atmosphere: `radial-gradient(circle at 50% 50%,
+    transparent 48%,
+    rgba(100, 180, 255, 0.3) 50%,
+    rgba(80, 160, 255, 0.5) 52%,
+    rgba(60, 140, 255, 0.3) 54%,
+    transparent 56%
+  )`,
+};
+```
+
+---
+
+## Globe Positioning
+
+The key visual effect from the reference is the globe at the **bottom of the screen**, with only the top portion visible:
+
+```text
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  GLOBE POSITIONING                                                              │
+│                                                                                 │
+│  Desktop:                                                                       │
+│  • Globe size: 700-800px diameter                                               │
+│  • Position: bottom: 0, translateY(35%)                                         │
+│  • Result: ~65% of globe visible                                                │
+│                                                                                 │
+│  Tablet:                                                                        │
+│  • Globe size: 550-600px diameter                                               │
+│  • Position: bottom: 0, translateY(40%)                                         │
+│  • Result: ~60% of globe visible                                                │
+│                                                                                 │
+│  Mobile:                                                                        │
+│  • Globe size: 400-450px diameter                                               │
+│  • Position: bottom: 0, translateY(45%)                                         │
+│  • Result: ~55% of globe visible                                                │
+└────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Orbit System Repositioning
+
+With the Earth at the bottom, the orbiting planets need to be repositioned higher:
+
+```text
+┌────────────────────────────────────────────────────────────────────────────────┐
+│  ORBIT SYSTEM POSITION                                                          │
+│                                                                                 │
+│  Current: Centered vertically (50% from top)                                    │
+│  New: Upper portion (25-35% from top)                                           │
+│                                                                                 │
+│  The elliptical orbit will be positioned ABOVE the large Earth                  │
+│  Planets orbit around a smaller "focal point" (not the visible Earth)           │
+│                                                                                 │
+│  OR: The large Earth IS the center, and planets orbit around its visible        │
+│      portion, going behind it when at the back of the orbit                     │
+└────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Files to Modify
 
 | File | Changes |
 |------|---------|
-| `src/components/hero/HeroSection.tsx` | Remove text content, make orbit full-screen centered |
-| `src/components/hero/EarthGlobe.tsx` | Remove logo overlay, increase size, add more realistic layers |
-| `src/components/hero/PlanetaryOrbitHero.tsx` | Increase globe size, add occlusion logic |
-| `src/components/hero/OrbitingPlanet.tsx` | Update opacity logic for back-planet hiding |
-| `src/components/Navbar.tsx` | Increase z-index to 100+ |
+| `src/components/hero/EarthGlobe.tsx` | Complete redesign with photorealistic layers, larger size, bottom positioning |
+| `src/components/hero/HeroSection.tsx` | Dark space background, new layout with Earth at bottom |
+| `src/components/hero/PlanetaryOrbitHero.tsx` | Reposition orbit system, adjust for bottom Earth layout |
+| `src/index.css` | Add new keyframes for atmosphere glow, city lights twinkle |
 
-### New Earth Globe Specifications
+---
 
-```typescript
-// EarthGlobe.tsx - Updated props
-interface EarthGlobeProps {
-  size?: number; // Default: 320 (was 180)
+## New Globe CSS Layers
+
+```css
+/* Atmospheric scattering effect */
+.globe-atmosphere {
+  position: absolute;
+  inset: -10%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 40%,
+    rgba(100, 180, 255, 0.15) 45%,
+    rgba(80, 160, 255, 0.3) 48%,
+    rgba(60, 140, 255, 0.2) 52%,
+    transparent 60%
+  );
+  filter: blur(20px);
+  animation: atmosphere-pulse 4s ease-in-out infinite;
 }
 
-// Layers to add:
-// 1. Deeper ocean gradient with multiple color stops
-// 2. More detailed continent SVG paths
-// 3. Cloud layer (animated subtle drift)
-// 4. Stronger atmosphere glow effect
-// 5. Enhanced 3D lighting (specular + ambient)
+/* City lights on night side */
+.globe-city-lights {
+  background-image: radial-gradient(1px 1px at 60% 40%, #ffa500 50%, transparent),
+                    radial-gradient(1.5px 1.5px at 65% 45%, #ffcc00 50%, transparent),
+                    /* ... more city positions */;
+  animation: city-twinkle 2s ease-in-out infinite;
+}
 
-// REMOVE: Center logo overlay (lines 87-100)
-```
-
-### Planet Occlusion Logic
-
-```typescript
-// PlanetaryOrbitHero.tsx - Updated calculatePlanetProps
-
-const calculatePlanetProps = (startAngle: number) => {
-  const { radiusX, radiusY, duration } = config;
-  
-  const currentAngle = startAngle - (time / duration) * 360;
-  const angleRad = (currentAngle * Math.PI) / 180;
-  
-  const x = Math.cos(angleRad) * radiusX;
-  const y = Math.sin(angleRad) * radiusY;
-  
-  const normalizedY = y / radiusY; // -1 to 1
-  
-  // Scale: front = larger, back = smaller
-  const scale = 0.6 + (normalizedY + 1) * 0.4; // 0.6 to 1.4
-  
-  // NEW: Occlusion logic
-  // Planets in back half (normalizedY < -0.2) should be hidden
-  const isBehindEarth = normalizedY < -0.2;
-  
-  // Opacity: visible in front, hidden in back
-  let opacity = 1;
-  if (normalizedY < -0.2) {
-    // Fade out as it goes behind
-    opacity = Math.max(0, (normalizedY + 0.2) / 0.3); // 0 to 0.3
-  } else if (normalizedY < 0.2) {
-    // Partial visibility on sides
-    opacity = 0.7 + (normalizedY + 0.2) * 0.75;
-  }
-  
-  // Z-index: front planets ABOVE Earth (60+), back planets BELOW (10-40)
-  // Earth will be at z-index 50
-  const zIndex = isBehindEarth 
-    ? Math.round(20 + (normalizedY + 1) * 20) // 20-40 when behind
-    : Math.round(55 + normalizedY * 35);       // 55-90 when in front
-  
-  return { x, y, scale, opacity, zIndex, isBehindEarth };
-};
-```
-
-### Updated Orbit Configuration
-
-```typescript
-// Desktop config - LARGER globe and orbit
-const getOrbitConfig = (isMobile: boolean, isTablet: boolean): OrbitConfig => {
-  if (isMobile) {
-    return {
-      radiusX: 140,
-      radiusY: 80,
-      duration: 30,
-      globeSize: 180,   // Was 100
-      planetSize: 50,
-    };
-  }
-  if (isTablet) {
-    return {
-      radiusX: 220,
-      radiusY: 130,
-      duration: 26,
-      globeSize: 250,   // Was 150
-      planetSize: 65,
-    };
-  }
-  return {
-    radiusX: 320,       // Was 260
-    radiusY: 180,       // Was 145
-    duration: 24,
-    globeSize: 320,     // Was 180 - MUCH BIGGER
-    planetSize: 85,     // Was 95
-  };
-};
+/* Terminator line (day/night boundary) */
+.globe-terminator {
+  background: linear-gradient(
+    135deg,
+    transparent 35%,
+    rgba(0, 0, 0, 0.2) 45%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.8) 60%
+  );
+}
 ```
 
 ---
 
-## Visual Comparison
+## Expected Visual Outcome
 
-### Current State
-- Two-column layout with text + small orbit
-- 2D flat Earth with logo in center
-- All planets visible at all times
-- Navbar sometimes hidden by orbit elements
+**Current State:**
+- Small centered globe (320px)
+- Simple flat SVG appearance
+- Globe vertically centered in viewport
 
-### After Implementation
-- Full-screen centered orbital system
-- Large, realistic 3D Earth (no logo)
-- Planets realistically hide behind Earth when orbiting to the back
-- Navbar always on top (z-100)
-- Immersive, dynamic hero experience
-
----
-
-## Expected Outcome
-
-The hero section will feature:
-1. A **dominant, realistic 3D Earth** (320px on desktop) as the central focal point
-2. **Six service planets** orbiting around the Earth
-3. **True planetary motion** where back planets disappear behind Earth
-4. **Front planets appear larger** (1.4x) and more prominent
-5. **Navbar always visible** above all elements
-6. Clean, minimalist hero focused entirely on the orbital animation
+**After Implementation:**
+- Large photorealistic globe (700px+) at bottom of screen
+- Multiple layered 3D effects (atmosphere, terminator, city lights)
+- Only top ~60-65% of globe visible (rest clips below viewport)
+- Strong atmospheric blue glow around edges
+- Dramatic lighting from top-right (sunlight effect)
+- Dark space background with depth
+- Orbiting service planets positioned above the Earth
+- Immersive, cinematic space-themed hero section
 
