@@ -1,65 +1,135 @@
 import * as React from "react";
-import { useRef, Suspense } from "react";
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls, Sphere, useTexture } from "@react-three/drei";
+import { useRef, useState, useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 // Earth sphere component with textures
 const EarthSphere = () => {
   const earthRef = useRef<THREE.Mesh>(null);
   const cloudsRef = useRef<THREE.Mesh>(null);
-  const atmosphereRef = useRef<THREE.Mesh>(null);
+  const [textures, setTextures] = useState<{
+    earth: THREE.Texture | null;
+    bump: THREE.Texture | null;
+    clouds: THREE.Texture | null;
+  }>({ earth: null, bump: null, clouds: null });
+  const [texturesLoaded, setTexturesLoaded] = useState(false);
   
-  // Load NASA Earth textures
-  const [earthTexture, bumpMap, specularMap, cloudsTexture] = useTexture([
-    "https://unpkg.com/three-globe@2.31.3/example/img/earth-blue-marble.jpg",
-    "https://unpkg.com/three-globe@2.31.3/example/img/earth-topology.png",
-    "https://unpkg.com/three-globe@2.31.3/example/img/earth-water.png",
-    "https://unpkg.com/three-globe@2.31.3/example/img/earth-clouds.png",
-  ]);
+  // Load textures manually with error handling
+  useEffect(() => {
+    const loader = new THREE.TextureLoader();
+    
+    // Use NASA's reliable texture URLs
+    const textureUrls = {
+      earth: "https://eoimages.gsfc.nasa.gov/images/imagerecords/57000/57752/land_ocean_ice_cloud_2048.jpg",
+      bump: "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg",
+    };
+    
+    let loadedCount = 0;
+    const totalRequired = 1; // Only earth texture is required
+    
+    // Load Earth texture (required)
+    loader.load(
+      textureUrls.earth,
+      (texture) => {
+        texture.colorSpace = THREE.SRGBColorSpace;
+        setTextures(prev => ({ ...prev, earth: texture }));
+        loadedCount++;
+        if (loadedCount >= totalRequired) setTexturesLoaded(true);
+      },
+      undefined,
+      () => {
+        // Fallback - try alternative URL
+        loader.load(
+          "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg",
+          (texture) => {
+            texture.colorSpace = THREE.SRGBColorSpace;
+            setTextures(prev => ({ ...prev, earth: texture }));
+            setTexturesLoaded(true);
+          },
+          undefined,
+          () => {
+            // Last fallback - use procedural texture
+            console.log("Using fallback procedural earth");
+            setTexturesLoaded(true);
+          }
+        );
+      }
+    );
+    
+    // Load bump map (optional enhancement)
+    loader.load(
+      textureUrls.bump,
+      (texture) => {
+        setTextures(prev => ({ ...prev, bump: texture }));
+      },
+      undefined,
+      () => console.log("Bump map failed to load, using smooth surface")
+    );
+    
+    return () => {
+      // Cleanup
+      Object.values(textures).forEach(t => t?.dispose());
+    };
+  }, []);
   
   // Slow rotation animation
   useFrame(({ clock }) => {
     const elapsed = clock.getElapsedTime();
     
     if (earthRef.current) {
-      earthRef.current.rotation.y = elapsed * 0.03; // Slow rotation
+      earthRef.current.rotation.y = elapsed * 0.03;
     }
     
     if (cloudsRef.current) {
-      cloudsRef.current.rotation.y = elapsed * 0.035; // Slightly faster for clouds
+      cloudsRef.current.rotation.y = elapsed * 0.035;
     }
   });
+  
+  if (!texturesLoaded) {
+    return (
+      <mesh>
+        <sphereGeometry args={[2, 32, 32]} />
+        <meshBasicMaterial color="#1a4a7a" wireframe />
+      </mesh>
+    );
+  }
   
   return (
     <group>
       {/* Main Earth sphere */}
       <mesh ref={earthRef}>
         <sphereGeometry args={[2, 64, 64]} />
-        <meshPhongMaterial
-          map={earthTexture}
-          bumpMap={bumpMap}
-          bumpScale={0.05}
-          specularMap={specularMap}
-          specular={new THREE.Color(0x333333)}
-          shininess={15}
-        />
+        {textures.earth ? (
+          <meshPhongMaterial
+            map={textures.earth}
+            bumpMap={textures.bump || undefined}
+            bumpScale={0.02}
+            specular={new THREE.Color(0x222222)}
+            shininess={8}
+          />
+        ) : (
+          <meshPhongMaterial
+            color="#2563eb"
+            specular={new THREE.Color(0x222222)}
+            shininess={8}
+          />
+        )}
       </mesh>
       
-      {/* Cloud layer */}
+      {/* Semi-transparent cloud layer */}
       <mesh ref={cloudsRef}>
-        <sphereGeometry args={[2.02, 64, 64]} />
+        <sphereGeometry args={[2.015, 48, 48]} />
         <meshPhongMaterial
-          map={cloudsTexture}
+          color="#ffffff"
           transparent
-          opacity={0.35}
+          opacity={0.15}
           depthWrite={false}
         />
       </mesh>
       
       {/* Atmosphere glow */}
-      <mesh ref={atmosphereRef} scale={1.15}>
-        <sphereGeometry args={[2, 64, 64]} />
+      <mesh scale={1.12}>
+        <sphereGeometry args={[2, 48, 48]} />
         <shaderMaterial
           vertexShader={`
             varying vec3 vNormal;
@@ -71,7 +141,7 @@ const EarthSphere = () => {
           fragmentShader={`
             varying vec3 vNormal;
             void main() {
-              float intensity = pow(0.65 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+              float intensity = pow(0.6 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
               gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
             }
           `}
@@ -97,6 +167,33 @@ interface Earth3DProps {
 }
 
 export const Earth3D: React.FC<Earth3DProps> = ({ size = 700 }) => {
+  const [hasError, setHasError] = useState(false);
+  
+  if (hasError) {
+    // Fallback to CSS globe if WebGL fails
+    return (
+      <div 
+        className="rounded-full"
+        style={{ 
+          width: size, 
+          height: size,
+          background: `radial-gradient(circle at 60% 35%, 
+            hsl(200, 80%, 50%) 0%, 
+            hsl(210, 75%, 40%) 25%,
+            hsl(215, 70%, 30%) 50%, 
+            hsl(220, 65%, 20%) 75%,
+            hsl(225, 60%, 10%) 100%
+          )`,
+          boxShadow: `
+            0 0 60px hsla(200, 80%, 50%, 0.4),
+            0 0 120px hsla(200, 85%, 45%, 0.25),
+            inset -30px -30px 80px hsla(225, 50%, 5%, 0.5)
+          `,
+        }}
+      />
+    );
+  }
+  
   return (
     <div 
       style={{ 
@@ -121,28 +218,29 @@ export const Earth3D: React.FC<Earth3DProps> = ({ size = 700 }) => {
           alpha: true,
           powerPreference: "high-performance",
         }}
+        onError={() => setHasError(true)}
       >
         {/* Lighting setup for realistic appearance */}
-        <ambientLight intensity={0.15} />
+        <ambientLight intensity={0.2} />
         <directionalLight 
           position={[5, 3, 5]} 
-          intensity={1.8} 
+          intensity={1.6} 
           color="#ffffff"
         />
         <directionalLight 
           position={[-5, -2, -5]} 
-          intensity={0.3} 
+          intensity={0.25} 
           color="#4a90d9"
         />
         <pointLight 
           position={[10, 5, 10]} 
-          intensity={0.5} 
+          intensity={0.4} 
           color="#ffeedd"
         />
         
-        <Suspense fallback={<LoadingFallback />}>
+        <React.Suspense fallback={<LoadingFallback />}>
           <EarthSphere />
-        </Suspense>
+        </React.Suspense>
       </Canvas>
       
       {/* Outer glow effect */}
