@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { Stethoscope, FlaskConical, Sparkles, Scale, FileCheck, Recycle } from "lucide-react";
-import { EarthGlobe } from "./EarthGlobe";
 import { OrbitingPlanet } from "./OrbitingPlanet";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -80,35 +79,31 @@ interface OrbitConfig {
   radiusX: number;
   radiusY: number;
   duration: number;
-  globeSize: number;
   planetSize: number;
 }
 
 const getOrbitConfig = (isMobile: boolean, isTablet: boolean): OrbitConfig => {
   if (isMobile) {
     return {
-      radiusX: 140,
-      radiusY: 80,
+      radiusX: 130,
+      radiusY: 70,
       duration: 30,
-      globeSize: 180,
       planetSize: 50,
     };
   }
   if (isTablet) {
     return {
-      radiusX: 220,
-      radiusY: 130,
+      radiusX: 200,
+      radiusY: 110,
       duration: 26,
-      globeSize: 250,
       planetSize: 65,
     };
   }
   return {
-    radiusX: 320,
-    radiusY: 180,
+    radiusX: 300,
+    radiusY: 160,
     duration: 24,
-    globeSize: 320,
-    planetSize: 85,
+    planetSize: 80,
   };
 };
 
@@ -162,21 +157,20 @@ export const PlanetaryOrbitHero: React.FC = () => {
     // Scale: front = larger (1.4x), back = smaller (0.6x)
     const scale = 0.6 + (normalizedY + 1) * 0.4;
     
-    // Occlusion: planets behind Earth (normalizedY < -0.2) should be hidden
-    const isBehindEarth = normalizedY < -0.2;
+    // Occlusion: planets behind (normalizedY < -0.3) should be hidden
+    const isBehindEarth = normalizedY < -0.3;
     
     // Opacity: visible in front, fade out when going behind
     let opacity = 1;
-    if (normalizedY < -0.2) {
-      // Fade out as it goes behind
-      opacity = Math.max(0, (normalizedY + 0.5) / 0.3);
-    } else if (normalizedY < 0.2) {
-      // Partial visibility on sides
-      opacity = 0.7 + (normalizedY + 0.2) * 0.75;
+    if (normalizedY < -0.3) {
+      // Completely hidden behind Earth
+      opacity = 0;
+    } else if (normalizedY < 0) {
+      // Transitioning behind - gradual fade
+      opacity = (normalizedY + 0.3) / 0.3;
     }
     
-    // Z-index: front planets ABOVE Earth (60+), back planets BELOW (20-40)
-    // Earth is at z-index 50
+    // Z-index: front planets ABOVE (60+), back planets BELOW (20-40)
     const zIndex = isBehindEarth 
       ? Math.round(20 + (normalizedY + 1) * 20)
       : Math.round(55 + normalizedY * 35);
@@ -188,9 +182,9 @@ export const PlanetaryOrbitHero: React.FC = () => {
     <div 
       className="relative flex items-center justify-center"
       style={{
-        width: config.radiusX * 2 + config.planetSize * 1.5,
+        width: config.radiusX * 2 + config.planetSize * 2,
         height: config.radiusY * 2 + config.planetSize * 2,
-        minHeight: isMobile ? 350 : 500,
+        minHeight: isMobile ? 200 : 380,
       }}
     >
       {/* Subtle orbit path indicator */}
@@ -199,7 +193,7 @@ export const PlanetaryOrbitHero: React.FC = () => {
         style={{
           width: config.radiusX * 2 + 20,
           height: config.radiusY * 2 + 20,
-          opacity: 0.15,
+          opacity: 0.2,
         }}
         viewBox={`0 0 ${config.radiusX * 2 + 20} ${config.radiusY * 2 + 20}`}
       >
@@ -209,16 +203,11 @@ export const PlanetaryOrbitHero: React.FC = () => {
           rx={config.radiusX}
           ry={config.radiusY}
           fill="none"
-          stroke="hsl(var(--primary))"
+          stroke="hsla(200, 80%, 60%, 0.5)"
           strokeWidth="1"
           strokeDasharray="8 4"
         />
       </svg>
-      
-      {/* Central Earth Globe */}
-      <div className="absolute" style={{ zIndex: 50 }}>
-        <EarthGlobe size={config.globeSize} />
-      </div>
       
       {/* Orbiting Service Planets */}
       {services.map((service) => {
