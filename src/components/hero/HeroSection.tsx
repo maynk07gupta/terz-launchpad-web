@@ -2,7 +2,7 @@ import * as React from "react";
 import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { Earth3D } from "./Earth3D";
-import { PlanetaryOrbitHero } from "./PlanetaryOrbitHero";
+import { ArcOrbitSystem } from "./ArcOrbitSystem";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 // Fallback while 3D loads
@@ -67,18 +67,15 @@ export const HeroSection = () => {
       <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full bg-primary/5 blur-[120px] -z-5" />
       <div className="absolute top-1/4 right-0 w-[400px] h-[300px] rounded-full bg-accent/5 blur-[100px] -z-5" />
 
-      {/* Orbiting planets - positioned in upper portion */}
+      {/* Arc Orbit System - planets follow Earth's curve */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, delay: 0.5 }}
-        className="absolute inset-x-0 flex items-center justify-center"
-        style={{
-          top: isMobile ? "12%" : "18%",
-          zIndex: 40,
-        }}
+        className="absolute inset-0"
+        style={{ zIndex: 40 }}
       >
-        <PlanetaryOrbitHero />
+        <ArcOrbitSystem earthSize={globeSize} />
       </motion.div>
 
       {/* Large 3D Earth at bottom */}
