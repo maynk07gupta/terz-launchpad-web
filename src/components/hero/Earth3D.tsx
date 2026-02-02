@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-// Earth sphere component with textures - static elliptical globe
+// Earth sphere component with textures
 const EarthSphere = () => {
   const earthRef = useRef<THREE.Mesh>(null);
   const cloudsRef = useRef<THREE.Mesh>(null);
@@ -72,18 +72,18 @@ const EarthSphere = () => {
     };
   }, []);
   
-  // Set initial rotation to show maximum continents (centered on Africa/Europe/Asia)
-  useEffect(() => {
+  // Slow rotation animation
+  useFrame(({ clock }) => {
+    const elapsed = clock.getElapsedTime();
+    
     if (earthRef.current) {
-      // Rotate to show Africa/Europe/Asia/Americas - maximum landmass view
-      earthRef.current.rotation.y = -0.3; // Slight rotation to center continents
+      earthRef.current.rotation.y = elapsed * 0.03;
     }
+    
     if (cloudsRef.current) {
-      cloudsRef.current.rotation.y = -0.3;
+      cloudsRef.current.rotation.y = elapsed * 0.035;
     }
-  }, [texturesLoaded]);
-  
-  // No rotation animation - static globe
+  });
   
   if (!texturesLoaded) {
     return (
@@ -96,39 +96,39 @@ const EarthSphere = () => {
   
   return (
     <group>
-      {/* Main Earth - elliptical (scaled wider on X axis) */}
-      <mesh ref={earthRef} scale={[1.6, 1, 1]}>
+      {/* Main Earth sphere */}
+      <mesh ref={earthRef}>
         <sphereGeometry args={[2, 64, 64]} />
         {textures.earth ? (
           <meshStandardMaterial
             map={textures.earth}
             bumpMap={textures.bump || undefined}
-            bumpScale={0.02}
-            roughness={0.7}
-            metalness={0.05}
+            bumpScale={0.015}
+            roughness={0.8}
+            metalness={0.1}
           />
         ) : (
           <meshStandardMaterial
             color="#3b82f6"
-            roughness={0.7}
-            metalness={0.05}
+            roughness={0.8}
+            metalness={0.1}
           />
         )}
       </mesh>
       
-      {/* Semi-transparent cloud layer - also elliptical */}
-      <mesh ref={cloudsRef} scale={[1.6, 1, 1]}>
-        <sphereGeometry args={[2.01, 48, 48]} />
+      {/* Semi-transparent cloud layer */}
+      <mesh ref={cloudsRef}>
+        <sphereGeometry args={[2.015, 48, 48]} />
         <meshPhongMaterial
           color="#ffffff"
           transparent
-          opacity={0.12}
+          opacity={0.15}
           depthWrite={false}
         />
       </mesh>
       
-      {/* Atmosphere glow - elliptical */}
-      <mesh scale={[1.75, 1.1, 1.1]}>
+      {/* Atmosphere glow */}
+      <mesh scale={1.12}>
         <sphereGeometry args={[2, 48, 48]} />
         <shaderMaterial
           vertexShader={`
@@ -141,8 +141,8 @@ const EarthSphere = () => {
           fragmentShader={`
             varying vec3 vNormal;
             void main() {
-              float intensity = pow(0.6 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
-              gl_FragColor = vec4(0.35, 0.65, 1.0, 1.0) * intensity * 0.5;
+              float intensity = pow(0.55 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+              gl_FragColor = vec4(0.4, 0.7, 1.0, 1.0) * intensity * 0.6;
             }
           `}
           blending={THREE.AdditiveBlending}
@@ -169,19 +169,15 @@ interface Earth3DProps {
 export const Earth3D: React.FC<Earth3DProps> = ({ size = 700 }) => {
   const [hasError, setHasError] = useState(false);
   
-  // Elliptical dimensions - wider than tall
-  const width = size * 1.6;
-  const height = size;
-  
   if (hasError) {
-    // Fallback to CSS elliptical globe if WebGL fails
+    // Fallback to CSS globe if WebGL fails
     return (
       <div 
+        className="rounded-full"
         style={{ 
-          width: width, 
-          height: height,
-          borderRadius: "50%",
-          background: `radial-gradient(ellipse 80% 60% at 55% 40%, 
+          width: size, 
+          height: size,
+          background: `radial-gradient(circle at 60% 35%, 
             hsl(200, 80%, 50%) 0%, 
             hsl(210, 75%, 40%) 25%,
             hsl(215, 70%, 30%) 50%, 
@@ -201,20 +197,21 @@ export const Earth3D: React.FC<Earth3DProps> = ({ size = 700 }) => {
   return (
     <div 
       style={{ 
-        width: width, 
-        height: height,
+        width: size, 
+        height: size,
         position: "relative",
       }}
     >
       <Canvas
         camera={{ 
-          position: [0, 0, 5.5], 
-          fov: 40,
+          position: [0, 0, 4.5], 
+          fov: 45,
           near: 0.1,
           far: 1000,
         }}
         style={{ 
           background: "transparent",
+          borderRadius: "50%",
         }}
         gl={{ 
           antialias: true, 
@@ -223,32 +220,27 @@ export const Earth3D: React.FC<Earth3DProps> = ({ size = 700 }) => {
         }}
         onError={() => setHasError(true)}
       >
-        {/* Lighting setup - bright and even for maximum land visibility */}
-        <ambientLight intensity={0.8} />
+        {/* Lighting setup - brighter for visible land masses */}
+        <ambientLight intensity={0.6} />
         <directionalLight 
           position={[5, 3, 5]} 
-          intensity={2.0} 
+          intensity={2.5} 
           color="#ffffff"
         />
         <directionalLight 
-          position={[-5, 3, 5]} 
-          intensity={1.5} 
+          position={[-3, 2, 3]} 
+          intensity={1.2} 
           color="#ffffff"
         />
         <directionalLight 
-          position={[0, 5, 3]} 
-          intensity={1.0} 
-          color="#ffffff"
-        />
-        <directionalLight 
-          position={[-3, -2, -3]} 
-          intensity={0.4} 
+          position={[-5, -2, -5]} 
+          intensity={0.5} 
           color="#87ceeb"
         />
         <pointLight 
-          position={[8, 4, 8]} 
-          intensity={0.5} 
-          color="#fff8e6"
+          position={[10, 5, 10]} 
+          intensity={0.6} 
+          color="#fff5e6"
         />
         
         <React.Suspense fallback={<LoadingFallback />}>
@@ -256,15 +248,14 @@ export const Earth3D: React.FC<Earth3DProps> = ({ size = 700 }) => {
         </React.Suspense>
       </Canvas>
       
-      {/* Outer glow effect - elliptical */}
+      {/* Outer glow effect */}
       <div 
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 rounded-full pointer-events-none"
         style={{
-          borderRadius: "50%",
           boxShadow: `
-            0 0 80px hsla(200, 80%, 50%, 0.35),
-            0 0 150px hsla(200, 85%, 45%, 0.2),
-            0 0 250px hsla(210, 80%, 40%, 0.1)
+            0 0 60px hsla(200, 80%, 50%, 0.4),
+            0 0 120px hsla(200, 85%, 45%, 0.25),
+            0 0 200px hsla(210, 80%, 40%, 0.15)
           `,
         }}
       />

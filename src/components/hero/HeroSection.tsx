@@ -21,11 +21,10 @@ const GlobeFallback = ({ size }: { size: number }) => (
 export const HeroSection = () => {
   const isMobile = useIsMobile();
   
-  // Globe size - elliptical, extends wider than viewport on desktop
-  const globeSize = isMobile ? 500 : 800;
+  // Globe size - large enough that only top portion is visible
+  const globeSize = isMobile ? 600 : 1000;
   // How much of the Earth extends below the viewport (percentage)
-  // Increased to push Earth lower, creating more space for orbiting services
-  const earthBottomOffset = isMobile ? 65 : 60;
+  const earthBottomOffset = isMobile ? 55 : 45;
   
   return (
     <section className="relative overflow-hidden min-h-screen">
