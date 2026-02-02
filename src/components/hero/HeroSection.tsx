@@ -57,26 +57,21 @@ export const HeroSection = () => {
 
       {/* Large Earth image at bottom center */}
       <motion.div
-        initial={{ opacity: 0, y: 100 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute bottom-0 left-0 right-0 flex justify-center"
+        className="absolute left-1/2 -translate-x-1/2"
         style={{
           zIndex: 30,
+          bottom: isMobile ? "-30%" : "-20%",
+          width: globeSize,
         }}
       >
-        <div style={{ transform: `translateY(${earthBottomOffset}%)` }}>
-          <img 
-            src={earthGlobeImg} 
-            alt="Earth" 
-            style={{ 
-              width: globeSize, 
-              height: "auto",
-              objectFit: "cover",
-              objectPosition: "top center",
-            }}
-          />
-        </div>
+        <img 
+          src={earthGlobeImg} 
+          alt="Earth" 
+          className="w-full h-auto"
+        />
       </motion.div>
 
       {/* Arc Orbit System - planets follow Earth's curve */}
