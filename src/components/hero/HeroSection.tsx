@@ -6,11 +6,21 @@ import earthHeroImg from "@/assets/earth-hero.png";
 
 export const HeroSection = () => {
   const isMobile = useIsMobile();
+  const [isTablet, setIsTablet] = React.useState(false);
   
-  // Earth image sizing - wide enough to fill screen width
-  const earthWidth = isMobile ? "150%" : "120%";
-  // How much to show (top visible portion)
-  const earthVisibleHeight = isMobile ? "45vh" : "55vh";
+  React.useEffect(() => {
+    const checkTablet = () => {
+      setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
+    };
+    checkTablet();
+    window.addEventListener("resize", checkTablet);
+    return () => window.removeEventListener("resize", checkTablet);
+  }, []);
+  
+  // Earth image sizing - responsive based on device
+  const earthWidth = isMobile ? "180%" : isTablet ? "140%" : "120%";
+  // How much to show (top visible portion) - using vh for responsiveness
+  const earthVisibleHeight = isMobile ? "40vh" : isTablet ? "45vh" : "50vh";
   
   return (
     <section className="relative overflow-hidden min-h-screen">

@@ -87,35 +87,59 @@ export const ArcOrbitSystem: React.FC<ArcOrbitSystemProps> = ({
 }) => {
   const isMobile = useIsMobile();
   const [time, setTime] = useState(0);
-  const [containerHeight, setContainerHeight] = useState(0);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  // Calculate actual pixel height from vh
+  // Calculate dimensions from viewport
   useEffect(() => {
-    const updateHeight = () => {
+    const updateDimensions = () => {
       const vh = parseInt(earthVisibleHeight);
-      setContainerHeight((vh / 100) * window.innerHeight);
+      setDimensions({
+        width: window.innerWidth,
+        height: (vh / 100) * window.innerHeight,
+      });
     };
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
   }, [earthVisibleHeight]);
 
-  // Configuration based on viewport
+  // Configuration based on viewport - recalculates on resize
   const config = useMemo(() => {
-    // Orbit follows the curve of the Earth image (which is wider than viewport)
-    const orbitWidth = isMobile ? window.innerWidth * 0.7 : window.innerWidth * 0.45;
-    const orbitHeight = isMobile ? 60 : 100;
+    const vw = dimensions.width;
+    const isSmall = vw < 640;
+    const isMedium = vw >= 640 && vw < 1024;
+    
+    // Responsive orbit dimensions
+    let orbitWidth: number;
+    let orbitHeight: number;
+    let planetSize: number;
+    
+    if (isSmall) {
+      // Mobile
+      orbitWidth = vw * 0.65;
+      orbitHeight = 50;
+      planetSize = 50;
+    } else if (isMedium) {
+      // Tablet
+      orbitWidth = vw * 0.5;
+      orbitHeight = 70;
+      planetSize = 70;
+    } else {
+      // Desktop
+      orbitWidth = vw * 0.4;
+      orbitHeight = 90;
+      planetSize = 85;
+    }
     
     return {
       orbitWidth,
       orbitHeight,
-      planetSize: isMobile ? 60 : 90,
-      // Arc spans from left to right above Earth
-      arcStartAngle: 170, // far left
-      arcEndAngle: 10,    // far right
-      rotationSpeed: 6,   // degrees per second
+      planetSize,
+      arcStartAngle: 165,
+      arcEndAngle: 15,
+      rotationSpeed: 5,
     };
-  }, [isMobile]);
+  }, [dimensions.width]);
 
   // Animation loop
   useEffect(() => {
@@ -133,8 +157,9 @@ export const ArcOrbitSystem: React.FC<ArcOrbitSystemProps> = ({
     return () => cancelAnimationFrame(animationId);
   }, []);
 
-  // Position where Earth curve starts (bottom of viewport + some offset)
-  const orbitCenterY = containerHeight + config.orbitHeight;
+  const containerHeight = dimensions.height;
+  
+  // Position where Earth curve starts
   
   // Calculate planet positions - moving LEFT to RIGHT along the arc
   const getPlanetPosition = (index: number) => {
