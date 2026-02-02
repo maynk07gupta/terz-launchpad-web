@@ -23,8 +23,8 @@ export const HeroSection = () => {
   
   // Globe size - large enough that only top portion is visible
   const globeSize = isMobile ? 600 : 1000;
-  // How much of the Earth extends below the viewport (percentage)
-  const earthBottomOffset = isMobile ? 55 : 45;
+  // How much of the Earth extends below the viewport (percentage) - lowered more
+  const earthBottomOffset = isMobile ? 60 : 55;
   
   return (
     <section className="relative overflow-hidden min-h-screen">

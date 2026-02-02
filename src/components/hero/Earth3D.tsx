@@ -72,18 +72,13 @@ const EarthSphere = () => {
     };
   }, []);
   
-  // Slow rotation animation
-  useFrame(({ clock }) => {
-    const elapsed = clock.getElapsedTime();
-    
+  // Static globe - no rotation
+  // Set initial rotation to show Africa/Europe (like reference image)
+  useEffect(() => {
     if (earthRef.current) {
-      earthRef.current.rotation.y = elapsed * 0.03;
+      earthRef.current.rotation.y = -0.3; // Show Africa/Europe centered
     }
-    
-    if (cloudsRef.current) {
-      cloudsRef.current.rotation.y = elapsed * 0.035;
-    }
-  });
+  }, [texturesLoaded]);
   
   if (!texturesLoaded) {
     return (
