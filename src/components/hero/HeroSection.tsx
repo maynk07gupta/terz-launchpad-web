@@ -2,15 +2,15 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { ArcOrbitSystem } from "./ArcOrbitSystem";
 import { useIsMobile } from "@/hooks/use-mobile";
-import earthGlobeImg from "@/assets/earth-globe.png";
+import earthHeroImg from "@/assets/earth-hero.png";
 
 export const HeroSection = () => {
   const isMobile = useIsMobile();
   
-  // Globe size - large enough that only top portion is visible
-  const globeSize = isMobile ? 600 : 1000;
-  // How much of the Earth extends below the viewport (percentage) - lowered more
-  const earthBottomOffset = isMobile ? 60 : 55;
+  // Earth image sizing - wide enough to fill screen width
+  const earthWidth = isMobile ? "150%" : "120%";
+  // How much to show (top visible portion)
+  const earthVisibleHeight = isMobile ? "45vh" : "55vh";
   
   return (
     <section className="relative overflow-hidden min-h-screen">
@@ -55,36 +55,36 @@ export const HeroSection = () => {
       <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full bg-primary/5 blur-[120px] -z-5" />
       <div className="absolute top-1/4 right-0 w-[400px] h-[300px] rounded-full bg-accent/5 blur-[100px] -z-5" />
 
-      {/* Large Earth image at bottom center */}
+      {/* Arc Orbit System - planets orbit above Earth */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, delay: 0.5 }}
+        className="absolute inset-0"
+        style={{ zIndex: 40 }}
+      >
+        <ArcOrbitSystem earthVisibleHeight={earthVisibleHeight} />
+      </motion.div>
+
+      {/* Large Earth image at bottom - cropped to show top curved portion */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute left-1/2 -translate-x-1/2"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 overflow-hidden"
         style={{
           zIndex: 30,
-          bottom: isMobile ? "-30%" : "-20%",
-          width: globeSize,
+          width: earthWidth,
+          height: earthVisibleHeight,
         }}
       >
         <img 
-          src={earthGlobeImg} 
+          src={earthHeroImg} 
           alt="Earth" 
-          className="w-full h-auto"
-        />
-      </motion.div>
-
-      {/* Arc Orbit System - planets follow Earth's curve */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.8 }}
-        className="absolute inset-0"
-        style={{ zIndex: 40 }}
-      >
-        <ArcOrbitSystem 
-          earthSize={globeSize} 
-          earthBottomOffset={earthBottomOffset}
+          className="w-full h-auto object-cover object-top"
+          style={{
+            minHeight: "100%",
+          }}
         />
       </motion.div>
       
