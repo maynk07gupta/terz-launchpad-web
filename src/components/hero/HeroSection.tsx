@@ -74,16 +74,16 @@ export const HeroSection = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2"
+        className="absolute bottom-0 left-0 right-0 flex justify-center"
         style={{
-          // Push Earth down so only top portion is visible
-          transform: `translateX(-50%) translateY(${earthBottomOffset}%)`,
           zIndex: 30,
         }}
       >
+        <div style={{ transform: `translateY(${earthBottomOffset}%)` }}>
         <Suspense fallback={<GlobeFallback size={globeSize} />}>
           <Earth3D size={globeSize} />
         </Suspense>
+        </div>
       </motion.div>
 
       {/* Arc Orbit System - planets follow Earth's curve */}
