@@ -91,10 +91,7 @@ export const HeroSection = () => {
         <img 
           src={earthHeroImg} 
           alt="Earth" 
-          className="w-full h-auto object-cover object-top"
-          style={{
-            minHeight: "100%",
-          }}
+          className="w-full h-full object-cover object-bottom"
         />
       </motion.div>
       
