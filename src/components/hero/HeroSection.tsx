@@ -1,22 +1,8 @@
 import * as React from "react";
-import { Suspense } from "react";
 import { motion } from "framer-motion";
-import { Earth3D } from "./Earth3D";
 import { ArcOrbitSystem } from "./ArcOrbitSystem";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-// Fallback while 3D loads
-const GlobeFallback = ({ size }: { size: number }) => (
-  <div 
-    className="rounded-full animate-pulse"
-    style={{ 
-      width: size, 
-      height: size,
-      background: "radial-gradient(circle at 60% 40%, hsl(200, 70%, 35%), hsl(220, 60%, 15%))",
-      boxShadow: "0 0 100px hsla(200, 80%, 50%, 0.3)",
-    }}
-  />
-);
+import earthGlobeImg from "@/assets/earth-globe.png";
 
 export const HeroSection = () => {
   const isMobile = useIsMobile();
@@ -69,7 +55,7 @@ export const HeroSection = () => {
       <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full bg-primary/5 blur-[120px] -z-5" />
       <div className="absolute top-1/4 right-0 w-[400px] h-[300px] rounded-full bg-accent/5 blur-[100px] -z-5" />
 
-      {/* Large 3D Earth at bottom center */}
+      {/* Large Earth image at bottom center */}
       <motion.div
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
@@ -80,9 +66,16 @@ export const HeroSection = () => {
         }}
       >
         <div style={{ transform: `translateY(${earthBottomOffset}%)` }}>
-        <Suspense fallback={<GlobeFallback size={globeSize} />}>
-          <Earth3D size={globeSize} />
-        </Suspense>
+          <img 
+            src={earthGlobeImg} 
+            alt="Earth" 
+            style={{ 
+              width: globeSize, 
+              height: "auto",
+              objectFit: "cover",
+              objectPosition: "top center",
+            }}
+          />
         </div>
       </motion.div>
 
