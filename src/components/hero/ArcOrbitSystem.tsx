@@ -79,34 +79,43 @@ const services: Service[] = [
 ];
 
 interface ArcOrbitSystemProps {
-  earthSize: number;
-  earthBottomOffset: number; // How much Earth extends below viewport (percentage)
+  earthVisibleHeight: string; // Height of visible Earth portion (e.g., "55vh")
 }
 
 export const ArcOrbitSystem: React.FC<ArcOrbitSystemProps> = ({ 
-  earthSize, 
-  earthBottomOffset 
+  earthVisibleHeight 
 }) => {
   const isMobile = useIsMobile();
   const [time, setTime] = useState(0);
+  const [containerHeight, setContainerHeight] = useState(0);
+
+  // Calculate actual pixel height from vh
+  useEffect(() => {
+    const updateHeight = () => {
+      const vh = parseInt(earthVisibleHeight);
+      setContainerHeight((vh / 100) * window.innerHeight);
+    };
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, [earthVisibleHeight]);
 
   // Configuration based on viewport
   const config = useMemo(() => {
-    const earthRadius = earthSize / 2;
-    // Orbit sits above the visible part of Earth - higher orbit for better visibility
-    const orbitHeight = isMobile ? 50 : 90;
-    const orbitRadius = earthRadius + orbitHeight;
+    // Orbit follows the curve of the Earth image (which is wider than viewport)
+    const orbitWidth = isMobile ? window.innerWidth * 0.7 : window.innerWidth * 0.45;
+    const orbitHeight = isMobile ? 60 : 100;
     
     return {
-      earthRadius,
-      orbitRadius,
-      planetSize: isMobile ? 55 : 85,
-      // Arc spans the top portion - wider arc for more visibility
-      arcStartAngle: 160, // left edge (further left)
-      arcEndAngle: 20,    // right edge (further right)
-      rotationSpeed: 8,   // degrees per second (slightly faster)
+      orbitWidth,
+      orbitHeight,
+      planetSize: isMobile ? 60 : 90,
+      // Arc spans from left to right above Earth
+      arcStartAngle: 170, // far left
+      arcEndAngle: 10,    // far right
+      rotationSpeed: 6,   // degrees per second
     };
-  }, [earthSize, isMobile]);
+  }, [isMobile]);
 
   // Animation loop
   useEffect(() => {
@@ -124,45 +133,41 @@ export const ArcOrbitSystem: React.FC<ArcOrbitSystemProps> = ({
     return () => cancelAnimationFrame(animationId);
   }, []);
 
-  // Calculate Earth center position (from bottom of viewport)
-  const earthCenterFromBottom = earthSize * (1 - earthBottomOffset / 100);
+  // Position where Earth curve starts (bottom of viewport + some offset)
+  const orbitCenterY = containerHeight + config.orbitHeight;
   
   // Calculate planet positions - moving LEFT to RIGHT along the arc
   const getPlanetPosition = (index: number) => {
     const totalPlanets = services.length;
     
     // Full arc span in degrees
-    const arcSpan = config.arcStartAngle - config.arcEndAngle; // 140 degrees (160 - 20)
+    const arcSpan = config.arcStartAngle - config.arcEndAngle; // 160 degrees
     
-    // Spacing between planets (they should be spread out evenly for smooth loop)
-    const planetSpacing = 50; // degrees between each planet
+    // Spacing between planets
+    const planetSpacing = 45; // degrees between each planet
     
-    // Total animation cycle = when all planets have moved through the full arc
+    // Total animation cycle
     const fullCycleAngle = totalPlanets * planetSpacing;
     
     // Each planet starts at a different offset
     const startOffset = index * planetSpacing;
     
-    // Animated position - moves from LEFT (high angle) to RIGHT (low angle)
-    // time * rotationSpeed gives us how many degrees we've moved
+    // Animated position - moves from LEFT to RIGHT
     const animatedProgress = (time * config.rotationSpeed) % fullCycleAngle;
     
     // Calculate current angle on the arc
-    // Start from left (arcStartAngle=160°), move towards right (arcEndAngle=20°)
-    // As time increases, angle decreases (moving right)
     const rawAngle = config.arcStartAngle - ((startOffset + animatedProgress) % fullCycleAngle);
     
-    // Normalize angle to handle wrapping - planets loop continuously
+    // Normalize angle to handle wrapping
     let positionAngle = rawAngle;
     if (positionAngle < config.arcEndAngle - 30) {
-      // Wrap around to the left side
       positionAngle += fullCycleAngle;
     }
     
-    // Calculate x, y relative to Earth center
+    // Calculate x, y - elliptical arc
     const angleRad = (positionAngle * Math.PI) / 180;
-    const x = Math.cos(angleRad) * config.orbitRadius;
-    const y = -Math.sin(angleRad) * config.orbitRadius;
+    const x = Math.cos(angleRad) * config.orbitWidth;
+    const y = -Math.sin(angleRad) * config.orbitHeight;
     
     // Visibility: fade in from left edge, fade out at right edge
     let opacity = 1;
@@ -170,50 +175,51 @@ export const ArcOrbitSystem: React.FC<ArcOrbitSystemProps> = ({
     const fadeZone = 20;
     
     if (positionAngle > config.arcStartAngle) {
-      // Entering from left - fade in
       const overshoot = positionAngle - config.arcStartAngle;
       opacity = Math.max(0, 1 - overshoot / fadeZone);
       if (opacity <= 0) visible = false;
     } else if (positionAngle < config.arcEndAngle) {
-      // Exiting on right - fade out
       const overshoot = config.arcEndAngle - positionAngle;
       opacity = Math.max(0, 1 - overshoot / fadeZone);
       if (opacity <= 0) visible = false;
     }
     
-    // Z-index: planets at center of arc (90°) are in front
+    // Scale: planets in center appear larger (closer)
     const distanceFromCenter = Math.abs(positionAngle - 90);
+    const scale = 1 + (1 - distanceFromCenter / 90) * 0.3; // 1.0 to 1.3
+    
+    // Z-index: planets at center of arc (90°) are in front
     const zIndex = visible ? Math.round(50 - distanceFromCenter / 3) : 20;
     
-    return { x, y, opacity, zIndex, visible, angle: positionAngle };
+    return { x, y, opacity, zIndex, visible, scale, angle: positionAngle };
   };
 
   return (
     <div 
-      className="absolute inset-x-0 bottom-0 pointer-events-none overflow-visible"
-      style={{ 
-        height: earthCenterFromBottom + config.orbitRadius + config.planetSize,
-        zIndex: 40,
-      }}
+      className="absolute inset-0 pointer-events-none overflow-visible"
+      style={{ zIndex: 40 }}
     >
-      {/* Orbit path indicator (subtle dashed line) */}
+      {/* Orbit path indicator (subtle dashed arc) */}
       <svg
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
         style={{
-          bottom: earthCenterFromBottom - config.orbitRadius,
-          width: config.orbitRadius * 2 + 40,
-          height: config.orbitRadius + 40,
-          opacity: 0.2,
+          bottom: 0,
+          width: config.orbitWidth * 2 + 100,
+          height: config.orbitHeight + containerHeight,
+          transform: "translateX(-50%)",
+          opacity: 0.15,
         }}
-        viewBox={`0 0 ${config.orbitRadius * 2 + 40} ${config.orbitRadius + 40}`}
+        viewBox={`0 0 ${config.orbitWidth * 2 + 100} ${config.orbitHeight + containerHeight}`}
       >
-        <path
-          d={`M 20 ${config.orbitRadius + 20} 
-              A ${config.orbitRadius} ${config.orbitRadius} 0 0 1 ${config.orbitRadius * 2 + 20} ${config.orbitRadius + 20}`}
+        <ellipse
+          cx={config.orbitWidth + 50}
+          cy={config.orbitHeight + containerHeight}
+          rx={config.orbitWidth}
+          ry={config.orbitHeight}
           fill="none"
           stroke="hsla(200, 80%, 60%, 0.6)"
           strokeWidth="1.5"
-          strokeDasharray="10 5"
+          strokeDasharray="12 6"
         />
       </svg>
 
@@ -221,18 +227,19 @@ export const ArcOrbitSystem: React.FC<ArcOrbitSystemProps> = ({
       {services.map((service, index) => {
         const pos = getPlanetPosition(index);
         const Icon = service.icon;
+        const scaledSize = config.planetSize * pos.scale;
         
         if (!pos.visible && pos.opacity <= 0) return null;
 
         return (
           <div
             key={service.id}
-            className="absolute left-1/2 pointer-events-auto cursor-pointer group"
+            className="absolute pointer-events-auto cursor-pointer group"
             style={{
-              bottom: earthCenterFromBottom + pos.y - config.planetSize / 2,
-              left: `calc(50% + ${pos.x}px - ${config.planetSize / 2}px)`,
-              width: config.planetSize,
-              height: config.planetSize,
+              bottom: containerHeight - pos.y - scaledSize / 2,
+              left: `calc(50% + ${pos.x}px - ${scaledSize / 2}px)`,
+              width: scaledSize,
+              height: scaledSize,
               opacity: pos.opacity,
               zIndex: pos.zIndex,
               transition: "opacity 0.2s ease-out",
