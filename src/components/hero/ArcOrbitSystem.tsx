@@ -125,47 +125,57 @@ export const ArcOrbitSystem: React.FC<ArcOrbitSystemProps> = ({
   }, []);
 
   // Calculate Earth center position (from bottom of viewport)
-  // Earth extends below viewport by earthBottomOffset percentage of its size
   const earthCenterFromBottom = earthSize * (1 - earthBottomOffset / 100);
   
-  // Calculate planet positions
+  // Calculate planet positions - moving LEFT to RIGHT along the arc
   const getPlanetPosition = (index: number) => {
     const totalPlanets = services.length;
-    const arcSpan = config.arcStartAngle - config.arcEndAngle; // 120 degrees
     
-    // Spread planets evenly, with extra space for continuous loop
-    const totalSpacing = 360 / totalPlanets; // Each planet is 60° apart in the loop
+    // Full arc span in degrees
+    const arcSpan = config.arcStartAngle - config.arcEndAngle; // 140 degrees (160 - 20)
     
-    // Calculate animated angle for this planet
-    const baseAngle = index * totalSpacing;
-    const animatedAngle = (baseAngle + time * config.rotationSpeed) % 360;
+    // Spacing between planets (they should be spread out evenly for smooth loop)
+    const planetSpacing = 50; // degrees between each planet
     
-    // Convert to position on the arc
-    // Map 0-360 animation angle to visible arc (30° to 150°)
-    // Only show planets when they're in the visible portion
-    const visibleArcSpan = config.arcStartAngle - config.arcEndAngle; // 120°
+    // Total animation cycle = when all planets have moved through the full arc
+    const fullCycleAngle = totalPlanets * planetSpacing;
     
-    // Planet's position angle on the circle (measured from right, counter-clockwise)
-    // We want planets moving left-to-right along the top arc
-    const positionAngle = config.arcStartAngle - (animatedAngle % (visibleArcSpan + 60));
+    // Each planet starts at a different offset
+    const startOffset = index * planetSpacing;
+    
+    // Animated position - moves from LEFT (high angle) to RIGHT (low angle)
+    // time * rotationSpeed gives us how many degrees we've moved
+    const animatedProgress = (time * config.rotationSpeed) % fullCycleAngle;
+    
+    // Calculate current angle on the arc
+    // Start from left (arcStartAngle=160°), move towards right (arcEndAngle=20°)
+    // As time increases, angle decreases (moving right)
+    const rawAngle = config.arcStartAngle - ((startOffset + animatedProgress) % fullCycleAngle);
+    
+    // Normalize angle to handle wrapping - planets loop continuously
+    let positionAngle = rawAngle;
+    if (positionAngle < config.arcEndAngle - 30) {
+      // Wrap around to the left side
+      positionAngle += fullCycleAngle;
+    }
     
     // Calculate x, y relative to Earth center
     const angleRad = (positionAngle * Math.PI) / 180;
     const x = Math.cos(angleRad) * config.orbitRadius;
-    const y = -Math.sin(angleRad) * config.orbitRadius; // Negative because Y increases downward
+    const y = -Math.sin(angleRad) * config.orbitRadius;
     
-    // Visibility: fade in/out at edges
+    // Visibility: fade in from left edge, fade out at right edge
     let opacity = 1;
     let visible = true;
-    const fadeZone = 15;
+    const fadeZone = 20;
     
     if (positionAngle > config.arcStartAngle) {
-      // Past left edge - fade out
+      // Entering from left - fade in
       const overshoot = positionAngle - config.arcStartAngle;
       opacity = Math.max(0, 1 - overshoot / fadeZone);
       if (opacity <= 0) visible = false;
     } else if (positionAngle < config.arcEndAngle) {
-      // Past right edge - fade out
+      // Exiting on right - fade out
       const overshoot = config.arcEndAngle - positionAngle;
       opacity = Math.max(0, 1 - overshoot / fadeZone);
       if (opacity <= 0) visible = false;
