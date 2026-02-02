@@ -100,18 +100,18 @@ const EarthSphere = () => {
       <mesh ref={earthRef}>
         <sphereGeometry args={[2, 64, 64]} />
         {textures.earth ? (
-          <meshPhongMaterial
+          <meshStandardMaterial
             map={textures.earth}
             bumpMap={textures.bump || undefined}
-            bumpScale={0.02}
-            specular={new THREE.Color(0x222222)}
-            shininess={8}
+            bumpScale={0.015}
+            roughness={0.8}
+            metalness={0.1}
           />
         ) : (
-          <meshPhongMaterial
-            color="#2563eb"
-            specular={new THREE.Color(0x222222)}
-            shininess={8}
+          <meshStandardMaterial
+            color="#3b82f6"
+            roughness={0.8}
+            metalness={0.1}
           />
         )}
       </mesh>
@@ -141,8 +141,8 @@ const EarthSphere = () => {
           fragmentShader={`
             varying vec3 vNormal;
             void main() {
-              float intensity = pow(0.6 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
-              gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
+              float intensity = pow(0.55 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+              gl_FragColor = vec4(0.4, 0.7, 1.0, 1.0) * intensity * 0.6;
             }
           `}
           blending={THREE.AdditiveBlending}
@@ -220,22 +220,27 @@ export const Earth3D: React.FC<Earth3DProps> = ({ size = 700 }) => {
         }}
         onError={() => setHasError(true)}
       >
-        {/* Lighting setup for realistic appearance */}
-        <ambientLight intensity={0.2} />
+        {/* Lighting setup - brighter for visible land masses */}
+        <ambientLight intensity={0.6} />
         <directionalLight 
           position={[5, 3, 5]} 
-          intensity={1.6} 
+          intensity={2.5} 
+          color="#ffffff"
+        />
+        <directionalLight 
+          position={[-3, 2, 3]} 
+          intensity={1.2} 
           color="#ffffff"
         />
         <directionalLight 
           position={[-5, -2, -5]} 
-          intensity={0.25} 
-          color="#4a90d9"
+          intensity={0.5} 
+          color="#87ceeb"
         />
         <pointLight 
           position={[10, 5, 10]} 
-          intensity={0.4} 
-          color="#ffeedd"
+          intensity={0.6} 
+          color="#fff5e6"
         />
         
         <React.Suspense fallback={<LoadingFallback />}>
