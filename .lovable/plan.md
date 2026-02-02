@@ -1,293 +1,317 @@
 
 
-# Hero Section Redesign - Photorealistic 3D Earth at Bottom
+# Hero Section Redesign - Arc Orbit Above Earth
 
-## Design Reference Analysis
+## Understanding Your Sketch
 
-Based on the reference image (SpaceEdu "Explore Space" design), the key visual elements are:
+Your wireframe shows a fundamentally different orbit pattern:
 
 ```text
-┌────────────────────────────────────────────────────────────────────────────────┐
-│  REFERENCE IMAGE ANALYSIS                                                       │
-│                                                                                 │
-│  Key Features:                                                                  │
-│  • Photorealistic Earth globe (not SVG/illustrated)                             │
-│  • Globe positioned at BOTTOM of viewport                                       │
-│  • Only top ~60% of globe visible (rest clips below screen)                     │
-│  • Dark space background with depth                                             │
-│  • Strong atmospheric glow (blue rim light)                                     │
-│  • City lights visible on dark side                                             │
-│  • Realistic cloud patterns and terrain                                         │
-│  • Dramatic lighting from top-right                                             │
-│  • Text content ABOVE the globe                                                 │
-└────────────────────────────────────────────────────────────────────────────────┘
+CURRENT ORBIT PATTERN (Ellipse around center):
+              ○ (back - hidden)
+           ╱              ╲
+        ○                    ○
+       ╱    [center point]    ╲
+      ○                        ○
+       ╲                      ╱
+        ●                    ●
+           ╲              ╱
+              ● (front)
+
+YOUR DESIRED ORBIT PATTERN (Arc along Earth's curve):
+
+        ○ Service 1 ──→ ○ Service 2 ──→ ○ Service 3 ──→
+       ╱                                                 ╲
+      ╱                                                   ╲
+     ╱                                                     ╲
+    ○                                                       ○
+   ↑  ╲                                                   ╱  ↓
+   ↑   ╲                                                 ╱   ↓
+   ↑    ╭─────────────────────────────────────────────────╮    ↓
+   ↑   ╱          EARTH (large, bottom)                    ╲   ↓
+      ╱                                                      ╲
+     ╱                                                        ╲
+────────────────────────────────────────────────────────────────────
+                        (viewport bottom)
 ```
+
+The planets follow the curvature of the Earth's top edge, moving left-to-right (or in a continuous arc) and disappearing behind the Earth on the sides.
 
 ---
 
-## Proposed Hero Layout
+## Key Differences
 
-```text
-┌────────────────────────────────────────────────────────────────────────────────┐
-│  NAVBAR (z-index: 100)                                                          │
-├────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                 │
-│                         ○ (behind Earth)                                        │
-│                      ╱                ╲                                         │
-│                   ○                      ○                                      │
-│               (side)    SERVICE         (side)                                  │
-│                         PLANETS                                                 │
-│                   ●                      ●                                      │
-│               (FRONT)                (FRONT)                                    │
-│                      ╲                ╱                                         │
-│  ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
-│                                                                                 │
-│              ╭───────────────────────────────────────────╮                      │
-│            ╱     PHOTOREALISTIC 3D EARTH GLOBE            ╲                     │
-│           │      ┌───────────────────────────────┐         │                    │
-│           │      │     Atmosphere Glow (blue)    │         │                    │
-│           │      │  ┌───────────────────────┐    │         │                    │
-│           │      │  │   Realistic texture   │    │         │                    │
-│           │      │  │   • Continents        │    │         │                    │
-│           │      │  │   • Clouds            │    │         │                    │
-│           │      │  │   • City lights       │    │         │                    │
-│           │      │  │   • Ocean reflections │    │         │                    │
-│           │      │  └───────────────────────┘    │         │                    │
-│           │      └───────────────────────────────┘         │                    │
-├───────────┴──────────────────────────────────────────────────────────────┬──────┤
-│  (Globe extends below viewport - only top 60-70% visible)                 │      │
-└────────────────────────────────────────────────────────────────────────────────┘
-```
+| Aspect | Current | New Design |
+|--------|---------|------------|
+| Orbit Shape | Full ellipse around center | Arc following Earth's top curve |
+| Movement | Planets go around center point | Planets slide along Earth's horizon |
+| Visibility | Hide when at back (top of ellipse) | Hide when at sides (behind Earth edges) |
+| Earth Position | Separate from orbit system | Earth IS the orbit path reference |
+| Orbit Anchor | Abstract center point | Top curvature of the Earth sphere |
 
 ---
 
-## Technical Approach
+## New Orbit Geometry
 
-### Option: Enhanced CSS 3D Globe (Recommended)
-
-Since we can't use WebGL/Three.js in this React/Vite setup, we'll create a **photorealistic CSS 3D globe** with multiple layers:
+The orbit path is now an ARC that follows the visible top portion of the Earth:
 
 ```text
-┌────────────────────────────────────────────────────────────────────────────────┐
-│  ENHANCED 3D GLOBE LAYER STRUCTURE                                              │
-│                                                                                 │
-│  Layer 7: Outer atmosphere glow (blue halo, blur-3xl)                           │
-│  Layer 6: Inner atmosphere rim (subtle edge glow)                               │
-│  Layer 5: Cloud layer (animated subtle drift)                                   │
-│  Layer 4: City lights overlay (orange dots on dark areas)                       │
-│  Layer 3: Continent texture (detailed shapes with gradients)                    │
-│  Layer 2: Ocean layer (deep blue with specular highlights)                      │
-│  Layer 1: Core sphere (base gradient)                                           │
-│                                                                                 │
-│  3D Effects:                                                                    │
-│  • Stronger specular highlight (top-right, like sunlight)                       │
-│  • Deep shadow on dark side (bottom-left)                                       │
-│  • Terminator line (day/night boundary)                                         │
-│  • Atmospheric scattering effect (blue edge glow)                               │
-└────────────────────────────────────────────────────────────────────────────────┘
+                    Arc Orbit Path
+                   ╭─────────────────╮
+                  ╱                   ╲
+                 ╱                     ╲
+                ╱   ○ → ○ → ○ → ○ → ○   ╲
+               ╱    (planets moving)     ╲
+              │                           │
+              │                           │
+    ╭─────────┤                           ├─────────╮
+   ╱          │      VISIBLE EARTH        │          ╲
+  ╱           │         PORTION           │           ╲
+ ╱            │                           │            ╲
+───────────────────────────────────────────────────────────
+                    viewport bottom
 ```
 
----
+### Arc Path Calculation
 
-## Implementation Details
-
-### 1. EarthGlobe.tsx Enhancements
-
-**Current Issues:**
-- Globe is too small (320px)
-- Positioned in center
-- Simple SVG continents look flat
-- Lacks photorealistic depth
-
-**New Features:**
-- Much larger globe (600-800px on desktop)
-- Positioned at bottom, extending below viewport
-- Multiple gradient layers for depth
-- Enhanced lighting effects (terminator line)
-- City lights on night side
-- Stronger atmospheric glow
-- Slow rotation animation
-
-### 2. HeroSection.tsx Layout Changes
-
-**New Layout Structure:**
-```text
-<section className="relative overflow-hidden min-h-screen">
-  {/* Dark space background */}
-  <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a] to-[#050810]" />
-  
-  {/* Stars/particles (optional) */}
-  
-  {/* Orbiting planets - positioned higher */}
-  <div className="absolute top-1/4 left-1/2 -translate-x-1/2">
-    <OrbitSystem />
-  </div>
-  
-  {/* Large Earth at bottom */}
-  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[35%]">
-    <EarthGlobe size={700} />
-  </div>
-</section>
-```
-
-### 3. New Globe Visual Layers
+Instead of using an ellipse, we use the top portion of a LARGER circle that matches the Earth's curvature:
 
 ```typescript
-// Enhanced layer structure for photorealistic effect
-const GlobeLayers = {
-  // Core ocean gradient
-  ocean: `radial-gradient(circle at 65% 35%,
-    hsl(205, 85%, 45%) 0%,
-    hsl(210, 80%, 35%) 30%,
-    hsl(215, 75%, 25%) 50%,
-    hsl(220, 70%, 15%) 70%,
-    hsl(225, 65%, 8%) 100%
-  )`,
+// Arc parameters
+const earthRadius = globeSize / 2;  // e.g., 450px for 900px globe
+const orbitHeight = 120;            // How high above Earth the arc sits
+const arcRadius = earthRadius + orbitHeight;  // Planets orbit at this radius
+
+// Position on arc (only upper portion: 180° to 360° / 0°)
+// Angle ranges from ~150° to ~30° (top arc only)
+const arcStartAngle = 150;  // degrees (left side)
+const arcEndAngle = 30;     // degrees (right side)
+
+// Calculate position for each planet
+const calculateArcPosition = (index: number, totalPlanets: number, time: number) => {
+  const arcSpan = arcStartAngle - arcEndAngle;  // 120°
+  const spacing = arcSpan / (totalPlanets - 1);
   
-  // Day/night terminator
-  terminator: `linear-gradient(135deg,
-    transparent 0%,
-    transparent 40%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.7) 60%,
-    rgba(0, 0, 0, 0.9) 100%
-  )`,
+  // Base angle for this planet (evenly spaced)
+  const baseAngle = arcStartAngle - (index * spacing);
   
-  // Specular highlight (sunlight)
-  specular: `radial-gradient(ellipse 50% 40% at 65% 30%,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(255, 255, 255, 0.2) 40%,
-    transparent 70%
-  )`,
+  // Animate: add time-based offset (all planets move together)
+  const animatedAngle = baseAngle - (time * rotationSpeed);
   
-  // Atmospheric rim glow
-  atmosphere: `radial-gradient(circle at 50% 50%,
-    transparent 48%,
-    rgba(100, 180, 255, 0.3) 50%,
-    rgba(80, 160, 255, 0.5) 52%,
-    rgba(60, 140, 255, 0.3) 54%,
-    transparent 56%
-  )`,
+  // Convert to radians and calculate position
+  const angleRad = (animatedAngle * Math.PI) / 180;
+  const x = Math.cos(angleRad) * arcRadius;
+  const y = -Math.sin(angleRad) * arcRadius;  // Negative because Y increases downward
+  
+  return { x, y, angle: animatedAngle };
 };
 ```
 
 ---
 
-## Globe Positioning
+## Visibility & Occlusion Logic
 
-The key visual effect from the reference is the globe at the **bottom of the screen**, with only the top portion visible:
+Planets should hide when they reach the sides of the Earth (going behind it):
 
 ```text
-┌────────────────────────────────────────────────────────────────────────────────┐
-│  GLOBE POSITIONING                                                              │
-│                                                                                 │
-│  Desktop:                                                                       │
-│  • Globe size: 700-800px diameter                                               │
-│  • Position: bottom: 0, translateY(35%)                                         │
-│  • Result: ~65% of globe visible                                                │
-│                                                                                 │
-│  Tablet:                                                                        │
-│  • Globe size: 550-600px diameter                                               │
-│  • Position: bottom: 0, translateY(40%)                                         │
-│  • Result: ~60% of globe visible                                                │
-│                                                                                 │
-│  Mobile:                                                                        │
-│  • Globe size: 400-450px diameter                                               │
-│  • Position: bottom: 0, translateY(45%)                                         │
-│  • Result: ~55% of globe visible                                                │
-└────────────────────────────────────────────────────────────────────────────────┘
+VISIBLE ZONE: Angles between ~150° and ~30° (top arc)
+
+         150°    120°    90°     60°     30°
+           ╲      ╲      ↑      ╱      ╱
+            ╲      ╲     ○     ╱      ╱
+             ╲      ○   ○   ○      ╱
+              ○                    ○
+             ↑                      ↑
+    FADE OUT │    FULLY VISIBLE    │ FADE OUT
+    ZONE     │       ZONE          │ ZONE
+             │                      │
+   ╔═════════╬══════════════════════╬═════════╗
+   ║         │     EARTH EDGE       │         ║
+   ║         │                      │         ║
+   ║         └──────────────────────┘         ║
+   ║              EARTH BODY                  ║
+   ╚══════════════════════════════════════════╝
+```
+
+```typescript
+const calculateVisibility = (angle: number) => {
+  // Visible zone: 150° to 30°
+  const visibleStart = 150;
+  const visibleEnd = 30;
+  const fadeZone = 15;  // 15° fade-in/fade-out zone
+  
+  let opacity = 1;
+  let zIndex = 50;
+  
+  if (angle > visibleStart) {
+    // Fading out on left side
+    const fadeProgress = (angle - visibleStart) / fadeZone;
+    opacity = Math.max(0, 1 - fadeProgress);
+    zIndex = 25;  // Behind Earth
+  } else if (angle < visibleEnd) {
+    // Fading out on right side
+    const fadeProgress = (visibleEnd - angle) / fadeZone;
+    opacity = Math.max(0, 1 - fadeProgress);
+    zIndex = 25;  // Behind Earth
+  }
+  
+  return { opacity, zIndex };
+};
 ```
 
 ---
 
-## Orbit System Repositioning
-
-With the Earth at the bottom, the orbiting planets need to be repositioned higher:
+## Layout Structure
 
 ```text
-┌────────────────────────────────────────────────────────────────────────────────┐
-│  ORBIT SYSTEM POSITION                                                          │
-│                                                                                 │
-│  Current: Centered vertically (50% from top)                                    │
-│  New: Upper portion (25-35% from top)                                           │
-│                                                                                 │
-│  The elliptical orbit will be positioned ABOVE the large Earth                  │
-│  Planets orbit around a smaller "focal point" (not the visible Earth)           │
-│                                                                                 │
-│  OR: The large Earth IS the center, and planets orbit around its visible        │
-│      portion, going behind it when at the back of the orbit                     │
-└────────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────┐
+│  NAVBAR (z-index: 100)                                          │
+├────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│                     [Optional: Hero text]                       │
+│                                                                 │
+│          ○ ──→ ○ ──→ ○ ──→ ○ ──→ ○ ──→ ○ (SERVICE PLANETS)     │
+│        ╱                                    ╲                   │
+│       ╱                                      ╲                  │
+│      ╱                                        ╲                 │
+│     ╱          ┌──────────────────────┐        ╲                │
+│    ╱           │                      │         ╲               │
+│   ╱            │    3D EARTH GLOBE    │          ╲              │
+├───────────────┬┤    (React Three)     ├┬────────────────────────┤
+│  (fade out)   │└──────────────────────┘│     (fade out)         │
+│               │                        │                        │
+│               │  (extends below viewport)                       │
+└───────────────┴────────────────────────┴────────────────────────┘
 ```
 
 ---
 
 ## Files to Modify
 
-| File | Changes |
-|------|---------|
-| `src/components/hero/EarthGlobe.tsx` | Complete redesign with photorealistic layers, larger size, bottom positioning |
-| `src/components/hero/HeroSection.tsx` | Dark space background, new layout with Earth at bottom |
-| `src/components/hero/PlanetaryOrbitHero.tsx` | Reposition orbit system, adjust for bottom Earth layout |
-| `src/index.css` | Add new keyframes for atmosphere glow, city lights twinkle |
+### 1. `HeroSection.tsx` - Unified Layout
+- Remove separate `PlanetaryOrbitHero` positioning
+- Create new `ArcOrbitSystem` component that positions planets relative to Earth
+- Pass Earth position/size to orbit system for proper alignment
+
+### 2. `ArcOrbitSystem.tsx` (NEW) - Replace `PlanetaryOrbitHero.tsx`
+- Calculate arc path based on Earth's size
+- Position planets along the top curve
+- Handle occlusion when planets go behind Earth edges
+- Animate all planets moving in one direction (left-to-right or continuous loop)
+
+### 3. `OrbitingPlanet.tsx` - Minor Updates
+- Keep most styling the same
+- Update to work with arc-based positioning
+
+### 4. Keep `Earth3D.tsx` As-Is
+- The 3D Earth component is working correctly
+- Just need to position it as the anchor for the orbit arc
 
 ---
 
-## New Globe CSS Layers
+## Technical Details
 
-```css
-/* Atmospheric scattering effect */
-.globe-atmosphere {
-  position: absolute;
-  inset: -10%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    transparent 40%,
-    rgba(100, 180, 255, 0.15) 45%,
-    rgba(80, 160, 255, 0.3) 48%,
-    rgba(60, 140, 255, 0.2) 52%,
-    transparent 60%
-  );
-  filter: blur(20px);
-  animation: atmosphere-pulse 4s ease-in-out infinite;
+### Arc Orbit Configuration
+
+```typescript
+interface ArcOrbitConfig {
+  // Arc geometry (relative to Earth center)
+  orbitRadius: number;      // Distance from Earth center to orbit path
+  arcStartAngle: number;    // Left edge (degrees, e.g., 160°)
+  arcEndAngle: number;      // Right edge (degrees, e.g., 20°)
+  
+  // Animation
+  rotationSpeed: number;    // Degrees per second
+  direction: 'clockwise' | 'counterclockwise';
+  
+  // Planet sizing
+  planetSize: number;
+  
+  // Earth reference
+  earthCenterY: number;     // Y position of Earth center (from top)
+  earthRadius: number;      // Radius of Earth (for collision)
 }
 
-/* City lights on night side */
-.globe-city-lights {
-  background-image: radial-gradient(1px 1px at 60% 40%, #ffa500 50%, transparent),
-                    radial-gradient(1.5px 1.5px at 65% 45%, #ffcc00 50%, transparent),
-                    /* ... more city positions */;
-  animation: city-twinkle 2s ease-in-out infinite;
-}
+// Desktop config
+const desktopConfig: ArcOrbitConfig = {
+  orbitRadius: 520,        // 450 (Earth radius) + 70 (orbit height)
+  arcStartAngle: 155,      // Left visible edge
+  arcEndAngle: 25,         // Right visible edge
+  rotationSpeed: 5,        // 5 degrees per second
+  direction: 'clockwise',
+  planetSize: 85,
+  earthCenterY: 450,       // Center of Earth from visible top
+  earthRadius: 450,
+};
+```
 
-/* Terminator line (day/night boundary) */
-.globe-terminator {
-  background: linear-gradient(
-    135deg,
-    transparent 35%,
-    rgba(0, 0, 0, 0.2) 45%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.8) 60%
-  );
-}
+### Planet Position Calculation
+
+```typescript
+const calculatePlanetPosition = (
+  planetIndex: number, 
+  totalPlanets: number, 
+  time: number,
+  config: ArcOrbitConfig
+) => {
+  // Spread planets evenly across the visible arc
+  const arcSpan = config.arcStartAngle - config.arcEndAngle; // ~130°
+  const offset = arcSpan / totalPlanets; // ~21° between each planet
+  
+  // Each planet starts at a different point on the arc
+  const baseAngle = config.arcStartAngle - (planetIndex * offset);
+  
+  // Animate: continuous movement along the arc
+  // When a planet goes past arcEndAngle, it wraps to arcStartAngle
+  const animatedAngle = ((baseAngle - time * config.rotationSpeed) % 360);
+  
+  // Convert to screen coordinates
+  const angleRad = (animatedAngle * Math.PI) / 180;
+  const x = Math.cos(angleRad) * config.orbitRadius;
+  const y = config.earthCenterY - Math.sin(angleRad) * config.orbitRadius;
+  
+  // Calculate visibility based on angle
+  const isVisible = animatedAngle <= config.arcStartAngle + 15 
+                 && animatedAngle >= config.arcEndAngle - 15;
+  
+  return { x, y, isVisible, angle: animatedAngle };
+};
 ```
 
 ---
 
-## Expected Visual Outcome
+## Animation Flow
 
-**Current State:**
-- Small centered globe (320px)
-- Simple flat SVG appearance
-- Globe vertically centered in viewport
+The planets move in a continuous conveyor-belt style around the Earth's curve:
 
-**After Implementation:**
-- Large photorealistic globe (700px+) at bottom of screen
-- Multiple layered 3D effects (atmosphere, terminator, city lights)
-- Only top ~60-65% of globe visible (rest clips below viewport)
-- Strong atmospheric blue glow around edges
-- Dramatic lighting from top-right (sunlight effect)
-- Dark space background with depth
-- Orbiting service planets positioned above the Earth
-- Immersive, cinematic space-themed hero section
+```text
+Frame 0:   [1] [2] [3] [4] [5] [6]
+             ↓   ↓   ↓   ↓   ↓   ↓
+Frame 1:      [1] [2] [3] [4] [5] [6]
+               ↓   ↓   ↓   ↓   ↓   ↓
+Frame 2:        [1] [2] [3] [4] [5] [6]
+                 ↓   ↓   ↓   ↓   ↓   ↓
+                                 ↓   ↓
+                              (fade out, go behind Earth)
+                                 ↓
+                          (reappear on left side)
+```
+
+When a planet reaches the right edge, it fades out, goes "behind" the Earth, and reappears on the left side - creating a continuous loop.
+
+---
+
+## Expected Outcome
+
+After implementation:
+
+1. **Earth at bottom** - Large 3D Earth positioned at bottom of viewport (top 60% visible)
+
+2. **Arc orbit above Earth** - Service planets follow the curvature of the Earth's top edge
+
+3. **Smooth animation** - Planets continuously slide along the arc (left to right or looping)
+
+4. **Realistic occlusion** - Planets fade out and go behind the Earth at the edges
+
+5. **Cohesive design** - The orbit path visually aligns with the Earth's spherical shape
 
