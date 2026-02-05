@@ -81,17 +81,22 @@ export const HeroSection = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 overflow-hidden"
+        className="absolute left-1/2 -translate-x-1/2"
         style={{
           zIndex: 30,
           width: earthWidth,
-          height: earthVisibleHeight,
+          height: "auto",
+          bottom: isMobile ? "-25vh" : isTablet ? "-30vh" : "-35vh",
         }}
       >
         <img 
           src={earthHeroImg} 
           alt="Earth" 
-          className="w-full h-full object-cover object-bottom"
+          className="w-full h-auto"
+          style={{
+            aspectRatio: "1 / 1",
+            objectFit: "cover",
+          }}
         />
       </motion.div>
       
