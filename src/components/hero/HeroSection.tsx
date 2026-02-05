@@ -2,7 +2,7 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { ArcOrbitSystem } from "./ArcOrbitSystem";
 import { useIsMobile } from "@/hooks/use-mobile";
-import earthHeroImg from "@/assets/earth-hero.png";
+import earthHeroImg from "@/assets/earth-clean.png";
 
 export const HeroSection = () => {
   const isMobile = useIsMobile();
@@ -17,10 +17,10 @@ export const HeroSection = () => {
     return () => window.removeEventListener("resize", checkTablet);
   }, []);
   
-  // Earth sizing - show ONLY the actual Earth landmass, NO blue space/atmosphere
-  const earthWidth = isMobile ? "220%" : isTablet ? "200%" : "180%";
-  // Much smaller height to crop out all the blue space - just the Earth
-  const earthVisibleHeight = isMobile ? "18vh" : isTablet ? "20vh" : "22vh";
+  // Earth sizing - clean image, show full globe curve
+  const earthWidth = isMobile ? "180%" : isTablet ? "160%" : "140%";
+  // Height for the visible Earth portion
+  const earthVisibleHeight = isMobile ? "35vh" : isTablet ? "40vh" : "45vh";
   
   // Navbar height approximation (adjust if navbar changes)
   const navbarHeight = "4rem"; // 64px typical navbar
@@ -82,7 +82,7 @@ export const HeroSection = () => {
         <ArcOrbitSystem earthVisibleHeight={earthVisibleHeight} />
       </motion.div>
 
-      {/* Large Earth image at bottom - ONLY the Earth, no blue space/atmosphere */}
+      {/* Large Earth image at bottom - clean globe without blue space */}
       <div
         className="absolute bottom-0 left-1/2 overflow-hidden pointer-events-none"
         style={{
@@ -90,8 +90,6 @@ export const HeroSection = () => {
           width: earthWidth,
           height: earthVisibleHeight,
           transform: "translateX(-50%)",
-          // Tight ellipse clip to show only the Earth, hide blue atmosphere
-          clipPath: "ellipse(55% 100% at 50% 100%)",
         }}
       >
         <motion.div
@@ -105,8 +103,7 @@ export const HeroSection = () => {
             alt="Earth"
             className="w-full h-full object-cover"
             style={{
-              // Position to show only the actual Earth landmass, crop out blue space
-              objectPosition: "center 20%",
+              objectPosition: "center top",
             }}
           />
         </motion.div>
