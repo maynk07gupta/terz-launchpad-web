@@ -17,16 +17,10 @@ export const HeroSection = () => {
     return () => window.removeEventListener("resize", checkTablet);
   }, []);
   
-  // Earth horizon sizing - wide enough to cover the full viewport (left & right)
-  const earthWidth = isMobile ? "240%" : isTablet ? "200%" : "170%";
-  // How much to show (top visible portion)
-  const earthVisibleHeight = isMobile ? "40vh" : isTablet ? "45vh" : "50vh";
-  // Reposition the Earth texture within the oval so more landmass/countries are visible
-  const earthObjectPosition = isMobile
-    ? ("50% 56%" as const)
-    : isTablet
-      ? ("50% 58%" as const)
-      : ("50% 60%" as const);
+  // Earth sizing - responsive to fill bottom as a wide curved horizon
+  const earthWidth = isMobile ? "180%" : isTablet ? "160%" : "140%";
+  // Height for the visible Earth portion
+  const earthVisibleHeight = isMobile ? "38vh" : isTablet ? "42vh" : "45vh";
   
   // Navbar height approximation (adjust if navbar changes)
   const navbarHeight = "4rem"; // 64px typical navbar
@@ -73,9 +67,9 @@ export const HeroSection = () => {
         }}
       />
       
-      {/* Deep space nebula glow */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full bg-primary/5 blur-[120px] -z-5" />
-      <div className="absolute top-1/4 right-0 w-[400px] h-[300px] rounded-full bg-accent/5 blur-[100px] -z-5" />
+      {/* Deep space nebula glow - subtle, no blue atmosphere */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[400px] rounded-full bg-primary/3 blur-[120px] -z-5" />
+      <div className="absolute top-1/4 right-0 w-[400px] h-[300px] rounded-full bg-accent/3 blur-[100px] -z-5" />
 
       {/* Arc Orbit System - planets orbit above Earth */}
       <motion.div
@@ -88,15 +82,16 @@ export const HeroSection = () => {
         <ArcOrbitSystem earthVisibleHeight={earthVisibleHeight} />
       </motion.div>
 
-      {/* Large Earth image at bottom - full-width horizon */}
-      {/* NOTE: keep X-centering on a non-animated wrapper; framer-motion overrides transform */}
+      {/* Large Earth image at bottom - wide curved horizon */}
       <div
-        className="absolute bottom-0 left-1/2 overflow-hidden pointer-events-none rounded-full"
+        className="absolute bottom-0 left-1/2 overflow-hidden pointer-events-none"
         style={{
           zIndex: 30,
           width: earthWidth,
           height: earthVisibleHeight,
           transform: "translateX(-50%)",
+          // Elliptical clip to crop out blue atmosphere, show only globe
+          clipPath: "ellipse(52% 100% at 50% 100%)",
         }}
       >
         <motion.div
@@ -110,7 +105,7 @@ export const HeroSection = () => {
             alt="Earth"
             className="w-full h-full object-cover"
             style={{
-              objectPosition: earthObjectPosition,
+              objectPosition: "center 35%",
             }}
           />
         </motion.div>
