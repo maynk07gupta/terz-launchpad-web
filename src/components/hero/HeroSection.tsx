@@ -17,10 +17,10 @@ export const HeroSection = () => {
     return () => window.removeEventListener("resize", checkTablet);
   }, []);
   
-  // Earth sizing - show globe curve at bottom, crop black space above
-  const earthWidth = isMobile ? "200%" : isTablet ? "180%" : "160%";
-  // Height to show the globe, positioned to crop the black area
-  const earthVisibleHeight = isMobile ? "30vh" : isTablet ? "35vh" : "40vh";
+  // Earth sizing - full curved globe visible
+  const earthWidth = isMobile ? "280%" : isTablet ? "240%" : "200%";
+  // Height to show full globe curve without cropping countries
+  const earthVisibleHeight = isMobile ? "45vh" : isTablet ? "50vh" : "55vh";
   
   // Navbar height approximation (adjust if navbar changes)
   const navbarHeight = "4rem"; // 64px typical navbar
@@ -101,10 +101,10 @@ export const HeroSection = () => {
           <img
             src={earthHeroImg}
             alt="Earth"
-            className="w-full h-full object-cover"
+            className="w-full h-auto"
             style={{
-              // Position to show the globe part, cropping out black space above
-              objectPosition: "center 100%",
+              // Show full globe - position to display curved horizon
+              transform: "translateY(-15%)",
             }}
           />
         </motion.div>
