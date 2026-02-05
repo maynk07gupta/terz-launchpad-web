@@ -21,6 +21,12 @@ export const HeroSection = () => {
   const earthWidth = isMobile ? "240%" : isTablet ? "200%" : "170%";
   // How much to show (top visible portion)
   const earthVisibleHeight = isMobile ? "40vh" : isTablet ? "45vh" : "50vh";
+  // Reposition the Earth texture within the oval so more landmass/countries are visible
+  const earthObjectPosition = isMobile
+    ? ("50% 56%" as const)
+    : isTablet
+      ? ("50% 58%" as const)
+      : ("50% 60%" as const);
   
   return (
     <section className="relative overflow-hidden min-h-screen">
@@ -79,7 +85,7 @@ export const HeroSection = () => {
       {/* Large Earth image at bottom - full-width horizon */}
       {/* NOTE: keep X-centering on a non-animated wrapper; framer-motion overrides transform */}
       <div
-        className="absolute bottom-0 left-1/2 overflow-hidden pointer-events-none"
+        className="absolute bottom-0 left-1/2 overflow-hidden pointer-events-none rounded-full"
         style={{
           zIndex: 30,
           width: earthWidth,
@@ -98,7 +104,7 @@ export const HeroSection = () => {
             alt="Earth"
             className="w-full h-full object-cover"
             style={{
-              objectPosition: "center bottom",
+              objectPosition: earthObjectPosition,
             }}
           />
         </motion.div>
