@@ -2,7 +2,7 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { ArcOrbitSystem } from "./ArcOrbitSystem";
 import { useIsMobile } from "@/hooks/use-mobile";
-import earthHeroImg from "@/assets/earth-clean.png";
+import earthHeroImg from "@/assets/earth-globe-clean.png";
 
 export const HeroSection = () => {
   const isMobile = useIsMobile();
@@ -17,10 +17,10 @@ export const HeroSection = () => {
     return () => window.removeEventListener("resize", checkTablet);
   }, []);
   
-  // Earth sizing - clean image, show full globe curve
-  const earthWidth = isMobile ? "180%" : isTablet ? "160%" : "140%";
-  // Height for the visible Earth portion
-  const earthVisibleHeight = isMobile ? "35vh" : isTablet ? "40vh" : "45vh";
+  // Earth sizing - show globe curve at bottom, crop black space above
+  const earthWidth = isMobile ? "200%" : isTablet ? "180%" : "160%";
+  // Height to show the globe, positioned to crop the black area
+  const earthVisibleHeight = isMobile ? "30vh" : isTablet ? "35vh" : "40vh";
   
   // Navbar height approximation (adjust if navbar changes)
   const navbarHeight = "4rem"; // 64px typical navbar
@@ -82,7 +82,7 @@ export const HeroSection = () => {
         <ArcOrbitSystem earthVisibleHeight={earthVisibleHeight} />
       </motion.div>
 
-      {/* Large Earth image at bottom - clean globe without blue space */}
+      {/* Large Earth image at bottom - crop black area, show only globe */}
       <div
         className="absolute bottom-0 left-1/2 overflow-hidden pointer-events-none"
         style={{
@@ -103,7 +103,8 @@ export const HeroSection = () => {
             alt="Earth"
             className="w-full h-full object-cover"
             style={{
-              objectPosition: "center top",
+              // Position to show the globe part, cropping out black space above
+              objectPosition: "center 100%",
             }}
           />
         </motion.div>
