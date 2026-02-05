@@ -17,10 +17,10 @@ export const HeroSection = () => {
     return () => window.removeEventListener("resize", checkTablet);
   }, []);
   
-  // Earth sizing - full curved globe visible
-  const earthWidth = isMobile ? "280%" : isTablet ? "240%" : "200%";
+  // Earth sizing - keep full globe visible across breakpoints
+  const earthWidth = "100%";
   // Height to show full globe curve without cropping countries
-  const earthVisibleHeight = isMobile ? "45vh" : isTablet ? "50vh" : "55vh";
+  const earthVisibleHeight = isMobile ? "46vh" : isTablet ? "52vh" : "58vh";
   
   // Navbar height approximation (adjust if navbar changes)
   const navbarHeight = "4rem"; // 64px typical navbar
@@ -82,14 +82,15 @@ export const HeroSection = () => {
         <ArcOrbitSystem earthVisibleHeight={earthVisibleHeight} />
       </motion.div>
 
-      {/* Large Earth image at bottom - crop black area, show only globe */}
+      {/* Large Earth image at bottom - keep full globe visible in an oval */}
       <div
-        className="absolute bottom-0 left-1/2 overflow-hidden pointer-events-none"
+        className="absolute left-0 right-0 overflow-hidden pointer-events-none"
         style={{
           zIndex: 30,
+          bottom: isMobile ? "0" : isTablet ? "1.5vh" : "2.5vh",
           width: earthWidth,
           height: earthVisibleHeight,
-          transform: "translateX(-50%)",
+          clipPath: "ellipse(70% 100% at 50% 100%)",
         }}
       >
         <motion.div
@@ -101,11 +102,7 @@ export const HeroSection = () => {
           <img
             src={earthHeroImg}
             alt="Earth"
-            className="w-full h-auto"
-            style={{
-              // Show full globe - position to display curved horizon
-              transform: "translateY(-15%)",
-            }}
+            className="h-full w-full object-contain object-bottom"
           />
         </motion.div>
       </div>
@@ -121,6 +118,7 @@ export const HeroSection = () => {
           zIndex: 60,
         }}
       />
+
     </section>
   );
 };
