@@ -17,9 +17,11 @@ export const HeroSection = () => {
     return () => window.removeEventListener("resize", checkTablet);
   }, []);
   
-  // Earth image sizing - responsive based on device
-  const earthWidth = isMobile ? "180%" : isTablet ? "140%" : "120%";
-  // How much to show (top visible portion) - using vh for responsiveness
+  // Earth image sizing - much wider to span full viewport
+  const earthSize = isMobile ? "250vw" : isTablet ? "200vw" : "180vw";
+  // How far below viewport bottom to push the Earth (shows only top curve)
+  const earthOffset = isMobile ? "60%" : isTablet ? "55%" : "50%";
+  // How much to show (top visible portion)
   const earthVisibleHeight = isMobile ? "40vh" : isTablet ? "45vh" : "50vh";
   
   return (
@@ -76,25 +78,25 @@ export const HeroSection = () => {
         <ArcOrbitSystem earthVisibleHeight={earthVisibleHeight} />
       </motion.div>
 
-      {/* Large Earth image at bottom - cropped to show top curved portion */}
+      {/* Large Earth image at bottom - spans full width centered */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute left-1/2 -translate-x-1/2"
+        className="absolute left-1/2"
         style={{
           zIndex: 30,
-          width: earthWidth,
-          height: "auto",
-          bottom: isMobile ? "-25vh" : isTablet ? "-30vh" : "-35vh",
+          width: earthSize,
+          height: earthSize,
+          transform: "translateX(-50%)",
+          bottom: `-${earthOffset}`,
         }}
       >
         <img 
           src={earthHeroImg} 
           alt="Earth" 
-          className="w-full h-auto"
+          className="w-full h-full rounded-full"
           style={{
-            aspectRatio: "1 / 1",
             objectFit: "cover",
           }}
         />
