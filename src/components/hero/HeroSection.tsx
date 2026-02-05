@@ -17,10 +17,8 @@ export const HeroSection = () => {
     return () => window.removeEventListener("resize", checkTablet);
   }, []);
   
-  // Earth image sizing - much wider to span full viewport
-  const earthSize = isMobile ? "250vw" : isTablet ? "200vw" : "180vw";
-  // How far below viewport bottom to push the Earth (shows only top curve)
-  const earthOffset = isMobile ? "60%" : isTablet ? "55%" : "50%";
+  // Earth horizon sizing - wide enough to cover the full viewport (left & right)
+  const earthWidth = isMobile ? "240%" : isTablet ? "200%" : "170%";
   // How much to show (top visible portion)
   const earthVisibleHeight = isMobile ? "40vh" : isTablet ? "45vh" : "50vh";
   
@@ -78,29 +76,33 @@ export const HeroSection = () => {
         <ArcOrbitSystem earthVisibleHeight={earthVisibleHeight} />
       </motion.div>
 
-      {/* Large Earth image at bottom - spans full width centered */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute left-1/2"
+      {/* Large Earth image at bottom - full-width horizon */}
+      {/* NOTE: keep X-centering on a non-animated wrapper; framer-motion overrides transform */}
+      <div
+        className="absolute bottom-0 left-1/2 overflow-hidden pointer-events-none"
         style={{
           zIndex: 30,
-          width: earthSize,
-          height: earthSize,
+          width: earthWidth,
+          height: earthVisibleHeight,
           transform: "translateX(-50%)",
-          bottom: `-${earthOffset}`,
         }}
       >
-        <img 
-          src={earthHeroImg} 
-          alt="Earth" 
-          className="w-full h-full rounded-full"
-          style={{
-            objectFit: "cover",
-          }}
-        />
-      </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="w-full h-full"
+        >
+          <img
+            src={earthHeroImg}
+            alt="Earth"
+            className="w-full h-full object-cover"
+            style={{
+              objectPosition: "center bottom",
+            }}
+          />
+        </motion.div>
+      </div>
       
       {/* Bottom gradient fade for smooth transition */}
       <div 
