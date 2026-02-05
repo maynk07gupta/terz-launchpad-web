@@ -28,8 +28,14 @@ export const HeroSection = () => {
       ? ("50% 58%" as const)
       : ("50% 60%" as const);
   
+  // Navbar height approximation (adjust if navbar changes)
+  const navbarHeight = "4rem"; // 64px typical navbar
+  
   return (
-    <section className="relative overflow-hidden min-h-screen">
+    <section 
+      className="relative overflow-hidden"
+      style={{ height: `calc(100vh - ${navbarHeight})` }}
+    >
       {/* Dark space background */}
       <div 
         className="absolute inset-0 -z-10"
