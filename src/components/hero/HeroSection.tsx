@@ -17,10 +17,10 @@ export const HeroSection = () => {
     return () => window.removeEventListener("resize", checkTablet);
   }, []);
   
-  // Earth sizing - show only the actual Earth, cropping out the blue space/atmosphere
-  const earthWidth = isMobile ? "200%" : isTablet ? "180%" : "160%";
-  // Smaller height to show only the Earth part, not the space
-  const earthVisibleHeight = isMobile ? "25vh" : isTablet ? "28vh" : "32vh";
+  // Earth sizing - show ONLY the actual Earth landmass, NO blue space/atmosphere
+  const earthWidth = isMobile ? "220%" : isTablet ? "200%" : "180%";
+  // Much smaller height to crop out all the blue space - just the Earth
+  const earthVisibleHeight = isMobile ? "18vh" : isTablet ? "20vh" : "22vh";
   
   // Navbar height approximation (adjust if navbar changes)
   const navbarHeight = "4rem"; // 64px typical navbar
