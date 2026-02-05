@@ -115,20 +115,20 @@ export const ArcOrbitSystem: React.FC<ArcOrbitSystemProps> = ({
     let planetSize: number;
     
     if (isSmall) {
-      // Mobile
+      // Mobile - 50% larger icons, higher orbit
       orbitWidth = vw * 0.65;
-      orbitHeight = 50;
-      planetSize = 50;
+      orbitHeight = 100; // Moved higher (was 50)
+      planetSize = 75;   // 50% larger (was 50)
     } else if (isMedium) {
-      // Tablet
+      // Tablet - 50% larger icons, higher orbit
       orbitWidth = vw * 0.5;
-      orbitHeight = 70;
-      planetSize = 70;
+      orbitHeight = 140; // Moved higher (was 70)
+      planetSize = 105;  // 50% larger (was 70)
     } else {
-      // Desktop
+      // Desktop - 50% larger icons, higher orbit
       orbitWidth = vw * 0.4;
-      orbitHeight = 90;
-      planetSize = 85;
+      orbitHeight = 180; // Moved higher (was 90)
+      planetSize = 128;  // 50% larger (was 85)
     }
     
     return {
