@@ -119,22 +119,37 @@ const Home = () => {
             </p>
           </div>
 
-          <div
-            ref={servicesRef}
-            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {services.map((service, index) => (
-              <AnimatedServiceCard
-                key={service.id}
-                id={service.id}
-                title={service.title}
-                tagline={service.tagline}
-                image={service.image}
-                badge={service.badge}
-                index={index}
-                isVisible={servicesVisible}
-              />
-            ))}
+          <div ref={servicesRef}>
+            {/* First row: 3 cards */}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {services.slice(0, 3).map((service, index) => (
+                <AnimatedServiceCard
+                  key={service.id}
+                  id={service.id}
+                  title={service.title}
+                  tagline={service.tagline}
+                  image={service.image}
+                  badge={service.badge}
+                  index={index}
+                  isVisible={servicesVisible}
+                />
+              ))}
+            </div>
+            {/* Second row: 4 cards */}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-6">
+              {services.slice(3).map((service, index) => (
+                <AnimatedServiceCard
+                  key={service.id}
+                  id={service.id}
+                  title={service.title}
+                  tagline={service.tagline}
+                  image={service.image}
+                  badge={service.badge}
+                  index={index + 3}
+                  isVisible={servicesVisible}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>

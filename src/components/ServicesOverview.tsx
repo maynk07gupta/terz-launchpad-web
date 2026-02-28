@@ -192,12 +192,24 @@ const ServicesOverview = () => {
           </p>
         </motion.div>
 
+        {/* First row: 3 cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {servicesData.map((service, index) => (
+          {servicesData.slice(0, 3).map((service, index) => (
             <AnimatedServiceCard
               key={service.id}
               {...service}
               index={index}
+              isVisible={gridVisible}
+            />
+          ))}
+        </div>
+        {/* Second row: 4 cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-6 lg:mt-8">
+          {servicesData.slice(3).map((service, index) => (
+            <AnimatedServiceCard
+              key={service.id}
+              {...service}
+              index={index + 3}
               isVisible={gridVisible}
             />
           ))}
