@@ -14,6 +14,7 @@ import cosmeticsImg from "@/assets/cosmetics.jpg";
 import lmpcImg from "@/assets/lmpc.jpg";
 import iecImg from "@/assets/iec.jpg";
 import eprImg from "@/assets/epr.jpg";
+import wholesaleLicenseImg from "@/assets/wholesale-license.jpg";
 import heroRegulatoryImg from "@/assets/hero-regulatory.jpg";
 
 type ServiceCardData = {
@@ -66,6 +67,13 @@ const servicesData: ServiceCardData[] = [
     tagline: "EPR compliance and sustainability solutions",
     image: eprImg,
     badge: "CPCB",
+  },
+  {
+    id: "wholesale-license",
+    title: "Wholesale License",
+    tagline: "20B/21B & MD42 wholesale drug licensing",
+    image: wholesaleLicenseImg,
+    badge: "State Drug License",
   },
 ];
 

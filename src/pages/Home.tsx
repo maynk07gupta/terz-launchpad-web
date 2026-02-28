@@ -23,6 +23,7 @@ import CosmeticsImage from "@/assets/cosmetics.jpg";
 import LmpcImage from "@/assets/lmpc.jpg";
 import IecImage from "@/assets/iec.jpg";
 import EprImage from "@/assets/epr.jpg";
+import WholesaleLicenseImage from "@/assets/wholesale-license.jpg";
 
 const services = [
   {
@@ -66,6 +67,13 @@ const services = [
     tagline: "Annual returns, recycling partner management, and evidence tracking.",
     image: EprImage,
     badge: "CPCB",
+  },
+  {
+    id: "wholesale-license",
+    title: "Wholesale License",
+    tagline: "20B/21B & MD42 wholesale drug licenses for importers and manufacturers.",
+    image: WholesaleLicenseImage,
+    badge: "State Drug License",
   },
 ];
 

@@ -10,6 +10,7 @@ import cosmeticsImg from "@/assets/cosmetics.jpg";
 import lmpcImg from "@/assets/lmpc.jpg";
 import iecImg from "@/assets/iec.jpg";
 import eprImg from "@/assets/epr.jpg";
+import wholesaleLicenseImg from "@/assets/wholesale-license.jpg";
 
 interface ServiceCard {
   id: string;
@@ -61,6 +62,13 @@ const services: ServiceCard[] = [
     tagline: "Extended producer responsibility & recycling",
     badge: "CPCB",
     image: eprImg,
+  },
+  {
+    id: "wholesale-license",
+    title: "Wholesale License",
+    tagline: "20B/21B & MD42 drug wholesale licensing",
+    badge: "State Drug License",
+    image: wholesaleLicenseImg,
   },
 ];
 

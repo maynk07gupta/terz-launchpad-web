@@ -44,6 +44,7 @@ import cosmeticsImg from "@/assets/cosmetics.jpg";
 import lmpcImg from "@/assets/lmpc.jpg";
 import iecImg from "@/assets/iec.jpg";
 import eprImg from "@/assets/epr.jpg";
+import wholesaleLicenseImg from "@/assets/wholesale-license.jpg";
 
 type ProcedureStep = {
   title: string;
@@ -580,6 +581,103 @@ const serviceCatalog: ServiceProcedure[] = [
       },
     ],
   },
+  {
+    id: "wholesale-license",
+    title: "Wholesale License (20B/21B & MD42)",
+    tagline: "Wholesale drug license for pharma & medical device businesses",
+    description:
+      "Obtain your wholesale drug license — 20B/21B for pharmaceuticals and medical devices, or MD42 for medical devices only. A mandatory prerequisite for import and manufacturing license holders.",
+    image: wholesaleLicenseImg,
+    badge: "State Drug License",
+    manufacturerSteps: [
+      {
+        title: "Determine License Type",
+        description:
+          "Identify whether you need Form 20B/21B (for pharmaceuticals/drugs and medical devices) or Form MD42 (for medical devices only) based on your product portfolio.",
+        icon: Layers,
+        phase: "Assessment",
+      },
+      {
+        title: "Premises & Infrastructure Setup",
+        description:
+          "Ensure your storage premises meet the prescribed conditions including adequate space, ventilation, temperature control, and qualified pharmacist availability.",
+        icon: Building2,
+        phase: "Preparation",
+      },
+      {
+        title: "Documentation Compilation",
+        description:
+          "Prepare all required documents including proof of premises, pharmacist qualification certificates, site layout plans, and business registration details.",
+        icon: FileText,
+        phase: "Preparation",
+      },
+      {
+        title: "Application Filing with State Drug Authority",
+        description:
+          "Submit the wholesale license application to the State Drug Licensing Authority with prescribed fees and complete documentation.",
+        icon: UploadCloud,
+        phase: "Submission",
+      },
+      {
+        title: "Premises Inspection",
+        description:
+          "Cooperate with the Drug Inspector's site inspection to verify premises compliance with storage and safety requirements.",
+        icon: ShieldCheck,
+        phase: "Review",
+      },
+      {
+        title: "License Grant & Renewal Management",
+        description:
+          "Receive your wholesale license and set up timely renewal processes. Licenses are typically valid for 5 years.",
+        icon: RefreshCcw,
+        phase: "Approval",
+      },
+    ],
+    importerSteps: [
+      {
+        title: "Assess Wholesale License Requirement",
+        description:
+          "Determine if your import license mandates a wholesale license (20B/21B for drugs & devices, MD42 for devices only) as a prerequisite.",
+        icon: Target,
+        phase: "Assessment",
+      },
+      {
+        title: "Appoint Qualified Person",
+        description:
+          "Engage a registered pharmacist or competent person as required by the State Drug Authority for wholesale operations.",
+        icon: UserCheck,
+        phase: "Preparation",
+      },
+      {
+        title: "Prepare Premises Documentation",
+        description:
+          "Document storage facility details, cold chain capabilities (if needed), and compliance with Good Storage Practices.",
+        icon: FileText,
+        phase: "Preparation",
+      },
+      {
+        title: "Submit Application to State Authority",
+        description:
+          "File the wholesale license application with the concerned State Drug Licensing Authority along with import license details.",
+        icon: UploadCloud,
+        phase: "Submission",
+      },
+      {
+        title: "Inspection & Compliance Verification",
+        description:
+          "Facilitate the Drug Inspector's visit for premises verification and ensure all conditions of the license are met.",
+        icon: ShieldCheck,
+        phase: "Review",
+      },
+      {
+        title: "License Issuance & Ongoing Compliance",
+        description:
+          "Obtain the wholesale license, maintain records of all transactions, and ensure timely renewals before expiry.",
+        icon: Globe2,
+        phase: "Approval",
+      },
+    ],
+  },
 ];
 
 import ServicesOverview from "@/components/ServicesOverview";
@@ -624,7 +722,7 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
   }, [location.hash]);
 
   // Services that support both manufacturer and importer roles
-  const dualRoleServices = ["medical-devices", "ivd"];
+  const dualRoleServices = ["medical-devices", "ivd", "wholesale-license"];
 
   const activeService = useMemo(
     () =>
