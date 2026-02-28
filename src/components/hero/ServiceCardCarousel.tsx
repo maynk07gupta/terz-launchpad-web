@@ -1,10 +1,9 @@
 import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import useEmblaCarousel from "embla-carousel-react";
 import { cn } from "@/lib/utils";
 
-// Import service images
 import medicalDevicesImg from "@/assets/medical-devices.jpg";
 import ivdImg from "@/assets/ivd.jpg";
 import cosmeticsImg from "@/assets/cosmetics.jpg";
@@ -69,114 +68,70 @@ export const ServiceCardCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  // Auto-advance every 4 seconds
+  // Auto-advance every 4.5 seconds
   React.useEffect(() => {
     if (!emblaApi) return;
-
     const interval = setInterval(() => {
       emblaApi.scrollNext();
-    }, 4000);
-
+    }, 4500);
     return () => clearInterval(interval);
   }, [emblaApi]);
 
   // Track selected slide
   React.useEffect(() => {
     if (!emblaApi) return;
-
-    const onSelect = () => {
-      setSelectedIndex(emblaApi.selectedScrollSnap());
-    };
-
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
     emblaApi.on("select", onSelect);
     onSelect();
-
-    return () => {
-      emblaApi.off("select", onSelect);
-    };
+    return () => { emblaApi.off("select", onSelect); };
   }, [emblaApi]);
 
-  const scrollTo = (index: number) => {
-    emblaApi?.scrollTo(index);
-  };
+  const scrollTo = (index: number) => emblaApi?.scrollTo(index);
 
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.4 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
       className="w-full"
     >
-      {/* Carousel Container */}
-      <div ref={emblaRef} className="overflow-hidden rounded-2xl">
+      {/* Carousel */}
+      <div ref={emblaRef} className="overflow-hidden rounded-xl">
         <div className="flex">
-          {services.map((service, index) => (
-            <div
-              key={service.id}
-              className="flex-[0_0_100%] min-w-0 px-1"
-            >
-              <Link
-                to={`/services#${service.id}`}
-                className="block"
-              >
-                <motion.div
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                  className={cn(
-                    "relative h-[280px] sm:h-[320px] lg:h-[380px] rounded-2xl overflow-hidden",
-                    "shadow-xl hover:shadow-2xl transition-shadow duration-300",
-                    "group cursor-pointer"
-                  )}
-                >
-                  {/* Background Image */}
+          {services.map((service) => (
+            <div key={service.id} className="flex-[0_0_100%] min-w-0 px-1">
+              <Link to={`/services#${service.id}`} className="block" aria-label={`Learn more about ${service.title}`}>
+                <div className="relative h-[260px] sm:h-[300px] lg:h-[360px] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group cursor-pointer">
+                  {/* Image */}
                   <img
                     src={service.image}
-                    alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    alt={`${service.title} – regulatory compliance service`}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent" />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
                   {/* Badge */}
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex rounded-full bg-primary px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-md">
+                    <span className="inline-flex rounded-md bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow">
                       {service.badge}
                     </span>
                   </div>
 
                   {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">
+                  <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
                       {service.title}
                     </h3>
-                    <p className="text-white/80 text-sm sm:text-base lg:text-lg">
+                    <p className="text-white/80 text-sm sm:text-base">
                       {service.tagline}
                     </p>
-
-                    {/* Hover indicator */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -10 }}
-                      whileHover={{ opacity: 1, x: 0 }}
-                      className="mt-3 flex items-center gap-2 text-white/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <span>Learn more</span>
-                      <svg
-                        className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </motion.div>
+                    <span className="mt-2 inline-flex items-center gap-1 text-white/60 text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                      Learn more →
+                    </span>
                   </div>
-                </motion.div>
+                </div>
               </Link>
             </div>
           ))}
@@ -184,16 +139,16 @@ export const ServiceCardCarousel = () => {
       </div>
 
       {/* Dot Navigation */}
-      <div className="flex justify-center gap-2 mt-6">
+      <div className="flex justify-center gap-2 mt-5">
         {services.map((_, index) => (
           <button
             key={index}
             onClick={() => scrollTo(index)}
             className={cn(
-              "w-2.5 h-2.5 rounded-full transition-all duration-300",
+              "h-2.5 rounded-full transition-all duration-300",
               selectedIndex === index
-                ? "bg-primary w-8"
-                : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                ? "bg-primary w-7"
+                : "bg-muted-foreground/25 hover:bg-muted-foreground/40 w-2.5"
             )}
             aria-label={`Go to slide ${index + 1}`}
           />
