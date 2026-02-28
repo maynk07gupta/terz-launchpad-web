@@ -18,6 +18,7 @@ const Navbar = () => {
     { name: "Legal Metrology", hash: "lmpc" },
     { name: "Import Export Code", hash: "iec" },
     { name: "EPR", hash: "epr" },
+    { name: "Wholesale License", hash: "wholesale-license" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
