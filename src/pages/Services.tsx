@@ -81,7 +81,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Determine Device Classification",
         description:
-          "Classify your device under CDSCO categories (Class A, B, C, or D) based on risk level and intended use.",
+          "Medical devices in India are classified into four risk-based categories under the Medical Devices Rules, 2017 — Class A (low risk), Class B (low-moderate risk), Class C (moderate-high risk), and Class D (high risk). This classification is based on the device's invasiveness, duration of contact, and intended use, in line with the Global Harmonization Task Force (GHTF) framework. Accurate classification is the foundation of your entire regulatory strategy, as it determines the applicable licensing authority (State Licensing Authority for Class A/B, CDSCO for Class C/D), the required documentation, government fees, and approval timelines. Our experts analyse your device's intended use, risk profile, and predicate status to assign the correct risk class and map the optimal regulatory pathway.",
         icon: Layers,
         phase: "Assessment",
         keyDocuments: ["Risk analysis report", "Intended use statement", "Device description"],
@@ -92,7 +92,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Technical File Preparation",
         description:
-          "Compile comprehensive technical documentation including device description, quality certificates, and design specifications.",
+          "The technical file is the backbone of your CDSCO submission, comprising the Device Master File (DMF) and Plant Master File (PMF). The DMF must include comprehensive details about the device's design, manufacturing process, materials used, biocompatibility data, performance testing results, and intended clinical application. The PMF documents your manufacturing facility's capabilities, equipment, quality control processes, and environmental controls. For devices without a predicate in India, additional clinical investigation data may be required. Our regulatory team structures your technical file to meet CDSCO's Common Submission Dossier Template (CSDT) format, ensuring completeness and reducing the risk of queries or rejection.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["Device Master File (DMF)", "Plant Master File (PMF)", "Design specifications", "Quality testing reports"],
@@ -103,7 +103,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "ISO 13485 Certification Support",
         description:
-          "Ensure quality management system compliance and obtain necessary ISO certifications for manufacturing.",
+          "ISO 13485 certification is the internationally recognized quality management system standard specific to medical device manufacturers. Under MDR 2017, ISO 13485 compliance is mandatory for manufacturers of Class B, C, and D devices — without it, your application cannot proceed. The certification process involves establishing documented procedures for design control, production, installation, servicing, risk management, and corrective and preventive actions (CAPA). Our team assists you in preparing your QMS manual, conducting internal audits, addressing non-conformities, and coordinating with notified certification bodies to achieve or maintain your ISO 13485 certificate.",
         icon: ShieldCheck,
         phase: "Preparation",
         keyDocuments: ["QMS manual", "Process validation records", "Internal audit reports"],
@@ -114,7 +114,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Submit Application via OSMD Portal",
         description:
-          "File application through Online Submission of Medical Devices portal with all required documents and fees.",
+          "All medical device registration applications must be submitted electronically through CDSCO's SUGAM/OSMD (Online Submission of Medical Devices) portal. The submission requires uploading the complete technical dossier, proof of fee payment via TR-6 challan, and duly signed application forms — Form 40 for Registration Certificate or Form 10 for Import License. Government fees are structured based on risk class: approximately USD 1,500 per manufacturing site plus USD 1,000 per product for Class C/D devices. Our team manages the entire online submission process, ensures all documents are correctly formatted and uploaded, and tracks the application status through to acknowledgement.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Form 40 (Registration Certificate)", "Form 10 (Import License)", "Fee payment challan (TR-6)"],
@@ -125,7 +125,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Clinical Evaluation Assistance",
         description:
-          "Provide clinical data and evaluation reports as required for higher-risk device classifications.",
+          "Clinical evaluation is a critical regulatory requirement for higher-risk medical devices (Class C and D) that demonstrates the safety, performance, and clinical benefit of your device when used on the Indian population. This may involve a comprehensive literature review of existing clinical data, analysis of post-market surveillance data from other markets, or in some cases, a formal clinical investigation conducted at approved Indian clinical sites. The Drug Controller General of India (DCGI) may also request a technical presentation before the Medical Devices Technical Advisory Board. We assist in preparing your clinical evaluation report, coordinating with clinical investigation sites, and responding to DCGI queries to ensure a smooth evaluation process.",
         icon: Microscope,
         phase: "Review",
         keyDocuments: ["Clinical evaluation report", "Literature review", "Clinical investigation data (for Class C/D)"],
@@ -136,7 +136,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Registration Certificate Obtainment",
         description:
-          "Upon approval, receive registration certificate valid for 5 years, enabling legal marketing in India.",
+          "Upon successful review and approval by CDSCO, the manufacturer or authorized agent receives a Registration Certificate that grants legal authorization to market the medical device in India. This certificate is valid for five years from the date of issue and covers the specific device models and manufacturing sites listed in the application. The certificate must be renewed at least six months before its expiry to avoid any disruption in market access. Our team handles the final stages of approval, coordinates with CDSCO for certificate issuance, and sets up proactive renewal management to ensure your device remains continuously authorized for sale in India.",
         icon: Globe2,
         phase: "Approval",
         keyDocuments: ["Approval letter from DCGI", "Registration certificate"],
@@ -149,7 +149,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Appoint Indian Authorized Agent",
         description:
-          "Foreign manufacturers must designate an authorized representative in India for liaison with CDSCO.",
+          "Under Indian regulations, an overseas manufacturer cannot directly submit a registration application to CDSCO. It is mandatory to appoint an Indian entity as the Authorized Agent (AA) or license holder who will act as the local representative and hold the import license on the manufacturer's behalf. The appointment requires a formal Power of Attorney, an agent appointment deed, and the agent must possess a valid wholesale drug license in Form 20B/21B for stocking and selling medical devices. Our team can serve as your Authorized Agent in India or assist you in identifying and appointing a suitable local partner, ensuring all legal formalities are completed correctly.",
         icon: UserCheck,
         phase: "Assessment",
         keyDocuments: ["Authorization letter", "Agent appointment deed", "Power of attorney"],
@@ -160,7 +160,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Import License Documentation",
         description:
-          "Prepare import-specific documentation including foreign manufacturer details and product certifications.",
+          "The import license application requires a comprehensive dossier submitted in Form MD-14, leading to the grant of an import license in Form MD-15. The documentation package must include a Free Sale Certificate (FSC) from the country of origin, certificate of conformance, device master file, test reports, labeling samples, and authorization from the foreign manufacturer. All foreign documents must be notarized and apostilled or authenticated by the Indian Embassy in the country of origin. Government fees vary by risk class — ranging from USD 1,000 (Class A) to USD 3,000 (Class C/D) per manufacturing site, plus per-product fees. Our experts compile and review your complete dossier, ensuring every document meets CDSCO's requirements before submission.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["Form MD 14 / MD 15", "Free Sale Certificate (FSC) from country of origin", "Certificate of conformance"],
@@ -171,7 +171,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Quality Management System Verification",
         description:
-          "Verify and document QMS compliance at the foreign manufacturing facility.",
+          "CDSCO requires verification that the foreign manufacturing facility operates under a robust Quality Management System compliant with ISO 13485 or equivalent standards. This verification may involve a desk review of submitted QMS documentation or, in certain cases, a physical or virtual site audit of the overseas manufacturing facility conducted by CDSCO-appointed auditors. The audit fee is approximately USD 6,000 as prescribed under MDR 2017. Our team prepares your facility for audit readiness, ensures all QMS documentation is current and comprehensive, and coordinates the logistics of any remote or on-site inspections.",
         icon: ShieldCheck,
         phase: "Preparation",
         keyDocuments: ["ISO 13485 certificate", "Factory inspection report", "Quality manual"],
@@ -182,7 +182,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "CDSCO Application Filing",
         description:
-          "Submit import registration application with complete documentation through regulatory portal.",
+          "Once all documentation is compiled and verified, the import registration application is filed electronically through the SUGAM portal. The submission includes completed application forms, the entire technical dossier, proof of fee payment, agent authorization documents, and the foreign manufacturer's QMS certificates. All documents must be in English or accompanied by officially certified translations. Our team manages the end-to-end filing process, tracks the application through CDSCO's review pipeline, and promptly responds to any queries or requests for additional information from the regulatory authority.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Completed application forms", "Technical documentation", "Fee payment proof"],
@@ -193,7 +193,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Post-Market Surveillance Setup",
         description:
-          "Establish vigilance reporting systems and adverse event monitoring procedures.",
+          "Post-market surveillance (PMS) is a mandatory ongoing obligation for all medical device importers in India. It involves establishing formal systems for monitoring adverse events, reporting device malfunctions, tracking product complaints, and submitting periodic safety update reports to CDSCO. The PMS framework must include Standard Operating Procedures for vigilance reporting, field safety corrective actions, and a designated person responsible for regulatory communications. We help you design and implement a comprehensive PMS framework that meets CDSCO's requirements, including adverse event reporting templates, timelines for mandatory reporting, and periodic review mechanisms.",
         icon: Activity,
         phase: "Review",
         keyDocuments: ["Vigilance reporting SOP", "Adverse event monitoring plan", "Periodic safety update reports"],
@@ -204,7 +204,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Renewal Management",
         description:
-          "Manage ongoing compliance, periodic safety updates, and timely registration renewal.",
+          "Medical device import licenses are valid for five years from the date of issuance, after which they must be renewed to continue importing. The renewal process requires submission of updated compliance records, post-market surveillance reports, and evidence of continued conformity with MDR 2017 requirements. Late renewal applications can result in suspension of the import license, disrupting your supply chain and market presence in India. Our team proactively tracks your license validity, initiates renewal applications at least six months before expiry, and ensures all updated documentation is compiled and submitted on time to maintain uninterrupted market access.",
         icon: RefreshCcw,
         phase: "Approval",
         keyDocuments: ["Renewal application", "Updated compliance records", "Post-market surveillance reports"],
@@ -226,7 +226,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "IVD Classification Analysis",
         description:
-          "Determine if your IVD falls under regulated categories per CDSCO guidelines.",
+          "In-vitro diagnostic devices in India are classified under the Medical Devices Rules, 2017 into four risk-based categories following the GHTF framework. Class A covers low-risk IVDs such as specimen containers and general laboratory equipment, Class B includes self-testing blood glucose monitors, Class C covers clinical chemistry analysers, and Class D encompasses high-risk IVDs used for detecting HIV, HCV, HBV, and blood grouping. The classification determines whether your IVD requires a manufacturing license from the State Licensing Authority (Class A/B) or a Central License from CDSCO (Class C/D), as well as the applicable government fees and documentation requirements. Our experts evaluate your IVD's intended use, analyte, and risk profile to determine the correct classification and regulatory pathway.",
         icon: Layers,
         phase: "Assessment",
         keyDocuments: ["IVD intended use statement", "Risk analysis report", "Device description per MDR 2017"],
@@ -237,7 +237,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Performance Evaluation Documentation",
         description:
-          "Compile analytical and clinical performance data for your diagnostic product.",
+          "Performance evaluation is a critical component of IVD registration, requiring comprehensive analytical and clinical evidence demonstrating your diagnostic product's sensitivity, specificity, accuracy, precision, and reproducibility. For Class C and D IVDs, CDSCO may require clinical performance evaluation conducted on Indian population samples to validate the product's effectiveness in the local clinical setting. The analytical performance data must cover the device's measuring range, limit of detection, linearity, and interference studies. Our team assists in designing performance evaluation protocols, compiling clinical evidence summaries, and preparing the complete performance evaluation report in the format required by CDSCO.",
         icon: Activity,
         phase: "Preparation",
         keyDocuments: ["Analytical performance data", "Clinical performance evaluation", "Sensitivity/specificity reports"],
@@ -248,7 +248,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Quality System Compliance",
         description:
-          "Prepare ISO 13485 certification and quality management system documentation.",
+          "ISO 13485 certification is mandatory for manufacturers of Class B, C, and D IVD devices, while Class A manufacturers may use a self-declaration of conformity. The quality management system must cover all aspects of IVD manufacturing including design control, purchasing controls, production and process controls, corrective and preventive actions, and management review. For IVD manufacturers, specific attention must be given to validation of analytical methods, reference material traceability, and stability testing protocols. Our team guides you through QMS implementation, internal audit preparation, and coordination with notified bodies for certification.",
         icon: ShieldCheck,
         phase: "Preparation",
         keyDocuments: ["ISO 13485 certificate", "QMS manual", "Process validation records"],
@@ -259,7 +259,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Technical Dossier Compilation",
         description:
-          "Prepare comprehensive technical file including manufacturing details and validation studies.",
+          "The technical dossier for IVD registration must follow the Common Submission Dossier Template (CSDT) format specified in Schedule 5 of MDR 2017. It includes the Device Master File with detailed manufacturing process descriptions, raw material specifications, quality control procedures, stability data demonstrating shelf life claims, and labeling artwork showing compliance with Chapter VI requirements. For notified IVD kits (HIV, HBV, HCV, blood grouping sera), additional batch testing and lot release data may be required. Our regulatory team compiles your complete technical dossier, ensures it meets the CSDT structure, and cross-references all supporting documents for consistency and completeness.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["Device Master File (DMF)", "Manufacturing process details", "Stability data", "Labeling artwork"],
@@ -270,7 +270,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "CDSCO Submission and Tracking",
         description:
-          "Submit application through appropriate channels with all required documentation.",
+          "The submission pathway for IVD manufacturers depends on the device's risk classification. Class A and B IVDs require submission to the State Licensing Authority using Form MD-3 (application) for grant of license in Form MD-5. Class C and D IVDs must be submitted to CDSCO using Form MD-7 (application) for grant of license in Form MD-9. Government fees range from Rs. 5,000 for plant registration (Class A/B) to Rs. 50,000 (Class C/D), plus per-product fees. All applications are filed through the SUGAM online portal. Our team manages the complete submission process, monitors application progress, and coordinates responses to any regulatory queries.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Form MD-7/MD-9 (Manufacturer)", "Form MD-3/MD-5 (Class A/B)", "Fee payment challan"],
@@ -283,7 +283,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Import Authorization",
         description:
-          "Obtain necessary authorizations for importing IVD products into India.",
+          "Overseas IVD manufacturers must appoint an Indian Authorized Agent (IAA) to submit import license applications on their behalf. The IAA must hold a valid wholesale drug license in Form 20B and 21B, enabling them to stock and sell the imported IVD products in India. Under recent regulatory amendments, multiple importers can now import the same IVD product from the same overseas manufacturer, provided each holds a separate import license. The appointment is formalized through a Power of Attorney and agent appointment deed. Our team facilitates the entire authorization process, from agent selection to execution of legal documents.",
         icon: UserCheck,
         phase: "Assessment",
         keyDocuments: ["Authorization letter from foreign manufacturer", "Indian Authorized Agent appointment deed", "Power of attorney"],
@@ -294,7 +294,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Product Registration",
         description:
-          "Register imported IVD products with complete documentation and test reports.",
+          "Import registration of IVD kits requires submission of Form MD-14 to CDSCO for the grant of an import license in Form MD-15. The application dossier must include the Device Master File, performance evaluation data (analytical and clinical), Free Sale Certificate from the country of origin, and authorization from the foreign manufacturer. Each IVD product requires a separate application, and government fees range from USD 1,000 per plant plus USD 10 per product (Class A/B) to USD 3,000 per plant plus USD 500 per product (Class C/D). All foreign documents must be notarized and apostilled. Our team prepares and reviews the complete import license dossier to ensure compliance with CDSCO's requirements.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["Form MD-14 (Application)", "Free Sale Certificate from country of origin", "Device Master File", "Performance evaluation data"],
@@ -305,7 +305,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Label Compliance Review",
         description:
-          "Ensure product labeling meets all Indian regulatory requirements.",
+          "Product labeling for IVD devices imported into India must comply with Chapter VI of the Medical Devices Rules, 2017. Labels must include the IVD symbol, product name, intended use, storage conditions, lot/batch number, manufacturing and expiry dates, manufacturer name and address, and Indian Authorized Agent details — all printed in English. Instructions for Use (IFU) and package inserts must provide comprehensive details on specimen requirements, test procedure, result interpretation, limitations, and safety precautions. Our team conducts a thorough label compliance review, identifies gaps, and works with your design team to create fully compliant label artwork and documentation.",
         icon: Package,
         phase: "Review",
         keyDocuments: ["Product labels per MDR 2017 Chapter VI", "Instructions for use (IFU)", "Package insert"],
@@ -316,7 +316,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Distribution License Support",
         description:
-          "Obtain distribution licenses for commercial sale of IVD products.",
+          "Commercial distribution of imported IVD products in India requires a valid wholesale drug license. This license, issued by the State Licensing Authority in Form 20B/21B (for drugs and devices) or Form MD42 (for medical devices only), is a prerequisite for holding stock and selling IVD products to hospitals, laboratories, and distributors. The wholesale license application requires designated premises with adequate storage, a qualified pharmacist, and compliance with Good Storage Practices. Our team supports the entire distribution license process, from premises assessment and documentation to application filing and inspection coordination.",
         icon: Truck,
         phase: "Review",
         keyDocuments: ["Import license (Form MD-15)", "State wholesale license", "Distribution agreement"],
@@ -327,7 +327,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Post-Import Compliance",
         description:
-          "Maintain ongoing compliance with post-market surveillance requirements.",
+          "Importers of IVD devices have ongoing post-market obligations under MDR 2017, including adverse event monitoring, vigilance reporting, and submission of periodic safety update reports to CDSCO. Any serious adverse event or device malfunction must be reported within the prescribed timelines. Annual compliance filings are required to maintain the import license in good standing. Additionally, any changes to the device design, manufacturing process, or labeling after approval require prior notification to CDSCO. Our team establishes your post-market surveillance framework, trains your team on reporting requirements, and manages annual compliance submissions.",
         icon: RefreshCcw,
         phase: "Approval",
         keyDocuments: ["Vigilance reporting SOP", "Adverse event monitoring plan", "Annual compliance reports"],
@@ -349,7 +349,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Product Formulation Review",
         description:
-          "Ensure formulation complies with CDSCO permitted ingredients list.",
+          "Every cosmetic product sold in India — whether manufactured domestically or imported — must comply with ingredient specifications and safety standards prescribed in the Drugs and Cosmetics Act, 1940 and the Cosmetics Rules, 2020. The formulation review involves verifying that all ingredients are on the CDSCO permitted list, checking concentrations against maximum allowable limits, and ensuring compliance with BIS (Bureau of Indian Standards) specifications listed in the Ninth Schedule. Certain categories such as hair dyes, sunscreens, and products with active ingredients face additional scrutiny. Our experts conduct a thorough ingredient-by-ingredient review, flagging any restricted or prohibited substances and recommending compliant alternatives.",
         icon: Beaker,
         phase: "Assessment",
         keyDocuments: ["Ingredient list with concentrations and CAS numbers", "BIS specification compliance (Ninth Schedule)", "Non-animal testing undertaking"],
@@ -360,7 +360,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Safety Assessment Coordination",
         description:
-          "Conduct toxicological assessment and compile safety data for all ingredients.",
+          "The safety assessment is a mandatory requirement under the Cosmetics Rules, 2020, encompassing toxicological evaluation of all ingredients, heavy metal testing (lead, arsenic, mercury, cadmium), microbiological testing, and stability studies to validate shelf-life claims. Products must also include an undertaking for non-animal testing as mandated by Indian regulations. For certain product categories like perfumes, BIS compliance certificates may be additionally required. Our team coordinates testing with CDSCO-approved laboratories, compiles the complete safety dossier, and ensures all test reports meet the regulatory format and acceptance criteria.",
         icon: ShieldCheck,
         phase: "Assessment",
         keyDocuments: ["Toxicological assessment report", "Heavy metal testing report", "Stability data"],
@@ -371,7 +371,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Manufacturing License Assistance",
         description:
-          "Obtain manufacturing license from State Drug Control Authority if manufacturing in India.",
+          "Cosmetics manufactured in India are regulated by the respective State Licensing Authority (SLA). A manufacturing license in Form COS-8 (or COS-8A for loan license manufacturing) must be obtained from the SLA of the state where the manufacturing facility is located. The application requires GMP certification, detailed site layout plans, equipment lists, quality control laboratory capabilities, and proof of qualified technical personnel. The facility must demonstrate adequate manufacturing practices including proper ventilation, contamination controls, and batch record maintenance. Our team assists in GMP audit preparation, application compilation, and coordination with the State Drug Authority through to license grant.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["GMP certificate", "Manufacturing license from State Drug Authority", "Site layout and facility documents"],
@@ -382,7 +382,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Product Registration Filing",
         description:
-          "Submit online registration application with product details, formulation, and test reports.",
+          "Product registration is submitted online through the CDSCO SUGAM portal using Form COS-1. The application requires detailed product information including brand name, product description, category classification, complete formulation with ingredient concentrations and CAS numbers, safety assessment reports, and label artwork. Government fees are structured as USD 1,000 per product category, USD 500 per manufacturing site, and USD 50 per variant. The SUGAM portal assigns each application a unique reference number for tracking. Our team manages the complete online filing process, ensures all mandatory fields are accurately completed, and monitors the application through CDSCO's review process.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Form COS-1 application", "Fee challan (USD 1,000 per category + USD 500 per site + USD 50 per variant)", "Product description and brand details"],
@@ -393,7 +393,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Label Compliance Verification",
         description:
-          "Ensure labels meet all regulatory requirements including ingredient declaration and warnings.",
+          "Cosmetic product labels in India must comply with dual regulatory requirements — the labeling provisions under Chapter VI of the Cosmetics Rules, 2020 and the mandatory declarations under the Legal Metrology (Packaged Commodities) Rules, 2011. Required label elements include product name, ingredient declaration in descending order, manufacturing/expiry dates, batch number, net content, MRP (inclusive of all taxes), manufacturer/importer name and address, and country of origin. Any discrepancy in spelling, address details, or product names between the label and registration documents can result in rejection. Our team reviews your label artwork against both regulatory frameworks, ensuring full compliance before submission.",
         icon: Package,
         phase: "Review",
         keyDocuments: ["Label artwork per Chapter VI of Cosmetics Rules 2020", "Pack inserts", "Ingredient declaration"],
@@ -406,7 +406,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Import Permit Acquisition",
         description:
-          "Obtain import permits and authorizations for cosmetic products.",
+          "Importing cosmetics into India requires prior registration with CDSCO, which has been mandatory since 1 April 2013 under Rule 21 of the Drugs and Cosmetics Rules, 1945. The importer must first obtain formal authorization from the overseas manufacturer, authenticated by the Indian Embassy, a Magistrate of First Class, or via apostille in the country of origin as prescribed in the First Schedule of the Cosmetics Rules, 2020. This authorization establishes the legal relationship between the foreign manufacturer and the Indian importer, granting permission to register and import the products. Our team guides importers through the authentication process, ensuring all documentation meets CDSCO's strict verification requirements.",
         icon: UserCheck,
         phase: "Assessment",
         keyDocuments: ["Authorization from manufacturer (First Schedule, Cosmetics Rules 2020)", "Apostilled/notarized foreign documents"],
@@ -417,7 +417,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Foreign Manufacturer Documentation",
         description:
-          "Compile documentation from foreign manufacturers including GMP certificates.",
+          "The import registration dossier requires comprehensive documentation from the foreign manufacturer, including a valid manufacturing license from the country of origin, a Free Sale Certificate (FSC) issued by the National Regulatory Authority, and a GMP certificate or equivalent quality system documentation. If the FSC is issued by a chamber of commerce rather than a national regulatory authority, it requires additional attestation from the Indian Embassy or apostillation. All foreign documents must be current, properly notarized, and translated into English if originally in another language. Our team works directly with foreign manufacturers to compile, verify, and authenticate the complete manufacturer dossier.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["Manufacturing license from country of origin", "Free Sale Certificate (FSC) from National Regulatory Authority", "GMP certificate"],
@@ -428,7 +428,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Product Testing Coordination",
         description:
-          "Arrange product testing at approved laboratories in India.",
+          "For certain cosmetic categories, CDSCO may require product testing at approved Indian laboratories to verify compliance with BIS specifications, heavy metal limits, and microbiological standards. The testing covers parameters such as pH, viscosity, specific gravity, heavy metal content (lead, arsenic, mercury, cadmium), and microbiological contamination limits. Test reports must be from laboratories recognized by CDSCO or accredited by NABL (National Accreditation Board for Testing and Calibration Laboratories). Our team identifies the applicable testing requirements for your product category, coordinates sample submission to approved laboratories, and ensures test reports are in the format accepted by CDSCO.",
         icon: Beaker,
         phase: "Preparation",
         keyDocuments: ["Product test reports from approved Indian labs", "BIS compliance reports", "Stability data"],
@@ -439,7 +439,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Registration with CDSCO",
         description:
-          "Submit import registration application with complete product dossier.",
+          "The import registration application is submitted online through the CDSCO SUGAM portal using Form COS-1, along with all supporting documents per the Second Schedule of the Cosmetics Rules, 2020. Upon successful review and approval, CDSCO issues the Import Registration Certificate in Form COS-2, which authorizes the import of the registered cosmetic products into India. The typical timeline for COS-2 approval is approximately 90 days from complete submission. Imported cosmetics are classified under roughly 80 product categories, with government fees of USD 2,000 per category and USD 50 per variant. Our team manages the complete SUGAM filing, tracks review progress, and responds to any CDSCO queries.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Form COS-1 (complete)", "Fee payment receipt", "All supporting documents per Second Schedule"],
@@ -450,7 +450,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Customs Clearance Support",
         description:
-          "Facilitate smooth customs clearance with proper documentation.",
+          "Once the COS-2 Import Registration Certificate is obtained, cosmetic products can be imported through any designated port in India. Each shipment requires proper customs documentation including the valid COS-2 certificate, commercial invoice, packing list, bill of lading, and certificate of origin. The COS-2 is valid for five years from the date of issue and covers all variants registered under the approved categories. Customs authorities verify the COS-2 validity and product details against the shipment before granting port release. Our team provides ongoing customs clearance support, ensuring documentation is complete for each consignment and resolving any port-level queries or holds.",
         icon: Truck,
         phase: "Approval",
         keyDocuments: ["Valid Form COS-2", "Bill of entry", "Import documentation"],
@@ -472,7 +472,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Packaging Compliance Audit",
         description:
-          "Review existing packaging against Legal Metrology (Packaged Commodities) Rules requirements.",
+          "The Legal Metrology (Packaged Commodities) Rules, 2011 define a pre-packaged commodity as any product placed in a package of any nature, sealed or unsealed, with a pre-determined quantity, without the purchaser being present. Any manufacturer, packer, or marketer of such pre-packaged commodities must ensure their packaging carries all mandatory declarations prescribed under these rules. Compliance requirements are enforced both at the central level by the Directorate of Legal Metrology and at the state level by respective State Legal Metrology Departments. Our team conducts a comprehensive audit of your current packaging against both central and state-specific requirements, identifying gaps and providing a detailed remediation plan.",
         icon: Package,
         phase: "Assessment",
         keyDocuments: ["Current packaging samples", "Legal Metrology (Packaged Commodities) Rules 2011", "Product specifications"],
@@ -483,7 +483,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Label Design Review",
         description:
-          "Ensure labels include all mandatory declarations: quantity, price, manufacturer details, country of origin.",
+          "Labels on packaged commodities must carry mandatory declarations including the product name, net quantity in standard metric units, Maximum Retail Price (MRP) inclusive of all taxes, month and year of manufacture or packing, name and address of the manufacturer or packer or importer, country of origin (for imported goods), consumer care details, and common or generic name of the commodity. For products that also fall under other regulations (such as cosmetics under CDSCO or food under FSSAI), the labels must satisfy the requirements of all applicable laws simultaneously. Our team reviews your label artwork against the complete checklist of mandatory declarations, provides mark-up corrections, and ensures compliance across all applicable regulatory frameworks.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["Label artwork drafts", "MRP declaration", "Net quantity details", "Manufacturer/importer address", "Country of origin"],
@@ -494,7 +494,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "LMPC Registration Filing",
         description:
-          "File registration application with concerned State Legal Metrology Department.",
+          "Registration under the Legal Metrology Act varies depending on the stakeholder type — manufacturers require a Manufacturing License (Form LM-1), importers need an Importer Registration, dealers require a Dealer License, and repairers need a Repair License under the Legal Metrology (General) Rules, 2011. Each state has its own Legal Metrology portal and application process, and requirements may vary by state. The application requires submission of company registration documents, proof of premises, trade license, and prescribed government fees. Our team identifies the applicable registration type for your business, prepares the complete application dossier, and files it with the concerned State Legal Metrology Department.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Application Form LM-1 (Manufacturer License)", "Company registration documents", "Proof of premises (lease/ownership)", "Trade license"],
@@ -505,7 +505,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Declaration Verification",
         description:
-          "Submit declarations regarding net quantity, MRP, and consumer information compliance.",
+          "All packaged commodities must carry accurate net quantity declarations that comply with the prescribed tolerances and measurement standards. For manufacturers or importers of weighing and measuring instruments, model or pattern approval from the Central Legal Metrology Department is required under the Legal Metrology (Approval of Models) Rules, 2011, ensuring compliance with OIML (International Organization of Legal Metrology) standards. The verification process includes submission of instrument samples to designated testing laboratories, issuance of satisfactory test reports, and final scrutiny by the Central Legal Metrology Department. Our team coordinates the entire declaration verification and model approval process, from sample submission to certificate issuance.",
         icon: Scale,
         phase: "Review",
         keyDocuments: ["Net quantity declarations", "MRP compliance documents", "Consumer information labels", "OIML standard compliance (for instruments)"],
@@ -516,7 +516,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Ongoing Compliance Monitoring",
         description:
-          "Maintain accurate records and ensure continued compliance with metrology standards.",
+          "Legal Metrology licenses and registrations require ongoing compliance including timely renewal (filed at least 3 months before expiry), periodic stamping and verification of approved instruments by the State Legal Metrology Office, and maintenance of accurate records of all transactions involving packaged commodities or measuring instruments. Non-compliance can result in penalties, seizure of non-conforming goods, and prosecution under the Legal Metrology Act. State-level enforcement officers conduct periodic inspections to verify continued compliance with labeling, quantity declarations, and measurement accuracy. Our team provides ongoing compliance monitoring, proactive renewal management, and support during inspections or audits.",
         icon: RefreshCcw,
         phase: "Approval",
         keyDocuments: ["License renewal application (Form LM-2)", "Updated compliance records", "Stamping and verification certificates"],
@@ -529,7 +529,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Import Compliance Assessment",
         description:
-          "Assess imported product packaging against Indian metrology requirements.",
+          "Any person or firm importing pre-packaged commodities or weighing and measuring instruments into India must register under Rule 19 of the Legal Metrology (General) Rules, 2011 and ensure all imported products comply with Indian labeling and measurement standards. This includes verifying that foreign product packaging carries all mandatory Indian declarations, quantities are expressed in standard metric units, and MRP is displayed in Indian Rupees inclusive of all applicable duties and taxes. Our team conducts a comprehensive assessment of your imported product packaging, identifies all non-compliant elements, and provides a detailed list of required modifications for Indian market entry.",
         icon: Target,
         phase: "Assessment",
         keyDocuments: ["Foreign product packaging details", "Indian labeling requirements checklist", "Bill of entry samples"],
@@ -540,7 +540,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Package Modification Guidance",
         description:
-          "Guide necessary packaging and labeling modifications for compliance.",
+          "Imported goods often require significant packaging modifications to comply with Indian Legal Metrology requirements. All mandatory declarations must be in both Hindi and English as specified by the rules. For imported products, sticker labels are acceptable with prior approval from the Controller of Legal Metrology, but the stickers must be affixed before the goods enter the retail market. The modifications must include the importer's name and complete address, country of origin, MRP in Indian Rupees, net quantity in metric units, and other mandatory declarations. Our team provides detailed packaging modification specifications, creates compliant label templates, and coordinates with your packaging suppliers to ensure seamless implementation.",
         icon: Package,
         phase: "Preparation",
         keyDocuments: ["Current foreign packaging", "Required Indian declarations", "Translation documents"],
@@ -551,7 +551,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Registration for Importers",
         description:
-          "Complete importer-specific LMPC registration requirements.",
+          "Importer registration under the Legal Metrology Act requires submission of an application to the concerned State Legal Metrology Department along with supporting documents including address proof of the business premises (lease agreement, sales deed, electricity bill, NOC from property owner), identity proof of all directors or partners, valid trade license, and prescribed government fees. Each state has its own registration portal and processing timeline. The registration certificate is issued after verification of all submitted documents and may include conditions specific to the product categories being imported. Our team prepares the complete registration application, manages portal submissions, and coordinates with state authorities through to certificate issuance.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Importer registration application", "Address proof (lease agreement, electricity bill, NOC from property owner)", "ID proof of directors"],
@@ -562,7 +562,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Custom Label Requirements",
         description:
-          "Ensure import labels meet all country of origin and importer declaration requirements.",
+          "Imported packaged goods must prominently display specific information mandated for cross-border products: the country of origin, importer's full name and address in India, MRP in Indian Rupees inclusive of all duties and taxes, net quantity in standard metric units, and all other mandatory declarations applicable to the product category. The information must be printed or affixed on the product in a way that is easily readable and not easily removable. For goods imported in bulk and repackaged in India, the repacker must also register as a packer under the Packaged Commodities Rules. Our team ensures your import labels meet all customs and retail requirements, providing customs-ready documentation that facilitates smooth port clearance.",
         icon: FileText,
         phase: "Review",
         keyDocuments: ["Country of origin declaration", "Importer name and address", "MRP in Indian Rupees", "Net quantity in metric units"],
@@ -573,7 +573,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Import Documentation",
         description:
-          "Prepare and maintain all required import documentation for metrology compliance.",
+          "Maintaining comprehensive import documentation is essential for ongoing compliance with Legal Metrology requirements. This includes keeping copies of registration certificates, import invoices, bills of entry, label approval records, and correspondence with the Legal Metrology Department. Wholesalers and distributors do not require separate Packer registration, but manufacturers, packers, importers, and marketers of pre-packaged commodities must register as applicable. State-level enforcement officers may inspect imported goods at any point in the distribution chain to verify compliance. Our team helps establish a document management system, ensures all import records are maintained properly, and provides support during any compliance inspections or audits.",
         icon: Globe2,
         phase: "Approval",
         keyDocuments: ["Registration certificate copy", "Import invoices", "Bill of entry", "Packer registration (if applicable)"],
@@ -595,7 +595,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "IEC Application Preparation",
         description:
-          "Confirm business is registered and has PAN, Aadhaar, and bank account details ready.",
+          "The Import Export Code (IEC) is a mandatory 10-digit registration issued by the Directorate General of Foreign Trade (DGFT), required for any business entity engaged in importing or exporting goods from India. All types of business entities are eligible — proprietorships, partnerships, LLPs, private limited companies, public limited companies, and even trusts and societies engaged in trade. The application requires a valid PAN card linked to the business entity, Aadhaar of the applicant, GST registration or Certificate of Incorporation (CIN), and an active bank account in the entity's name. Our team verifies your eligibility, checks all prerequisites are in order, and prepares a comprehensive readiness checklist before proceeding with the application.",
         icon: Target,
         phase: "Assessment",
         keyDocuments: ["PAN card of entity", "Aadhaar of applicant", "Business registration certificate (GST/CIN)", "Bank account details"],
@@ -606,7 +606,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Documentation Compilation",
         description:
-          "Gather required documents: business registration, bank certificate, ID proofs of partners/directors.",
+          "The IEC application documentation must include a bank certificate or cancelled cheque confirming the entity's bank account details, address proof of the principal business premises, identity and address proof of all directors or partners, passport-size photographs, and a Digital Signature Certificate (DSC) for authorized online signing. The bank certificate must be on the bank's official letterhead clearly showing the account number, IFSC code, and account holder's name matching the PAN card. For companies and LLPs, a board resolution authorizing the signatory may also be required. Our team compiles and verifies all documents against DGFT's checklist, ensuring completeness before submission.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["Bank certificate or cancelled cheque", "Address proof of business premises", "ID and address proof of all directors/partners", "Digital signature certificate"],
@@ -617,7 +617,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "DGFT Portal Filing",
         description:
-          "Create account on DGFT portal and file IEC application with accurate business details.",
+          "The IEC application is filed online through the DGFT portal (dgft.gov.in) using the prescribed Aayaat Niryaat Form (ANF) 2A. The submission must be digitally signed using the applicant's DSC, and the government fee of INR 500 is payable online through the portal. The application includes details of the business entity, authorized signatories, bank accounts, and the principal place of business. Incomplete applications or those with discrepancies between submitted documents are likely to be returned or delayed. Our team manages the complete online filing process, ensures all fields are accurately populated, digitally signs the application, and tracks the status through to approval.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Online application form (ANF 2A)", "DSC-signed submission", "Payment receipt (INR 500 government fee)"],
@@ -628,7 +628,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Certificate Obtainment",
         description:
-          "Receive 10-digit IEC code, valid for lifetime with no renewal requirement.",
+          "Upon successful processing of the application, DGFT allots the 10-digit IEC code typically within 3 to 7 working days. The IEC is valid for a lifetime and does not require renewal, making it a one-time registration. However, the DGFT requires all IEC holders to update their profile annually on the portal, confirming or modifying business details such as addresses, directors, and bank accounts. Failure to file the annual update by June 30 each year can result in deactivation of the IEC. Our team ensures you receive your IEC certificate promptly and sets up reminders for the mandatory annual update process.",
         icon: Globe2,
         phase: "Approval",
         keyDocuments: ["IEC certificate (10-digit code)", "DGFT approval letter"],
@@ -639,7 +639,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Modification Support",
         description:
-          "Assistance with IEC modifications for address changes, director updates, etc.",
+          "Post-registration modifications to the IEC are required whenever there are changes to the business entity's details — such as a change of address, addition or removal of directors or partners, change of bank account, change in business constitution (e.g., proprietorship to partnership), or any other amendments to the registered information. Modifications are filed through the DGFT portal using an amendment application, supported by relevant documentation such as board resolutions, updated address proofs, or partnership deed amendments. Our team handles all IEC modifications, ensuring the updated certificate accurately reflects your current business details and remains in good standing with DGFT.",
         icon: RefreshCcw,
         phase: "Approval",
         keyDocuments: ["Amendment application", "Updated business documents", "Board resolution (for company changes)"],
@@ -652,7 +652,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "IEC Code Registration",
         description:
-          "Register for Import Export Code essential for import activities.",
+          "For any business looking to import goods into India, obtaining an IEC is the first and most fundamental regulatory requirement. Without a valid IEC, Indian customs will not process any import consignment, and banks will not handle foreign exchange transactions related to trade. The IEC code is linked to your PAN and is used across all import-related documentation including bills of entry, customs declarations, and foreign exchange remittances. Our team initiates your IEC registration process with a thorough eligibility assessment, mapping out the complete registration roadmap tailored to your business structure and import plans.",
         icon: Target,
         phase: "Assessment",
         keyDocuments: ["PAN card", "Business registration", "Aadhaar", "Bank account details"],
@@ -663,7 +663,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Import Eligibility Verification",
         description:
-          "Verify business eligibility and compliance requirements for importing goods.",
+          "Before importing any product into India, it is essential to verify the product's classification under the Indian Trade Classification (Harmonized System) and check whether the product falls under the 'Free,' 'Restricted,' or 'Prohibited' category as per DGFT's ITC (HS) schedule. Restricted items require an additional import license or authorization from DGFT, while prohibited items cannot be imported regardless of having a valid IEC. The correct HS code classification also determines the applicable customs duty rates, any anti-dumping duties, and product-specific regulatory requirements. Our team conducts a comprehensive import eligibility verification, assigns the correct HS codes, and advises on any additional licenses or permits required.",
         icon: ShieldCheck,
         phase: "Preparation",
         keyDocuments: ["Product classification (HS code)", "DGFT ITC (HS) classification", "Restricted/prohibited item check"],
@@ -674,7 +674,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Customs Documentation",
         description:
-          "Prepare customs-related documentation linked to IEC registration.",
+          "Importing goods into India requires a comprehensive set of customs documentation that must be filed electronically through ICEGATE (Indian Customs Electronic Gateway). The primary documents include the bill of entry, commercial invoice, packing list, bill of lading or airway bill, certificate of origin, insurance certificate, and the IEC reference. The bill of entry must accurately declare the product description, quantity, value, HS code classification, and applicable duty rates. Any discrepancies between the declared and actual goods can result in customs holds, penalties, or confiscation. Our team prepares your complete customs documentation package, ensuring accuracy and compliance with all declaration requirements.",
         icon: FileText,
         phase: "Submission",
         keyDocuments: ["Bill of entry", "Commercial invoice", "Packing list", "Certificate of origin", "IEC reference"],
@@ -685,7 +685,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "License Activation",
         description:
-          "Activate IEC with customs authorities for smooth import operations.",
+          "After obtaining the IEC, importers must register on ICEGATE to enable electronic filing of import declarations and customs clearances. This involves creating an ICEGATE user account, linking the IEC to the portal, appointing a licensed customs broker who will handle day-to-day clearance operations at the port, and setting up bank authorization for duty payment through electronic debit. First-time importers should also familiarize themselves with the Authorized Economic Operator (AEO) program, which offers faster clearances and reduced examination for trusted traders. Our team manages your ICEGATE registration, customs broker appointment, and initial license activation to ensure your import operations begin smoothly.",
         icon: Globe2,
         phase: "Review",
         keyDocuments: ["ICEGATE registration", "Customs broker appointment", "Bank authorization for duty payment"],
@@ -696,7 +696,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Annual Compliance",
         description:
-          "Maintain annual compliance and update IEC details as required.",
+          "All IEC holders are required to file an annual update on the DGFT portal by June 30 each year, regardless of whether any import or export activity was conducted during the year. The annual update involves confirming or updating business details including entity name, address, constitution, partners or directors, bank accounts, and Aadhaar linkages. Failure to file the annual update results in deactivation of the IEC, which blocks all import and export operations until the update is completed and the IEC is reactivated. If there are any pending export obligations from import licenses or authorizations, these must also be monitored and discharged within the prescribed timelines. Our team provides annual compliance management, ensuring your IEC remains active and all obligations are met on time.",
         icon: RefreshCcw,
         phase: "Approval",
         keyDocuments: ["Annual update on DGFT portal", "Updated KYC documents", "Export obligation discharge (if applicable)"],
@@ -718,7 +718,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "EPR Assessment and Planning",
         description:
-          "Determine if your products fall under plastic packaging EPR regulations.",
+          "Extended Producer Responsibility (EPR) is an environmental policy approach that shifts the responsibility for end-of-life management of products and packaging from municipalities to the producers, importers, and brand owners (PIBOs) who introduce these materials into the market. In India, EPR is mandated by the Central Pollution Control Board (CPCB) under three separate regulatory frameworks — the Plastic Waste Management Rules for plastic packaging, the E-Waste Management Rules for electrical and electronic equipment, and the Battery Waste Management Rules for all battery types. Each framework has distinct registration forms, compliance targets, and reporting requirements. Our team evaluates your product portfolio and packaging materials to determine which EPR categories apply, classifies waste types, and develops a comprehensive compliance roadmap.",
         icon: Leaf,
         phase: "Assessment",
         keyDocuments: ["Product/packaging details", "Plastic waste category identification", "Business registration (PAN, GST, CIN)"],
@@ -729,7 +729,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Registration with CPCB",
         description:
-          "Register as producer on CPCB portal with business and product details.",
+          "EPR registration is submitted through the CPCB online portal using category-specific application forms — Form I for plastic packaging waste, Form V for e-waste, and Form VI/VII for battery waste. The application requires detailed information about the applicant entity, product types and quantities placed on the market, proposed waste collection and channelization mechanisms, agreements with registered recyclers and dismantlers, and an Environmental Protection Plan outlining how collection and recycling targets will be met. For importers, a valid IEC certificate must also be submitted. Our team prepares the complete application dossier, ensures all mandatory fields are accurately populated, and manages the submission and follow-up process with CPCB.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["EPR application form (Form I/V/VI/VII depending on category)", "Environmental Protection Plan", "Proof of legal entity", "IEC certificate (for importers)"],
@@ -740,7 +740,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Annual Return Filing",
         description:
-          "Submit annual returns showing plastic waste collected and recycled/processed.",
+          "All PIBOs with EPR authorization must submit annual returns to CPCB before the prescribed deadline, reporting on the quantity of products or packaging placed on the market, waste collected, and waste recycled or processed during the reporting period. The annual return must be supported by documentary evidence including waste processing certificates from registered recyclers, collection data from waste collection agencies, and financial records of EPR compliance expenditure. Late or non-filing of annual returns can result in penalties, suspension of EPR authorization, and regulatory action under the applicable waste management rules. Our team compiles your annual return data, coordinates with recyclers for processing certificates, and files the completed returns with CPCB on time.",
         icon: FileText,
         phase: "Submission",
         keyDocuments: ["Annual return form", "Collection and recycling data", "Waste processing certificates", "Producer/brand owner details"],
@@ -751,7 +751,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Target Compliance Tracking",
         description:
-          "Establish and track collection and recycling targets as per CPCB guidelines.",
+          "CPCB sets year-on-year collection and recycling targets for each EPR authorization holder, with targets increasing progressively to achieve higher rates of waste recovery and recycling. For plastic packaging, targets are based on the quantity of plastic introduced into the market. For e-waste, targets are set for collection and channelization to authorized recyclers. Falling short of targets can result in financial penalties, requirement to purchase EPR certificates from the market, or suspension of authorization. Maintaining agreements with CPCB/SPCB-registered recyclers and waste processors is essential for meeting these targets. Our team establishes a target tracking dashboard, monitors compliance progress throughout the year, and proactively addresses any shortfalls.",
         icon: Target,
         phase: "Review",
         keyDocuments: ["Collection target data", "Recycling/processing certificates", "Waste management agreements with recyclers"],
@@ -762,7 +762,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Certificate Management",
         description:
-          "Receive and manage EPR certificates confirming environmental compliance.",
+          "EPR authorization validity varies by waste category — plastic waste EPR authorization is valid for a lifetime with no renewal requirement, while e-waste and battery waste EPR certificates are valid for five years and must be renewed before expiry. Any changes to business details, product categories, or waste management plans after authorization require prior intimation to CPCB. Additionally, the EPR authorization certificate must be produced upon request during customs clearance of imported goods or during SPCB inspections. Our team maintains your EPR certificate records, tracks validity periods, initiates timely renewals for e-waste and battery categories, and ensures your authorization remains current and compliant.",
         icon: Globe2,
         phase: "Approval",
         keyDocuments: ["EPR authorization certificate", "Renewal application (for e-waste and battery categories)", "Updated compliance records"],
@@ -775,7 +775,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Import EPR Obligations",
         description:
-          "Understand EPR obligations specific to imported products with plastic packaging.",
+          "Any importer bringing products with plastic packaging, electronic or electrical equipment, or batteries into India is required to obtain EPR authorization from CPCB before or concurrent with their import operations. The EPR obligation is triggered by the act of introducing waste-generating materials into the Indian market, regardless of whether the importer is the brand owner or a distributor. The assessment involves analyzing the bill of materials for each imported product, identifying all components that fall under EPR-regulated waste categories, and quantifying the annual volumes placed on the market. Our team conducts a thorough analysis of your import portfolio to determine all applicable EPR obligations and waste category classifications.",
         icon: Leaf,
         phase: "Assessment",
         keyDocuments: ["Import product details", "Packaging material analysis", "IEC certificate", "Bill of materials"],
@@ -786,7 +786,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Producer Responsibility Setup",
         description:
-          "Establish producer responsibility mechanisms for imported goods.",
+          "Meeting EPR collection and recycling targets requires establishing a robust waste management infrastructure. Importers can either set up their own collection and channelization mechanisms or engage a registered Producer Responsibility Organization (PRO) to manage compliance on their behalf. PROs are entities registered with CPCB that aggregate the EPR obligations of multiple producers and manage waste collection, segregation, and channelization to authorized recyclers at scale. The choice between self-management and PRO engagement depends on the volume of materials, geographic distribution, and cost considerations. Our team advises on the optimal compliance approach, facilitates PRO agreements, and ensures the collection mechanism plan meets CPCB's requirements.",
         icon: UserCheck,
         phase: "Preparation",
         keyDocuments: ["Authorized person details (Aadhaar, PAN)", "Company documents (CIN, GST)", "Partnership deed (if applicable)"],
@@ -797,7 +797,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Waste Management Planning",
         description:
-          "Develop waste collection and recycling plans for imported packaging.",
+          "A comprehensive waste management plan is a mandatory component of the EPR application, demonstrating how the importer will ensure responsible end-of-life management of the waste generated from their products and packaging. The plan must include details of waste collection mechanisms across relevant geographies, agreements with CPCB or SPCB-registered recyclers and dismantlers, processing targets aligned with CPCB guidelines, and a timeline for achieving full compliance. Having pre-existing agreements with registered recyclers significantly strengthens the application. Our team develops your complete waste management plan, identifies and onboards suitable recycler partners, and structures the documentation to demonstrate a credible and achievable compliance pathway.",
         icon: RefreshCcw,
         phase: "Preparation",
         keyDocuments: ["Waste collection plan", "Recycler/dismantler agreements", "Processing targets", "Environmental impact assessment"],
@@ -808,7 +808,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "CPCB Compliance",
         description:
-          "Register and comply with CPCB requirements as an importer.",
+          "The CPCB application for EPR authorization requires submission of the completed application form with all supporting documents including company registration (CIN, GST, PAN), authorized person details (Aadhaar, PAN), waste management plan, recycler agreements, and a covering letter explaining the scope of operations. The typical processing timeline is 2 to 3 months from complete submission, though this can vary based on the volume of applications and any queries raised by CPCB during review. Government charges vary by case and waste category. Our team manages the entire application process, from document compilation to submission and follow-up with CPCB, ensuring a smooth path to authorization.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Completed application form", "All supporting documents", "DIC registration (if applicable)", "Covering letter"],
@@ -819,7 +819,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Reporting and Renewals",
         description:
-          "Submit periodic reports and manage EPR certificate renewals.",
+          "Ongoing compliance with EPR authorization requires annual reporting to CPCB on waste collection and recycling performance, updated agreements with recyclers, and for e-waste and battery categories, timely renewal of the EPR certificate at least six months before its five-year expiry. CPCB has strict timelines for annual reporting, and late or inaccurate submissions can result in show-cause notices, suspension of authorization, or environmental compensation orders. Importers must also update CPCB about any changes to their product portfolio, import volumes, or waste management arrangements. Our team provides comprehensive annual compliance management, including data compilation, report preparation, timely filing, and proactive renewal management.",
         icon: Globe2,
         phase: "Approval",
         keyDocuments: ["Annual compliance reports", "Updated collection/recycling data", "Renewal application (for e-waste/battery)"],
@@ -841,7 +841,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Determine License Type",
         description:
-          "Identify whether you need Form 20B/21B (for pharmaceuticals/drugs and medical devices) or Form MD42 (for medical devices only) based on your product portfolio.",
+          "The wholesale drug license in India comes in two primary forms under the Drugs and Cosmetics Rules. Form 20B/21B is a comprehensive wholesale license covering pharmaceuticals, drugs, biologicals, and medical devices, while Form MD42 is specifically for retailers, wholesalers, or stockists dealing exclusively in medical devices including IVD devices. The 5th Amendment to the Medical Device Rules published via G.S.R. 754(E) on 30 September 2022 made the MD42 registration certificate mandatory for any entity stocking, selling, exhibiting, or distributing medical devices. The choice between 20B/21B and MD42 depends on your product portfolio and business model. Our team assesses your specific requirements and recommends the appropriate license type and regulatory pathway.",
         icon: Layers,
         phase: "Assessment",
         keyDocuments: ["Product portfolio assessment", "Form 20B/21B vs MD42 comparison", "Business registration documents"],
@@ -852,7 +852,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Premises & Infrastructure Setup",
         description:
-          "Ensure your storage premises meet the prescribed conditions including adequate space, ventilation, temperature control, and qualified pharmacist availability.",
+          "The wholesale drug license requires dedicated premises that meet specific infrastructure standards set by the State Drug Licensing Authority. The storage area must be a minimum of 10 square meters, located in a commercial zone as per the State Master Development Plan, and equipped with adequate ventilation, temperature control (air conditioning or refrigeration for cold-chain products), and protection from direct sunlight, moisture, and pest infestation. The premises must have a separate area for receiving and dispatching goods, and proper shelving or racking for organized storage. A qualified pharmacist must be available on-site during business hours. Our team conducts a premises assessment, identifies any infrastructure gaps, and provides detailed specifications to bring your facility into compliance.",
         icon: Building2,
         phase: "Preparation",
         keyDocuments: ["Premises layout plan (minimum 10 sq. meters)", "Ventilation and temperature control records", "Refrigerator/AC invoices", "Ownership/lease documents"],
@@ -863,7 +863,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Documentation Compilation",
         description:
-          "Prepare all required documents including proof of premises, pharmacist qualification certificates, site layout plans, and business registration details.",
+          "The wholesale license application requires an extensive set of documents including identity proofs of all directors or partners (Aadhaar, PAN, passport), qualification certificate of the registered pharmacist (minimum B.Pharm degree with one year of experience in dealing with drugs, or alternatively, SSLC qualification with four years of experience), proof of premises (ownership deed or registered lease agreement), recent electricity bill, trade license, and system-generated application forms with affidavits. The pharmacist must be registered with the State Pharmacy Council and must sign an undertaking to be present at the licensed premises during business hours. Our team compiles the complete application dossier, verifies all documents against the state-specific requirements, and ensures pharmacist qualifications are properly documented.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["Director ID proofs (Aadhaar, PAN, passport)", "Registered pharmacist qualification certificate (B.Pharm + 1 year experience)", "Proof of premises ownership", "Electricity bill", "System-generated forms and affidavits"],
@@ -874,7 +874,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Application Filing with State Drug Authority",
         description:
-          "Submit the wholesale license application to the State Drug Licensing Authority with prescribed fees and complete documentation.",
+          "The wholesale license application is submitted to the State Drug Licensing Authority through the respective state portal — xlnIndia for Delhi, NiveshMitra for Uttar Pradesh, InvestHaryana for Haryana, and similar portals for other states. The application requires both online submission and physical submission of hard copies with original documents to the SLA office. Government fees are INR 1,500 per license. Each state may have additional requirements or processing procedures beyond the central guidelines. Our team manages the dual online-offline submission process, ensures all forms are correctly completed for the specific state, and obtains the application reference number and fee receipt for tracking.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Completed application form (Form 20B/21B or MD42)", "Government fee (INR 1,500 per license)", "Hard copy submission to SLA"],
@@ -885,7 +885,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Premises Inspection",
         description:
-          "Cooperate with the Drug Inspector's site inspection to verify premises compliance with storage and safety requirements.",
+          "After the application is filed, the State Drug Licensing Authority assigns a Drug Inspector to conduct a physical inspection of the premises. The inspector verifies compliance with all prescribed conditions including adequate storage space, proper ventilation and temperature control, availability of the qualified pharmacist on-site, maintenance of required registers and records, and overall compliance with Good Storage Practices. Any deficiencies identified during the inspection must be rectified, and a re-inspection may be required. Our team prepares your premises and staff for the inspection, ensures all compliance documentation is readily available, and coordinates any post-inspection rectification if required.",
         icon: ShieldCheck,
         phase: "Review",
         keyDocuments: ["Site prepared for Drug Inspector visit", "Storage compliance documentation", "Temperature/cold chain records"],
@@ -896,7 +896,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "License Grant & Renewal Management",
         description:
-          "Receive your wholesale license and set up timely renewal processes. Licenses are typically valid for 5 years.",
+          "Upon satisfactory inspection, the State Drug Licensing Authority issues the wholesale drug license in the prescribed form, typically within 21 working days (Form 19 process). The license is valid for a lifetime, but a retention fee of INR 1,500 must be submitted every five years to maintain the license in active status. Any change in the constitution of the business (such as addition or removal of partners), change of premises, or change of qualified person requires a fresh application or amendment. Wholesale license holders are authorized to sell drugs only at the wholesale level and cannot conduct retail sales. Our team manages the license issuance process, sets up retention fee reminders, and provides ongoing compliance support for any amendments or changes.",
         icon: RefreshCcw,
         phase: "Approval",
         keyDocuments: ["Inspection clearance", "Approval letter from SLA"],
@@ -909,7 +909,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Assess Wholesale License Requirement",
         description:
-          "Determine if your import license mandates a wholesale license (20B/21B for drugs & devices, MD42 for devices only) as a prerequisite.",
+          "For importers holding a CDSCO import license for medical devices, drugs, or IVDs, obtaining a wholesale drug license from the State Licensing Authority is a mandatory prerequisite before commencing commercial distribution. The wholesale license authorizes the holder to stock, sell, and distribute the imported products within India. The same wholesale license covers drugs, biologicals, medical devices, and IVD products, eliminating the need for separate licenses for each product category. Without a valid wholesale license, the import license cannot be effectively utilized as the importer would not be legally permitted to stock or sell the imported products. Our team evaluates your import license conditions and product portfolio to determine the exact wholesale license requirement.",
         icon: Target,
         phase: "Assessment",
         keyDocuments: ["Import license details", "Product classification (drugs vs devices)", "CDSCO registration certificate"],
@@ -920,7 +920,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Appoint Qualified Person",
         description:
-          "Engage a registered pharmacist or competent person as required by the State Drug Authority for wholesale operations.",
+          "Every wholesale drug license requires the appointment of a qualified person who is responsible for ensuring that all products are stored, handled, and distributed in compliance with applicable regulations. The primary qualification requirement is a registered pharmacist with a Bachelor of Pharmacy (B.Pharm) degree and minimum one year of experience in dealing with drugs. In cases where a B.Pharm graduate is not available, a person who has passed SSLC (Secondary School Leaving Certificate) or equivalent examination and has at least four years of experience in dealing with drugs may be appointed as a competent person. The qualified person must be registered with the State Pharmacy Council and must be physically present at the licensed premises during business hours. Our team assists in identifying, verifying, and formally appointing the qualified person with all necessary documentation.",
         icon: UserCheck,
         phase: "Preparation",
         keyDocuments: ["Registered pharmacist certificate", "B.Pharm degree + 1 year experience", "Employment agreement"],
@@ -931,7 +931,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Prepare Premises Documentation",
         description:
-          "Document storage facility details, cold chain capabilities (if needed), and compliance with Good Storage Practices.",
+          "The premises documentation for a wholesale license must comprehensively demonstrate that the storage facility meets all regulatory requirements. This includes the lease agreement or ownership proof (registered with the sub-registrar), a detailed facility layout showing minimum 10 square meters of storage area, cold chain infrastructure documentation (for products requiring temperature-controlled storage), recent electricity bill in the name of the applicant or premises owner, and compliance with Good Storage Practices. For premises in DDA-allotted areas in Delhi, an MCD conversion charge receipt is additionally required. Our team reviews your premises documentation, identifies any gaps, and ensures the dossier comprehensively addresses all state-specific requirements.",
         icon: FileText,
         phase: "Preparation",
         keyDocuments: ["Lease agreement/ownership proof", "Facility layout (min. 10 sq. meters)", "Cold chain capability proof (if applicable)", "Electricity bill"],
@@ -942,7 +942,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Submit Application to State Authority",
         description:
-          "File the wholesale license application with the concerned State Drug Licensing Authority along with import license details.",
+          "The wholesale license application for importers follows the same submission process as for other applicants — dual filing through the state online portal and physical submission of hard copies to the State Drug Licensing Authority. The application must include the completed application form, a copy of the CDSCO import license, government fee of INR 1,500, premises documentation, pharmacist appointment details, and all required affidavits. The state portal generates an application reference number upon successful online submission. Our team manages the complete dual-channel submission process, ensures all importer-specific documents (such as the import license copy) are included, and tracks the application through to inspection scheduling.",
         icon: UploadCloud,
         phase: "Submission",
         keyDocuments: ["Application form", "Import license copy", "Government fee (INR 1,500)", "Hard copy submission"],
@@ -953,7 +953,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "Inspection & Compliance Verification",
         description:
-          "Facilitate the Drug Inspector's visit for premises verification and ensure all conditions of the license are met.",
+          "The Drug Inspector's premises inspection for importers follows the same protocol as for other wholesale license applicants, verifying adequate storage conditions, temperature control, pharmacist availability, and record-keeping systems. However, for importers, the inspector may also verify the cold chain requirements specific to the imported products and the adequacy of quarantine storage for goods pending quality clearance. The qualified pharmacist must be physically present during the inspection and must demonstrate knowledge of the products being stocked and the applicable storage requirements. Our team prepares your facility and staff for the inspection, conducts a pre-inspection readiness check, and provides on-ground support during the Drug Inspector's visit.",
         icon: ShieldCheck,
         phase: "Review",
         keyDocuments: ["Premises ready for inspection", "Storage conditions documentation", "Pharmacist availability confirmation"],
@@ -964,7 +964,7 @@ const serviceCatalog: ServiceProcedure[] = [
       {
         title: "License Issuance & Ongoing Compliance",
         description:
-          "Obtain the wholesale license, maintain records of all transactions, and ensure timely renewals before expiry.",
+          "Upon satisfactory inspection, the wholesale drug license is issued by the SLA, typically within 21 working days under the Form 19 process. The license is valid for a lifetime with a retention fee of INR 1,500 due every five years. Importers holding a wholesale license must maintain detailed records of all wholesale transactions including purchase invoices, sales records, stock registers, and batch-wise inventory tracking. Wholesale license holders are strictly prohibited from conducting retail sales — all sales must be to other licensed wholesalers, retailers, hospitals, or institutions. Our team assists with license issuance, establishes transaction record-keeping systems, and provides ongoing compliance management including retention fee reminders and amendment support.",
         icon: Globe2,
         phase: "Approval",
         keyDocuments: ["Approval from SLA", "Transaction record-keeping system"],
