@@ -16,7 +16,7 @@ export const AuthoritiesBar = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroRegulatoryBg})` }}
       />
-      <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-background/92 backdrop-blur-sm" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-5">
         <motion.p
