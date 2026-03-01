@@ -30,7 +30,7 @@ export const ValuePropositionGrid = () => {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <section className="relative py-16 lg:py-24">
+    <section className="relative py-[5vh] lg:py-[8vh]">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-secondary/30 to-background" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
