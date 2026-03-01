@@ -123,9 +123,9 @@ const Contact = () => {
                         +91 79838 58470
                       </a>
                     </div>
-                    <p className="text-xs text-muted-foreground">
-                      Monday – Friday, 9:00 AM – 6:00 PM IST
-                    </p>
+                    
+
+
                   </div>
                 </CardContent>
               </Card>
