@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Shield } from "lucide-react";
+import heroRegulatoryBg from "@/assets/hero-regulatory.jpg";
 
 export const AuthoritiesBar = () => {
   return (
@@ -8,9 +9,16 @@ export const AuthoritiesBar = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6 }}
-      className="w-full py-10 border-t border-b border-primary/20 bg-primary/5"
+      className="relative w-full py-14 overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-4">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroRegulatoryBg})` }}
+      />
+      <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-5">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -40,6 +48,16 @@ export const AuthoritiesBar = () => {
             <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-foreground" />
           </div>
         </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="max-w-2xl text-center text-sm leading-relaxed text-muted-foreground"
+        >
+          Terz is officially registered with India's Central Drugs Standard Control Organization (CDSCO)—the national regulatory body for pharmaceuticals, medical devices, and cosmetics. This ensures every submission we handle meets the highest standards of safety, quality, and compliance.
+        </motion.p>
       </div>
     </motion.div>
   );
