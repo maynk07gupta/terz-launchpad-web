@@ -10,8 +10,8 @@ import {
   Stethoscope,
   ChevronRight,
   Download,
-  Info,
-} from "lucide-react";
+  Info } from
+"lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -20,12 +20,12 @@ import { cn } from "@/lib/utils";
 const RevealSection = ({
   children,
   className,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) => {
+  delay = 0
+
+
+
+
+}: {children: React.ReactNode;className?: string;delay?: number;}) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -35,31 +35,31 @@ const RevealSection = ({
       className={className}
       initial={{ opacity: 0, y: 60, filter: "blur(8px)" }}
       animate={
-        isInView
-          ? { opacity: 1, y: 0, filter: "blur(0px)" }
-          : { opacity: 0, y: 60, filter: "blur(8px)" }
+      isInView ?
+      { opacity: 1, y: 0, filter: "blur(0px)" } :
+      { opacity: 0, y: 60, filter: "blur(8px)" }
       }
       transition={{
         duration: 0.7,
         delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}
-    >
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}>
+      
       {children}
-    </motion.div>
-  );
+    </motion.div>);
+
 };
 
 /* ─── Animated counter pill ─── */
 const StatPill = ({
   value,
   label,
-  delay,
-}: {
-  value: string;
-  label: string;
-  delay: number;
-}) => {
+  delay
+
+
+
+
+}: {value: string;label: string;delay: number;}) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
 
@@ -69,21 +69,21 @@ const StatPill = ({
       className="flex flex-col items-center gap-2 rounded-2xl border border-primary/20 bg-primary/5 px-6 py-5 backdrop-blur-sm"
       initial={{ opacity: 0, scale: 0.8, rotateX: 40 }}
       animate={
-        isInView
-          ? { opacity: 1, scale: 1, rotateX: 0 }
-          : { opacity: 0, scale: 0.8, rotateX: 40 }
+      isInView ?
+      { opacity: 1, scale: 1, rotateX: 0 } :
+      { opacity: 0, scale: 0.8, rotateX: 40 }
       }
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      whileHover={{ scale: 1.05, y: -4 }}
-    >
+      whileHover={{ scale: 1.05, y: -4 }}>
+      
       <span className="text-3xl lg:text-4xl font-bold text-primary">
         {value}
       </span>
       <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground text-center">
         {label}
       </span>
-    </motion.div>
-  );
+    </motion.div>);
+
 };
 
 /* ─── Risk class card ─── */
@@ -93,15 +93,15 @@ const ClassCard = ({
   color,
   examples,
   authority,
-  delay,
-}: {
-  letter: string;
-  risk: string;
-  color: string;
-  examples: string[];
-  authority: string;
-  delay: number;
-}) => {
+  delay
+
+
+
+
+
+
+
+}: {letter: string;risk: string;color: string;examples: string[];authority: string;delay: number;}) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
 
@@ -114,19 +114,19 @@ const ClassCard = ({
       )}
       initial={{ opacity: 0, x: -40, rotateY: -15 }}
       animate={
-        isInView
-          ? { opacity: 1, x: 0, rotateY: 0 }
-          : { opacity: 0, x: -40, rotateY: -15 }
+      isInView ?
+      { opacity: 1, x: 0, rotateY: 0 } :
+      { opacity: 0, x: -40, rotateY: -15 }
       }
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      whileHover={{ y: -6 }}
-    >
+      whileHover={{ y: -6 }}>
+      
       <motion.div
         className="absolute -right-4 -top-4 text-[80px] font-black opacity-10 leading-none"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={isInView ? { opacity: 0.1, scale: 1 } : {}}
-        transition={{ duration: 0.8, delay: delay + 0.2 }}
-      >
+        transition={{ duration: 0.8, delay: delay + 0.2 }}>
+        
         {letter}
       </motion.div>
       <div className="relative z-10">
@@ -140,20 +140,20 @@ const ClassCard = ({
           </div>
         </div>
         <ul className="space-y-1.5 mb-3">
-          {examples.map((ex, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+          {examples.map((ex, i) =>
+          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
               <ChevronRight className="h-3.5 w-3.5 mt-0.5 flex-shrink-0 text-primary" />
               {ex}
             </li>
-          ))}
+          )}
         </ul>
         <div className="flex items-center gap-1.5 rounded-full bg-background/80 px-3 py-1.5 text-xs font-medium text-primary w-fit">
           <Building className="h-3 w-3" />
           {authority}
         </div>
       </div>
-    </motion.div>
-  );
+    </motion.div>);
+
 };
 
 /* ─── License row for the table ─── */
@@ -166,67 +166,67 @@ type LicenseRow = {
 };
 
 const licenseData: LicenseRow[] = [
-  {
-    form: "MD 3",
-    approval: "MD 5",
-    riskClass: "A & B",
-    fees: "₹5,000 (plant) + ₹500/product",
-    authority: "SLA",
-  },
-  {
-    form: "MD 7",
-    approval: "MD 9",
-    riskClass: "C & D",
-    fees: "₹50,000 (plant) + ₹1,000/product",
-    authority: "CDSCO",
-  },
-  {
-    form: "MD 14",
-    approval: "MD 15",
-    riskClass: "A (Import)",
-    fees: "$1,000 (plant) + $50/product",
-    authority: "CDSCO",
-  },
-  {
-    form: "MD 14",
-    approval: "MD 15",
-    riskClass: "B (Import)",
-    fees: "$2,000 (plant) + $1,000/product",
-    authority: "CDSCO",
-  },
-  {
-    form: "MD 14",
-    approval: "MD 15",
-    riskClass: "C & D (Import)",
-    fees: "$3,000 (plant) + $1,500/product",
-    authority: "CDSCO",
-  },
-  {
-    form: "MD 12",
-    approval: "MD 13",
-    riskClass: "All (Test License)",
-    fees: "₹500",
-    authority: "Both",
-  },
-  {
-    form: "MD 22",
-    approval: "MD 23",
-    riskClass: "All (Clinical Investigation)",
-    fees: "₹1,00,000",
-    authority: "CDSCO",
-  },
-];
+{
+  form: "MD 3",
+  approval: "MD 5",
+  riskClass: "A & B",
+  fees: "₹5,000 (plant) + ₹500/product",
+  authority: "SLA"
+},
+{
+  form: "MD 7",
+  approval: "MD 9",
+  riskClass: "C & D",
+  fees: "₹50,000 (plant) + ₹1,000/product",
+  authority: "CDSCO"
+},
+{
+  form: "MD 14",
+  approval: "MD 15",
+  riskClass: "A (Import)",
+  fees: "$1,000 (plant) + $50/product",
+  authority: "CDSCO"
+},
+{
+  form: "MD 14",
+  approval: "MD 15",
+  riskClass: "B (Import)",
+  fees: "$2,000 (plant) + $1,000/product",
+  authority: "CDSCO"
+},
+{
+  form: "MD 14",
+  approval: "MD 15",
+  riskClass: "C & D (Import)",
+  fees: "$3,000 (plant) + $1,500/product",
+  authority: "CDSCO"
+},
+{
+  form: "MD 12",
+  approval: "MD 13",
+  riskClass: "All (Test License)",
+  fees: "₹500",
+  authority: "Both"
+},
+{
+  form: "MD 22",
+  approval: "MD 23",
+  riskClass: "All (Clinical Investigation)",
+  fees: "₹1,00,000",
+  authority: "CDSCO"
+}];
+
 
 /* ─── Timeline milestone ─── */
 const timelineMilestones = [
-  { year: "1989", event: "Disposable syringes, needles & perfusion sets regulated" },
-  { year: "2002", event: "In-vitro diagnostic substances including blood grouping sera" },
-  { year: "2005", event: "Cardiac stents, catheters, IOLs, heart valves, ortho implants" },
-  { year: "2017", event: "Medical Devices Rules 2017 — separate regulatory identity" },
-  { year: "2020", event: "New definition expands to cover ALL medical devices" },
-  { year: "2021", event: "Nebulizers, glucometers, CT/MRI/PET equipment, defibrillators" },
-  { year: "2022", event: "MD 42 registration mandatory for wholesalers & stockists" },
-];
+{ year: "1989", event: "Disposable syringes, needles & perfusion sets regulated" },
+{ year: "2002", event: "In-vitro diagnostic substances including blood grouping sera" },
+{ year: "2005", event: "Cardiac stents, catheters, IOLs, heart valves, ortho implants" },
+{ year: "2017", event: "Medical Devices Rules 2017 — separate regulatory identity" },
+{ year: "2020", event: "New definition expands to cover ALL medical devices" },
+{ year: "2021", event: "Nebulizers, glucometers, CT/MRI/PET equipment, defibrillators" },
+{ year: "2022", event: "MD 42 registration mandatory for wholesalers & stockists" }];
+
 
 /* ═══════════════════════════════════════════════════════════════
    MAIN COMPONENT
@@ -240,8 +240,8 @@ const MedicalDevicesContent = () => {
           <div className="flex items-center gap-3 mb-6">
             <motion.div
               className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10"
-              whileHover={{ rotate: 10 }}
-            >
+              whileHover={{ rotate: 10 }}>
+              
               <Stethoscope className="h-6 w-6 text-primary" />
             </motion.div>
             <div>
@@ -322,32 +322,32 @@ const MedicalDevicesContent = () => {
             color="border-emerald-200 bg-emerald-50/50 dark:border-emerald-800 dark:bg-emerald-950/30"
             examples={["Tongue depressors", "Specimen containers", "Non-sterile bandages"]}
             authority="Self-regulated / SLA"
-            delay={0}
-          />
+            delay={0} />
+          
           <ClassCard
             letter="B"
             risk="Low-Moderate Risk"
             color="border-blue-200 bg-blue-50/50 dark:border-blue-800 dark:bg-blue-950/30"
             examples={["Surgical gloves", "CT equipment", "Dental fillings"]}
             authority="State Licensing Authority"
-            delay={0.1}
-          />
+            delay={0.1} />
+          
           <ClassCard
             letter="C"
             risk="Moderate-High Risk"
             color="border-amber-200 bg-amber-50/50 dark:border-amber-800 dark:bg-amber-950/30"
             examples={["Ventilators", "Bone cements", "Dialysis machines"]}
             authority="CDSCO"
-            delay={0.2}
-          />
+            delay={0.2} />
+          
           <ClassCard
             letter="D"
             risk="High Risk"
             color="border-rose-200 bg-rose-50/50 dark:border-rose-800 dark:bg-rose-950/30"
             examples={["Heart valves", "Cardiac stents", "Implantable defibrillators"]}
             authority="CDSCO"
-            delay={0.3}
-          />
+            delay={0.3} />
+          
         </div>
       </section>
 
@@ -378,20 +378,20 @@ const MedicalDevicesContent = () => {
                       "relative flex items-start gap-4",
                       "lg:gap-0",
                       isLeft ? "lg:flex-row" : "lg:flex-row-reverse"
-                    )}
-                  >
+                    )}>
+                    
                     {/* Content */}
                     <div
                       className={cn(
                         "ml-14 lg:ml-0 lg:w-[calc(50%-2rem)]",
                         isLeft ? "lg:pr-8 lg:text-right" : "lg:pl-8 lg:text-left"
-                      )}
-                    >
+                      )}>
+                      
                       <motion.div
                         className="rounded-xl border border-border bg-card p-4 shadow-sm"
                         whileHover={{ scale: 1.02, boxShadow: "0 8px 30px -12px hsl(var(--primary) / 0.2)" }}
-                        transition={{ duration: 0.2 }}
-                      >
+                        transition={{ duration: 0.2 }}>
+                        
                         <span className="text-2xl font-bold text-primary">
                           {milestone.year}
                         </span>
@@ -407,13 +407,13 @@ const MedicalDevicesContent = () => {
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: index * 0.08 }}
-                    >
+                      transition={{ duration: 0.3, delay: index * 0.08 }}>
+                      
                       <span className="h-2 w-2 rounded-full bg-primary" />
                     </motion.div>
                   </div>
-                </RevealSection>
-              );
+                </RevealSection>);
+
             })}
           </div>
         </div>
@@ -436,8 +436,8 @@ const MedicalDevicesContent = () => {
           <RevealSection delay={0}>
             <motion.div
               className="rounded-2xl border border-border bg-card p-6 h-full"
-              whileHover={{ y: -4 }}
-            >
+              whileHover={{ y: -4 }}>
+              
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
                   <Globe className="h-5 w-5 text-primary" />
@@ -449,16 +449,16 @@ const MedicalDevicesContent = () => {
               </p>
               <ul className="mt-3 space-y-2">
                 {[
-                  "Class C & D medical devices manufactured in India",
-                  "ALL classes (A–D) of imported medical devices",
-                  "Clinical investigation permissions",
-                  "New / non-predicate device approvals",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                "Class C & D medical devices manufactured in India",
+                "ALL classes (A–D) of imported medical devices",
+                "Clinical investigation permissions",
+                "New / non-predicate device approvals"].
+                map((item, i) =>
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
                     <Shield className="h-3.5 w-3.5 mt-0.5 text-primary flex-shrink-0" />
                     {item}
                   </li>
-                ))}
+                )}
               </ul>
             </motion.div>
           </RevealSection>
@@ -466,8 +466,8 @@ const MedicalDevicesContent = () => {
           <RevealSection delay={0.15}>
             <motion.div
               className="rounded-2xl border border-border bg-card p-6 h-full"
-              whileHover={{ y: -4 }}
-            >
+              whileHover={{ y: -4 }}>
+              
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10">
                   <Building className="h-5 w-5 text-accent" />
@@ -481,16 +481,16 @@ const MedicalDevicesContent = () => {
               </p>
               <ul className="mt-3 space-y-2">
                 {[
-                  "Manufacturing licenses for Class A & B devices",
-                  "Wholesale drug licenses (Form 20B/21B)",
-                  "MD 42 registration for retailers and stockists",
-                  "Enforcement and compliance inspections",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                "Manufacturing licenses for Class A & B devices",
+                "Wholesale drug licenses (Form 20B/21B)",
+                "MD 42 registration for retailers and stockists",
+                "Enforcement and compliance inspections"].
+                map((item, i) =>
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
                     <Scale className="h-3.5 w-3.5 mt-0.5 text-accent flex-shrink-0" />
                     {item}
                   </li>
-                ))}
+                )}
               </ul>
               <div className="mt-4 rounded-lg bg-muted/50 p-3">
                 <p className="text-xs text-muted-foreground italic">
@@ -538,15 +538,15 @@ const MedicalDevicesContent = () => {
                 </tr>
               </thead>
               <tbody>
-                {licenseData.map((row, i) => (
-                  <motion.tr
-                    key={i}
-                    className="border-b border-border/50 hover:bg-muted/30 transition-colors"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                  >
+                {licenseData.map((row, i) =>
+                <motion.tr
+                  key={i}
+                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}>
+                  
                     <td className="px-4 py-3 font-medium text-foreground">
                       {row.form}
                     </td>
@@ -563,20 +563,20 @@ const MedicalDevicesContent = () => {
                     </td>
                     <td className="px-4 py-3">
                       <span
-                        className={cn(
-                          "rounded-full px-2.5 py-1 text-xs font-medium",
-                          row.authority === "CDSCO"
-                            ? "bg-primary/10 text-primary"
-                            : row.authority === "SLA"
-                            ? "bg-accent/10 text-accent"
-                            : "bg-secondary text-secondary-foreground"
-                        )}
-                      >
+                      className={cn(
+                        "rounded-full px-2.5 py-1 text-xs font-medium",
+                        row.authority === "CDSCO" ?
+                        "bg-primary/10 text-primary" :
+                        row.authority === "SLA" ?
+                        "bg-accent/10 text-accent" :
+                        "bg-secondary text-secondary-foreground"
+                      )}>
+                      
                         {row.authority}
                       </span>
                     </td>
                   </motion.tr>
-                ))}
+                )}
               </tbody>
             </table>
           </div>
@@ -601,8 +601,8 @@ const MedicalDevicesContent = () => {
           <RevealSection delay={0}>
             <motion.div
               className="rounded-2xl border border-border bg-gradient-to-br from-card to-primary/5 p-6 h-full"
-              whileHover={{ y: -4 }}
-            >
+              whileHover={{ y: -4 }}>
+              
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-primary-foreground">
                   <Globe className="h-5 w-5" />
@@ -629,8 +629,8 @@ const MedicalDevicesContent = () => {
           <RevealSection delay={0.15}>
             <motion.div
               className="rounded-2xl border border-border bg-gradient-to-br from-card to-accent/5 p-6 h-full"
-              whileHover={{ y: -4 }}
-            >
+              whileHover={{ y: -4 }}>
+              
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-accent-foreground">
                   <FileCheck className="h-5 w-5" />
@@ -661,8 +661,8 @@ const MedicalDevicesContent = () => {
           <RevealSection delay={0}>
             <motion.div
               className="rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 p-6 h-full"
-              whileHover={{ borderColor: "hsl(var(--primary))" }}
-            >
+              whileHover={{ borderColor: "hsl(var(--primary))" }}>
+              
               <div className="flex items-center gap-3 mb-4">
                 <AlertTriangle className="h-6 w-6 text-primary" />
                 <h3 className="text-lg font-bold text-foreground">
@@ -678,8 +678,8 @@ const MedicalDevicesContent = () => {
           <RevealSection delay={0.15}>
             <motion.div
               className="rounded-2xl border-2 border-dashed border-accent/30 bg-accent/5 p-6 h-full"
-              whileHover={{ borderColor: "hsl(var(--accent))" }}
-            >
+              whileHover={{ borderColor: "hsl(var(--accent))" }}>
+              
               <div className="flex items-center gap-3 mb-4">
                 <Stethoscope className="h-6 w-6 text-accent" />
                 <h3 className="text-lg font-bold text-foreground">
@@ -699,8 +699,8 @@ const MedicalDevicesContent = () => {
         <RevealSection>
           <motion.div
             className="rounded-2xl border border-border bg-card p-6 lg:p-8"
-            whileHover={{ boxShadow: "0 12px 40px -12px hsl(var(--primary) / 0.15)" }}
-          >
+            whileHover={{ boxShadow: "0 12px 40px -12px hsl(var(--primary) / 0.15)" }}>
+            
             <div className="flex items-start gap-4 mb-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 flex-shrink-0">
                 <FileCheck className="h-6 w-6 text-primary" />
@@ -729,30 +729,30 @@ const MedicalDevicesContent = () => {
       {/* ── Final CTA ── */}
       <section>
         <RevealSection>
-          <div className="text-center rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 border border-primary/20 p-8 lg:p-12">
-            <motion.div
-              initial={{ scale: 0.9 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-                Need Expert Guidance?
-              </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto mb-6">
-                Our regulatory experts have helped register thousands of medical devices across all risk classes. Let us simplify your CDSCO journey.
-              </p>
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Button asChild size="lg" className="shadow-lg shadow-primary/25">
-                  <Link to="/contact">Schedule a Free Consultation →</Link>
-                </Button>
-              </motion.div>
-            </motion.div>
-          </div>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
         </RevealSection>
       </section>
-    </div>
-  );
+    </div>);
+
 };
 
 export default MedicalDevicesContent;
