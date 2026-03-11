@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import MedicalDevicesContent from "@/components/services/MedicalDevicesContent";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
