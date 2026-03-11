@@ -754,20 +754,11 @@ const MedicalDevicesContent = () => {
           </motion.div>
         </RevealSection>
       </section>
+    </div>
+  );
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-          
+export default MedicalDevicesContent;
         </RevealSection>
       </section>
     </div>);
