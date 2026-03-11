@@ -1354,6 +1354,20 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
                 <IVDContent />
               </div>
           }
+
+            {/* Deep-dive content for Cosmetics */}
+            {activeServiceId === "cosmetics" &&
+          <div className="mt-[2vh]">
+                <CosmeticsContent />
+              </div>
+          }
+
+            {/* Deep-dive content for Legal Metrology */}
+            {activeServiceId === "lmpc" &&
+          <div className="mt-[2vh]">
+                <LegalMetrologyContent />
+              </div>
+          }
           </div>
         </section>
       }
