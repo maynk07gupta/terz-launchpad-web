@@ -1337,6 +1337,13 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
                 onNext={handleNext}
               />
             </div>
+
+            {/* Deep-dive content for Medical Devices */}
+            {activeServiceId === "medical-devices" && (
+              <div className="mt-16">
+                <MedicalDevicesContent />
+              </div>
+            )}
           </div>
         </section>
       )}
