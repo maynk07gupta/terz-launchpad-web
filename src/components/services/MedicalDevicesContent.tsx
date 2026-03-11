@@ -729,30 +729,33 @@ const MedicalDevicesContent = () => {
       {/* ── Final CTA ── */}
       <section>
         <RevealSection>
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
+          <motion.div
+            className="rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 p-8 lg:p-12 text-center"
+            whileHover={{
+              boxShadow: "0 20px 60px -20px hsl(var(--primary) / 0.2)",
+            }}
+          >
+            <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
+              Need Help with Medical Device Registration?
+            </h3>
+            <p className="text-muted-foreground max-w-xl mx-auto mb-6">
+              Our regulatory experts have decades of experience navigating
+              CDSCO and SLA approvals. Let us handle the complexity.
+            </p>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                asChild
+                size="lg"
+                className="shadow-lg shadow-primary/25"
+              >
+                <Link to="/contact">Get Expert Assistance →</Link>
+              </Button>
+            </motion.div>
+          </motion.div>
         </RevealSection>
       </section>
-    </div>);
-
+    </div>
+  );
 };
 
 export default MedicalDevicesContent;
