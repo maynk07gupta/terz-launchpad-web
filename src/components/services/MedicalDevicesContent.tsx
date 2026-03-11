@@ -759,10 +759,3 @@ const MedicalDevicesContent = () => {
 };
 
 export default MedicalDevicesContent;
-        </RevealSection>
-      </section>
-    </div>);
-
-};
-
-export default MedicalDevicesContent;
