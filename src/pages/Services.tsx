@@ -3,6 +3,9 @@ import MedicalDevicesContent from "@/components/services/MedicalDevicesContent";
 import IVDContent from "@/components/services/IVDContent";
 import CosmeticsContent from "@/components/services/CosmeticsContent";
 import LegalMetrologyContent from "@/components/services/LegalMetrologyContent";
+import IECContent from "@/components/services/IECContent";
+import EPRContent from "@/components/services/EPRContent";
+import WholesaleLicenseContent from "@/components/services/WholesaleLicenseContent";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -1366,6 +1369,27 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
             {activeServiceId === "lmpc" &&
           <div className="mt-[2vh]">
                 <LegalMetrologyContent />
+              </div>
+          }
+
+            {/* Deep-dive content for IEC */}
+            {activeServiceId === "iec" &&
+          <div className="mt-[2vh]">
+                <IECContent />
+              </div>
+          }
+
+            {/* Deep-dive content for EPR */}
+            {activeServiceId === "epr" &&
+          <div className="mt-[2vh]">
+                <EPRContent />
+              </div>
+          }
+
+            {/* Deep-dive content for Wholesale License */}
+            {activeServiceId === "wholesale-license" &&
+          <div className="mt-[2vh]">
+                <WholesaleLicenseContent />
               </div>
           }
           </div>
