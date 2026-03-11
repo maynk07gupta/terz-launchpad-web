@@ -1371,6 +1371,27 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
                 <LegalMetrologyContent />
               </div>
           }
+
+            {/* Deep-dive content for IEC */}
+            {activeServiceId === "iec" &&
+          <div className="mt-[2vh]">
+                <IECContent />
+              </div>
+          }
+
+            {/* Deep-dive content for EPR */}
+            {activeServiceId === "epr" &&
+          <div className="mt-[2vh]">
+                <EPRContent />
+              </div>
+          }
+
+            {/* Deep-dive content for Wholesale License */}
+            {activeServiceId === "wholesale-license" &&
+          <div className="mt-[2vh]">
+                <WholesaleLicenseContent />
+              </div>
+          }
           </div>
         </section>
       }
