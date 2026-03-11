@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import MedicalDevicesContent from "@/components/services/MedicalDevicesContent";
 import IVDContent from "@/components/services/IVDContent";
+import CosmeticsContent from "@/components/services/CosmeticsContent";
+import LegalMetrologyContent from "@/components/services/LegalMetrologyContent";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
