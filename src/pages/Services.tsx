@@ -1340,7 +1340,7 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
 
             {/* Deep-dive content for Medical Devices */}
             {activeServiceId === "medical-devices" && (
-              <div className="mt-16">
+              <div className="mt-[2vh]">
                 <MedicalDevicesContent />
               </div>
             )}
