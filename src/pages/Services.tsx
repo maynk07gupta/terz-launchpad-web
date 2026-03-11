@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import MedicalDevicesContent from "@/components/services/MedicalDevicesContent";
 import IVDContent from "@/components/services/IVDContent";
+import CosmeticsContent from "@/components/services/CosmeticsContent";
+import LegalMetrologyContent from "@/components/services/LegalMetrologyContent";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -1350,6 +1352,20 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
             {activeServiceId === "ivd" &&
           <div className="mt-[2vh]">
                 <IVDContent />
+              </div>
+          }
+
+            {/* Deep-dive content for Cosmetics */}
+            {activeServiceId === "cosmetics" &&
+          <div className="mt-[2vh]">
+                <CosmeticsContent />
+              </div>
+          }
+
+            {/* Deep-dive content for Legal Metrology */}
+            {activeServiceId === "lmpc" &&
+          <div className="mt-[2vh]">
+                <LegalMetrologyContent />
               </div>
           }
           </div>
