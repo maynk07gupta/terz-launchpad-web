@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import MedicalDevicesContent from "@/components/services/MedicalDevicesContent";
 import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -1336,6 +1337,13 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
                 onNext={handleNext}
               />
             </div>
+
+            {/* Deep-dive content for Medical Devices */}
+            {activeServiceId === "medical-devices" && (
+              <div className="mt-16">
+                <MedicalDevicesContent />
+              </div>
+            )}
           </div>
         </section>
       )}

@@ -49,7 +49,7 @@ const About = () => {
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
-    let scrollInterval: NodeJS.Timeout;
+    let scrollInterval: ReturnType<typeof setInterval>;
     let isHovered = false;
     const updateActiveTestimonial = () => {
       if (container) {
