@@ -3,6 +3,7 @@ import {
   ArrowUpRight,
   Filter,
   Flame,
+  Loader2,
   Search,
   Sparkles,
   TrendingUp,
@@ -14,8 +15,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { resources } from "@/data/resources";
+import { resources as staticResources } from "@/data/resources";
+import type { ResourceItem } from "@/data/resources";
+import { useNewsArticles } from "@/hooks/useNewsArticles";
 
 type FilterKey = "all" | "news" | "blog";
 
