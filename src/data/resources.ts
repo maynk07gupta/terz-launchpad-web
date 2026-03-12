@@ -74,7 +74,7 @@ export const resources: ResourceItem[] = [
     takeaways: [
       "Onboarding of producers begins 10 February with a mandatory KYC verification.",
       "Quarterly disclosure of credit utilisation is now automated through API connectors.",
-      "Penalty waiver of 25% announced for FY25 for entities adopting the marketplace within Q1.",
+      "Penalty waiver of 25% announced for FY26 for entities adopting the marketplace within Q1.",
     ],
     content: [
       {
