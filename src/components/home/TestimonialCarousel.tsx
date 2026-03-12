@@ -137,12 +137,12 @@ export const TestimonialCarousel = () => {
               {[...row1, ...row1].map((partner, i) => (
                 <div
                   key={`r1-${i}`}
-                  className="group flex h-32 w-56 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/80 p-5 transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
+                  className="group flex h-32 w-56 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/80 overflow-hidden transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
                 >
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-h-full max-w-full object-contain"
+                    className="h-full w-full object-contain scale-[1.8]"
                     loading="lazy"
                   />
                 </div>
