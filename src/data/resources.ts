@@ -165,7 +165,7 @@ export const resources: ResourceItem[] = [
   {
     type: "blog",
     slug: "navigating-india-market-entry-2025",
-    title: "Navigating India Market Entry: 2025 Regulatory Watchlist",
+    title: "Navigating India Market Entry: 2026 Regulatory Watchlist",
     excerpt:
       "A curated roadmap for international brands planning their 2025 India market entry, covering customs, CDSCO, and local representations.",
     category: "Market Entry",
