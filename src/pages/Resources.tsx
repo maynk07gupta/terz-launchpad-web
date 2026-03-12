@@ -152,7 +152,7 @@ const Resources = () => {
             {/* Stats Cards */}
             <div className="mt-16 grid gap-6 sm:grid-cols-3">
               <div className="group rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
-                <div className="text-4xl font-bold text-primary">{resources.length}</div>
+                <div className="text-4xl font-bold text-primary">{allResources.length}</div>
                 <div className="mt-2 text-sm text-muted-foreground">Expert Articles</div>
               </div>
               <div className="group rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
