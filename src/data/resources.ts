@@ -66,7 +66,7 @@ export const resources: ResourceItem[] = [
     excerpt:
       "The Central Pollution Control Board has launched a unified trading window for Extended Producer Responsibility credits covering plastics and electronics.",
     category: "EPR",
-    publishedOn: "2025-02-04",
+    publishedOn: "2026-02-04",
     readTime: "4 min read",
     author: "Terz Regulatory Desk",
     authorRole: "Environmental Compliance Team",
