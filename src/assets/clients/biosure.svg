@@ -1,7 +1,0 @@
-<svg width="160" height="60" viewBox="0 0 160 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="160" height="60" rx="14" fill="#022c22"/>
-  <circle cx="35" cy="30" r="14" stroke="#34D399" stroke-width="4"/>
-  <circle cx="35" cy="30" r="6" fill="#34D399"/>
-  <text x="60" y="35" fill="#D1FAE5" font-family="'Inter', 'Segoe UI', sans-serif" font-size="18" font-weight="600">BioSure</text>
-  <text x="60" y="47" fill="#6EE7B7" font-family="'Inter', 'Segoe UI', sans-serif" font-size="10" font-weight="500">LABS</text>
-</svg>

@@ -2,12 +2,30 @@ import { useState, useEffect, useCallback } from "react";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import BioSureLogo from "@/assets/clients/biosure.svg";
-import DermavitaLogo from "@/assets/clients/dermavita.svg";
-import GlobalMedLogo from "@/assets/clients/globalmed.svg";
-import NexGenLogo from "@/assets/clients/nexgen.svg";
-import OrionLogo from "@/assets/clients/orion.svg";
-import ZenithLogo from "@/assets/clients/zenith.svg";
+
+// Partner logos
+import BeautyBarnLogo from "@/assets/clients/beauty-barn.png";
+import BostonIvyLogo from "@/assets/clients/boston-ivy.png";
+import MedikaBazaarLogo from "@/assets/clients/medika-bazaar.png";
+import DerringerLogo from "@/assets/clients/derringer.png";
+import SwarLogo from "@/assets/clients/swar-enterprises.png";
+import GeuderLogo from "@/assets/clients/geuder-india.png";
+import HotgenLogo from "@/assets/clients/hotgen-biotech.png";
+import VisionSourceLogo from "@/assets/clients/vision-source.png";
+import NeobiotechLogo from "@/assets/clients/neobiotech.png";
+import IntracareLogo from "@/assets/clients/intracare.png";
+import DrihaLogo from "@/assets/clients/driha-enterprises.png";
+import JainsonsLogo from "@/assets/clients/jainsons-group.png";
+import MaxvueLogo from "@/assets/clients/maxvue-vision.png";
+import IvalensLogo from "@/assets/clients/ivalens.png";
+import KataraLogo from "@/assets/clients/katara-dental.png";
+import OrtechLogo from "@/assets/clients/ortech.png";
+import KrishnaMicromedLogo from "@/assets/clients/krishna-micromed.png";
+import MobilabLogo from "@/assets/clients/mobilab.png";
+import PigeonLogo from "@/assets/clients/pigeon-india.png";
+import PrudensLogo from "@/assets/clients/prudens.png";
+import AP2RLogo from "@/assets/clients/ap2r-global.png";
+import QuantumLogo from "@/assets/clients/quantum-medical.png";
 
 const testimonials = [
   {
@@ -42,14 +60,33 @@ const testimonials = [
   },
 ];
 
-const clients = [
-  { name: "NexGen MedTech", logo: NexGenLogo },
-  { name: "BioSure Labs", logo: BioSureLogo },
-  { name: "Dermavita", logo: DermavitaLogo },
-  { name: "Zenith Lifecare", logo: ZenithLogo },
-  { name: "GlobalMed Imports", logo: GlobalMedLogo },
-  { name: "Orion Devices", logo: OrionLogo },
+const partners = [
+  { name: "Beauty Barn", logo: BeautyBarnLogo },
+  { name: "Boston Ivy", logo: BostonIvyLogo },
+  { name: "Medika Bazaar", logo: MedikaBazaarLogo },
+  { name: "Derringer", logo: DerringerLogo },
+  { name: "Swar Enterprises", logo: SwarLogo },
+  { name: "Geuder India Ophthalmics", logo: GeuderLogo },
+  { name: "Hotgen Biotech", logo: HotgenLogo },
+  { name: "Vision Source", logo: VisionSourceLogo },
+  { name: "Neobiotech", logo: NeobiotechLogo },
+  { name: "Intracare", logo: IntracareLogo },
+  { name: "Driha Enterprises", logo: DrihaLogo },
+  { name: "Jainsons Group", logo: JainsonsLogo },
+  { name: "Maxvue Vision", logo: MaxvueLogo },
+  { name: "Ivalens", logo: IvalensLogo },
+  { name: "Katara Dental", logo: KataraLogo },
+  { name: "Ortech", logo: OrtechLogo },
+  { name: "Krishna Micromed", logo: KrishnaMicromedLogo },
+  { name: "Mobilab, USA", logo: MobilabLogo },
+  { name: "Pigeon India", logo: PigeonLogo },
+  { name: "Prudens Dermaceuticals", logo: PrudensLogo },
+  { name: "AP2R Global", logo: AP2RLogo },
+  { name: "Quantum Medical Technologies", logo: QuantumLogo },
 ];
+
+const row1 = partners.slice(0, 11);
+const row2 = partners.slice(11);
 
 const ROTATION_INTERVAL = 5000;
 
@@ -90,23 +127,49 @@ export const TestimonialCarousel = () => {
           </p>
         </div>
 
-        {/* Client Logos */}
-        <div className="mb-12 flex flex-wrap items-center justify-center gap-6 lg:gap-8">
-          {clients.map((client, index) => (
-            <motion.div
-              key={client.name}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-              className="flex h-16 w-28 items-center justify-center rounded-lg bg-card/50 p-3 grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
-            >
-              <img
-                src={client.logo}
-                alt={client.name}
-                className="max-h-full w-full object-contain"
-              />
-            </motion.div>
-          ))}
+        {/* Partner Logos — Two-row infinite marquee */}
+        <div className="mb-16 space-y-4 overflow-hidden">
+          {/* Row 1 — scrolls left */}
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
+            <div className="flex animate-marquee-left gap-6">
+              {[...row1, ...row1].map((partner, i) => (
+                <div
+                  key={`r1-${i}`}
+                  className="group flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/80 p-4 transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
+                >
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 — scrolls right */}
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
+            <div className="flex animate-marquee-right gap-6">
+              {[...row2, ...row2].map((partner, i) => (
+                <div
+                  key={`r2-${i}`}
+                  className="group flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/80 p-4 transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
+                >
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Testimonial Carousel */}
