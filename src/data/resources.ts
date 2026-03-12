@@ -36,9 +36,9 @@ export const resources: ResourceItem[] = [
     authorRole: "Regulatory Affairs Team",
     tags: ["CDSCO", "Digital Submissions", "Medical Devices"],
     takeaways: [
-      "Digital dossiers become mandatory for fresh Class B applications submitted after 1 April 2025.",
+      "Digital dossiers become mandatory for fresh Class B applications submitted after 1 April 2026.",
       "Legacy submissions get a 60-day transition period to upload metadata in the new schema.",
-      "Manufacturers must nominate a compliance officer for the CDSCO digital portal by 15 March 2025.",
+      "Manufacturers must nominate a compliance officer for the CDSCO digital portal by 15 March 2026.",
     ],
     content: [
       {
