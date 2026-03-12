@@ -1,54 +1,55 @@
 import * as React from "react";
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
-  Stethoscope, FlaskConical, Sparkles, Scale, FileText, Recycle, Store,
-  ShieldCheck, Globe, BadgeCheck, Microscope, Pill, Factory, Landmark,
+  ShieldCheck, CheckCircle, FileCheck, Lock, Award, BadgeCheck,
 } from "lucide-react";
 
-/* ── Service orbit nodes ── */
-const orbitNodes = [
-  { icon: Stethoscope, label: "Medical Devices", color: "217 91% 60%", angle: 0 },
-  { icon: FlaskConical, label: "IVD", color: "162 66% 40%", angle: 51 },
-  { icon: Sparkles, label: "Cosmetics", color: "280 65% 55%", angle: 103 },
-  { icon: Scale, label: "Legal Metrology", color: "37 94% 48%", angle: 154 },
-  { icon: FileText, label: "IEC", color: "217 91% 45%", angle: 206 },
-  { icon: Recycle, label: "EPR", color: "162 66% 32%", angle: 257 },
-  { icon: Store, label: "Wholesale", color: "356 78% 50%", angle: 309 },
+/* ── Floating trust icons ── */
+const trustIcons = [
+  { icon: ShieldCheck, x: 8, y: 20, size: 30, delay: 0, dur: 16 },
+  { icon: CheckCircle, x: 88, y: 15, size: 26, delay: 1.2, dur: 18 },
+  { icon: FileCheck, x: 12, y: 72, size: 24, delay: 2, dur: 15 },
+  { icon: Lock, x: 90, y: 68, size: 28, delay: 0.8, dur: 17 },
+  { icon: Award, x: 5, y: 45, size: 22, delay: 3, dur: 19 },
+  { icon: BadgeCheck, x: 93, y: 44, size: 24, delay: 1.5, dur: 14 },
+  { icon: ShieldCheck, x: 50, y: 5, size: 22, delay: 2.5, dur: 20 },
+  { icon: CheckCircle, x: 48, y: 92, size: 20, delay: 0.5, dur: 16 },
+  { icon: Lock, x: 25, y: 8, size: 20, delay: 3.5, dur: 18 },
+  { icon: Award, x: 75, y: 88, size: 22, delay: 1.8, dur: 15 },
 ];
 
-/* ── Floating background icons (scattered, decorative) ── */
-const bgIcons = [
-  { icon: ShieldCheck, x: 6, y: 18, size: 28, delay: 0 },
-  { icon: Globe, x: 90, y: 12, size: 32, delay: 1 },
-  { icon: BadgeCheck, x: 14, y: 75, size: 24, delay: 2 },
-  { icon: Microscope, x: 88, y: 70, size: 26, delay: 0.5 },
-  { icon: Pill, x: 4, y: 45, size: 22, delay: 1.5 },
-  { icon: Factory, x: 94, y: 42, size: 24, delay: 3 },
-  { icon: Landmark, x: 50, y: 6, size: 26, delay: 2.5 },
-  { icon: ShieldCheck, x: 48, y: 90, size: 22, delay: 1.2 },
-];
-
-/* ── Particle dots ── */
-const particles = Array.from({ length: 35 }, (_, i) => ({
+/* ── Particles ── */
+const particles = Array.from({ length: 40 }, (_, i) => ({
   id: i,
   x: Math.random() * 100,
   y: Math.random() * 100,
-  size: 2 + Math.random() * 3,
-  duration: 8 + Math.random() * 12,
-  delay: Math.random() * 5,
+  size: 1.5 + Math.random() * 3,
+  duration: 8 + Math.random() * 14,
+  delay: Math.random() * 6,
 }));
+
+/* ── Concentric ring data ── */
+const rings = [
+  { radius: 120, dash: "6 8", width: 1.5, opacity: 0.08, speed: 60, dir: 1 },
+  { radius: 190, dash: "3 10", width: 1, opacity: 0.05, speed: 80, dir: -1 },
+  { radius: 260, dash: "8 5", width: 1.5, opacity: 0.06, speed: 100, dir: 1 },
+  { radius: 330, dash: "4 12", width: 1, opacity: 0.04, speed: 120, dir: -1 },
+];
+
+/* ── Checkmark stamps that animate in ── */
+const stamps = [
+  { x: 18, y: 28, delay: 2, rot: -12 },
+  { x: 78, y: 22, delay: 2.8, rot: 8 },
+  { x: 22, y: 65, delay: 3.5, rot: -6 },
+  { x: 82, y: 70, delay: 4.2, rot: 10 },
+];
 
 export const HeroSection = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const smoothX = useSpring(mouseX, { damping: 30, stiffness: 100 });
-  const smoothY = useSpring(mouseY, { damping: 30, stiffness: 100 });
-
-  const [hoveredNode, setHoveredNode] = React.useState<number | null>(null);
-  const [isMounted, setIsMounted] = React.useState(false);
-
-  React.useEffect(() => setIsMounted(true), []);
+  const smoothX = useSpring(mouseX, { damping: 30, stiffness: 80 });
+  const smoothY = useSpring(mouseY, { damping: 30, stiffness: 80 });
 
   const handleMouseMove = React.useCallback((e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -57,9 +58,7 @@ export const HeroSection = () => {
     mouseY.set(e.clientY - rect.top);
   }, [mouseX, mouseY]);
 
-  // Orbit radius responsive
-  const orbitRadius = typeof window !== "undefined" && window.innerWidth < 640 ? 130 : typeof window !== "undefined" && window.innerWidth < 1024 ? 180 : 240;
-  const nodeSize = typeof window !== "undefined" && window.innerWidth < 640 ? 44 : 56;
+  const center = 350;
 
   return (
     <section
@@ -68,221 +67,184 @@ export const HeroSection = () => {
       className="relative w-full overflow-hidden flex items-center justify-center"
       style={{ minHeight: "calc(100vh - 80px)" }}
     >
-      {/* ── Background layers ── */}
+      {/* ── Background ── */}
       <div className="absolute inset-0 -z-10">
-        {/* Gradient mesh */}
         <div className="absolute inset-0" style={{
-          background: "linear-gradient(135deg, hsl(var(--background)) 0%, hsl(217, 89%, 97%) 30%, hsl(162, 55%, 97%) 60%, hsl(217, 89%, 97%) 80%, hsl(var(--background)) 100%)",
+          background: "linear-gradient(135deg, hsl(var(--background)) 0%, hsl(217, 89%, 97%) 30%, hsl(162, 55%, 97%) 55%, hsl(217, 89%, 97%) 80%, hsl(var(--background)) 100%)",
         }} />
 
         {/* Mouse spotlight */}
         <motion.div
-          className="absolute w-[700px] h-[700px] rounded-full pointer-events-none"
+          className="absolute w-[800px] h-[800px] rounded-full pointer-events-none"
           style={{
-            x: useTransform(smoothX, v => v - 350),
-            y: useTransform(smoothY, v => v - 350),
-            background: "radial-gradient(circle, hsl(var(--primary) / 0.06) 0%, transparent 70%)",
+            x: useTransform(smoothX, v => v - 400),
+            y: useTransform(smoothY, v => v - 400),
+            background: "radial-gradient(circle, hsl(var(--primary) / 0.06) 0%, transparent 65%)",
           }}
         />
 
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-[0.015]" style={{
+        {/* Grid */}
+        <div className="absolute inset-0 opacity-[0.012]" style={{
           backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
           backgroundSize: "80px 80px",
         }} />
 
-        {/* Particle dots */}
+        {/* Particles */}
         {particles.map((p) => (
           <motion.div
             key={p.id}
             className="absolute rounded-full bg-primary/10"
             style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
-            animate={{ y: [0, -30, 15, -20, 0], opacity: [0.3, 0.7, 0.4, 0.8, 0.3] }}
+            animate={{ y: [0, -25, 12, -18, 0], opacity: [0.2, 0.6, 0.3, 0.7, 0.2] }}
             transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: "easeInOut" }}
           />
         ))}
       </div>
 
-      {/* ── Floating background icons ── */}
-      {bgIcons.map((item, i) => {
+      {/* ── Floating trust icons ── */}
+      {trustIcons.map((item, i) => {
         const Icon = item.icon;
         return (
           <motion.div
             key={i}
-            className="absolute pointer-events-none text-primary/[0.06]"
+            className="absolute pointer-events-none text-primary/[0.07]"
             style={{ left: `${item.x}%`, top: `${item.y}%` }}
-            animate={{ y: [0, -15, 8, -10, 0], rotate: [0, 5, -3, 4, 0] }}
-            transition={{ duration: 14 + i * 2, repeat: Infinity, delay: item.delay, ease: "easeInOut" }}
+            animate={{ y: [0, -12, 8, -10, 0], rotate: [0, 4, -3, 5, 0] }}
+            transition={{ duration: item.dur, repeat: Infinity, delay: item.delay, ease: "easeInOut" }}
           >
             <Icon style={{ width: item.size, height: item.size }} />
           </motion.div>
         );
       })}
 
-      {/* ── Center content ── */}
-      <div className="relative z-10 flex flex-col items-center">
-
-        {/* Orbit system */}
-        <div className="relative" style={{ width: orbitRadius * 2 + nodeSize + 40, height: orbitRadius * 2 + nodeSize + 40 }}>
-
-          {/* Orbit ring */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox={`0 0 ${orbitRadius * 2 + nodeSize + 40} ${orbitRadius * 2 + nodeSize + 40}`}>
-            <motion.circle
-              cx={(orbitRadius * 2 + nodeSize + 40) / 2}
-              cy={(orbitRadius * 2 + nodeSize + 40) / 2}
-              r={orbitRadius}
-              fill="none"
-              stroke="hsl(var(--primary) / 0.08)"
-              strokeWidth="1.5"
-              strokeDasharray="8 6"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, ease: "easeInOut" }}
+      {/* ── Animated compliance stamps ── */}
+      {stamps.map((s, i) => (
+        <motion.div
+          key={i}
+          className="absolute pointer-events-none"
+          style={{ left: `${s.x}%`, top: `${s.y}%` }}
+          initial={{ opacity: 0, scale: 0, rotate: s.rot }}
+          animate={{ opacity: [0, 0.12, 0.08], scale: [0, 1.2, 1], rotate: s.rot }}
+          transition={{ duration: 0.8, delay: s.delay, ease: "easeOut" }}
+        >
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-primary/15 flex items-center justify-center">
+            <CheckCircle className="w-7 h-7 sm:w-9 sm:h-9 text-primary/20" />
+            <motion.div
+              className="absolute inset-0 rounded-full border-2 border-primary/10"
+              animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, delay: i * 0.7 }}
             />
-            {/* Second subtle ring */}
+          </div>
+        </motion.div>
+      ))}
+
+      {/* ── Center composition ── */}
+      <div className="relative z-10 flex flex-col items-center">
+        <div className="relative" style={{ width: center * 2, height: center * 2 }}>
+
+          {/* Concentric rotating rings */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox={`0 0 ${center * 2} ${center * 2}`}>
+            {rings.map((ring, i) => (
+              <motion.circle
+                key={i}
+                cx={center}
+                cy={center}
+                r={ring.radius}
+                fill="none"
+                stroke="hsl(var(--primary))"
+                strokeWidth={ring.width}
+                strokeDasharray={ring.dash}
+                opacity={ring.opacity}
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1, rotate: 360 * ring.dir }}
+                transition={{
+                  pathLength: { duration: 2, ease: "easeInOut" },
+                  rotate: { duration: ring.speed, repeat: Infinity, ease: "linear" },
+                }}
+                style={{ transformOrigin: "center" }}
+              />
+            ))}
+
+            {/* Center shield glow */}
             <motion.circle
-              cx={(orbitRadius * 2 + nodeSize + 40) / 2}
-              cy={(orbitRadius * 2 + nodeSize + 40) / 2}
-              r={orbitRadius * 0.6}
-              fill="none"
-              stroke="hsl(var(--accent) / 0.05)"
-              strokeWidth="1"
-              strokeDasharray="4 8"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2.5, ease: "easeInOut", delay: 0.3 }}
+              cx={center}
+              cy={center}
+              r={60}
+              fill="hsl(var(--primary) / 0.04)"
+              initial={{ scale: 0 }}
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
           </svg>
 
-          {/* Center headline */}
+          {/* Central shield icon */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, type: "spring", stiffness: 150, damping: 15 }}
+            >
+              {/* Shield glow ring */}
+              <motion.div
+                className="absolute -inset-5 rounded-full"
+                style={{ background: "radial-gradient(circle, hsl(var(--primary) / 0.1) 0%, transparent 70%)" }}
+                animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+
+              <motion.div
+                className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-card border-2 border-primary/30 flex items-center justify-center shadow-lg"
+                style={{ boxShadow: "0 0 40px hsl(var(--primary) / 0.15), 0 0 80px hsl(var(--primary) / 0.08)" }}
+                whileHover={{ scale: 1.15, borderColor: "hsl(var(--primary) / 0.5)" }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <ShieldCheck className="w-10 h-10 sm:w-12 sm:h-12 text-primary" />
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Headline overlaid on rings */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center px-4" style={{ maxWidth: orbitRadius * 1.5 }}>
+            <div className="text-center mt-40 sm:mt-44">
               <motion.h1
-                className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight leading-tight"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.5, type: "spring", stiffness: 100 }}
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-[56px] font-bold tracking-tight leading-tight"
               >
                 <motion.span
                   className="block text-foreground"
-                  initial={{ y: 30, opacity: 0 }}
+                  initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
+                  transition={{ duration: 0.7, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   Simplifying India's
                 </motion.span>
                 <motion.span
                   className="block hero-shimmer-text mt-1"
-                  initial={{ y: 30, opacity: 0 }}
+                  initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
+                  transition={{ duration: 0.7, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
                 >
                   Regulatory Compliance
                 </motion.span>
               </motion.h1>
             </div>
           </div>
-
-          {/* Orbit service nodes */}
-          {orbitNodes.map((node, i) => {
-            const Icon = node.icon;
-            const center = (orbitRadius * 2 + nodeSize + 40) / 2;
-            const angleRad = ((node.angle - 90) * Math.PI) / 180;
-            const x = center + orbitRadius * Math.cos(angleRad) - nodeSize / 2;
-            const y = center + orbitRadius * Math.sin(angleRad) - nodeSize / 2;
-            const isHovered = hoveredNode === i;
-
-            return (
-              <motion.div
-                key={i}
-                className="absolute z-20"
-                style={{ left: x, top: y, width: nodeSize, height: nodeSize }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1 + i * 0.12, type: "spring", stiffness: 200, damping: 15 }}
-                onMouseEnter={() => setHoveredNode(i)}
-                onMouseLeave={() => setHoveredNode(null)}
-              >
-                {/* Pulse ring */}
-                <motion.div
-                  className="absolute rounded-full"
-                  style={{
-                    inset: -6,
-                    border: `2px solid hsl(${node.color} / 0.25)`,
-                  }}
-                  animate={
-                    isHovered
-                      ? { scale: 1.8, opacity: 0 }
-                      : { scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }
-                  }
-                  transition={
-                    isHovered
-                      ? { duration: 0.5 }
-                      : { duration: 3, repeat: Infinity, delay: i * 0.4 }
-                  }
-                />
-
-                {/* Node */}
-                <motion.div
-                  className="w-full h-full rounded-full bg-card border-2 flex items-center justify-center cursor-pointer shadow-lg"
-                  style={{
-                    borderColor: `hsl(${node.color})`,
-                    boxShadow: isHovered
-                      ? `0 0 30px hsl(${node.color} / 0.35), 0 4px 16px hsl(${node.color} / 0.2)`
-                      : "var(--shadow-md)",
-                  }}
-                  animate={isHovered ? { scale: 1.3 } : { scale: 1 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                >
-                  <Icon
-                    className="transition-colors duration-200"
-                    style={{
-                      color: `hsl(${node.color})`,
-                      width: nodeSize * 0.45,
-                      height: nodeSize * 0.45,
-                    }}
-                  />
-                </motion.div>
-
-                {/* Tooltip label */}
-                <AnimatePresence>
-                  {isHovered && (
-                    <motion.div
-                      className="absolute left-1/2 whitespace-nowrap px-3 py-1.5 rounded-lg bg-card border border-border shadow-lg text-xs font-semibold text-foreground pointer-events-none"
-                      style={{
-                        bottom: node.angle > 90 && node.angle < 270 ? "auto" : "calc(100% + 10px)",
-                        top: node.angle > 90 && node.angle < 270 ? "calc(100% + 10px)" : "auto",
-                        x: "-50%",
-                      }}
-                      initial={{ opacity: 0, y: node.angle > 90 && node.angle < 270 ? -8 : 8, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: node.angle > 90 && node.angle < 270 ? -8 : 8, scale: 0.9 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    >
-                      {node.label}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
         </div>
 
         {/* Scroll indicator */}
         <motion.div
-          className="mt-8 flex flex-col items-center gap-1"
+          className="mt-4 flex flex-col items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5 }}
         >
           <motion.div
-            className="w-5 h-8 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-1.5"
-            animate={{ y: [0, 4, 0] }}
+            className="w-5 h-8 rounded-full border-2 border-muted-foreground/25 flex justify-center pt-1.5"
+            animate={{ y: [0, 5, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
             <motion.div
-              className="w-1 h-2 rounded-full bg-muted-foreground/50"
+              className="w-1 h-2 rounded-full bg-muted-foreground/40"
               animate={{ opacity: [1, 0.3, 1], y: [0, 4, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
