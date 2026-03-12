@@ -28,17 +28,17 @@ export const resources: ResourceItem[] = [
     slug: "cdsco-expedites-digital-dossiers",
     title: "CDSCO Expedites Digital Dossiers for Class B Devices",
     excerpt:
-      "The CDSCO has introduced a fast-track window for digital dossier submissions covering Class B medical devices with effect from April 2025.",
+      "The CDSCO has introduced a fast-track window for digital dossier submissions covering Class B medical devices with effect from April 2026.",
     category: "Medical Devices",
-    publishedOn: "2025-01-22",
+    publishedOn: "2026-01-22",
     readTime: "3 min read",
     author: "Terz Regulatory Desk",
     authorRole: "Regulatory Affairs Team",
     tags: ["CDSCO", "Digital Submissions", "Medical Devices"],
     takeaways: [
-      "Digital dossiers become mandatory for fresh Class B applications submitted after 1 April 2025.",
+      "Digital dossiers become mandatory for fresh Class B applications submitted after 1 April 2026.",
       "Legacy submissions get a 60-day transition period to upload metadata in the new schema.",
-      "Manufacturers must nominate a compliance officer for the CDSCO digital portal by 15 March 2025.",
+      "Manufacturers must nominate a compliance officer for the CDSCO digital portal by 15 March 2026.",
     ],
     content: [
       {
@@ -48,9 +48,9 @@ export const resources: ResourceItem[] = [
         heading: "Implementation timeline",
         body: "The circular outlines three clear milestones that manufacturers should plan for immediately:",
         bulletPoints: [
-          "1 February 2025: sandbox access is opened to existing licence holders for testing the new schema.",
-          "1 April 2025: all new Class B applications must be filed through the digital window.",
-          "1 June 2025: supporting technical queries will be handled exclusively through the portal helpdesk.",
+          "1 February 2026: sandbox access is opened to existing licence holders for testing the new schema.",
+          "1 April 2026: all new Class B applications must be filed through the digital window.",
+          "1 June 2026: supporting technical queries will be handled exclusively through the portal helpdesk.",
         ],
       },
       {
@@ -66,7 +66,7 @@ export const resources: ResourceItem[] = [
     excerpt:
       "The Central Pollution Control Board has launched a unified trading window for Extended Producer Responsibility credits covering plastics and electronics.",
     category: "EPR",
-    publishedOn: "2025-02-04",
+    publishedOn: "2026-02-04",
     readTime: "4 min read",
     author: "Terz Regulatory Desk",
     authorRole: "Environmental Compliance Team",
@@ -74,7 +74,7 @@ export const resources: ResourceItem[] = [
     takeaways: [
       "Onboarding of producers begins 10 February with a mandatory KYC verification.",
       "Quarterly disclosure of credit utilisation is now automated through API connectors.",
-      "Penalty waiver of 25% announced for FY25 for entities adopting the marketplace within Q1.",
+      "Penalty waiver of 25% announced for FY26 for entities adopting the marketplace within Q1.",
     ],
     content: [
       {
@@ -102,14 +102,14 @@ export const resources: ResourceItem[] = [
     excerpt:
       "The Department of Legal Metrology will now issue digital stamps for LMPC registrations, reducing port clearance delays for importers.",
     category: "Legal Metrology",
-    publishedOn: "2025-01-30",
+    publishedOn: "2026-01-30",
     readTime: "2 min read",
     author: "Terz Regulatory Desk",
     authorRole: "Legal Metrology Desk",
     tags: ["LMPC", "Digital Stamping", "Imports"],
     takeaways: [
       "Digital stamps delivered instantly upon approval with QR verification.",
-      "Physical stamping requirement retained only for legacy paperwork until September 2025.",
+      "Physical stamping requirement retained only for legacy paperwork until September 2026.",
       "Importers must update product artwork to accommodate the QR code footprint.",
     ],
     content: [
@@ -133,7 +133,7 @@ export const resources: ResourceItem[] = [
     excerpt:
       "From prioritising signals to aligning stakeholders, here is how to build a regulatory intelligence dashboard that supports decisive action.",
     category: "Strategy",
-    publishedOn: "2025-01-18",
+    publishedOn: "2026-01-18",
     readTime: "6 min read",
     author: "Aanya Kapoor",
     authorRole: "Head of Regulatory Insights, Terz",
@@ -164,12 +164,12 @@ export const resources: ResourceItem[] = [
   },
   {
     type: "blog",
-    slug: "navigating-india-market-entry-2025",
-    title: "Navigating India Market Entry: 2025 Regulatory Watchlist",
+    slug: "navigating-india-market-entry-2026",
+    title: "Navigating India Market Entry: 2026 Regulatory Watchlist",
     excerpt:
-      "A curated roadmap for international brands planning their 2025 India market entry, covering customs, CDSCO, and local representations.",
+      "A curated roadmap for international brands planning their 2026 India market entry, covering customs, CDSCO, and local representations.",
     category: "Market Entry",
-    publishedOn: "2025-02-08",
+    publishedOn: "2026-02-08",
     readTime: "7 min read",
     author: "Raghav Menon",
     authorRole: "Market Expansion Lead, Terz",
@@ -205,7 +205,7 @@ export const resources: ResourceItem[] = [
     excerpt:
       "A practical blueprint to help compliance teams compile and maintain audit-ready documentation without disrupting business velocity.",
     category: "Operations",
-    publishedOn: "2025-01-12",
+    publishedOn: "2026-01-12",
     readTime: "5 min read",
     author: "Sarah Mathew",
     authorRole: "Senior Consultant, Terz",
