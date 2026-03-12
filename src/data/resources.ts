@@ -102,7 +102,7 @@ export const resources: ResourceItem[] = [
     excerpt:
       "The Department of Legal Metrology will now issue digital stamps for LMPC registrations, reducing port clearance delays for importers.",
     category: "Legal Metrology",
-    publishedOn: "2025-01-30",
+    publishedOn: "2026-01-30",
     readTime: "2 min read",
     author: "Terz Regulatory Desk",
     authorRole: "Legal Metrology Desk",
