@@ -205,7 +205,7 @@ export const resources: ResourceItem[] = [
     excerpt:
       "A practical blueprint to help compliance teams compile and maintain audit-ready documentation without disrupting business velocity.",
     category: "Operations",
-    publishedOn: "2025-01-12",
+    publishedOn: "2026-01-12",
     readTime: "5 min read",
     author: "Sarah Mathew",
     authorRole: "Senior Consultant, Terz",
