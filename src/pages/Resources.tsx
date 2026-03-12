@@ -347,9 +347,41 @@ const Resources = () => {
       {/* Resources Grid */}
       <section className="relative z-20 py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Loading indicator */}
+          {isNewsLoading && (
+            <div className="mb-8 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <Loader2 className="h-4 w-4 animate-spin text-primary" />
+              <span>Fetching latest regulatory news…</span>
+            </div>
+          )}
+
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {/* Skeleton cards while loading */}
+            {isNewsLoading && filteredResources.length === 0 &&
+              Array.from({ length: 6 }).map((_, i) => (
+                <Card key={`skel-${i}`} className="rounded-[28px] border border-border/60 bg-card/70 p-6">
+                  <div className="flex items-center justify-between">
+                    <Skeleton className="h-6 w-16 rounded-full" />
+                    <Skeleton className="h-4 w-20" />
+                  </div>
+                  <Skeleton className="mt-5 h-7 w-3/4" />
+                  <Skeleton className="mt-3 h-5 w-full" />
+                  <Skeleton className="mt-2 h-5 w-2/3" />
+                  <div className="mt-6 flex gap-2">
+                    <Skeleton className="h-6 w-16 rounded-full" />
+                    <Skeleton className="h-6 w-20 rounded-full" />
+                  </div>
+                  <div className="mt-8 flex items-center justify-between">
+                    <Skeleton className="h-6 w-24 rounded-full" />
+                    <Skeleton className="h-5 w-5 rounded" />
+                  </div>
+                </Card>
+              ))
+            }
+
             {filteredResources.map((resource) => {
               const { pill, accent } = getTypeStyles(resource.type);
+              const isApiArticle = resource.slug.startsWith("api-");
 
               return (
                 <Card
@@ -361,6 +393,9 @@ const Resources = () => {
                     <div className="flex items-center justify-between gap-3">
                       <span className={cn("inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em]", pill)}>
                         {resource.type === "news" ? "News" : "Blog"}
+                        {isApiArticle && (
+                          <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" title="Live from API" />
+                        )}
                       </span>
                       <span className="text-xs font-medium text-muted-foreground">
                         {formatDate(resource.publishedOn)}
@@ -369,7 +404,7 @@ const Resources = () => {
                     <h3 className="mt-5 text-2xl font-semibold leading-tight text-foreground transition-colors duration-300 group-hover:text-primary">
                       {resource.title}
                     </h3>
-                    <p className="mt-4 text-sm text-muted-foreground">
+                    <p className="mt-4 text-sm text-muted-foreground line-clamp-3">
                       {resource.excerpt}
                     </p>
                     <div className="mt-6 flex flex-wrap gap-2">
@@ -382,7 +417,7 @@ const Resources = () => {
                         </span>
                       ))}
                     </div>
-                    <div className="mt-8 flex items-center justify-between text-sm text-muted-foreground">
+                    <div className="mt-auto pt-8 flex items-center justify-between text-sm text-muted-foreground">
                       <div className="flex items-center gap-3">
                         <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
                           {resource.category}
@@ -402,7 +437,7 @@ const Resources = () => {
             })}
           </div>
 
-          {filteredResources.length === 0 && (
+          {!isNewsLoading && filteredResources.length === 0 && (
             <div className="mt-20 text-center">
               <p className="text-lg text-muted-foreground">
                 Nothing matched your filters yet. Try a different keyword or explore another format.
