@@ -66,7 +66,7 @@ const ResourceDetail = () => {
 
   const formattedDate = formatLongDate(resource.publishedOn);
 
-  const recommendations = resources
+  const recommendations = allResources
     .filter((item) => item.type === resource.type && item.slug !== resource.slug)
     .slice(0, 2);
 
