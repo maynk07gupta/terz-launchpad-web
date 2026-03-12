@@ -137,7 +137,7 @@ export const TestimonialCarousel = () => {
               {[...row1, ...row1].map((partner, i) => (
                 <div
                   key={`r1-${i}`}
-                  className="group flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/80 p-4 transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
+                  className="group flex h-32 w-56 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/80 p-5 transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
                 >
                   <img
                     src={partner.logo}
@@ -158,7 +158,7 @@ export const TestimonialCarousel = () => {
               {[...row2, ...row2].map((partner, i) => (
                 <div
                   key={`r2-${i}`}
-                  className="group flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/80 p-4 transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
+                  className="group flex h-32 w-56 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/80 p-5 transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10"
                 >
                   <img
                     src={partner.logo}
