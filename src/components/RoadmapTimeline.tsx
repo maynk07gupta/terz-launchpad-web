@@ -135,14 +135,14 @@ const RoadmapTimeline = ({
                 animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                 transition={{ delay: index * 0.1 + 0.4, duration: 0.3 }}
                 className={cn(
-                  "w-10 text-center text-xs transition-colors duration-300",
+                  "flex-1 text-center text-[11px] leading-tight transition-colors duration-300 px-1",
                   index === activeStep
-                    ? "text-primary font-medium"
+                    ? "text-primary font-semibold"
                     : "text-muted-foreground"
                 )}
               >
-                <span className="block max-w-[80px] -translate-x-1/4 truncate">
-                  {title.split(" ")[0]}
+                <span className="block">
+                  {title}
                 </span>
               </motion.div>
             ))}
