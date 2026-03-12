@@ -158,9 +158,22 @@ const ResourceDetail = () => {
                   </Badge>
                 ))}
               </div>
-              <Button variant="outline" className="rounded-full border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground">
-                <Share2 className="mr-2 h-4 w-4" /> Share update
-              </Button>
+              <div className="flex gap-3">
+                {isApiArticle && sourceUrl && (
+                  <Button
+                    variant="default"
+                    className="rounded-full"
+                    asChild
+                  >
+                    <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="mr-2 h-4 w-4" /> Read full article
+                    </a>
+                  </Button>
+                )}
+                <Button variant="outline" className="rounded-full border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground">
+                  <Share2 className="mr-2 h-4 w-4" /> Share update
+                </Button>
+              </div>
             </div>
           </div>
 
