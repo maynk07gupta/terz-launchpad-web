@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowUpRight, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Clock, ExternalLink, Share2 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -8,16 +8,30 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { resources } from "@/data/resources";
+import { useNewsArticles } from "@/hooks/useNewsArticles";
 
 const ResourceDetail = () => {
   const params = useParams<{ type: string; slug: string }>();
   const navigate = useNavigate();
+  const { data: apiNews = [] } = useNewsArticles();
+
+  const allResources = useMemo(() => {
+    const merged = [...resources];
+    const existingSlugs = new Set(resources.map((r) => r.slug));
+    for (const article of apiNews) {
+      if (!existingSlugs.has(article.slug)) merged.push(article);
+    }
+    return merged;
+  }, [apiNews]);
 
   const resource = useMemo(() => {
-    return resources.find(
+    return allResources.find(
       (item) => item.slug === params.slug && item.type === params.type
     );
-  }, [params.slug, params.type]);
+  }, [params.slug, params.type, allResources]);
+
+  const isApiArticle = resource?.slug.startsWith("api-") ?? false;
+  const sourceUrl = isApiArticle ? (resource as any)?.sourceUrl : undefined;
 
   const formatLongDate = (isoDate: string) => {
     return new Intl.DateTimeFormat("en-IN", {
