@@ -133,7 +133,7 @@ export const resources: ResourceItem[] = [
     excerpt:
       "From prioritising signals to aligning stakeholders, here is how to build a regulatory intelligence dashboard that supports decisive action.",
     category: "Strategy",
-    publishedOn: "2025-01-18",
+    publishedOn: "2026-01-18",
     readTime: "6 min read",
     author: "Aanya Kapoor",
     authorRole: "Head of Regulatory Insights, Terz",
