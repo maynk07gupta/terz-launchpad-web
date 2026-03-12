@@ -195,14 +195,23 @@ const Resources = () => {
               </div>
               <Separator className="my-5 bg-border/50" />
               <ul className="space-y-4">
-                {resources.slice(0, 3).map((item) => (
-                  <li key={item.slug} className="group/item flex items-center justify-between gap-4 transition-colors">
-                    <span className="line-clamp-1 text-sm font-medium text-foreground group-hover/item:text-primary">{item.title}</span>
-                    <span className="shrink-0 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      {formatDate(item.publishedOn)}
-                    </span>
-                  </li>
-                ))}
+                {isNewsLoading ? (
+                  Array.from({ length: 3 }).map((_, i) => (
+                    <li key={i} className="flex items-center justify-between gap-4">
+                      <Skeleton className="h-4 flex-1" />
+                      <Skeleton className="h-3 w-20" />
+                    </li>
+                  ))
+                ) : (
+                  allResources.slice(0, 3).map((item) => (
+                    <li key={item.slug} className="group/item flex items-center justify-between gap-4 transition-colors">
+                      <span className="line-clamp-1 text-sm font-medium text-foreground group-hover/item:text-primary">{item.title}</span>
+                      <span className="shrink-0 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        {formatDate(item.publishedOn)}
+                      </span>
+                    </li>
+                  ))
+                )}
               </ul>
             </div>
           </div>
