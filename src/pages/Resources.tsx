@@ -3,6 +3,7 @@ import {
   ArrowUpRight,
   Filter,
   Flame,
+  Loader2,
   Search,
   Sparkles,
   TrendingUp,
@@ -14,8 +15,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { resources } from "@/data/resources";
+import { resources as staticResources } from "@/data/resources";
+import type { ResourceItem } from "@/data/resources";
+import { useNewsArticles } from "@/hooks/useNewsArticles";
 
 type FilterKey = "all" | "news" | "blog";
 
@@ -37,6 +41,21 @@ const Resources = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isCompressed, setIsCompressed] = useState(false);
 
+  const { data: apiNews = [], isLoading: isNewsLoading } = useNewsArticles();
+
+  // Merge static + dynamic, deduplicate by slug
+  const allResources = useMemo(() => {
+    const merged: ResourceItem[] = [...staticResources];
+    const existingSlugs = new Set(staticResources.map((r) => r.slug));
+    for (const article of apiNews) {
+      if (!existingSlugs.has(article.slug)) {
+        merged.push(article);
+      }
+    }
+    // Sort by date descending
+    return merged.sort((a, b) => new Date(b.publishedOn).getTime() - new Date(a.publishedOn).getTime());
+  }, [apiNews]);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsCompressed(window.scrollY > 80);
@@ -50,8 +69,8 @@ const Resources = () => {
     const normalizedQuery = searchTerm.trim().toLowerCase();
     const filterByType =
       activeTab === "all"
-        ? resources
-        : resources.filter((item) => item.type === activeTab);
+        ? allResources
+        : allResources.filter((item) => item.type === activeTab);
 
     if (!normalizedQuery) {
       return filterByType;
@@ -71,7 +90,7 @@ const Resources = () => {
 
       return haystack.includes(normalizedQuery);
     });
-  }, [activeTab, searchTerm]);
+  }, [activeTab, searchTerm, allResources]);
 
   const resultLabel = useMemo(() => {
     const count = filteredResources.length;
@@ -133,7 +152,7 @@ const Resources = () => {
             {/* Stats Cards */}
             <div className="mt-16 grid gap-6 sm:grid-cols-3">
               <div className="group rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
-                <div className="text-4xl font-bold text-primary">{resources.length}</div>
+                <div className="text-4xl font-bold text-primary">{allResources.length}</div>
                 <div className="mt-2 text-sm text-muted-foreground">Expert Articles</div>
               </div>
               <div className="group rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10">
@@ -176,14 +195,23 @@ const Resources = () => {
               </div>
               <Separator className="my-5 bg-border/50" />
               <ul className="space-y-4">
-                {resources.slice(0, 3).map((item) => (
-                  <li key={item.slug} className="group/item flex items-center justify-between gap-4 transition-colors">
-                    <span className="line-clamp-1 text-sm font-medium text-foreground group-hover/item:text-primary">{item.title}</span>
-                    <span className="shrink-0 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      {formatDate(item.publishedOn)}
-                    </span>
-                  </li>
-                ))}
+                {isNewsLoading ? (
+                  Array.from({ length: 3 }).map((_, i) => (
+                    <li key={i} className="flex items-center justify-between gap-4">
+                      <Skeleton className="h-4 flex-1" />
+                      <Skeleton className="h-3 w-20" />
+                    </li>
+                  ))
+                ) : (
+                  allResources.slice(0, 3).map((item) => (
+                    <li key={item.slug} className="group/item flex items-center justify-between gap-4 transition-colors">
+                      <span className="line-clamp-1 text-sm font-medium text-foreground group-hover/item:text-primary">{item.title}</span>
+                      <span className="shrink-0 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        {formatDate(item.publishedOn)}
+                      </span>
+                    </li>
+                  ))
+                )}
               </ul>
             </div>
           </div>
@@ -319,9 +347,41 @@ const Resources = () => {
       {/* Resources Grid */}
       <section className="relative z-20 py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Loading indicator */}
+          {isNewsLoading && (
+            <div className="mb-8 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <Loader2 className="h-4 w-4 animate-spin text-primary" />
+              <span>Fetching latest regulatory news…</span>
+            </div>
+          )}
+
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {/* Skeleton cards while loading */}
+            {isNewsLoading && filteredResources.length === 0 &&
+              Array.from({ length: 6 }).map((_, i) => (
+                <Card key={`skel-${i}`} className="rounded-[28px] border border-border/60 bg-card/70 p-6">
+                  <div className="flex items-center justify-between">
+                    <Skeleton className="h-6 w-16 rounded-full" />
+                    <Skeleton className="h-4 w-20" />
+                  </div>
+                  <Skeleton className="mt-5 h-7 w-3/4" />
+                  <Skeleton className="mt-3 h-5 w-full" />
+                  <Skeleton className="mt-2 h-5 w-2/3" />
+                  <div className="mt-6 flex gap-2">
+                    <Skeleton className="h-6 w-16 rounded-full" />
+                    <Skeleton className="h-6 w-20 rounded-full" />
+                  </div>
+                  <div className="mt-8 flex items-center justify-between">
+                    <Skeleton className="h-6 w-24 rounded-full" />
+                    <Skeleton className="h-5 w-5 rounded" />
+                  </div>
+                </Card>
+              ))
+            }
+
             {filteredResources.map((resource) => {
               const { pill, accent } = getTypeStyles(resource.type);
+              const isApiArticle = resource.slug.startsWith("api-");
 
               return (
                 <Card
@@ -333,6 +393,9 @@ const Resources = () => {
                     <div className="flex items-center justify-between gap-3">
                       <span className={cn("inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em]", pill)}>
                         {resource.type === "news" ? "News" : "Blog"}
+                        {isApiArticle && (
+                          <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" title="Live from API" />
+                        )}
                       </span>
                       <span className="text-xs font-medium text-muted-foreground">
                         {formatDate(resource.publishedOn)}
@@ -341,7 +404,7 @@ const Resources = () => {
                     <h3 className="mt-5 text-2xl font-semibold leading-tight text-foreground transition-colors duration-300 group-hover:text-primary">
                       {resource.title}
                     </h3>
-                    <p className="mt-4 text-sm text-muted-foreground">
+                    <p className="mt-4 text-sm text-muted-foreground line-clamp-3">
                       {resource.excerpt}
                     </p>
                     <div className="mt-6 flex flex-wrap gap-2">
@@ -354,7 +417,7 @@ const Resources = () => {
                         </span>
                       ))}
                     </div>
-                    <div className="mt-8 flex items-center justify-between text-sm text-muted-foreground">
+                    <div className="mt-auto pt-8 flex items-center justify-between text-sm text-muted-foreground">
                       <div className="flex items-center gap-3">
                         <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
                           {resource.category}
@@ -374,7 +437,7 @@ const Resources = () => {
             })}
           </div>
 
-          {filteredResources.length === 0 && (
+          {!isNewsLoading && filteredResources.length === 0 && (
             <div className="mt-20 text-center">
               <p className="text-lg text-muted-foreground">
                 Nothing matched your filters yet. Try a different keyword or explore another format.
