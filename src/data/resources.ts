@@ -109,7 +109,7 @@ export const resources: ResourceItem[] = [
     tags: ["LMPC", "Digital Stamping", "Imports"],
     takeaways: [
       "Digital stamps delivered instantly upon approval with QR verification.",
-      "Physical stamping requirement retained only for legacy paperwork until September 2025.",
+      "Physical stamping requirement retained only for legacy paperwork until September 2026.",
       "Importers must update product artwork to accommodate the QR code footprint.",
     ],
     content: [
