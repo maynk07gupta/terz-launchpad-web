@@ -30,7 +30,7 @@ export const resources: ResourceItem[] = [
     excerpt:
       "The CDSCO has introduced a fast-track window for digital dossier submissions covering Class B medical devices with effect from April 2025.",
     category: "Medical Devices",
-    publishedOn: "2025-01-22",
+    publishedOn: "2026-01-22",
     readTime: "3 min read",
     author: "Terz Regulatory Desk",
     authorRole: "Regulatory Affairs Team",
