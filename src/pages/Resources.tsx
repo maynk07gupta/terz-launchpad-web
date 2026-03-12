@@ -41,6 +41,21 @@ const Resources = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isCompressed, setIsCompressed] = useState(false);
 
+  const { data: apiNews = [], isLoading: isNewsLoading } = useNewsArticles();
+
+  // Merge static + dynamic, deduplicate by slug
+  const allResources = useMemo(() => {
+    const merged: ResourceItem[] = [...staticResources];
+    const existingSlugs = new Set(staticResources.map((r) => r.slug));
+    for (const article of apiNews) {
+      if (!existingSlugs.has(article.slug)) {
+        merged.push(article);
+      }
+    }
+    // Sort by date descending
+    return merged.sort((a, b) => new Date(b.publishedOn).getTime() - new Date(a.publishedOn).getTime());
+  }, [apiNews]);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsCompressed(window.scrollY > 80);
@@ -54,8 +69,8 @@ const Resources = () => {
     const normalizedQuery = searchTerm.trim().toLowerCase();
     const filterByType =
       activeTab === "all"
-        ? resources
-        : resources.filter((item) => item.type === activeTab);
+        ? allResources
+        : allResources.filter((item) => item.type === activeTab);
 
     if (!normalizedQuery) {
       return filterByType;
@@ -75,7 +90,7 @@ const Resources = () => {
 
       return haystack.includes(normalizedQuery);
     });
-  }, [activeTab, searchTerm]);
+  }, [activeTab, searchTerm, allResources]);
 
   const resultLabel = useMemo(() => {
     const count = filteredResources.length;
