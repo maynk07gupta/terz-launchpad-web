@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
 import type { ResourceItem } from "@/data/resources";
+
+const GNEWS_API_KEY = import.meta.env.VITE_GNEWS_API_KEY || "";
 
 interface GNewsArticle {
   title: string;
@@ -9,8 +10,7 @@ interface GNewsArticle {
   url: string;
   image: string;
   publishedAt: string;
-  sourceName: string;
-  sourceUrl: string;
+  source: { name: string; url: string };
 }
 
 function slugify(text: string): string {
@@ -71,7 +71,7 @@ function mapToResourceItem(article: GNewsArticle): ResourceItem {
     category,
     publishedOn: publishedDate,
     readTime: "3 min read",
-    author: article.sourceName || "External Source",
+    author: article.source?.name || "External Source",
     authorRole: "News Source",
     tags,
     takeaways: [],
@@ -80,28 +80,39 @@ function mapToResourceItem(article: GNewsArticle): ResourceItem {
         body: article.content || article.description || "",
       },
     ],
-    // Extra fields for API articles
     sourceUrl: article.url,
     imageUrl: article.image,
   } as ResourceItem & { sourceUrl?: string; imageUrl?: string };
 }
 
 async function fetchNews(): Promise<ResourceItem[]> {
-  const { data, error } = await supabase.functions.invoke("fetch-news", {
-    body: { max: 10 },
-  });
+  if (!GNEWS_API_KEY) return [];
 
-  if (error) throw new Error(error.message || "Failed to fetch news");
-  if (!data?.articles) return [];
+  const searchQuery =
+    '"medical devices" OR "regulatory compliance" OR "cosmetics regulation" OR "import export India" OR "EPR compliance" OR "CDSCO" OR "legal metrology"';
 
-  return data.articles.map(mapToResourceItem);
+  const url = new URL("https://gnews.io/api/v4/search");
+  url.searchParams.set("q", searchQuery);
+  url.searchParams.set("lang", "en");
+  url.searchParams.set("max", "10");
+  url.searchParams.set("sortby", "publishedAt");
+  url.searchParams.set("token", GNEWS_API_KEY);
+
+  const response = await fetch(url.toString());
+  if (!response.ok) {
+    console.error("GNews API error:", response.status);
+    return [];
+  }
+
+  const data = await response.json();
+  return (data.articles || []).map(mapToResourceItem);
 }
 
 export function useNewsArticles() {
   return useQuery({
     queryKey: ["news-articles"],
     queryFn: fetchNews,
-    staleTime: 10 * 60 * 1000, // 10 minutes
+    staleTime: 10 * 60 * 1000,
     gcTime: 30 * 60 * 1000,
     retry: 1,
     refetchOnWindowFocus: false,
