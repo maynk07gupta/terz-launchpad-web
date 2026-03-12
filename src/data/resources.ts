@@ -48,9 +48,9 @@ export const resources: ResourceItem[] = [
         heading: "Implementation timeline",
         body: "The circular outlines three clear milestones that manufacturers should plan for immediately:",
         bulletPoints: [
-          "1 February 2025: sandbox access is opened to existing licence holders for testing the new schema.",
-          "1 April 2025: all new Class B applications must be filed through the digital window.",
-          "1 June 2025: supporting technical queries will be handled exclusively through the portal helpdesk.",
+          "1 February 2026: sandbox access is opened to existing licence holders for testing the new schema.",
+          "1 April 2026: all new Class B applications must be filed through the digital window.",
+          "1 June 2026: supporting technical queries will be handled exclusively through the portal helpdesk.",
         ],
       },
       {
