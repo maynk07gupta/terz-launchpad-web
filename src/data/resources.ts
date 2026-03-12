@@ -28,7 +28,7 @@ export const resources: ResourceItem[] = [
     slug: "cdsco-expedites-digital-dossiers",
     title: "CDSCO Expedites Digital Dossiers for Class B Devices",
     excerpt:
-      "The CDSCO has introduced a fast-track window for digital dossier submissions covering Class B medical devices with effect from April 2025.",
+      "The CDSCO has introduced a fast-track window for digital dossier submissions covering Class B medical devices with effect from April 2026.",
     category: "Medical Devices",
     publishedOn: "2026-01-22",
     readTime: "3 min read",
