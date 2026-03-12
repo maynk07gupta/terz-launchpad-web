@@ -167,9 +167,9 @@ export const resources: ResourceItem[] = [
     slug: "navigating-india-market-entry-2025",
     title: "Navigating India Market Entry: 2026 Regulatory Watchlist",
     excerpt:
-      "A curated roadmap for international brands planning their 2025 India market entry, covering customs, CDSCO, and local representations.",
+      "A curated roadmap for international brands planning their 2026 India market entry, covering customs, CDSCO, and local representations.",
     category: "Market Entry",
-    publishedOn: "2025-02-08",
+    publishedOn: "2026-02-08",
     readTime: "7 min read",
     author: "Raghav Menon",
     authorRole: "Market Expansion Lead, Terz",
