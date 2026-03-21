@@ -1025,7 +1025,7 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
   }, [location.hash]);
 
   // Services that support both manufacturer and importer roles
-  const dualRoleServices = ["medical-devices", "ivd", "wholesale-license"];
+  const dualRoleServices = ["medical-devices", "ivd", "cosmetics"];
 
   const activeService = useMemo(
     () =>
