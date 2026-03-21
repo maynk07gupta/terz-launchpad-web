@@ -4,21 +4,16 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Shield, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ServiceCardCarousel } from "./ServiceCardCarousel";
+import heroBg from "@/assets/hero-bg.png";
 
 export const HeroSection = () => {
   return (
     <section className="relative w-full overflow-hidden" style={{ paddingTop: "clamp(60px, 8vw, 110px)", paddingBottom: "clamp(60px, 8vw, 110px)" }}>
-      {/* Light gradient background */}
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background: "linear-gradient(180deg, #F7FAFD 0%, #FFFFFF 100%)",
-        }}
-      />
-
-      {/* Subtle decorative blobs */}
-      <div className="absolute top-20 -left-32 w-[400px] h-[400px] rounded-full blur-[120px] -z-5" style={{ background: "rgba(62, 123, 250, 0.06)" }} />
-      <div className="absolute bottom-20 -right-32 w-[350px] h-[350px] rounded-full blur-[100px] -z-5" style={{ background: "rgba(39, 161, 205, 0.06)" }} />
+      {/* Background image with overlay */}
+      <div className="absolute inset-0 -z-10">
+        <img src={heroBg} alt="" className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px]" />
+      </div>
 
       {/* Main content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
