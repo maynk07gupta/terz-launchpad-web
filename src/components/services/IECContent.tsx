@@ -85,7 +85,7 @@ const documentsRequired = [
   { icon: Users, title: "Aadhaar / Voter ID", description: "Identity proof of the proprietor, partner, or director" },
   { icon: Building, title: "Address Proof", description: "Electricity bill, rent agreement, or sale deed of business premises" },
   { icon: Landmark, title: "Bank Certificate / Cancelled Cheque", description: "Pre-printed cancelled cheque or bank certificate with account details" },
-  { icon: FileText, title: "Certificate of Incorporation", description: "For companies/LLPs — MOA, AOA, or LLP Agreement" },
+  { icon: FileText, title: "Certificate of Incorporation", description: "For companies/LLPs  -  MOA, AOA, or LLP Agreement" },
   { icon: Globe, title: "Digital Photograph", description: "Passport-size photograph of the applicant" },
 ];
 
@@ -112,7 +112,7 @@ const processSteps = [
   { title: "Register on DGFT Portal", description: "Create an account on the DGFT portal (dgft.gov.in) using the applicant's PAN and email address." },
   { title: "File Online Application (ANF-2A)", description: "Fill in the Aayaat Niryaat Form 2A with business details, bank account information, and upload required documents." },
   { title: "Pay Government Fee", description: "Pay the application fee of ₹500 online through net banking, debit card, or credit card on the DGFT portal." },
-  { title: "Application Processing", description: "DGFT processes the application. If documents are satisfactory, the IEC is issued — typically within 1–3 working days." },
+  { title: "Application Processing", description: "DGFT processes the application. If documents are satisfactory, the IEC is issued  -  typically within 1–3 working days." },
   { title: "IEC Issuance", description: "Upon approval, the 10-digit IEC number is allotted and available on the DGFT portal. No physical certificate is issued." },
 ];
 
@@ -120,7 +120,7 @@ const processSteps = [
 const keyBenefits = [
   { icon: Globe, title: "Global Market Access", description: "Enables businesses to expand globally by importing and exporting goods and services." },
   { icon: Banknote, title: "Government Schemes", description: "Access export promotion schemes like MEIS, SEIS, Advance Authorization, and EPCG." },
-  { icon: Shield, title: "Lifetime Validity", description: "IEC is valid for the lifetime of the entity — no renewal required (annual update on DGFT portal needed)." },
+  { icon: Shield, title: "Lifetime Validity", description: "IEC is valid for the lifetime of the entity  -  no renewal required (annual update on DGFT portal needed)." },
   { icon: CheckCircle2, title: "Easy & Quick Process", description: "Fully online process with minimal documentation. Typically issued within 1–3 working days." },
 ];
 
@@ -164,7 +164,7 @@ const IECContent = () => {
           "Import Export Code (IEC) is a 10-digit alphanumeric code issued by the Directorate General of Foreign Trade (DGFT), Ministry of Commerce & Industry, Government of India. It is a mandatory prerequisite for any person or entity looking to engage in the import or export of goods and services."
         </blockquote>
         <p className="text-sm text-muted-foreground mt-3">
-          — Foreign Trade (Development & Regulation) Act, 1992
+           -  Foreign Trade (Development & Regulation) Act, 1992
         </p>
         <p className="text-muted-foreground leading-relaxed mt-6 max-w-3xl mx-auto">
           Without an IEC, no person shall make any import or export. Customs authorities will not allow import/export clearance without a valid IEC. It is also essential for businesses to avail benefits under various export promotion schemes offered by the Government of India.
@@ -426,7 +426,7 @@ const IECContent = () => {
           Need IEC Registration Assistance?
         </h3>
         <p className="text-muted-foreground mb-6">
-          Our experts handle the entire DGFT registration process — from documentation to IEC issuance.
+          Our experts handle the entire DGFT registration process  -  from documentation to IEC issuance.
         </p>
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <Button asChild size="lg" className="shadow-lg shadow-primary/25">

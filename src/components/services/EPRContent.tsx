@@ -177,7 +177,7 @@ const EPRContent = () => {
           "Extended Producer Responsibility (EPR) is the responsibility of any producer of electrical or electronic equipment, plastic packaging, or batteries, for channelization of their end-of-life products to ensure environmentally sound management of such waste."
         </blockquote>
         <p className="text-sm text-muted-foreground mt-3">
-          — Environment Protection Act, 1986
+           -  Environment Protection Act, 1986
         </p>
         <p className="text-muted-foreground leading-relaxed mt-6 max-w-3xl mx-auto">
           Under the Ministry of Environment, Forest and Climate Change (MoEFCC), the Central Pollution Control Board (CPCB) regulates EPR registrations across three major waste categories: Electronic Waste, Plastic Waste, and Battery Waste. All producers, importers, brand owners, and recyclers must register on the CPCB EPR portal.
@@ -416,7 +416,7 @@ const EPRContent = () => {
           Need EPR Registration Support?
         </h3>
         <p className="text-muted-foreground mb-6">
-          From e-waste to plastic and battery waste — our experts handle the complete CPCB registration and annual compliance process.
+          From e-waste to plastic and battery waste  -  our experts handle the complete CPCB registration and annual compliance process.
         </p>
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <Button asChild size="lg" className="shadow-lg shadow-primary/25">

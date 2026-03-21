@@ -197,7 +197,7 @@ const LegalMetrologyContent = () => {
           "Legal Metrology is an ACT to establish and enforce standards of weights and measures, regulate trade and commerce in weight, measures and other goods which are sold or distributed by weights, measure or number."
         </blockquote>
         <p className="text-sm text-muted-foreground mt-3">
-          — The Legal Metrology Act, 2009
+           -  The Legal Metrology Act, 2009
         </p>
         <p className="text-muted-foreground leading-relaxed mt-6 max-w-3xl mx-auto">
           Under the Department of Consumer Affairs, Food & Public Distribution, the Directorate of Legal Metrology is constituted as a separate wing in India. Rules, compliances, and standards are enforced through the central HQ in New Delhi, and delegated to respective states for ensuring effective and ongoing compliance.
