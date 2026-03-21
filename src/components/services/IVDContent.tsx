@@ -374,8 +374,8 @@ const IVDContent = () => {
             </h2>
             <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
               In line with the Global Harmonization Task Force (GHTF) framework,
-              IVD kits in India are classified into four risk-based categories —
-              Class A through D — with risk increasing from A (Low) to D (High).
+              IVD kits in India are classified into four risk-based categories  - 
+              Class A through D  -  with risk increasing from A (Low) to D (High).
               Classification is governed by the intended use of respective IVDs.
             </p>
           </div>

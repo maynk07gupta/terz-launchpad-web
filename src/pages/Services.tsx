@@ -1321,23 +1321,6 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-primary/5 py-[30px]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Ready to Get Started?
-            </h2>
-            <p className="text-muted-foreground mb-6">
-              Contact us for a free consultation. Our experts will guide you through
-              the {activeService?.title.split(" (")[0]} registration process.
-            </p>
-            <Button asChild size="lg">
-              <Link to="/contact">Schedule a Consultation</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>);
 
 };

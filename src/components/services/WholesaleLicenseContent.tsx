@@ -141,10 +141,10 @@ type LicenseRow = {
 
 const licenseData: LicenseRow[] = [
   { form: "Form 20B", type: "Application for Wholesale Drug License", validity: "5 Years", fees: "₹1,500 – ₹6,000*", authority: "State Drug Authority" },
-  { form: "Form 21B", type: "Wholesale Drug License (Issued)", validity: "5 Years", fees: "—", authority: "State Drug Authority" },
+  { form: "Form 21B", type: "Wholesale Drug License (Issued)", validity: "5 Years", fees: " - ", authority: "State Drug Authority" },
   { form: "Form 20B (Renewal)", type: "Renewal of Wholesale Drug License", validity: "5 Years", fees: "₹1,000 – ₹5,000*", authority: "State Drug Authority" },
   { form: "Form MD-40", type: "Application for Wholesale MD License", validity: "5 Years", fees: "₹3,000 – ₹10,000*", authority: "State Licensing Authority" },
-  { form: "Form MD-42", type: "Wholesale Medical Device License (Issued)", validity: "5 Years", fees: "—", authority: "State Licensing Authority" },
+  { form: "Form MD-42", type: "Wholesale Medical Device License (Issued)", validity: "5 Years", fees: " - ", authority: "State Licensing Authority" },
 ];
 
 /* ─── Process Steps ─── */
@@ -210,7 +210,7 @@ const WholesaleLicenseContent = () => {
           "A wholesale drug license authorizes the holder to sell, stock, exhibit, or offer for sale, or distribute drugs by wholesale. It is a fundamental prerequisite for any entity engaged in the wholesale trade of drugs, pharmaceuticals, or medical devices in India."
         </blockquote>
         <p className="text-sm text-muted-foreground mt-3">
-          — Drugs and Cosmetics Act, 1940 & Medical Device Rules, 2017
+           -  Drugs and Cosmetics Act, 1940 & Medical Device Rules, 2017
         </p>
         <p className="text-muted-foreground leading-relaxed mt-6 max-w-3xl mx-auto">
           In India, any entity wishing to import, distribute, or sell drugs and medical devices in bulk must first obtain a wholesale license from the State Drug/Licensing Authority. This license is a mandatory prerequisite for obtaining import licenses (Form MD-14/15) or manufacturing licenses.

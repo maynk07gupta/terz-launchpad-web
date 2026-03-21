@@ -190,7 +190,7 @@ const CosmeticsContent = () => {
           "Cosmetic means any article that can be rubbed, poured, sprinkled or sprayed, or inserted into, or otherwise applied to, the human body or any part thereof for cleaning, beautifying, enhancing attractiveness, or altering appearance, and includes any article intended for use as a cosmetic ingredient."
         </blockquote>
         <p className="text-sm text-muted-foreground mt-3">
-          — Drugs & Cosmetics Act, 1940
+           -  Drugs & Cosmetics Act, 1940
         </p>
       </RevealSection>
 

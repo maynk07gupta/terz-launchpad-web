@@ -222,7 +222,7 @@ const timelineMilestones = [
 { year: "1989", event: "Disposable syringes, needles & perfusion sets regulated" },
 { year: "2002", event: "In-vitro diagnostic substances including blood grouping sera" },
 { year: "2005", event: "Cardiac stents, catheters, IOLs, heart valves, ortho implants" },
-{ year: "2017", event: "Medical Devices Rules 2017 — separate regulatory identity" },
+{ year: "2017", event: "Medical Devices Rules 2017  -  separate regulatory identity" },
 { year: "2020", event: "New definition expands to cover ALL medical devices" },
 { year: "2021", event: "Nebulizers, glucometers, CT/MRI/PET equipment, defibrillators" },
 { year: "2022", event: "MD 42 registration mandatory for wholesalers & stockists" }];
@@ -258,13 +258,13 @@ const MedicalDevicesContent = () => {
         <RevealSection delay={0.1}>
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-4">
             <p>
-              As per the notified definition under <strong className="text-foreground">Medical Device Rules 2017</strong>, a Medical Device means any instrument, apparatus, appliance, implant, material, software, or accessory — whether used alone or in combination — intended by its manufacturer to be used specifically for human beings or animals. The device must not achieve its primary intended action by pharmacological, immunological, or metabolic means, though it may be assisted by such means.
+              As per the notified definition under <strong className="text-foreground">Medical Device Rules 2017</strong>, a Medical Device means any instrument, apparatus, appliance, implant, material, software, or accessory  -  whether used alone or in combination  -  intended by its manufacturer to be used specifically for human beings or animals. The device must not achieve its primary intended action by pharmacological, immunological, or metabolic means, though it may be assisted by such means.
             </p>
             <p>
               Medical devices serve purposes including: <em>diagnosis, prevention, monitoring, treatment, or alleviation of disease; investigation, replacement, or modification of anatomy or physiological processes; supporting or sustaining life; disinfection of medical devices; and control of conception.</em>
             </p>
             <p>
-              On <strong className="text-foreground">11th February 2020</strong>, the Ministry of Health and Family Welfare expanded the definition through <strong className="text-foreground">S.O. 648(E)</strong>, bringing ALL medical devices — not just the previously notified 37 categories — under regulatory oversight. This landmark notification means every medical device manufactured in or imported into India now requires appropriate registration and licensing under the Medical Device Rules 2017.
+              On <strong className="text-foreground">11th February 2020</strong>, the Ministry of Health and Family Welfare expanded the definition through <strong className="text-foreground">S.O. 648(E)</strong>, bringing ALL medical devices  -  not just the previously notified 37 categories  -  under regulatory oversight. This landmark notification means every medical device manufactured in or imported into India now requires appropriate registration and licensing under the Medical Device Rules 2017.
             </p>
           </div>
         </RevealSection>
@@ -310,7 +310,7 @@ const MedicalDevicesContent = () => {
               Classification in India
             </h2>
             <p className="text-muted-foreground mt-3 max-w-2xl mx-auto">
-              In line with the Global Harmonization Task Force (GHTF) framework, medical devices are classified into four risk-based categories — Class A through D — with increasing risk and regulatory scrutiny.
+              In line with the Global Harmonization Task Force (GHTF) framework, medical devices are classified into four risk-based categories  -  Class A through D  -  with increasing risk and regulatory scrutiny.
             </p>
           </div>
         </RevealSection>
@@ -494,7 +494,7 @@ const MedicalDevicesContent = () => {
               </ul>
               <div className="mt-4 rounded-lg bg-muted/50 p-3">
                 <p className="text-xs text-muted-foreground italic">
-                  <strong>Note:</strong> Class A non-sterile, non-measuring devices need not be licensed — they are self-regulated as per applicable standards.
+                  <strong>Note:</strong> Class A non-sterile, non-measuring devices need not be licensed  -  they are self-regulated as per applicable standards.
                 </p>
               </div>
             </motion.div>
@@ -644,7 +644,7 @@ const MedicalDevicesContent = () => {
                   Indian manufacturers submit applications through the <strong className="text-foreground">SUGAM portal</strong>. Class A & B devices are approved by the <strong className="text-foreground">State Licensing Authority</strong> using Form MD-3 → MD-5, while Class C & D devices require <strong className="text-foreground">CDSCO approval</strong> using Form MD-7 → MD-9.
                 </p>
                 <p>
-                  Loan license manufacturing is also supported — manufacturers can apply using <strong className="text-foreground">Form MD-4</strong> (Class A/B) or <strong className="text-foreground">Form MD-8</strong> (Class C/D) to manufacture at a third-party's licensed facility.
+                  Loan license manufacturing is also supported  -  manufacturers can apply using <strong className="text-foreground">Form MD-4</strong> (Class A/B) or <strong className="text-foreground">Form MD-8</strong> (Class C/D) to manufacture at a third-party's licensed facility.
                 </p>
                 <p>
                   For test license to manufacture for clinical investigation, training, or evaluation, <strong className="text-foreground">Form MD-12</strong> leads to permission in <strong className="text-foreground">Form MD-13</strong>.
@@ -707,10 +707,10 @@ const MedicalDevicesContent = () => {
               </div>
               <div>
                 <h3 className="text-xl font-bold text-foreground">
-                  MD 42 — Registration for Wholesalers, Retailers & Stockists
+                  MD 42  -  Registration for Wholesalers, Retailers & Stockists
                 </h3>
                 <p className="text-xs text-muted-foreground mt-1">
-                  5th Amendment, G.S.R. 754(E) — Effective 30 September 2022
+                  5th Amendment, G.S.R. 754(E)  -  Effective 30 September 2022
                 </p>
               </div>
             </div>
@@ -719,7 +719,7 @@ const MedicalDevicesContent = () => {
                 The Ministry of Health and Family Welfare published the 5th Amendment of Medical Device Rules, making it <strong className="text-foreground">mandatory for all retailers, wholesalers, and stockists</strong> to obtain a Registration Certificate from the State Licensing Authority on <strong className="text-foreground">Form MD-42</strong> to sell, stock, exhibit, or distribute medical devices including IVDs.
               </p>
               <p>
-                <strong className="text-foreground">MD 41</strong> is the application form submitted by the retailer/wholesaler/stockist to the SLA. Upon approval, the SLA issues the <strong className="text-foreground">MD 42 Registration Certificate</strong> — the legal authorization to deal in medical devices.
+                <strong className="text-foreground">MD 41</strong> is the application form submitted by the retailer/wholesaler/stockist to the SLA. Upon approval, the SLA issues the <strong className="text-foreground">MD 42 Registration Certificate</strong>  -  the legal authorization to deal in medical devices.
               </p>
             </div>
           </motion.div>
