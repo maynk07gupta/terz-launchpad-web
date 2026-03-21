@@ -20,7 +20,6 @@ function highlightText(container: HTMLElement, query: string) {
   const lowerQuery = query.toLowerCase();
   const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
-      // Skip script/style/mark nodes
       const parent = node.parentElement;
       if (!parent) return NodeFilter.FILTER_REJECT;
       const tag = parent.tagName.toLowerCase();
@@ -68,8 +67,15 @@ function highlightText(container: HTMLElement, query: string) {
   if (firstMark) {
     setTimeout(() => {
       firstMark!.scrollIntoView({ behavior: "smooth", block: "center" });
-    }, 500);
+    }, 300);
   }
+}
+
+function runHighlight(query: string) {
+  const mainEl = document.querySelector("main");
+  if (!mainEl) return;
+  clearHighlights(mainEl as HTMLElement);
+  highlightText(mainEl as HTMLElement, query);
 }
 
 export function useSearchHighlight() {
@@ -83,15 +89,31 @@ export function useSearchHighlight() {
     const mainEl = document.querySelector("main");
     if (!mainEl) return;
 
-    // Wait for content to render
+    // Initial highlight after content renders
     const timeout = setTimeout(() => {
+      runHighlight(query);
+    }, 1200);
+
+    // MutationObserver to re-highlight when new content appears (animations, lazy load)
+    const observer = new MutationObserver(() => {
       clearHighlights(mainEl as HTMLElement);
       highlightText(mainEl as HTMLElement, query);
-    }, 800);
+    });
+
+    const observerTimeout = setTimeout(() => {
+      observer.observe(mainEl, {
+        childList: true,
+        subtree: true,
+      });
+      // Stop observing after 5 seconds to avoid infinite loops
+      setTimeout(() => observer.disconnect(), 5000);
+    }, 1500);
 
     return () => {
       clearTimeout(timeout);
+      clearTimeout(observerTimeout);
+      observer.disconnect();
       if (mainEl) clearHighlights(mainEl as HTMLElement);
     };
-  }, [query, location.pathname]);
+  }, [query, location.pathname, location.hash]);
 }

@@ -1,16 +1,38 @@
-import { useState, useMemo } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { Search as SearchIcon, ArrowRight, FileText } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { searchIndex } from "@/data/searchIndex";
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const initialQuery = searchParams.get("q") || "";
   const [query, setQuery] = useState(initialQuery);
 
+  // Sync local query when URL param changes
+  useEffect(() => {
+    const urlQ = searchParams.get("q") || "";
+    if (urlQ !== query) setQuery(urlQ);
+  }, [searchParams]);
+
+  // Instant search: update URL params as user types (debounced)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const trimmed = query.trim();
+      if (trimmed && trimmed !== (searchParams.get("q") || "")) {
+        setSearchParams({ q: trimmed }, { replace: true });
+      } else if (!trimmed && searchParams.get("q")) {
+        setSearchParams({}, { replace: true });
+      }
+    }, 300);
+    return () => clearTimeout(timeout);
+  }, [query]);
+
+  const activeQuery = searchParams.get("q") || "";
+
   const results = useMemo(() => {
-    const q = (searchParams.get("q") || "").toLowerCase().trim();
+    const q = activeQuery.toLowerCase().trim();
     if (!q || q.length < 2) return [];
 
     return searchIndex
@@ -33,7 +55,18 @@ const Search = () => {
         }
         return { ...entry, snippet };
       });
-  }, [searchParams]);
+  }, [activeQuery]);
+
+  // Build correct URL: ?q= must come BEFORE #hash
+  const buildResultUrl = (path: string) => {
+    const [basePath, hash] = path.split("#");
+    return (
+      basePath +
+      "?q=" +
+      encodeURIComponent(activeQuery) +
+      (hash ? "#" + hash : "")
+    );
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +75,10 @@ const Search = () => {
     }
   };
 
-  const activeQuery = searchParams.get("q") || "";
+  const handleResultClick = (path: string) => {
+    const url = buildResultUrl(path);
+    navigate(url);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -78,10 +114,10 @@ const Search = () => {
 
           <div className="space-y-4">
             {results.map((result) => (
-              <Link
+              <button
                 key={result.path}
-                to={`${result.path}${result.path.includes("?") ? "&" : "?"}q=${encodeURIComponent(activeQuery)}`}
-                className="group block rounded-2xl border border-border/60 bg-card p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-md"
+                onClick={() => handleResultClick(result.path)}
+                className="group block w-full text-left rounded-2xl border border-border/60 bg-card p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-md"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
@@ -107,7 +143,7 @@ const Search = () => {
                   </div>
                   <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0 mt-1" />
                 </div>
-              </Link>
+              </button>
             ))}
 
             {activeQuery && results.length === 0 && (
