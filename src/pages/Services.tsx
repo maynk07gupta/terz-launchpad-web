@@ -1025,7 +1025,7 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
   }, [location.hash]);
 
   // Services that support both manufacturer and importer roles
-  const dualRoleServices = ["medical-devices", "ivd", "wholesale-license"];
+  const dualRoleServices = ["medical-devices", "ivd", "cosmetics"];
 
   const activeService = useMemo(
     () =>
@@ -1231,85 +1231,21 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
           </Select>
         </div>
 
-        {/* Role Toggle */}
+        {/* Section heading */}
         <div
           ref={contentRef}
           className={cn(
-            "transition-all duration-700",
+            "transition-all duration-700 text-center mb-10",
             contentVisible ?
             "opacity-100 translate-y-0" :
             "opacity-0 translate-y-8"
           )}>
-          
-          {hasDualRoles ?
-          <>
-              <div className="text-center mb-8">
-                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-                  Choose Your Role
-                </h2>
-                <p className="text-muted-foreground">
-                  Select whether you're a manufacturer or importer to see the specific process
-                </p>
-              </div>
-
-              <div className="flex justify-center gap-4 mb-10">
-                <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}>
-                
-                  <Button
-                  variant={selectedRole === "manufacturer" ? "default" : "outline"}
-                  onClick={() => handleRoleChange("manufacturer")}
-                  size="lg"
-                  className={cn(
-                    "min-w-[160px] gap-2 transition-all duration-300",
-                    selectedRole === "manufacturer" && "shadow-lg shadow-primary/25"
-                  )}>
-                  
-                    <motion.span
-                    animate={selectedRole === "manufacturer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
-                    transition={{ duration: 0.5 }}>
-                    
-                      <Factory className="h-4 w-4" />
-                    </motion.span>
-                    Manufacturer
-                  </Button>
-                </motion.div>
-                
-                <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}>
-                
-                  <Button
-                  variant={selectedRole === "importer" ? "default" : "outline"}
-                  onClick={() => handleRoleChange("importer")}
-                  size="lg"
-                  className={cn(
-                    "min-w-[160px] gap-2 transition-all duration-300",
-                    selectedRole === "importer" && "shadow-lg shadow-primary/25"
-                  )}>
-                  
-                    <motion.span
-                    animate={selectedRole === "importer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
-                    transition={{ duration: 0.5 }}>
-                    
-                      <Building2 className="h-4 w-4" />
-                    </motion.span>
-                    Importer
-                  </Button>
-                </motion.div>
-              </div>
-            </> :
-
-          <div className="text-center mb-10">
-              <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-                Manufacturer Process
-              </h2>
-              <p className="text-muted-foreground">
-                Follow the step-by-step registration process below
-              </p>
-            </div>
-          }
+          <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
+            {hasDualRoles ? "Manufacturer Process" : "Registration Process"}
+          </h2>
+          <p className="text-muted-foreground">
+            Follow the step-by-step process below
+          </p>
         </div>
       </section>
 
@@ -1344,54 +1280,66 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
             
             </div>
 
-            {/* Deep-dive content for Medical Devices */}
-            {activeServiceId === "medical-devices" &&
-          <div className="mt-[2vh]">
-                <MedicalDevicesContent />
-              </div>
-          }
+            {/* Deep-dive content */}
+            {activeServiceId === "medical-devices" && <div className="mt-[2vh]"><MedicalDevicesContent /></div>}
+            {activeServiceId === "ivd" && <div className="mt-[2vh]"><IVDContent /></div>}
+            {activeServiceId === "cosmetics" && <div className="mt-[2vh]"><CosmeticsContent /></div>}
+            {activeServiceId === "lmpc" && <div className="mt-[2vh]"><LegalMetrologyContent /></div>}
+            {activeServiceId === "iec" && <div className="mt-[2vh]"><IECContent /></div>}
+            {activeServiceId === "epr" && <div className="mt-[2vh]"><EPRContent /></div>}
+            {activeServiceId === "wholesale-license" && <div className="mt-[2vh]"><WholesaleLicenseContent /></div>}
 
-            {/* Deep-dive content for IVD */}
-            {activeServiceId === "ivd" &&
-          <div className="mt-[2vh]">
-                <IVDContent />
-              </div>
-          }
+            {/* Role Toggle - only for dual-role services, placed after knowledge base */}
+            {hasDualRoles && (
+              <div className="mt-16 pt-12 border-t border-border">
+                <div className="text-center mb-8">
+                  <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
+                    Choose Your Role
+                  </h2>
+                  <p className="text-muted-foreground">
+                    Select whether you're a manufacturer or importer to see the specific process
+                  </p>
+                </div>
 
-            {/* Deep-dive content for Cosmetics */}
-            {activeServiceId === "cosmetics" &&
-          <div className="mt-[2vh]">
-                <CosmeticsContent />
-              </div>
-          }
+                <div className="flex justify-center gap-4 mb-10">
+                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                    <Button
+                      variant={selectedRole === "manufacturer" ? "default" : "outline"}
+                      onClick={() => handleRoleChange("manufacturer")}
+                      size="lg"
+                      className={cn(
+                        "min-w-[160px] gap-2 transition-all duration-300",
+                        selectedRole === "manufacturer" && "shadow-lg shadow-primary/25"
+                      )}>
+                      <motion.span
+                        animate={selectedRole === "manufacturer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
+                        transition={{ duration: 0.5 }}>
+                        <Factory className="h-4 w-4" />
+                      </motion.span>
+                      Manufacturer
+                    </Button>
+                  </motion.div>
 
-            {/* Deep-dive content for Legal Metrology */}
-            {activeServiceId === "lmpc" &&
-          <div className="mt-[2vh]">
-                <LegalMetrologyContent />
+                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                    <Button
+                      variant={selectedRole === "importer" ? "default" : "outline"}
+                      onClick={() => handleRoleChange("importer")}
+                      size="lg"
+                      className={cn(
+                        "min-w-[160px] gap-2 transition-all duration-300",
+                        selectedRole === "importer" && "shadow-lg shadow-primary/25"
+                      )}>
+                      <motion.span
+                        animate={selectedRole === "importer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
+                        transition={{ duration: 0.5 }}>
+                        <Building2 className="h-4 w-4" />
+                      </motion.span>
+                      Importer
+                    </Button>
+                  </motion.div>
+                </div>
               </div>
-          }
-
-            {/* Deep-dive content for IEC */}
-            {activeServiceId === "iec" &&
-          <div className="mt-[2vh]">
-                <IECContent />
-              </div>
-          }
-
-            {/* Deep-dive content for EPR */}
-            {activeServiceId === "epr" &&
-          <div className="mt-[2vh]">
-                <EPRContent />
-              </div>
-          }
-
-            {/* Deep-dive content for Wholesale License */}
-            {activeServiceId === "wholesale-license" &&
-          <div className="mt-[2vh]">
-                <WholesaleLicenseContent />
-              </div>
-          }
+            )}
           </div>
         </section>
       }
