@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Shield, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ServiceCardCarousel } from "./ServiceCardCarousel";
+import heroBg from "@/assets/hero-bg.png";
 
 export const HeroSection = () => {
   return (
