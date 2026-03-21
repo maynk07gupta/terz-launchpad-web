@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
@@ -8,6 +8,12 @@ import logo from "@/assets/logo.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [searchExpanded, setSearchExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [mobileSearchQuery, setMobileSearchQuery] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+  const collapseTimeout = useRef<ReturnType<typeof setTimeout>>();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -29,6 +35,49 @@ const Navbar = () => {
     setIsOpen(false);
     navigate(`/services#${hash}`);
   };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchExpanded(false);
+      setSearchQuery("");
+    }
+  };
+
+  const handleMobileSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (mobileSearchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(mobileSearchQuery.trim())}`);
+      setIsOpen(false);
+      setMobileSearchQuery("");
+    }
+  };
+
+  const handleSearchMouseEnter = () => {
+    if (collapseTimeout.current) clearTimeout(collapseTimeout.current);
+    setSearchExpanded(true);
+  };
+
+  const handleSearchMouseLeave = () => {
+    collapseTimeout.current = setTimeout(() => {
+      if (document.activeElement !== searchInputRef.current) {
+        setSearchExpanded(false);
+      }
+    }, 400);
+  };
+
+  const handleSearchBlur = () => {
+    collapseTimeout.current = setTimeout(() => {
+      setSearchExpanded(false);
+    }, 300);
+  };
+
+  useEffect(() => {
+    if (searchExpanded && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchExpanded]);
 
   useEffect(() => {
     if (!isOpen) {
@@ -107,6 +156,42 @@ const Navbar = () => {
 
               <NavItem to="/resources" label="Resources" isActive={isActive("/resources")} />
               <NavItem to="/about" label="About" isActive={isActive("/about")} />
+
+              {/* Expandable Search */}
+              <div
+                ref={searchContainerRef}
+                className="relative flex items-center"
+                onMouseEnter={handleSearchMouseEnter}
+                onMouseLeave={handleSearchMouseLeave}
+              >
+                <form onSubmit={handleSearchSubmit} className="flex items-center">
+                  <div
+                    className={cn(
+                      "overflow-hidden transition-all duration-300 ease-in-out",
+                      searchExpanded ? "w-[200px] opacity-100 mr-1" : "w-0 opacity-0"
+                    )}
+                  >
+                    <input
+                      ref={searchInputRef}
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onBlur={handleSearchBlur}
+                      placeholder="Search..."
+                      className="w-full h-9 rounded-full border border-border/60 bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    />
+                  </div>
+                  <button
+                    type={searchExpanded ? "submit" : "button"}
+                    onClick={() => !searchExpanded && setSearchExpanded(true)}
+                    className="flex items-center justify-center h-10 w-10 rounded-full text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
+                    aria-label="Search"
+                  >
+                    <Search className="h-[22px] w-[22px]" />
+                  </button>
+                </form>
+              </div>
+
               <Button
                 asChild
                 className="group relative overflow-hidden rounded-full bg-primary px-6 text-sm font-semibold shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-primary-hover"
@@ -131,6 +216,18 @@ const Navbar = () => {
           {isOpen && (
             <div className="animate-in slide-in-from-top-4 py-6 lg:hidden">
               <div className="flex flex-col space-y-4 rounded-3xl border border-border/60 bg-card p-6 shadow-lg">
+                {/* Mobile Search */}
+                <form onSubmit={handleMobileSearchSubmit} className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <input
+                    type="text"
+                    value={mobileSearchQuery}
+                    onChange={(e) => setMobileSearchQuery(e.target.value)}
+                    placeholder="Search..."
+                    className="w-full h-11 rounded-full border border-border/60 bg-background pl-10 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  />
+                </form>
+
                 <Link
                   to="/"
                   className={`text-base font-semibold transition-all duration-300 ${

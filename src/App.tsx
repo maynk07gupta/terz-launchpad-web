@@ -14,7 +14,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
+import { SearchHighlightProvider } from "./components/SearchHighlightProvider";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <SearchHighlightProvider />
         <div className="flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-1">
@@ -46,6 +49,7 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
+              <Route path="/search" element={<Search />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
