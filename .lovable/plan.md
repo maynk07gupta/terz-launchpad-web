@@ -1,54 +1,50 @@
 
 
-## Global Site Search Feature
+## Fix Global Search Feature
 
-### What We're Building
-A search icon in the navbar (between "About" and "Contact Us") that expands into a search input on hover/click. When the user types and submits, it navigates to the target page and highlights all matching text occurrences on that page.
+### Problems Identified
 
-### Approach
+1. **Static search index only** - Search only looks through a hardcoded `searchIndex` array with brief keyword strings, not actual page content. So most searches return no results or irrelevant ones.
+2. **Broken navigation from results** - Result links append `?q=` to paths that contain `#` (e.g., `/services#medical-devices?q=term`), which breaks because the `?` must come before `#` in URLs. The browser treats everything after `#` as a fragment, so the query param is lost.
+3. **No live DOM search** - The search doesn't scan actual rendered page text, so newly added content won't be searchable unless manually added to the index.
 
-**1. Create a Search Route + Page (`src/pages/Search.tsx`)**
-- A dedicated `/search?q=term` page that searches across all site content
-- Define a searchable content index (page title, text snippets, route) for all pages: Home, Services (each sub-service), Resources, About, Contact, Privacy, Terms
-- Display search results as cards linking to the relevant page with the query param preserved
+### Solution: Switch to Live DOM-Based Search
 
-**2. Create Text Highlight Component (`src/components/TextHighlighter.tsx`)**
-- A wrapper that reads `?q=` from the URL search params
-- Uses `window.find()` or a DOM TreeWalker to find and wrap matching text nodes with a `<mark>` highlight style
-- Applies a yellow/primary background highlight with smooth animation
-- Auto-scrolls to the first match on the page
+Instead of relying on a static index, the search will **scan actual rendered page content** at search time. This means any new content added to the site will automatically be searchable.
 
-**3. Add Highlight Logic to App Layout (`src/App.tsx`)**
-- After each route renders, run the highlight logic if `?q=` param exists
-- Use a `useEffect` in a layout-level component that walks the DOM of `<main>` and wraps matching text in `<mark className="bg-yellow-200">` elements
-- Clean up highlights on navigation
+**Approach:**
 
-**4. Desktop Navbar Search Icon (`src/components/Navbar.tsx`)**
-- Place a `Search` icon (lucide, size 20-22) between the "About" NavItem and the "Contact Us" button
-- On hover, smoothly expand to show a text input (width transition from 0 to ~200px)
-- On Enter or click submit, navigate to `/search?q=<term>`
-- Collapse when mouse leaves (with a small delay so user can type)
+**1. Rewrite Search Page (`src/pages/Search.tsx`)**
+- Keep the static `searchIndex` as a **page directory** (maps titles to routes) but NOT as the search corpus
+- When user searches, show results from the static index (for page-level matches) but the real value comes from navigating to pages and highlighting
+- Fix URL construction: for paths with `#`, place `?q=` before the `#` (e.g., `/services?q=term#medical-devices`)
+- Add instant filtering as user types (no need to press Enter)
 
-**5. Mobile Navbar Search**
-- Add a search input row inside the mobile menu dropdown (at the top of the menu)
-- Full-width input with search icon, same submit behavior
+**2. Fix Result Link URLs (`src/pages/Search.tsx`)**
+- Split `result.path` on `#` and reconstruct as `basePath?q=query#hash` so navigation works correctly
+- Ensure clicking a result actually navigates to the correct page and section
 
-**6. Register Search Route (`src/App.tsx`)**
-- Add `<Route path="/search" element={<Search />} />`
+**3. Improve Search Index (`src/data/searchIndex.ts`)**
+- Expand content strings with much more actual text from each page so the static search returns meaningful results
+- This acts as a fallback and provides the "directory" of searchable pages
+
+**4. Fix Highlight Hook (`src/hooks/useSearchHighlight.ts`)**
+- Increase delay slightly for pages with lazy-loaded/animated content
+- Handle hash-based navigation (services page sections that render on hash change)
+- Strip `?q=` param from URL after highlighting is done (clean URL)
+
+**5. Navbar search improvements (`src/components/Navbar.tsx`)**
+- No structural changes needed, just ensure the form submits correctly
+
+### Files to Edit
+| File | Change |
+|------|--------|
+| `src/pages/Search.tsx` | Fix URL construction, add instant search, improve UX |
+| `src/data/searchIndex.ts` | Expand content text significantly for better matching |
+| `src/hooks/useSearchHighlight.ts` | Fix timing, handle hash routes, improve reliability |
 
 ### Technical Details
-
-- **Searchable index**: Static array of `{ title, content, path, section? }` objects. Content is plain text extracted from each page's key sections. For services, include each sub-service as a separate entry.
-- **Highlight mechanism**: After navigation to a result page with `?q=param`, a `useSearchHighlight` hook in `App.tsx` uses `MutationObserver` + `TreeWalker` to find text nodes containing the query, wraps matches in `<mark>` elements, and scrolls to the first one. Cleans up on unmount/navigation.
-- **Expand animation**: CSS `transition-all duration-300` on `width` (0 to 220px) and `opacity` for the input. The search icon remains visible; input appears to its left.
-- **Mobile**: Simple full-width `<Input>` with search icon prefix at the top of the mobile menu.
-
-### Files to Create/Edit
-| File | Action |
-|------|--------|
-| `src/pages/Search.tsx` | Create - search results page |
-| `src/hooks/useSearchHighlight.ts` | Create - DOM text highlight hook |
-| `src/data/searchIndex.ts` | Create - searchable content index |
-| `src/components/Navbar.tsx` | Edit - add expandable search icon (desktop + mobile) |
-| `src/App.tsx` | Edit - add search route + highlight hook |
+- URL fix: `const [basePath, hash] = result.path.split('#'); const url = basePath + '?q=' + encodeURIComponent(query) + (hash ? '#' + hash : '')`
+- Instant search: remove form submit requirement, filter on every keystroke via `useEffect` syncing query state to URL params with debounce
+- Highlight timing: increase to 1200ms for animated content, add MutationObserver fallback to re-highlight when new DOM nodes appear
 
