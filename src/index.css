@@ -385,3 +385,17 @@ All colors MUST be HSL.
     animation: marquee-right 30s linear infinite;
   }
 }
+
+/* Search highlight */
+mark.search-highlight {
+  background-color: hsl(48, 96%, 70%);
+  color: inherit;
+  padding: 1px 2px;
+  border-radius: 2px;
+  animation: highlight-pulse 1.5s ease-in-out 1;
+}
+
+@keyframes highlight-pulse {
+  0%, 100% { background-color: hsl(48, 96%, 70%); }
+  50% { background-color: hsl(48, 96%, 55%); }
+}
