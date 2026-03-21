@@ -1231,118 +1231,95 @@ const ServiceDetail = ({ initialServiceId }: ServiceDetailProps) => {
           </Select>
         </div>
 
-        {/* Section heading */}
-        <div
-          ref={contentRef}
-          className={cn(
-            "transition-all duration-700 text-center mb-10",
-            contentVisible ?
-            "opacity-100 translate-y-0" :
-            "opacity-0 translate-y-8"
-          )}>
-          <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-            {hasDualRoles ? "Manufacturer Process" : "Registration Process"}
-          </h2>
-          <p className="text-muted-foreground">
-            Follow the step-by-step process below
-          </p>
-        </div>
       </section>
 
-      {/* Roadmap Timeline */}
-      {activeSteps && activeStep &&
+      {/* Deep-dive knowledge base content + Roadmap for dual-role services */}
       <section className="container mx-auto sm:px-6 lg:px-8 pb-16 px-[50px]">
-          <div className="max-w-5xl mx-auto">
-            {/* Timeline */}
-            <RoadmapTimeline
-            totalSteps={activeSteps.length}
-            activeStep={activeStepIndex}
-            onStepClick={handleStepClick}
-            stepTitles={activeSteps.map((s) => s.title)} />
-          
+        <div className="max-w-5xl mx-auto">
+          {activeServiceId === "medical-devices" && <div className="mt-[2vh]"><MedicalDevicesContent /></div>}
+          {activeServiceId === "ivd" && <div className="mt-[2vh]"><IVDContent /></div>}
+          {activeServiceId === "cosmetics" && <div className="mt-[2vh]"><CosmeticsContent /></div>}
+          {activeServiceId === "lmpc" && <div className="mt-[2vh]"><LegalMetrologyContent /></div>}
+          {activeServiceId === "iec" && <div className="mt-[2vh]"><IECContent /></div>}
+          {activeServiceId === "epr" && <div className="mt-[2vh]"><EPRContent /></div>}
+          {activeServiceId === "wholesale-license" && <div className="mt-[2vh]"><WholesaleLicenseContent /></div>}
 
-            {/* Step Detail Card */}
-            <div className="mt-10">
-              <StepDetailCard
-              stepNumber={activeStepIndex + 1}
-              totalSteps={activeSteps.length}
-              title={activeStep.title}
-              description={activeStep.description}
-              icon={activeStep.icon}
-              serviceName={activeService?.title.split(" (")[0] ?? ""}
-              serviceLink="/contact"
-              keyDocuments={activeStep.keyDocuments}
-              typicalTimeline={activeStep.typicalTimeline}
-              deliverables={activeStep.deliverables}
-              tips={activeStep.tips}
-              onPrevious={handlePrevious}
-              onNext={handleNext} />
-            
-            </div>
-
-            {/* Deep-dive content */}
-            {activeServiceId === "medical-devices" && <div className="mt-[2vh]"><MedicalDevicesContent /></div>}
-            {activeServiceId === "ivd" && <div className="mt-[2vh]"><IVDContent /></div>}
-            {activeServiceId === "cosmetics" && <div className="mt-[2vh]"><CosmeticsContent /></div>}
-            {activeServiceId === "lmpc" && <div className="mt-[2vh]"><LegalMetrologyContent /></div>}
-            {activeServiceId === "iec" && <div className="mt-[2vh]"><IECContent /></div>}
-            {activeServiceId === "epr" && <div className="mt-[2vh]"><EPRContent /></div>}
-            {activeServiceId === "wholesale-license" && <div className="mt-[2vh]"><WholesaleLicenseContent /></div>}
-
-            {/* Role Toggle - only for dual-role services, placed after knowledge base */}
-            {hasDualRoles && (
-              <div className="mt-16 pt-12 border-t border-border">
-                <div className="text-center mb-8">
-                  <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
-                    Choose Your Role
-                  </h2>
-                  <p className="text-muted-foreground">
-                    Select whether you're a manufacturer or importer to see the specific process
-                  </p>
-                </div>
-
-                <div className="flex justify-center gap-4 mb-10">
-                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                    <Button
-                      variant={selectedRole === "manufacturer" ? "default" : "outline"}
-                      onClick={() => handleRoleChange("manufacturer")}
-                      size="lg"
-                      className={cn(
-                        "min-w-[160px] gap-2 transition-all duration-300",
-                        selectedRole === "manufacturer" && "shadow-lg shadow-primary/25"
-                      )}>
-                      <motion.span
-                        animate={selectedRole === "manufacturer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
-                        transition={{ duration: 0.5 }}>
-                        <Factory className="h-4 w-4" />
-                      </motion.span>
-                      Manufacturer
-                    </Button>
-                  </motion.div>
-
-                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                    <Button
-                      variant={selectedRole === "importer" ? "default" : "outline"}
-                      onClick={() => handleRoleChange("importer")}
-                      size="lg"
-                      className={cn(
-                        "min-w-[160px] gap-2 transition-all duration-300",
-                        selectedRole === "importer" && "shadow-lg shadow-primary/25"
-                      )}>
-                      <motion.span
-                        animate={selectedRole === "importer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
-                        transition={{ duration: 0.5 }}>
-                        <Building2 className="h-4 w-4" />
-                      </motion.span>
-                      Importer
-                    </Button>
-                  </motion.div>
-                </div>
+          {/* Role Toggle + Roadmap - only for Medical Devices, IVD, Cosmetics */}
+          {hasDualRoles && activeSteps && activeStep && (
+            <div className="mt-16 pt-12 border-t border-border">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
+                  Choose Your Role
+                </h2>
+                <p className="text-muted-foreground">
+                  Select whether you're a manufacturer or importer to see the specific process
+                </p>
               </div>
-            )}
-          </div>
-        </section>
-      }
+
+              <div className="flex justify-center gap-4 mb-10">
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <Button
+                    variant={selectedRole === "manufacturer" ? "default" : "outline"}
+                    onClick={() => handleRoleChange("manufacturer")}
+                    size="lg"
+                    className={cn(
+                      "min-w-[160px] gap-2 transition-all duration-300",
+                      selectedRole === "manufacturer" && "shadow-lg shadow-primary/25"
+                    )}>
+                    <motion.span
+                      animate={selectedRole === "manufacturer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
+                      transition={{ duration: 0.5 }}>
+                      <Factory className="h-4 w-4" />
+                    </motion.span>
+                    Manufacturer
+                  </Button>
+                </motion.div>
+
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <Button
+                    variant={selectedRole === "importer" ? "default" : "outline"}
+                    onClick={() => handleRoleChange("importer")}
+                    size="lg"
+                    className={cn(
+                      "min-w-[160px] gap-2 transition-all duration-300",
+                      selectedRole === "importer" && "shadow-lg shadow-primary/25"
+                    )}>
+                    <motion.span
+                      animate={selectedRole === "importer" ? { rotate: [0, -10, 10, 0] } : { rotate: 0 }}
+                      transition={{ duration: 0.5 }}>
+                      <Building2 className="h-4 w-4" />
+                    </motion.span>
+                    Importer
+                  </Button>
+                </motion.div>
+              </div>
+
+              <RoadmapTimeline
+                totalSteps={activeSteps.length}
+                activeStep={activeStepIndex}
+                onStepClick={handleStepClick}
+                stepTitles={activeSteps.map((s) => s.title)} />
+
+              <div className="mt-10">
+                <StepDetailCard
+                  stepNumber={activeStepIndex + 1}
+                  totalSteps={activeSteps.length}
+                  title={activeStep.title}
+                  description={activeStep.description}
+                  icon={activeStep.icon}
+                  serviceName={activeService?.title.split(" (")[0] ?? ""}
+                  serviceLink="/contact"
+                  keyDocuments={activeStep.keyDocuments}
+                  typicalTimeline={activeStep.typicalTimeline}
+                  deliverables={activeStep.deliverables}
+                  tips={activeStep.tips}
+                  onPrevious={handlePrevious}
+                  onNext={handleNext} />
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="bg-primary/5 py-[30px]">
